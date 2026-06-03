@@ -1,656 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Crulio Networks – India's Local Destination Services Platform</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crulio Networks — India's Pilgrimage Super Platform. Book hotels, food, transport & local services at every sacred destination.">
+<meta name="theme-color" content="#1a2f5e">
+<title>Crulio Networks — India's Pilgrimage Super Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ─── TOKENS ─────────────────────────────────────────── */
-:root{
-  --navy:      #0B2463;
-  --navy-dk:   #071840;
-  --navy-md:   #1A3A8A;
-  --navy-lt:   #EEF2FB;
-  --orange:    #E07530;
-  --orange-dk: #C45E18;
-  --orange-md: #F28C45;
-  --orange-lt: #FFF3E8;
-  --white:     #FFFFFF;
-  --off:       #F7F9FD;
-  --text:      #1A2540;
-  --muted:     #6B7FA3;
-  --border:    #DDE4F0;
-  --sh-sm:     0 2px 12px rgba(11,36,99,.07);
-  --sh-md:     0 8px 32px rgba(11,36,99,.12);
-  --sh-lg:     0 20px 60px rgba(11,36,99,.16);
-  --r:         14px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;line-height:1.6}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font-family:inherit}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a2f5e;
+    --navy-dark: #0f1d3a;
+    --navy-mid: #243d6e;
+    --orange: #E8680A;
+    --orange-light: #f27d25;
+    --orange-pale: #fef3ea;
+    --cream: #fdf8f3;
+    --gold: #c9921e;
+    --text: #1a1a1a;
+    --text-muted: #5a6a80;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Sora', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
 
-/* ─── TYPE ───────────────────────────────────────────── */
-h1,h2,h3{line-height:1.15;font-weight:700}
-h1{font-size:clamp(2rem,4vw,3.2rem)}
-h2{font-size:clamp(1.6rem,2.8vw,2.4rem)}
-.serif{font-family:'Playfair Display',serif}
-.label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:10px}
-.lead{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:560px}
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26, 47, 94, 0.97);
+    backdrop-filter: blur(12px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img { height: 38px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--orange-light); }
+  .nav-cta {
+    background: var(--orange);
+    color: white;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; display: block; transition: 0.3s; }
 
-/* ─── LAYOUT ─────────────────────────────────────────── */
-.container{max-width:1180px;margin:0 auto;padding:0 28px}
-.section{padding:88px 0}
-.flex{display:flex;align-items:center}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy-dark);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,104,10,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 20% 60%, rgba(26,47,94,0.8) 0%, transparent 70%);
+    display: flex; align-items: center;
+    padding: 68px 5% 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 80px 0 80px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,104,10,0.15);
+    border: 1px solid rgba(232,104,10,0.35);
+    color: var(--orange-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+  .hero-badge span { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--orange);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(232,104,10,0.35);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,104,10,0.4); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.07);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.3); }
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+  .hero-logo-wrap {
+    position: relative;
+    width: 340px; height: 340px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-logo-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(232,104,10,0.2);
+    animation: spin-slow 20s linear infinite;
+  }
+  .hero-logo-ring:nth-child(1) { width: 300px; height: 300px; }
+  .hero-logo-ring:nth-child(2) { width: 380px; height: 380px; animation-direction: reverse; animation-duration: 30s; border-color: rgba(255,255,255,0.06); }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-logo-img { width: 200px; position: relative; z-index: 2; filter: drop-shadow(0 8px 40px rgba(232,104,10,0.3)); }
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 44px; padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item { }
+  .stat-val { font-size: 26px; font-weight: 800; color: white; }
+  .stat-val span { color: var(--orange); }
+  .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 400; margin-top: 2px; letter-spacing: 0.03em; }
 
-/* ─── BUTTONS ────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-weight:600;font-size:15px;transition:all .22s;border:none}
-.btn-primary{background:var(--orange);color:#fff;box-shadow:0 4px 18px rgba(224,117,48,.32)}
-.btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:0 8px 28px rgba(224,117,48,.42)}
-.btn-navy{background:var(--navy);color:#fff}
-.btn-navy:hover{background:var(--navy-dk);transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--border)}
-.btn-ghost:hover{border-color:var(--navy);background:var(--navy-lt)}
+  /* SEARCH BAR */
+  .search-section {
+    background: var(--cream);
+    padding: 48px 5%;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .search-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+  .search-bar {
+    display: flex; align-items: center;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 8px 8px 24px;
+    box-shadow: 0 4px 24px rgba(26,47,94,0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 4px 24px rgba(232,104,10,0.15); }
+  .search-bar input {
+    flex: 1;
+    border: none; outline: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: transparent;
+    padding: 6px 0;
+  }
+  .search-bar input::placeholder { color: #b0bec5; }
+  .search-btn {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 12px 28px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .search-btn:hover { background: var(--navy-mid); }
+  .search-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+  .search-tag {
+    background: white; border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px;
+    padding: 5px 14px; border-radius: 50px;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none;
+  }
+  .search-tag:hover { border-color: var(--orange); color: var(--orange); }
 
-/* ─── NAV ────────────────────────────────────────────── */
-nav{
-  position:sticky;top:0;z-index:200;
-  background:rgba(255,255,255,.97);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(12px);
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav-logo{display:flex;align-items:center;gap:0}
-.nav-logo img{height:44px;width:auto;object-fit:contain}
-.nav-fb{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--navy);display:none}
-.nav-fb span{color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{padding:7px 15px;border-radius:8px;font-size:14px;font-weight:500;color:var(--text);transition:all .18s}
-.nav-links a:hover{background:var(--navy-lt);color:var(--navy)}
-.nav-right{display:flex;align-items:center;gap:12px}
-.nav-partner{font-size:13.5px;font-weight:600;color:var(--navy);padding:9px 18px;border-radius:8px;border:1.5px solid var(--border);transition:all .18s}
-.nav-partner:hover{border-color:var(--navy);background:var(--navy-lt)}
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+    padding: 4px 14px;
+    background: var(--orange-pale);
+    border-radius: 50px;
+  }
+  .section-title { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: var(--navy); line-height: 1.2; letter-spacing: -0.02em; }
+  .section-sub { font-size: 16px; color: var(--text-muted); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; font-weight: 300; }
 
-/* ─── HERO ───────────────────────────────────────────── */
-.hero{
-  background:linear-gradient(158deg,var(--navy-dk) 0%,var(--navy) 48%,#163585 100%);
-  position:relative;overflow:hidden;padding:80px 0 0;
-}
-.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:32px 32px;-webkit-mask-image:radial-gradient(ellipse 80% 100% at 50% 0%,black,transparent)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 75% 30%,rgba(255,255,255,.03) 0%,transparent 60%),radial-gradient(circle at 5% 85%,rgba(224,117,48,.12) 0%,transparent 40%)}
-.hero-inner{
-  position:relative;z-index:1;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
-  max-width:1180px;margin:0 auto;padding:0 28px 72px;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;padding:6px 16px;margin-bottom:24px;
-  font-size:13px;font-weight:500;color:rgba(255,255,255,.9);
-}
-.blink{width:7px;height:7px;border-radius:50%;background:var(--orange-md);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1{color:#fff;margin-bottom:18px;letter-spacing:-.02em}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--orange-md),#FFBE7A);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-sub{color:rgba(255,255,255,.62);font-size:1.05rem;line-height:1.78;margin-bottom:34px;max-width:500px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+  /* DESTINATIONS */
+  .destinations-bg { background: var(--white); }
+  .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .dest-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .dest-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,47,94,0.14); border-color: rgba(26,47,94,0.2); }
+  .dest-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--navy) 0%, #2a4a8a 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    font-size: 56px;
+  }
+  .dest-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35) 100%);
+  }
+  .dest-live {
+    position: absolute; top: 12px; right: 12px; z-index: 1;
+    background: #e53e3e; color: white;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 50px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .dest-live::before { content: ''; width: 5px; height: 5px; background: white; border-radius: 50%; animation: pulse 1.5s infinite; }
+  .dest-badge-new {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    background: var(--orange); color: white;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 50px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .dest-body { padding: 18px 20px 20px; }
+  .dest-name { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .dest-loc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
+  .dest-services { display: flex; gap: 6px; flex-wrap: wrap; }
+  .dest-svc { font-size: 11px; font-weight: 600; background: var(--cream); color: var(--navy); padding: 3px 10px; border-radius: 50px; border: 1px solid var(--border); }
+  .dest-coming {
+    background: var(--cream);
+    border: 2px dashed var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    padding: 40px 20px;
+    border-radius: var(--radius);
+    text-align: center;
+  }
+  .dest-coming-icon { font-size: 32px; }
+  .dest-coming p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+  .dest-coming strong { font-size: 15px; color: var(--navy); display: block; }
 
-/* search */
-.hero-search{background:#fff;border-radius:var(--r);box-shadow:var(--sh-lg);overflow:hidden;margin-top:32px}
-.search-tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px;gap:4px}
-.stab{padding:13px 18px;font-size:13.5px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;transition:all .18s;margin-bottom:-1px;display:flex;align-items:center;gap:6px}
-.stab.on{color:var(--navy);border-bottom-color:var(--orange)}
-.stab:hover:not(.on){color:var(--text)}
-.search-body{padding:18px 20px;display:flex;gap:12px;align-items:flex-end}
-.sf{flex:1}
-.sf label{font-size:11px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
-.sf input,.sf select{width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid var(--border);font-family:inherit;font-size:14px;color:var(--text);transition:border-color .18s;background:#fff}
-.sf input:focus,.sf select:focus{outline:none;border-color:var(--navy)}
-.sf input::placeholder{color:var(--muted)}
-.sbtn{background:var(--orange);color:#fff;border:none;padding:11px 26px;border-radius:8px;font-size:14.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(224,117,48,.35)}
-.sbtn:hover{background:var(--orange-dk);transform:translateY(-1px)}
+  /* SERVICES */
+  .services-bg { background: var(--navy); }
+  .services-bg .section-title { color: white; }
+  .services-bg .section-sub { color: rgba(255,255,255,0.55); }
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+  .svc-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .svc-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(232,104,10,0.4); transform: translateY(-2px); }
+  .svc-icon { font-size: 28px; margin-bottom: 14px; }
+  .svc-name { font-size: 15px; font-weight: 700; color: white; margin-bottom: 6px; }
+  .svc-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
 
-/* hero right */
-.hero-right{display:flex;flex-direction:column;align-items:center;gap:28px}
-.hero-logo-wrap{
-  position:relative;width:260px;height:260px;
-  display:flex;align-items:center;justify-content:center;
-}
-.hl-glow{
-  position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,117,48,.18) 0%,transparent 68%);
-  animation:glow 3.5s ease-in-out infinite;
-}
-@keyframes glow{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.12);opacity:1}}
-.hero-logo-wrap img{
-  width:220px;height:220px;object-fit:contain;position:relative;z-index:1;
-  filter:drop-shadow(0 12px 36px rgba(224,117,48,.35));
-  animation:float 4.5s ease-in-out infinite;
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  /* WHY CRULIO */
+  .why-bg { background: var(--cream); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .why-left { }
+  .why-left .section-header { text-align: left; margin-bottom: 32px; }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  .why-item { display: flex; gap: 16px; align-items: flex-start; }
+  .why-dot { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .why-text strong { display: block; font-size: 15px; color: var(--navy); font-weight: 700; margin-bottom: 3px; }
+  .why-text p { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+  .why-right { }
+  .stats-box {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 36px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .stat-box-item { }
+  .stat-box-val { font-size: 2.4rem; font-weight: 800; color: white; line-height: 1; }
+  .stat-box-val span { color: var(--orange); }
+  .stat-box-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; font-weight: 400; }
+  .stat-box-proof { font-size: 10px; color: rgba(232,104,10,0.7); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px; }
 
-/* orbit */
-.orbit{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(255,255,255,.12);animation:spin 14s linear infinite}
-.orbit2{inset:-18px;border-color:rgba(224,117,48,.15);animation-duration:20s;animation-direction:reverse}
-.odot{position:absolute;width:9px;height:9px;border-radius:50%;top:-4.5px;left:50%;margin-left:-4.5px}
-.odot1{background:var(--orange-md);box-shadow:0 0 10px var(--orange-md)}
-.odot2{background:#5B8FF9;box-shadow:0 0 10px #5B8FF9;top:auto;bottom:-4.5px}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  /* PARTNER */
+  .partner-bg { background: white; }
+  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .partner-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .partner-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(232,104,10,0.1); }
+  .partner-icon { font-size: 32px; margin-bottom: 14px; }
+  .partner-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .partner-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
 
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%}
-.hs{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;text-align:center}
-.hs-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff}
-.hs-label{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px;letter-spacing:.03em}
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--cream); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .testi-stars { color: #f6b30e; font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testi-text { font-size: 14px; color: var(--text-muted); line-height: 1.75; font-weight: 300; font-style: italic; margin-bottom: 16px; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+  .testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .testi-loc { font-size: 11px; color: var(--text-muted); }
 
-/* ─── TRUST ──────────────────────────────────────────── */
-.trust-bar{background:var(--navy-lt);border-bottom:1px solid var(--border);padding:16px 0}
-.trust-items{display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap}
-.ti{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--navy)}
-.ti span{color:var(--muted);font-weight:400}
+  /* CTA BAND */
+  .cta-band {
+    background: var(--navy-dark);
+    background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,104,10,0.15) 0%, transparent 60%);
+    padding: 80px 5%;
+    text-align: center;
+  }
+  .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: white; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .cta-band p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 36px; font-weight: 300; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-/* ─── PROBLEM / WHAT ─────────────────────────────────── */
-.what-section{background:var(--white)}
-.what-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.what-left h2{color:var(--navy);margin-bottom:16px}
-.what-left p{color:var(--muted);line-height:1.82;margin-bottom:28px}
-.what-points{display:flex;flex-direction:column;gap:13px}
-.wp{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border-radius:12px;background:var(--off);border:1px solid var(--border);transition:border-color .2s}
-.wp:hover{border-color:var(--orange)}
-.wp-ic{width:40px;height:40px;border-radius:10px;background:var(--orange-lt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.wp-txt h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
-.wp-txt p{font-size:13px;color:var(--muted);line-height:1.55}
+  /* FOOTER */
+  footer {
+    background: var(--navy-dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 48px 5% 32px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand img { height: 40px; margin-bottom: 14px; display: block; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; max-width: 260px; }
+  .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; font-weight: 300; }
+  .footer-col a:hover { color: var(--orange-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300; }
+  .footer-bottom a { color: rgba(232,104,10,0.8); text-decoration: none; }
 
-/* visual flow */
-.what-visual{background:linear-gradient(135deg,var(--navy-lt),#E8EEFF);border-radius:22px;padding:30px;border:1px solid var(--border);position:relative;overflow:hidden}
-.what-visual::after{content:'';position:absolute;bottom:-30px;right:-30px;width:130px;height:130px;border-radius:50%;background:rgba(224,117,48,.09)}
-.wv-logo-wrap{display:flex;justify-content:center;margin-bottom:20px}
-.wv-logo-wrap img{height:64px;object-fit:contain}
-.wv-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);text-align:center;margin-bottom:18px}
-.wv-step{display:flex;align-items:center;gap:12px;background:#fff;border-radius:10px;padding:12px 16px;border:1px solid var(--border);margin-bottom:8px}
-.wv-n{width:26px;height:26px;border-radius:6px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.wv-t{font-size:13px;font-weight:600;color:var(--text)}
-.wv-s{font-size:11.5px;color:var(--muted)}
-.wv-arrow{text-align:center;color:var(--muted);font-size:12px;padding:2px 0}
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-sub { margin: 0 auto 36px; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+    .hero-stats { justify-content: center; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-left .section-header { text-align: center; }
+    .why-list { max-width: 480px; margin: 0 auto; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .partner-grid { grid-template-columns: 1fr; }
+    nav .nav-links, nav .nav-cta { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 4%; }
+    .stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .search-bar { flex-direction: column; border-radius: 16px; padding: 12px; gap: 8px; }
+    .search-btn { width: 100%; border-radius: 10px; padding: 12px; }
+  }
 
-/* ─── SERVICES ───────────────────────────────────────── */
-.svc-section{background:var(--off)}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.svc-card{background:var(--white);border-radius:var(--r);padding:28px 24px;border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
-.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--orange-md));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.svc-card:hover{transform:translateY(-5px);box-shadow:var(--sh-md);border-color:rgba(11,36,99,.18)}
-.svc-card:hover::before{transform:scaleX(1)}
-.svc-icon{width:54px;height:54px;border-radius:14px;background:var(--orange-lt);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:18px}
-.svc-name{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px}
-.svc-desc{font-size:13.5px;color:var(--muted);line-height:1.65}
-.svc-tag{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--orange);text-transform:uppercase}
-
-/* ─── DESTINATIONS ───────────────────────────────────── */
-.dest-section{background:var(--white)}
-.dest-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px}
-.dest-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px}
-.dc{position:relative;border-radius:18px;overflow:hidden;cursor:pointer}
-.dc:hover .dc-img img{transform:scale(1.06)}
-.dc-img{height:260px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-md) 100%)}
-.dc.sm .dc-img{height:180px}
-.dc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.dc-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:54px;background:linear-gradient(135deg,#0B2463,#1A3A8A)}
-.dc.sm .dc-ph{font-size:38px}
-.dc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,24,64,.85) 0%,rgba(7,24,64,.2) 60%,transparent 100%)}
-.dc-body{position:absolute;bottom:0;left:0;right:0;padding:22px}
-.dc-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;font-size:11px;color:#fff;font-weight:600;backdrop-filter:blur(6px);margin-bottom:8px}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;animation:blink 1.8s infinite}
-.dc-name{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:3px}
-.dc.sm .dc-name{font-size:.95rem}
-.dc-meta{font-size:12px;color:rgba(255,255,255,.62)}
-.dc.dim .dc-img{filter:grayscale(.7)}
-
-/* ─── FREE INFO ──────────────────────────────────────── */
-.free-section{background:linear-gradient(158deg,var(--navy-dk) 0%,var(--navy) 100%);position:relative;overflow:hidden}
-.free-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
-.free-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.free-left .label{color:var(--orange-md)}
-.free-left h2{color:#fff;margin-bottom:16px}
-.free-left p{color:rgba(255,255,255,.58);line-height:1.82;margin-bottom:26px}
-.free-list{display:flex;flex-direction:column;gap:11px}
-.fl-item{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.8);font-size:14.5px;font-weight:500}
-.fl-item::before{content:'✓';width:22px;height:22px;border-radius:6px;background:rgba(224,117,48,.22);color:var(--orange-md);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.free-right{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;backdrop-filter:blur(12px)}
-.mock-browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--sh-lg)}
-.mock-bar{background:#F3F4F6;padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #E5E7EB}
-.mdot{width:10px;height:10px;border-radius:50%}
-.mock-url{flex:1;background:#fff;border-radius:6px;padding:5px 10px;font-size:11px;color:#9CA3AF;margin-left:8px;border:1px solid #E5E7EB}
-.mock-body{padding:18px}
-.mock-search{display:flex;align-items:center;gap:9px;background:#F9FAFB;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:14px}
-.mock-search input{border:none;background:none;outline:none;flex:1;font-size:13px;color:var(--text);font-family:inherit}
-.mr{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:10px;border:1px solid var(--border);margin-bottom:8px;background:#fff;transition:all .18s}
-.mr:hover{border-color:var(--navy-md);box-shadow:var(--sh-sm)}
-.mr-ic{font-size:21px;flex-shrink:0}
-.mr-info h5{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.mr-info p{font-size:11.5px;color:var(--muted)}
-.mr-badge{margin-left:auto;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
-.mr-badge.free{background:#DCFCE7;color:#166534}
-.mr-badge.book{background:var(--orange-lt);color:var(--orange-dk)}
-
-/* ─── TRACTION ───────────────────────────────────────── */
-.traction-section{background:var(--off);border-top:1px solid var(--border)}
-.traction-inner{text-align:center}
-.traction-inner .lead{margin:0 auto 52px}
-.traction-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.tc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px 20px;text-align:center;transition:all .25s}
-.tc:hover{border-color:var(--navy);box-shadow:var(--sh-sm)}
-.tc-icon{font-size:28px;margin-bottom:14px}
-.tc-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);margin-bottom:6px}
-.tc-num span{color:var(--orange)}
-.tc-label{font-size:13px;color:var(--muted);font-weight:500}
-.traction-note{margin-top:46px;display:inline-flex;align-items:center;gap:8px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:999px;padding:9px 22px;font-size:13px;font-weight:600;color:#065F46}
-
-/* ─── HOW IT WORKS ───────────────────────────────────── */
-.hiw-section{background:var(--white)}
-.hiw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
-.hiw-grid::before{content:'';position:absolute;top:36px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) 8px,transparent 8px,transparent 16px);z-index:0}
-.hc{background:var(--white);border-radius:var(--r);padding:28px 20px;border:1px solid var(--border);text-align:center;position:relative;z-index:1;transition:all .25s}
-.hc:hover{border-color:rgba(11,36,99,.3);box-shadow:var(--sh-md);transform:translateY(-4px)}
-.hc-num{width:52px;height:52px;border-radius:16px;background:var(--navy);color:#fff;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 6px 20px rgba(11,36,99,.25)}
-.hc-icon{font-size:26px;margin-bottom:12px}
-.hc-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px}
-.hc-desc{font-size:13px;color:var(--muted);line-height:1.65}
-
-/* ─── PARTNER ────────────────────────────────────────── */
-.partner-section{background:linear-gradient(135deg,var(--orange-lt) 0%,#FFF8F0 100%);border-top:1px solid rgba(224,117,48,.15);border-bottom:1px solid rgba(224,117,48,.15)}
-.partner-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.partner-left h2{color:var(--navy);margin-bottom:14px}
-.partner-left p{color:var(--muted);line-height:1.82;margin-bottom:26px}
-.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.pc{background:#fff;border-radius:12px;padding:18px;border:1px solid rgba(224,117,48,.2);transition:all .2s}
-.pc:hover{border-color:var(--orange);box-shadow:var(--sh-sm)}
-.pc-icon{font-size:22px;margin-bottom:7px}
-.pc-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
-.pc-desc{font-size:12px;color:var(--muted)}
-
-/* ─── CITIES ─────────────────────────────────────────── */
-.cities-section{background:var(--off)}
-.city-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
-.cp{display:flex;align-items:center;gap:7px;background:var(--white);border:1.5px solid var(--border);border-radius:999px;padding:9px 20px;font-size:13.5px;font-weight:500;color:var(--text);transition:all .2s}
-.cp.on{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 4px 14px rgba(11,36,99,.2)}
-.cp .lbl{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:999px;text-transform:uppercase}
-.cp.on .lbl{background:var(--orange);color:#fff}
-.cp.soon .lbl{background:rgba(107,127,163,.12);color:var(--muted)}
-
-/* ─── FOOTER ─────────────────────────────────────────── */
-footer{background:var(--navy-dk);color:rgba(255,255,255,.72)}
-.ft{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;padding:64px 0 48px;border-bottom:1px solid rgba(255,255,255,.08)}
-.fb-logo{height:46px;margin-bottom:18px;object-fit:contain}
-.fb-logo-fb{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:#fff;margin-bottom:18px;display:none}
-.fb-logo-fb span{color:var(--orange)}
-footer p.fp{font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.42);margin-bottom:20px}
-.fsoc{display:flex;gap:10px}
-.fsb{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .18s;cursor:pointer}
-.fsb:hover{background:var(--orange);border-color:var(--orange)}
-.fc h5{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:18px}
-.fc a{display:block;font-size:13.5px;color:rgba(255,255,255,.52);margin-bottom:11px;transition:color .18s}
-.fc a:hover{color:var(--orange-md)}
-.fbot{display:flex;align-items:center;justify-content:space-between;padding:22px 0;font-size:12.5px;color:rgba(255,255,255,.28)}
-.fbot a{color:rgba(255,255,255,.42);transition:color .2s}
-.fbot a:hover{color:var(--orange-md)}
-.fbot-links{display:flex;gap:20px}
-
-/* ─── ANIMATIONS ─────────────────────────────────────── */
-.fade-up{opacity:0;transform:translateY(28px);transition:opacity .55s,transform .55s}
-.fade-up.vis{opacity:1;transform:none}
-
-/* ─── RESPONSIVE ─────────────────────────────────────── */
-@media(max-width:1024px){
-  .dest-grid{grid-template-columns:1fr 1fr}
-  .ft{grid-template-columns:1fr 1fr;gap:32px}
-  .traction-grid{grid-template-columns:repeat(2,1fr)}
-  .hiw-grid{grid-template-columns:repeat(2,1fr)}
-  .hiw-grid::before{display:none}
-}
-@media(max-width:768px){
-  nav .nav-links{display:none}
-  .hero-inner{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .what-inner,.free-inner,.partner-inner{grid-template-columns:1fr;gap:36px}
-  .svc-grid{grid-template-columns:1fr 1fr}
-  .dest-grid{grid-template-columns:1fr}
-  .dc.sm .dc-img{height:180px}
-  .section{padding:60px 0}
-  .trust-items{gap:20px}
-  .ft{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-  .svc-grid,.traction-grid,.hiw-grid,.pc-grid{grid-template-columns:1fr}
-  .search-body{flex-direction:column}
-  .sbtn{width:100%;justify-content:center}
-}
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- ═══════ NAV ═══════ -->
 <nav>
-  <div class="container nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="images/logos/LOGOWITHFONT.png" alt="Crulio Networks"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <div class="nav-fb">crulio<span>.</span>networks</div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#destinations">Destinations</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="mailto:partner@crulio.com" class="nav-partner">Partner With Us</a>
-      <a href="#destinations" class="btn btn-primary" style="font-size:13.5px;padding:10px 20px">Explore Destinations</a>
-    </div>
-  </div>
+  <a href="/" class="nav-logo">
+    <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'; this.nextSibling.style.display='flex'">
+    <span style="display:none; align-items:center; gap:10px; color:white; font-weight:800; font-size:18px; letter-spacing:-0.02em;">
+      <img src="images/logos/NOBGLOGO.png" style="height:32px" onerror="this.style.display='none'">
+      crulio<span style="color:var(--orange)">.</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#partner">For Partners</a></li>
+    <li><a href="#about">About Us</a></li>
+  </ul>
+  <a href="#destinations" class="nav-cta">Plan Yatra</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ═══════ HERO ═══════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-dots"></div>
   <div class="hero-inner">
-
-    <!-- LEFT -->
-    <div class="hero-left">
-      <div class="hero-eyebrow"><div class="blink"></div> India's Hyperlocal Destination Services Platform</div>
-      <h1>Plan, Book & Explore<br>Every <em>Sacred Destination</em></h1>
-      <p class="hero-sub">
-        Crulio Networks brings free information, verified hotels, taxis, restaurants & food delivery to every pilgrimage destination in India — all organized in one place.
-      </p>
-      <div class="hero-btns">
-        <a href="#destinations" class="btn btn-primary">Explore Destinations</a>
-        <a href="#how-it-works" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.28)">How It Works</a>
-      </div>
-
-      <!-- SEARCH -->
-      <div class="hero-search">
-        <div class="search-tabs">
-          <div class="stab on">🛕 Dhams & Temples</div>
-          <div class="stab">🏨 Hotels</div>
-          <div class="stab">🚖 Taxi</div>
-          <div class="stab">🍱 Food</div>
-        </div>
-        <div class="search-body">
-          <div class="sf" style="flex:2">
-            <label>Destination / Dham</label>
-            <input type="text" placeholder="Search any destination, temple, sacred site…">
-          </div>
-          <div class="sf">
-            <label>Date of Visit</label>
-            <input type="date">
-          </div>
-          <div class="sf">
-            <label>Travellers</label>
-            <select>
-              <option>1 Person</option>
-              <option>2 People</option>
-              <option>Family (4+)</option>
-              <option>Group (10+)</option>
-            </select>
-          </div>
-          <button class="sbtn">🔍 Search</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="hero-right">
-      <div class="hero-logo-wrap">
-        <div class="hl-glow"></div>
-        <div class="orbit"><div class="odot odot1"></div></div>
-        <div class="orbit orbit2"><div class="odot odot2"></div></div>
-        <img src="images/logos/NOBGLOGO.png" alt="Crulio Networks"
-          onerror="this.src='images/logos/LOGO.png'">
+    <div class="hero-content">
+      <div class="hero-badge"><span></span>Now Live — Manauna Dham, Bareilly</div>
+      <h1>Your <em>Yatra,</em><br>Simplified.</h1>
+      <p class="hero-sub">Hotels, food, transport & local services for India's pilgrimage destinations — all in one place. Ground-verified. Pilgrim-first.</p>
+      <div class="hero-actions">
+        <a href="#destinations" class="btn-primary">Explore Destinations →</a>
+        <a href="#partner" class="btn-ghost">Partner With Us</a>
       </div>
       <div class="hero-stats">
-        <div class="hs">
-          <div class="hs-num">7L+</div>
-          <div class="hs-label">Organic Views</div>
+        <div class="stat-item">
+          <div class="stat-val">7.3<span>L+</span></div>
+          <div class="stat-lbl">Impressions Served</div>
         </div>
-        <div class="hs">
-          <div class="hs-num">₹2.3L+</div>
-          <div class="hs-label">GMV in 3 months</div>
+        <div class="stat-item">
+          <div class="stat-val">1000<span>+</span></div>
+          <div class="stat-lbl">Pilgrims Helped</div>
         </div>
-        <div class="hs">
-          <div class="hs-num">₹0</div>
-          <div class="hs-label">Ad spend</div>
+        <div class="stat-item">
+          <div class="stat-val">₹2.3<span>L</span></div>
+          <div class="stat-lbl">GMV Generated</div>
         </div>
       </div>
     </div>
-
+    <div class="hero-visual">
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-ring"></div>
+        <div class="hero-logo-ring"></div>
+        <img class="hero-logo-img" src="images/logos/NOBGLOGO.png" alt="Crulio" onerror="this.style.opacity='0'">
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════ TRUST BAR ═══════ -->
-<div class="trust-bar">
-  <div class="container">
-    <div class="trust-items">
-      <div class="ti">✅ Free Destination Guides <span>Always free for visitors</span></div>
-      <div class="ti">🏨 Verified Local Hotels <span>Curated on the ground</span></div>
-      <div class="ti">📍 Hyperlocal Services <span>Built per destination</span></div>
-      <div class="ti">📈 100% Organic Growth <span>Zero paid marketing</span></div>
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-inner">
+    <div class="search-label">Find your destination</div>
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b0bec5" stroke-width="2" style="flex-shrink:0;margin-right:4px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search dham, mandir, city..." id="search-input">
+      <button class="search-btn" onclick="doSearch()">Search</button>
+    </div>
+    <div class="search-tags">
+      <a href="https://www.manaunadham.org.in" class="search-tag" target="_blank">🛕 Manauna Dham</a>
+      <span class="search-tag">🕌 Khatu Shyam Ji</span>
+      <span class="search-tag">⛩️ Vrindavan</span>
+      <span class="search-tag">🪔 Mathura</span>
+      <span class="search-tag">🌸 Pushkar</span>
     </div>
   </div>
 </div>
 
-<!-- ═══════ ABOUT / PROBLEM ═══════ -->
-<section class="section what-section" id="about">
-  <div class="container">
-    <div class="what-inner">
-
-      <div class="what-left fade-up">
-        <span class="label">The Problem We Solve</span>
-        <h2 style="color:var(--navy)">India's Sacred Destinations Deserve Better</h2>
-        <p>Thousands of Dhams, temples & pilgrimage sites across India lack any proper digital presence. Visitors struggle to find accurate timings, nearby hotels, transport & food. Local businesses have zero online reach. The entire market is unorganized — Crulio is changing that.</p>
-        <div class="what-points">
-          <div class="wp">
-            <div class="wp-ic">🔍</div>
-            <div class="wp-txt">
-              <h4>No Reliable Information Online</h4>
-              <p>Most sacred sites have no structured website, outdated info or zero digital presence for millions of annual visitors.</p>
-            </div>
+<!-- DESTINATIONS -->
+<section class="destinations-bg" id="destinations">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Destinations</div>
+      <h2 class="section-title">Sacred Places, Seamless Services</h2>
+      <p class="section-sub">Each destination is ground-verified by our local team. Real timings, real vendors, real trust.</p>
+    </div>
+    <div class="dest-grid reveal">
+      <!-- Live destination -->
+      <a href="https://www.manaunadham.org.in" class="dest-card" target="_blank">
+        <div class="dest-img" style="background: linear-gradient(135deg, #6b0000 0%, #c0392b 100%);">
+          🛕
+          <div class="dest-live">Live</div>
+        </div>
+        <div class="dest-body">
+          <div class="dest-name">Manauna Dham</div>
+          <div class="dest-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Aonla, Bareilly, Uttar Pradesh
           </div>
-          <div class="wp">
-            <div class="wp-ic">🏘️</div>
-            <div class="wp-txt">
-              <h4>Completely Unorganized Local Services</h4>
-              <p>Hotels, taxis, restaurants near Dhams operate with no digital booking layer — visitors are left to figure it out alone.</p>
-            </div>
+          <div class="dest-services">
+            <span class="dest-svc">Hotel</span>
+            <span class="dest-svc">Food</span>
+            <span class="dest-svc">Transport</span>
+            <span class="dest-svc">Shyam Jal</span>
           </div>
-          <div class="wp">
-            <div class="wp-ic">📈</div>
-            <div class="wp-txt">
-              <h4>Crulio's Model: Proven & Scalable</h4>
-              <p>We build a complete platform per destination, prove the model with real revenue, then scale across India.</p>
-            </div>
+        </div>
+      </a>
+      <!-- Coming soon cards -->
+      <div class="dest-card" style="cursor:default;">
+        <div class="dest-img" style="background: linear-gradient(135deg, #1a5c8a 0%, #2980b9 100%);">
+          🪔
+          <div class="dest-badge-new">Coming Soon</div>
+        </div>
+        <div class="dest-body">
+          <div class="dest-name">Khatu Shyam Ji</div>
+          <div class="dest-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Sikar, Rajasthan
+          </div>
+          <div class="dest-services">
+            <span class="dest-svc">Hotel</span>
+            <span class="dest-svc">Food</span>
+            <span class="dest-svc">Transport</span>
           </div>
         </div>
       </div>
-
-      <div class="what-right fade-up">
-        <div class="what-visual">
-          <div class="wv-logo-wrap">
-            <img src="images/logos/NOBGLOGO.png" alt="Crulio"
-              onerror="this.src='images/logos/LOGO.png'">
+      <div class="dest-card" style="cursor:default;">
+        <div class="dest-img" style="background: linear-gradient(135deg, #2d5a27 0%, #4caf50 50%, #2d5a27 100%);">
+          🌿
+          <div class="dest-badge-new">Coming Soon</div>
+        </div>
+        <div class="dest-body">
+          <div class="dest-name">Vrindavan</div>
+          <div class="dest-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Mathura, Uttar Pradesh
           </div>
-          <div class="wv-title">How the Platform Works</div>
-          <div class="wv-flow">
-            <div class="wv-step">
-              <div class="wv-n">1</div>
-              <div><div class="wv-t">Visitor searches a destination</div><div class="wv-s">Any Dham, temple or sacred site</div></div>
-            </div>
-            <div class="wv-arrow">↓</div>
-            <div class="wv-step">
-              <div class="wv-n">2</div>
-              <div><div class="wv-t">Crulio ranks first — free info page</div><div class="wv-s">Timings, planner, map, photos — all free</div></div>
-            </div>
-            <div class="wv-arrow">↓</div>
-            <div class="wv-step">
-              <div class="wv-n">3</div>
-              <div><div class="wv-t">Visitor books services on the same page</div><div class="wv-s">Hotel, taxi, food delivery, table booking</div></div>
-            </div>
-            <div class="wv-arrow">↓</div>
-            <div class="wv-step">
-              <div class="wv-n">4</div>
-              <div><div class="wv-t">Local providers earn. Crulio earns.</div><div class="wv-s">Commission model — zero cost to the visitor</div></div>
-            </div>
+          <div class="dest-services">
+            <span class="dest-svc">Hotel</span>
+            <span class="dest-svc">Food</span>
+            <span class="dest-svc">Guides</span>
           </div>
         </div>
       </div>
-
+      <div class="dest-coming">
+        <div class="dest-coming-icon">📍</div>
+        <strong>Expand to Your Dham</strong>
+        <p>We're building the network, one sacred site at a time.</p>
+        <a href="#partner" class="btn-primary" style="font-size:13px; padding:10px 20px; margin-top:8px;">Partner With Us</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ SERVICES ═══════ -->
-<section class="section svc-section" id="services">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px" class="fade-up">
-      <span class="label" style="display:block;text-align:center">What We Offer</span>
-      <h2 style="color:var(--navy);margin-bottom:12px">Every Service a Visitor Needs</h2>
-      <p class="lead" style="margin:0 auto">From free destination guides to complete local travel support — one platform, every destination.</p>
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow" style="background:rgba(232,104,10,0.2); color:var(--orange-light);">What We Offer</div>
+      <h2 class="section-title">Everything a Pilgrim Needs</h2>
+      <p class="section-sub">From the moment you decide to visit, to the moment you return home.</p>
     </div>
-    <div class="svc-grid">
-      <div class="svc-card fade-up">
+    <div class="svc-grid reveal">
+      <div class="svc-card">
         <div class="svc-icon">🏨</div>
-        <div class="svc-name">Hotel & Dharmshala Booking</div>
-        <div class="svc-desc">Verified stays near your destination at fair, pilgrim-friendly rates. Curated and confirmed locally — no surprises on arrival.</div>
-        <span class="svc-tag">Available →</span>
+        <div class="svc-name">Hotel & Dharmshala</div>
+        <div class="svc-desc">Comfortable rooms near the temple, verified and fairly priced. No surprise fees.</div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🚖</div>
-        <div class="svc-name">Taxi & Auto Booking</div>
-        <div class="svc-desc">Pre-arranged local transport at fixed, transparent rates. Book from any nearby railway station, highway or city.</div>
-        <span class="svc-tag">Available →</span>
-      </div>
-      <div class="svc-card fade-up">
+      <div class="svc-card">
         <div class="svc-icon">🍱</div>
-        <div class="svc-name">Online Food Delivery</div>
-        <div class="svc-desc">Fresh meals delivered to your stay from trusted local kitchens — including sattvik and regional options.</div>
-        <span class="svc-tag">Available →</span>
+        <div class="svc-name">Food Delivery</div>
+        <div class="svc-desc">Hot meals from local kitchens, delivered to your stay. Sattvic options available.</div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🍽️</div>
-        <div class="svc-name">Restaurant Table Booking</div>
-        <div class="svc-desc">Reserve tables at local restaurants in advance. No waiting in queues — arrive and enjoy.</div>
-        <span class="svc-tag">Available →</span>
+      <div class="svc-card">
+        <div class="svc-icon">🚖</div>
+        <div class="svc-name">Transport Booking</div>
+        <div class="svc-desc">Taxi, auto, and tempo booking at pilgrim-friendly rates from the nearest station.</div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🗺️</div>
-        <div class="svc-name">Free Destination Guide & Planner</div>
-        <div class="svc-desc">Complete visit guides — darshan timings, what to carry, when to visit, how to reach, what to do. Always free, always updated.</div>
-        <span class="svc-tag">Always Free →</span>
+      <div class="svc-card">
+        <div class="svc-icon">📋</div>
+        <div class="svc-name">Local Info & Timings</div>
+        <div class="svc-desc">Ground-verified darshan timings, aarti schedules, and event updates — no outdated info.</div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🎁</div>
-        <div class="svc-name">Free Items & Local Offers</div>
-        <div class="svc-desc">Exclusive freebies and curated local offers for Crulio visitors — from prasad packages to special arrival deals.</div>
-        <span class="svc-tag">Available →</span>
+      <div class="svc-card">
+        <div class="svc-icon">🎥</div>
+        <div class="svc-name">Live Darshan</div>
+        <div class="svc-desc">Watch live aarti and darshan from anywhere. For devotees who can't travel.</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ DESTINATIONS ═══════ -->
-<section class="section dest-section" id="destinations">
-  <div class="container">
-    <div class="dest-header fade-up">
-      <div>
-        <span class="label">Where We Are</span>
-        <h2 style="color:var(--navy)">Our Destinations</h2>
-      </div>
-      <a href="#cities" class="btn btn-ghost" style="font-size:13.5px;padding:10px 20px">See Full Roadmap →</a>
-    </div>
-    <div class="dest-grid fade-up">
-      <div class="dc">
-        <div class="dc-img"><div class="dc-ph">🛕</div></div>
-        <div class="dc-ov"></div>
-        <div class="dc-body">
-          <div class="dc-badge"><span class="live-dot"></span> Live & Active</div>
-          <div class="dc-name">Our First Destination</div>
-          <div class="dc-meta">Uttar Pradesh, India · Fully Operational</div>
-        </div>
-      </div>
-      <div class="dc sm dim">
-        <div class="dc-img"><div class="dc-ph">🌸</div></div>
-        <div class="dc-ov"></div>
-        <div class="dc-body">
-          <div class="dc-badge">Expanding Soon</div>
-          <div class="dc-name">Next Destination</div>
-          <div class="dc-meta">Uttar Pradesh</div>
-        </div>
-      </div>
-      <div class="dc sm dim">
-        <div class="dc-img"><div class="dc-ph">🏔️</div></div>
-        <div class="dc-ov"></div>
-        <div class="dc-body">
-          <div class="dc-badge">Partner With Us</div>
-          <div class="dc-name">Your Destination?</div>
-          <div class="dc-meta">We're expanding — reach out</div>
-        </div>
+      <div class="svc-card">
+        <div class="svc-icon">🌿</div>
+        <div class="svc-name">Special Services</div>
+        <div class="svc-desc">Sacred water, patient tokens, puja bookings and destination-specific offerings.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ FREE INFO ═══════ -->
-<section class="section free-section">
-  <div class="container">
-    <div class="free-inner">
-      <div class="free-left fade-up">
-        <span class="label">Always Free, Always Accurate</span>
-        <h2 style="color:#fff">Search Any Destination.<br>Get Everything. Instantly.</h2>
-        <p>When a visitor searches for any destination covered by Crulio, they get a complete free guide — no login, no paywall. Then every service they need is available in one tap, right on the same page.</p>
-        <div class="free-list">
-          <div class="fl-item">Darshan & aarti timings — live and accurate</div>
-          <div class="fl-item">Step-by-step travel guide from any city</div>
-          <div class="fl-item">Full visit planner with seasonal tips</div>
-          <div class="fl-item">Temple history, photos, what to carry</div>
-          <div class="fl-item">Crowd alerts, weather and special events</div>
-          <div class="fl-item">Integrated hotel, taxi and food booking</div>
+<!-- WHY CRULIO -->
+<section class="why-bg" id="about">
+  <div class="section-inner">
+    <div class="why-grid reveal">
+      <div class="why-left">
+        <div class="section-header">
+          <div class="section-eyebrow">Why Crulio</div>
+          <h2 class="section-title">Built on the Ground, Not a Spreadsheet.</h2>
+          <p class="section-sub" style="text-align:left">Every dham we cover, we physically visit. Our team lives near these destinations. That's our edge.</p>
         </div>
+        <ul class="why-list">
+          <li class="why-item">
+            <div class="why-dot">✅</div>
+            <div class="why-text">
+              <strong>Ground-Verified Information</strong>
+              <p>Our team physically visits each destination. Timings, vendors, and routes are personally verified — not scraped from the internet.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-dot">🛡️</div>
+            <div class="why-text">
+              <strong>Pilgrim-First Pricing</strong>
+              <p>We negotiate with local vendors to ensure fair prices. No platform markup that exploits devotion.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-dot">🌐</div>
+            <div class="why-text">
+              <strong>Hyperlocal Network</strong>
+              <p>One platform connecting hotels, food, transport, and services — built around the real rhythm of each dham.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-dot">📈</div>
+            <div class="why-text">
+              <strong>Proven Traction</strong>
+              <p>Launched with zero investment. 7L+ impressions, 1000+ customers, ₹2.3L GMV in under 3 months — organically.</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="free-right fade-up">
-        <div class="mock-browser">
-          <div class="mock-bar">
-            <div class="mdot" style="background:#FF5F56"></div>
-            <div class="mdot" style="background:#FFBD2E"></div>
-            <div class="mdot" style="background:#27C93F"></div>
-            <div class="mock-url">crulio.com / destination-guide</div>
+      <div class="why-right">
+        <div class="stats-box">
+          <div class="stat-box-item">
+            <div class="stat-box-val">7.3<span>L</span></div>
+            <div class="stat-box-label">Search Impressions</div>
+            <div class="stat-box-proof">Google Search Console</div>
           </div>
-          <div class="mock-body">
-            <div class="mock-search">
-              <span>🔍</span>
-              <input type="text" value="Sacred destination complete guide" readonly>
-            </div>
-            <div class="mr">
-              <div class="mr-ic">🛕</div>
-              <div class="mr-info"><h5>Destination Guide — Timings & Planner</h5><p>Darshan hours · Aarti schedule · What to carry</p></div>
-              <span class="mr-badge free">FREE</span>
-            </div>
-            <div class="mr">
-              <div class="mr-ic">🏨</div>
-              <div class="mr-info"><h5>Verified Hotels & Dharamshalas</h5><p>3 stays from ₹499/night · Locally curated</p></div>
-              <span class="mr-badge book">Book</span>
-            </div>
-            <div class="mr">
-              <div class="mr-ic">🚖</div>
-              <div class="mr-info"><h5>Taxi from Nearest Railway Station</h5><p>Fixed pilgrim rate · Pre-arranged</p></div>
-              <span class="mr-badge book">Book</span>
-            </div>
-            <div class="mr">
-              <div class="mr-ic">🍱</div>
-              <div class="mr-info"><h5>Food Delivery to Your Stay</h5><p>Local kitchens · Sattvik & regular options</p></div>
-              <span class="mr-badge book">Order</span>
-            </div>
+          <div class="stat-box-item">
+            <div class="stat-box-val">30<span>K</span></div>
+            <div class="stat-box-label">Organic Clicks</div>
+            <div class="stat-box-proof">Zero Paid Ads</div>
+          </div>
+          <div class="stat-box-item">
+            <div class="stat-box-val">1<span>K+</span></div>
+            <div class="stat-box-label">Pilgrims Served</div>
+            <div class="stat-box-proof">Real Transactions</div>
+          </div>
+          <div class="stat-box-item">
+            <div class="stat-box-val">₹2.3<span>L</span></div>
+            <div class="stat-box-label">Gross GMV</div>
+            <div class="stat-box-proof">3 Months, ₹0 Spent</div>
+          </div>
+          <div class="stat-box-item" style="grid-column: 1/-1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;">
+            <div class="stat-box-val">1 <span style="font-size:1.2rem">Destination</span></div>
+            <div class="stat-box-label">Live — with many more in progress</div>
           </div>
         </div>
       </div>
@@ -658,211 +723,175 @@ footer p.fp{font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.42);margin
   </div>
 </section>
 
-<!-- ═══════ TRACTION ═══════ -->
-<section class="section traction-section" id="traction">
-  <div class="container">
-    <div class="traction-inner fade-up">
-      <span class="label" style="display:block;text-align:center">Proven at Scale</span>
-      <h2 style="color:var(--navy);margin-bottom:12px">Zero Investment. Real, Organic Results.</h2>
-      <p class="lead">We launched our first destination platform from scratch — no funding, no paid ads. These are the real numbers from our first 3 months.</p>
-      <div class="traction-grid">
-        <div class="tc">
-          <div class="tc-icon">👁️</div>
-          <div class="tc-num">7<span>L+</span></div>
-          <div class="tc-label">Organic Website Views</div>
-        </div>
-        <div class="tc">
-          <div class="tc-icon">💰</div>
-          <div class="tc-num">₹2.3<span>L+</span></div>
-          <div class="tc-label">Gross Merchandise Value</div>
-        </div>
-        <div class="tc">
-          <div class="tc-icon">📅</div>
-          <div class="tc-num">3<span> mo</span></div>
-          <div class="tc-label">Time to These Numbers</div>
-        </div>
-        <div class="tc">
-          <div class="tc-icon">📣</div>
-          <div class="tc-num">₹<span>0</span></div>
-          <div class="tc-label">Marketing & Ad Spend</div>
-        </div>
-      </div>
-      <div class="traction-note">✦ All growth driven entirely by organic search & word of mouth — no paid ads, no outside investment</div>
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Pilgrim Stories</div>
+      <h2 class="section-title">What Devotees Say</h2>
     </div>
-  </div>
-</section>
-
-<!-- ═══════ HOW IT WORKS ═══════ -->
-<section class="section hiw-section" id="how-it-works">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:52px" class="fade-up">
-      <span class="label" style="display:block;text-align:center">The Process</span>
-      <h2 style="color:var(--navy)">How Crulio Works for Every Visitor</h2>
-    </div>
-    <div class="hiw-grid">
-      <div class="hc fade-up">
-        <div class="hc-num">1</div>
-        <div class="hc-icon">🔍</div>
-        <div class="hc-title">Search Any Destination</div>
-        <div class="hc-desc">Enter any Dham, temple or pilgrimage site. If Crulio is live there, you get an instant full guide.</div>
-      </div>
-      <div class="hc fade-up">
-        <div class="hc-num">2</div>
-        <div class="hc-icon">📖</div>
-        <div class="hc-title">Get Free Information</div>
-        <div class="hc-desc">Complete timings, visit planner, how to reach, what to carry — all free, always updated, no account needed.</div>
-      </div>
-      <div class="hc fade-up">
-        <div class="hc-num">3</div>
-        <div class="hc-icon">🛎️</div>
-        <div class="hc-title">Book Local Services</div>
-        <div class="hc-desc">Hotel, taxi, food delivery or restaurant tables — all bookable in one tap from the same destination page.</div>
-      </div>
-      <div class="hc fade-up">
-        <div class="hc-num">4</div>
-        <div class="hc-icon">🙏</div>
-        <div class="hc-title">Travel Stress-Free</div>
-        <div class="hc-desc">Arrive with everything pre-arranged. Focus on your darshan and experience, not logistics.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ PARTNER ═══════ -->
-<section class="section partner-section">
-  <div class="container">
-    <div class="partner-inner">
-      <div class="partner-left fade-up">
-        <span class="label">For Businesses & Destinations</span>
-        <h2>Grow With Crulio Networks</h2>
-        <p>Are you a hotel owner, taxi service, restaurant or local business near a pilgrimage site? Or a destination that needs a proper digital platform? Partner with Crulio and get discovered by lakhs of organic visitors.</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <a href="mailto:partner@crulio.com" class="btn btn-primary">Partner With Us</a>
-          <a href="mailto:partner@crulio.com" class="btn btn-ghost">List Your Business</a>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"We came from Lucknow for darshan. Found hotel through Crulio, booked taxi, even got food delivered. Everything was exactly as described. Jai Shree Shyam!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RS</div>
+          <div>
+            <div class="testi-name">Ramesh Sharma</div>
+            <div class="testi-loc">Lucknow, UP</div>
+          </div>
         </div>
       </div>
-      <div class="pc-grid fade-up">
-        <div class="pc">
-          <div class="pc-icon">🏨</div>
-          <div class="pc-name">Hotels & Dharamshalas</div>
-          <div class="pc-desc">Get direct bookings from verified pilgrims</div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The darshan timings on the website were accurate unlike other sites. Hotel was clean and affordable. Highly recommend to all devotees visiting Manauna Dham."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">PG</div>
+          <div>
+            <div class="testi-name">Priya Gupta</div>
+            <div class="testi-loc">Delhi, NCR</div>
+          </div>
         </div>
-        <div class="pc">
-          <div class="pc-icon">🚖</div>
-          <div class="pc-name">Taxi & Auto Services</div>
-          <div class="pc-desc">Receive pre-arranged trip requests daily</div>
-        </div>
-        <div class="pc">
-          <div class="pc-icon">🍽️</div>
-          <div class="pc-name">Restaurants & Kitchens</div>
-          <div class="pc-desc">Accept delivery and table bookings online</div>
-        </div>
-        <div class="pc">
-          <div class="pc-icon">🛕</div>
-          <div class="pc-name">Destination Managers</div>
-          <div class="pc-desc">Get your Dham its own full digital platform</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Booked auto from Aonla station through the website. Driver was on time, knew the route well. This service is a blessing for out-of-town pilgrims."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AV</div>
+          <div>
+            <div class="testi-name">Ashok Verma</div>
+            <div class="testi-loc">Bareilly, UP</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ CITIES EXPANDING ═══════ -->
-<section class="section cities-section" id="cities">
-  <div class="container">
-    <div style="max-width:640px;margin-bottom:16px" class="fade-up">
-      <span class="label">The Roadmap</span>
-      <h2 style="color:var(--navy)">Expanding Across India</h2>
+<!-- PARTNER -->
+<section class="partner-bg" id="partner">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Join the Network</div>
+      <h2 class="section-title">Grow With Crulio</h2>
+      <p class="section-sub">Whether you're a hotel near a dham, a local guide, or want to bring Crulio to your destination — we want to hear from you.</p>
     </div>
-    <p class="lead fade-up" style="margin-bottom:32px">We go deep before we go wide — building a complete, trusted platform at each destination before launching the next.</p>
-    <div class="city-pills fade-up">
-      <div class="cp on">🛕 First Destination, UP <span class="lbl on">Live</span></div>
-      <div class="cp soon">🌸 Mathura / Vrindavan <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🕉️ Varanasi / Kashi <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🪔 Ayodhya <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🏔️ Haridwar / Rishikesh <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🌺 Pushkar <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🔱 Ujjain / Mahakaleshwar <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">🛕 Tirupati <span class="lbl soon">Coming Soon</span></div>
-      <div class="cp soon">✦ Suggest a Destination <span class="lbl soon">Open</span></div>
+    <div class="partner-grid reveal">
+      <div class="partner-card">
+        <div class="partner-icon">🏨</div>
+        <div class="partner-title">Hotel / Dharmshala Owner</div>
+        <div class="partner-desc">List your property on Crulio and reach thousands of pilgrims searching for accommodation near the dham. Free to list, commission-based.</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🚗</div>
+        <div class="partner-title">Transport Provider</div>
+        <div class="partner-desc">Register as a Crulio transport partner and get consistent bookings from pilgrims arriving at stations near your dham.</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">📍</div>
+        <div class="partner-title">Destination Partner</div>
+        <div class="partner-desc">Know a rising pilgrimage site that lacks an online presence? Partner with us to launch a full Crulio-powered destination platform.</div>
+      </div>
     </div>
-    <p style="margin-top:28px;font-size:14px;color:var(--muted)">
-      Operate near a pilgrimage destination? <a href="mailto:partner@crulio.com" style="color:var(--orange);font-weight:600">Partner with us to get listed →</a>
-    </p>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="mailto:partner@crulio.com" class="btn-primary">Reach Out to Partner →</a>
+    </div>
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Plan Your Next Yatra with Crulio.</h2>
+  <p>Trusted information. Verified services. Pilgrim-first, always.</p>
+  <div class="cta-buttons">
+    <a href="https://www.manaunadham.org.in" class="btn-primary" target="_blank">Visit Manauna Dham →</a>
+    <a href="mailto:partner@crulio.com" class="btn-ghost">Partner With Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="ft">
-
-      <div>
-        <img class="fb-logo" src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="fb-logo-fb">crulio<span>.</span>networks</div>
-        <p class="fp">India's emerging hyperlocal destination services platform — organizing the unorganized travel market around sacred sites, one destination at a time.</p>
-        <div class="fsoc">
-          <div class="fsb">𝕏</div>
-          <div class="fsb">in</div>
-          <div class="fsb">f</div>
-          <div class="fsb">📸</div>
-        </div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'">
+        <p>India's pilgrimage super platform. Ground-verified services at every sacred destination.</p>
       </div>
-
-      <div class="fc">
-        <h5>Platform</h5>
-        <a href="#destinations">Destinations</a>
-        <a href="#services">Services</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#traction">Our Story</a>
+      <div class="footer-col">
+        <h4>Destinations</h4>
+        <a href="https://www.manaunadham.org.in" target="_blank">Manauna Dham</a>
+        <a href="#">Khatu Shyam Ji</a>
+        <a href="#">Vrindavan</a>
+        <a href="#">More coming soon</a>
       </div>
-
-      <div class="fc">
-        <h5>Services</h5>
+      <div class="footer-col">
+        <h4>Services</h4>
         <a href="#">Hotel Booking</a>
-        <a href="#">Taxi Booking</a>
         <a href="#">Food Delivery</a>
-        <a href="#">Table Booking</a>
-        <a href="#">Free Info Guides</a>
+        <a href="#">Transport</a>
+        <a href="#">Live Darshan</a>
       </div>
-
-      <div class="fc">
-        <h5>Company</h5>
-        <a href="#">About Crulio Networks</a>
-        <a href="mailto:partner@crulio.com">Partner With Us</a>
-        <a href="mailto:partner@crulio.com">List Your Business</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-
-    </div>
-    <div class="fbot">
-      <p>© 2025 Crulio Networks Private Limited. All rights reserved.</p>
-      <div class="fbot-links">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Crulio</a>
+        <a href="#partner">Partner With Us</a>
         <a href="mailto:partner@crulio.com">Contact</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Crulio Networks. All rights reserved.</p>
+      <p>Built with 🙏 for India's pilgrims. <a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 
 <script>
-// Scroll reveal
-const io = new IntersectionObserver(entries =>
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') }),
-  {threshold:0.1}
-);
-document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    if (links) {
+      const isOpen = links.style.display === 'flex';
+      links.style.cssText = isOpen ? '' : 'display:flex; flex-direction:column; position:fixed; top:68px; left:0; right:0; background:rgba(26,47,94,0.98); padding:24px; gap:0; z-index:99';
+      if (cta) cta.style.cssText = isOpen ? '' : 'display:block; margin:12px 0 0';
+    }
+  }
 
-// Search tabs
-document.querySelectorAll('.stab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.stab').forEach(x => x.classList.remove('on'));
-    t.classList.add('on');
+  // Search
+  function doSearch() {
+    const val = document.getElementById('search-input').value.trim().toLowerCase();
+    if (val.includes('manauna') || val.includes('manona') || val.includes('shyam')) {
+      window.open('https://www.manaunadham.org.in', '_blank');
+    } else {
+      document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Counter animation on hero stats
+  function animateCount(el, target, suffix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = (target % 1 !== 0 ? start.toFixed(1) : Math.floor(start)) + suffix;
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+  const heroObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCount(document.querySelector('.stat-val:nth-child(1) .stat-val'), 7.3, '', 1200);
+      heroObs.disconnect();
+    }
   });
-});
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) heroObs.observe(heroStats);
 </script>
 </body>
 </html>
