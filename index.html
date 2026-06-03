@@ -183,10 +183,10 @@
   .dest-card { border-radius: var(--radius); overflow: hidden; background: white; border: 1px solid var(--border); transition: all 0.25s; cursor: pointer; text-decoration: none; display: block; color: inherit; }
   .dest-card:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(26,47,94,0.13); border-color: rgba(26,47,94,0.18); }
   .dest-img { height: 175px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; font-size: 52px; }
-  .dest-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.32) 100%); }
-  .dest-live-badge { position: absolute; top: 12px; right: 12px; z-index: 1; background: #e53e3e; color: white; font-size: 9.5px; font-weight: 800; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
+  .dest-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.32) 100%); z-index: 1; }
+  .dest-live-badge { position: absolute; top: 12px; right: 12px; z-index: 2; background: #e53e3e; color: white; font-size: 9.5px; font-weight: 800; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
   .dest-live-badge::before { content: ''; width: 5px; height: 5px; background: white; border-radius: 50%; animation: blink 1.5s infinite; }
-  .coming-badge { position: absolute; top: 12px; left: 12px; z-index: 1; background: rgba(0,0,0,0.55); color: white; font-size: 9.5px; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.06em; text-transform: uppercase; backdrop-filter: blur(4px); }
+  .coming-badge { position: absolute; top: 12px; left: 12px; z-index: 2; background: rgba(0,0,0,0.55); color: white; font-size: 9.5px; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.06em; text-transform: uppercase; backdrop-filter: blur(4px); }
   .dest-body { padding: 16px 18px 18px; }
   .dest-name { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
   .dest-loc { font-size: 12px; color: var(--text-muted); margin-bottom: 11px; display: flex; align-items: center; gap: 4px; }
@@ -195,6 +195,30 @@
   .dest-coming-card { border: 2px dashed var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; padding: 40px 20px; border-radius: var(--radius); text-align: center; background: var(--cream); }
   .dest-coming-card strong { font-size: 15px; color: var(--navy); display: block; }
   .dest-coming-card p { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+
+  /* ── MANAUNA DHAM SLIDESHOW ── */
+  .md-slideshow {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .md-slide {
+    position: absolute; inset: 0;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    will-change: opacity;
+  }
+  .md-slide.md-active { opacity: 1; }
+  .md-slide:nth-child(1)  { background-image: url('CRULIO/ManaunaDham/images/web/ILoveManaunaDham.webp'); background-position: center 10%; }
+  .md-slide:nth-child(2)  { background-image: url('CRULIO/ManaunaDham/images/web/EntryGate.webp');        background-position: center top; }
+  .md-slide:nth-child(3)  { background-image: url('CRULIO/ManaunaDham/images/web/Gathering.webp');        background-position: center center; }
+  .md-slide:nth-child(4)  { background-image: url('CRULIO/ManaunaDham/images/web/night.webp');            background-position: center center; }
+  .md-slide:nth-child(5)  { background-image: url('CRULIO/ManaunaDham/images/web/Omendra3.webp');         background-position: center top; }
+  .md-slide:nth-child(6)  { background-image: url('CRULIO/ManaunaDham/images/web/Gathering2.webp');       background-position: center center; }
+  .md-slide:nth-child(7)  { background-image: url('CRULIO/ManaunaDham/images/web/Mandir6.webp');          background-position: center top; }
+  .md-slide:nth-child(8)  { background-image: url('CRULIO/ManaunaDham/images/web/Mandir5.webp');          background-position: center center; }
+  .md-slide:nth-child(9)  { background-image: url('CRULIO/ManaunaDham/images/web/Mandir1.webp');          background-position: center center; }
+  .md-slide:nth-child(10) { background-image: url('CRULIO/ManaunaDham/images/web/Omendra.webp');          background-position: center top; }
 
   /* ── SERVICES GRID ── */
   .services-bg { background: var(--navy); }
@@ -458,7 +482,21 @@
     </div>
     <div class="dest-grid reveal">
       <a href="https://www.manaunadham.org.in" class="dest-card" target="_blank">
-        <div class="dest-img" style="background:linear-gradient(135deg,#6b0000 0%,#c0392b 100%)">🛕<div class="dest-live-badge">Live</div></div>
+        <div class="dest-img">
+          <div class="md-slideshow" id="md-slideshow">
+            <div class="md-slide md-active"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+            <div class="md-slide"></div>
+          </div>
+          <div class="dest-live-badge">Live</div>
+        </div>
         <div class="dest-body">
           <div class="dest-name">Manauna Dham</div>
           <div class="dest-loc">📍 Aonla, Bareilly, Uttar Pradesh</div>
@@ -901,7 +939,21 @@ setInterval(() => {
 }, 4000);
 tickerEl && (tickerEl.style.transition = 'opacity 0.3s');
 
+// ── MANAUNA DHAM SLIDESHOW ──
+(function () {
+  var slides = document.querySelectorAll('#md-slideshow .md-slide');
+  if (!slides.length) return;
+  var current = 0;
+  var DISPLAY_MS = 3500;
 
+  function advance() {
+    slides[current].classList.remove('md-active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('md-active');
+  }
+
+  setInterval(advance, DISPLAY_MS);
+})();
 </script>
 </body>
 </html>
