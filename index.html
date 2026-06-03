@@ -8,7 +8,7 @@
 <title>Crulio Networks — India's Pilgrimage Super Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -19,7 +19,8 @@
     --orange-light: #f27d25;
     --orange-pale: #fef3ea;
     --cream: #fdf8f3;
-    --gold: #c9921e;
+    --nav-bg: #d6e8ff;
+    --nav-border: #b8d4f5;
     --text: #1a1a1a;
     --text-muted: #5a6a80;
     --border: #e2e8f0;
@@ -28,413 +29,287 @@
     --radius-sm: 8px;
   }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Sora', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
+  body { font-family: 'Sora', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.6; }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(26, 47, 94, 0.97);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
-    padding: 0 5%;
+    padding: 0 4%;
     display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    height: 72px;
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 2px 16px rgba(26,47,94,0.08);
   }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo img { height: 38px; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    color: rgba(255,255,255,0.78);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
+  .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+  .nav-logo img { height: 54px; width: auto; object-fit: contain; }
+  .nav-logo-text {
+    font-size: 20px; font-weight: 800; color: var(--navy);
+    letter-spacing: -0.03em; display: flex; align-items: center; gap: 1px;
+  }
+  .nav-logo-text span { color: var(--orange); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--navy); text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.2s; opacity: 0.75; }
+  .nav-links a:hover { color: var(--orange); opacity: 1; }
+  .nav-cta {
+    background: var(--navy); color: white;
+    padding: 10px 22px; border-radius: 50px;
+    font-size: 13px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
     letter-spacing: 0.01em;
   }
-  .nav-links a:hover { color: var(--orange-light); }
-  .nav-cta {
-    background: var(--orange);
-    color: white;
-    padding: 9px 22px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-  .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; display: block; transition: 0.3s; }
+  .hamburger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; display: block; }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     background: var(--navy-dark);
     background-image:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,104,10,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 20% 60%, rgba(26,47,94,0.8) 0%, transparent 70%);
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,104,10,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 70% at 10% 70%, rgba(36,61,110,0.6) 0%, transparent 60%);
     display: flex; align-items: center;
-    padding: 68px 5% 0;
-    position: relative;
-    overflow: hidden;
+    padding: 72px 5% 0;
+    position: relative; overflow: hidden;
   }
   .hero::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
-    background-size: 40px 40px;
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+    background-size: 44px 44px;
     pointer-events: none;
   }
   .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    padding: 80px 0 80px;
+    max-width: 1180px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    padding: 80px 0;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(232,104,10,0.15);
-    border: 1px solid rgba(232,104,10,0.35);
-    color: var(--orange-light);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 50px;
-    margin-bottom: 24px;
+    background: rgba(232,104,10,0.14); border: 1px solid rgba(232,104,10,0.32);
+    color: #f9a05a; font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 50px; margin-bottom: 22px;
   }
-  .hero-badge span { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .live-dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: blink 1.6s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
   .hero h1 {
-    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.15;
-    color: white;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 4.2vw, 3.5rem); font-weight: 800;
+    line-height: 1.13; color: white; margin-bottom: 18px; letter-spacing: -0.025em;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--orange);
-  }
-  .hero-sub {
-    font-size: 17px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.75;
-    margin-bottom: 36px;
-    max-width: 520px;
-    font-weight: 300;
-  }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero h1 em { font-style: normal; color: var(--orange); }
+  .hero-sub { font-size: 16.5px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 34px; max-width: 500px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--orange);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(232,104,10,0.35);
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--orange); color: white;
+    padding: 13px 26px; border-radius: 50px;
+    font-size: 14.5px; font-weight: 700; text-decoration: none;
+    transition: all 0.2s; box-shadow: 0 4px 18px rgba(232,104,10,0.38);
   }
-  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,104,10,0.4); }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(232,104,10,0.42); }
   .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.07);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.18);
-    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.07); color: white;
+    padding: 13px 26px; border-radius: 50px;
+    font-size: 14.5px; font-weight: 500; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s;
   }
-  .btn-ghost:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.3); }
-  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-  .hero-logo-wrap {
-    position: relative;
-    width: 340px; height: 340px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-logo-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(232,104,10,0.2);
-    animation: spin-slow 20s linear infinite;
-  }
-  .hero-logo-ring:nth-child(1) { width: 300px; height: 300px; }
-  .hero-logo-ring:nth-child(2) { width: 380px; height: 380px; animation-direction: reverse; animation-duration: 30s; border-color: rgba(255,255,255,0.06); }
-  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .hero-logo-img { width: 200px; position: relative; z-index: 2; filter: drop-shadow(0 8px 40px rgba(232,104,10,0.3)); }
-  .hero-stats {
-    display: flex; gap: 32px; margin-top: 44px; padding-top: 36px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-  }
-  .stat-item { }
-  .stat-val { font-size: 26px; font-weight: 800; color: white; }
-  .stat-val span { color: var(--orange); }
-  .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 400; margin-top: 2px; letter-spacing: 0.03em; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.35); }
 
-  /* SEARCH BAR */
-  .search-section {
-    background: var(--cream);
-    padding: 48px 5%;
-    border-bottom: 1px solid var(--border);
+  /* ── HERO LIVE STATS ── */
+  .hero-stats-wrap { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .live-indicator {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 16px;
   }
-  .search-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-  .search-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+  .live-indicator-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; }
+  .hero-stats { display: flex; gap: 36px; }
+  .stat-item .val { font-size: 2rem; font-weight: 800; color: white; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-item .val .accent { color: var(--orange); }
+  .stat-item .lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; font-weight: 400; letter-spacing: 0.02em; }
+
+  /* ── HERO VISUAL ── */
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+  .hero-logo-wrap { position: relative; width: 340px; height: 340px; display: flex; align-items: center; justify-content: center; }
+  .ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(232,104,10,0.18);
+    animation: spin-slow 22s linear infinite;
+  }
+  .ring:nth-child(2) { width: 290px; height: 290px; }
+  .ring:nth-child(3) { width: 370px; height: 370px; animation-direction: reverse; animation-duration: 34s; border-color: rgba(255,255,255,0.05); }
+  @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .hero-logo-img { width: 220px; position: relative; z-index: 2; filter: drop-shadow(0 6px 36px rgba(232,104,10,0.28)); }
+
+  /* ── SEARCH ── */
+  .search-section { background: var(--cream); padding: 44px 5%; border-bottom: 1px solid var(--border); }
+  .search-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+  .search-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
   .search-bar {
     display: flex; align-items: center;
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    padding: 8px 8px 8px 24px;
-    box-shadow: 0 4px 24px rgba(26,47,94,0.08);
+    background: white; border: 1.5px solid var(--border); border-radius: 50px;
+    padding: 7px 7px 7px 22px;
+    box-shadow: 0 4px 20px rgba(26,47,94,0.07);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 4px 24px rgba(232,104,10,0.15); }
-  .search-bar input {
-    flex: 1;
-    border: none; outline: none;
-    font-family: 'Sora', sans-serif;
-    font-size: 16px;
-    color: var(--text);
-    background: transparent;
-    padding: 6px 0;
-  }
+  .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 4px 20px rgba(232,104,10,0.14); }
+  .search-bar input { flex: 1; border: none; outline: none; font-family: 'Sora', sans-serif; font-size: 15px; color: var(--text); background: transparent; padding: 6px 0; }
   .search-bar input::placeholder { color: #b0bec5; }
-  .search-btn {
-    background: var(--navy);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 12px 28px;
-    font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .search-btn:hover { background: var(--navy-mid); }
-  .search-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
-  .search-tag {
-    background: white; border: 1px solid var(--border);
-    color: var(--text-muted); font-size: 12px;
-    padding: 5px 14px; border-radius: 50px;
-    cursor: pointer; transition: all 0.2s;
-    text-decoration: none;
-  }
+  .search-btn { background: var(--navy); color: white; border: none; border-radius: 40px; padding: 11px 26px; font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .search-btn:hover { background: var(--orange); }
+  .search-tags { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .search-tag { background: white; border: 1px solid var(--border); color: var(--text-muted); font-size: 11.5px; padding: 5px 13px; border-radius: 50px; cursor: pointer; transition: all 0.2s; text-decoration: none; font-weight: 500; }
   .search-tag:hover { border-color: var(--orange); color: var(--orange); }
 
-  /* SECTIONS */
+  /* ── SECTIONS ── */
   section { padding: 80px 5%; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-header { text-align: center; margin-bottom: 52px; }
-  .section-eyebrow {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 12px;
-    padding: 4px 14px;
-    background: var(--orange-pale);
-    border-radius: 50px;
-  }
-  .section-title { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: var(--navy); line-height: 1.2; letter-spacing: -0.02em; }
-  .section-sub { font-size: 16px; color: var(--text-muted); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; font-weight: 300; }
+  .section-inner { max-width: 1180px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 50px; }
+  .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; padding: 4px 14px; background: var(--orange-pale); border-radius: 50px; }
+  .section-title { font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 800; color: var(--navy); line-height: 1.2; letter-spacing: -0.02em; }
+  .section-sub { font-size: 15.5px; color: var(--text-muted); margin-top: 11px; max-width: 540px; margin-left: auto; margin-right: auto; font-weight: 300; }
 
-  /* DESTINATIONS */
-  .destinations-bg { background: var(--white); }
-  .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-  .dest-card {
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: white;
-    border: 1px solid var(--border);
-    transition: all 0.25s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    color: inherit;
+  /* ── MOAT / USP BAND ── */
+  .moat-band { background: var(--navy); padding: 0 5%; }
+  .moat-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .moat-inner::-webkit-scrollbar { display: none; }
+  .moat-pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 28px; border-right: 1px solid rgba(255,255,255,0.07);
+    white-space: nowrap; flex-shrink: 0;
   }
-  .dest-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,47,94,0.14); border-color: rgba(26,47,94,0.2); }
-  .dest-img {
-    height: 180px;
-    background: linear-gradient(135deg, var(--navy) 0%, #2a4a8a 100%);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-    font-size: 56px;
-  }
-  .dest-img::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35) 100%);
-  }
-  .dest-live {
-    position: absolute; top: 12px; right: 12px; z-index: 1;
-    background: #e53e3e; color: white;
-    font-size: 10px; font-weight: 700;
-    padding: 3px 10px; border-radius: 50px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .dest-live::before { content: ''; width: 5px; height: 5px; background: white; border-radius: 50%; animation: pulse 1.5s infinite; }
-  .dest-badge-new {
-    position: absolute; top: 12px; left: 12px; z-index: 1;
-    background: var(--orange); color: white;
-    font-size: 10px; font-weight: 700;
-    padding: 3px 10px; border-radius: 50px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .dest-body { padding: 18px 20px 20px; }
-  .dest-name { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .dest-loc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
-  .dest-services { display: flex; gap: 6px; flex-wrap: wrap; }
-  .dest-svc { font-size: 11px; font-weight: 600; background: var(--cream); color: var(--navy); padding: 3px 10px; border-radius: 50px; border: 1px solid var(--border); }
-  .dest-coming {
-    background: var(--cream);
-    border: 2px dashed var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 8px;
-    padding: 40px 20px;
-    border-radius: var(--radius);
-    text-align: center;
-  }
-  .dest-coming-icon { font-size: 32px; }
-  .dest-coming p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
-  .dest-coming strong { font-size: 15px; color: var(--navy); display: block; }
+  .moat-pill:last-child { border-right: none; }
+  .moat-icon { font-size: 18px; }
+  .moat-text { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.01em; }
+  .moat-text strong { color: var(--orange); font-weight: 700; }
 
-  /* SERVICES */
+  /* ── DESTINATIONS ── */
+  .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; }
+  .dest-card { border-radius: var(--radius); overflow: hidden; background: white; border: 1px solid var(--border); transition: all 0.25s; cursor: pointer; text-decoration: none; display: block; color: inherit; }
+  .dest-card:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(26,47,94,0.13); border-color: rgba(26,47,94,0.18); }
+  .dest-img { height: 175px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; font-size: 52px; }
+  .dest-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.32) 100%); }
+  .dest-live-badge { position: absolute; top: 12px; right: 12px; z-index: 1; background: #e53e3e; color: white; font-size: 9.5px; font-weight: 800; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
+  .dest-live-badge::before { content: ''; width: 5px; height: 5px; background: white; border-radius: 50%; animation: blink 1.5s infinite; }
+  .coming-badge { position: absolute; top: 12px; left: 12px; z-index: 1; background: rgba(0,0,0,0.55); color: white; font-size: 9.5px; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.06em; text-transform: uppercase; backdrop-filter: blur(4px); }
+  .dest-body { padding: 16px 18px 18px; }
+  .dest-name { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .dest-loc { font-size: 12px; color: var(--text-muted); margin-bottom: 11px; display: flex; align-items: center; gap: 4px; }
+  .dest-services { display: flex; gap: 5px; flex-wrap: wrap; }
+  .svc-chip { font-size: 10.5px; font-weight: 600; background: var(--cream); color: var(--navy); padding: 3px 9px; border-radius: 50px; border: 1px solid var(--border); }
+  .dest-coming-card { border: 2px dashed var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; padding: 40px 20px; border-radius: var(--radius); text-align: center; background: var(--cream); }
+  .dest-coming-card strong { font-size: 15px; color: var(--navy); display: block; }
+  .dest-coming-card p { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+
+  /* ── SERVICES GRID ── */
   .services-bg { background: var(--navy); }
   .services-bg .section-title { color: white; }
-  .services-bg .section-sub { color: rgba(255,255,255,0.55); }
-  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
-  .svc-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    padding: 24px 22px;
-    transition: all 0.25s;
-    cursor: default;
-  }
-  .svc-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(232,104,10,0.4); transform: translateY(-2px); }
-  .svc-icon { font-size: 28px; margin-bottom: 14px; }
-  .svc-name { font-size: 15px; font-weight: 700; color: white; margin-bottom: 6px; }
-  .svc-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+  .services-bg .section-sub { color: rgba(255,255,255,0.5); }
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+  .svc-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius); padding: 22px 20px; transition: all 0.25s; }
+  .svc-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(232,104,10,0.38); transform: translateY(-2px); }
+  .svc-icon { font-size: 26px; margin-bottom: 12px; }
+  .svc-name { font-size: 14px; font-weight: 700; color: white; margin-bottom: 5px; }
+  .svc-desc { font-size: 12.5px; color: rgba(255,255,255,0.48); line-height: 1.65; font-weight: 300; }
+  .svc-tag { display: inline-block; margin-top: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(232,104,10,0.2); color: var(--orange-light); padding: 2px 8px; border-radius: 20px; }
 
-  /* WHY CRULIO */
+  /* ── CLUB SERVICES HIGHLIGHT ── */
+  .club-band { background: linear-gradient(135deg, var(--orange) 0%, #c8520a 100%); padding: 44px 5%; text-align: center; }
+  .club-band h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; color: white; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .club-band p { font-size: 15px; color: rgba(255,255,255,0.82); font-weight: 300; max-width: 560px; margin: 0 auto 24px; }
+  .club-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .club-chip { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 50px; }
+
+  /* ── WHY CRULIO ── */
   .why-bg { background: var(--cream); }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  .why-left { }
-  .why-left .section-header { text-align: left; margin-bottom: 32px; }
-  .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-  .why-item { display: flex; gap: 16px; align-items: flex-start; }
-  .why-dot { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .why-text strong { display: block; font-size: 15px; color: var(--navy); font-weight: 700; margin-bottom: 3px; }
-  .why-text p { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
-  .why-right { }
-  .stats-box {
-    background: var(--navy);
-    border-radius: 20px;
-    padding: 36px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-  }
-  .stat-box-item { }
-  .stat-box-val { font-size: 2.4rem; font-weight: 800; color: white; line-height: 1; }
-  .stat-box-val span { color: var(--orange); }
-  .stat-box-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; font-weight: 400; }
-  .stat-box-proof { font-size: 10px; color: rgba(232,104,10,0.7); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .why-left .section-header { text-align: left; margin-bottom: 28px; }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .why-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); transition: box-shadow 0.2s; }
+  .why-item:hover { box-shadow: 0 4px 16px rgba(26,47,94,0.08); }
+  .why-dot { width: 40px; height: 40px; border-radius: 10px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+  .why-text strong { display: block; font-size: 14px; color: var(--navy); font-weight: 700; margin-bottom: 3px; }
+  .why-text p { font-size: 12.5px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
 
-  /* PARTNER */
-  .partner-bg { background: white; }
-  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .partner-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    text-align: center;
-    transition: all 0.2s;
-  }
-  .partner-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(232,104,10,0.1); }
-  .partner-icon { font-size: 32px; margin-bottom: 14px; }
-  .partner-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-  .partner-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+  /* ── LIVE STATS BOX ── */
+  .stats-box { background: var(--navy); border-radius: 18px; padding: 32px; }
+  .stats-box-header { display: flex; align-items: center; gap: 8px; margin-bottom: 26px; }
+  .stats-box-header span { font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500; }
+  .live-badge { display: flex; align-items: center; gap: 5px; background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .live-badge-dot { width: 5px; height: 5px; background: #4ade80; border-radius: 50%; animation: blink 1.8s infinite; }
+  .stats-live-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .stat-live-item { padding: 16px; background: rgba(255,255,255,0.05); border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); }
+  .stat-live-val { font-size: 2rem; font-weight: 800; color: white; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-live-val .acc { color: var(--orange); }
+  .stat-live-lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 5px; font-weight: 400; }
+  .stat-live-proof { font-size: 9.5px; color: rgba(232,104,10,0.65); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
+  .ticker-row { margin-top: 20px; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .ticker-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; flex-shrink: 0; }
+  .ticker-text { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 300; }
+  .ticker-text strong { color: white; font-weight: 600; }
 
-  /* TESTIMONIALS */
+  /* ── WHATSAPP SUPPORT ── */
+  .wa-band { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 5%; }
+  .wa-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .wa-left { display: flex; align-items: center; gap: 16px; }
+  .wa-icon { width: 52px; height: 52px; background: #25d366; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+  .wa-title { font-size: 16px; font-weight: 700; color: var(--navy); }
+  .wa-sub { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+  .wa-btn { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: white; padding: 11px 24px; border-radius: 50px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.2s; box-shadow: 0 3px 14px rgba(37,211,102,0.3); }
+  .wa-btn:hover { background: #1fba5a; transform: translateY(-1px); }
+
+  /* ── TESTIMONIALS ── */
   .testimonials-bg { background: var(--cream); }
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .testi-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-  .testi-stars { color: #f6b30e; font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
-  .testi-text { font-size: 14px; color: var(--text-muted); line-height: 1.75; font-weight: 300; font-style: italic; margin-bottom: 16px; }
-  .testi-author { display: flex; align-items: center; gap: 12px; }
-  .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testi-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+  .testi-stars { color: #f6b30e; font-size: 13px; margin-bottom: 11px; letter-spacing: 2px; }
+  .testi-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 16px; }
+  .testi-author { display: flex; align-items: center; gap: 11px; }
+  .testi-av { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; }
   .testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
   .testi-loc { font-size: 11px; color: var(--text-muted); }
 
-  /* CTA BAND */
-  .cta-band {
-    background: var(--navy-dark);
-    background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,104,10,0.15) 0%, transparent 60%);
-    padding: 80px 5%;
-    text-align: center;
-  }
-  .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: white; letter-spacing: -0.02em; margin-bottom: 16px; }
-  .cta-band p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 36px; font-weight: 300; }
-  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  /* ── PARTNER ── */
+  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .partner-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; text-align: center; transition: all 0.2s; }
+  .partner-card:hover { border-color: var(--orange); box-shadow: 0 6px 28px rgba(232,104,10,0.1); }
+  .partner-icon { font-size: 30px; margin-bottom: 12px; }
+  .partner-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 7px; }
+  .partner-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
 
-  /* FOOTER */
-  footer {
-    background: var(--navy-dark);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 48px 5% 32px;
-  }
-  .footer-inner { max-width: 1200px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-  .footer-brand img { height: 40px; margin-bottom: 14px; display: block; }
-  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; max-width: 260px; }
-  .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
-  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; font-weight: 300; }
+  /* ── CTA ── */
+  .cta-band { background: var(--navy-dark); background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,104,10,0.14) 0%, transparent 60%); padding: 80px 5%; text-align: center; }
+  .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800; color: white; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .cta-band p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 34px; font-weight: 300; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.07); padding: 48px 5% 30px; }
+  .footer-inner { max-width: 1180px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+  .footer-brand img { height: 44px; margin-bottom: 12px; display: block; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; font-weight: 300; max-width: 250px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 9px; transition: color 0.2s; font-weight: 300; }
   .footer-col a:hover { color: var(--orange-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-  }
-  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300; }
-  .footer-bottom a { color: rgba(232,104,10,0.8); text-decoration: none; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; }
+  .footer-bottom a { color: rgba(232,104,10,0.7); text-decoration: none; }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-    .hero-sub { margin: 0 auto 36px; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+    .hero-sub { margin: 0 auto 32px; }
     .hero-actions { justify-content: center; }
     .hero-visual { display: none; }
     .hero-stats { justify-content: center; }
     .why-grid { grid-template-columns: 1fr; }
     .why-left .section-header { text-align: center; }
-    .why-list { max-width: 480px; margin: 0 auto; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
     .partner-grid { grid-template-columns: 1fr; }
@@ -442,33 +317,32 @@
     .hamburger { display: flex; }
   }
   @media (max-width: 600px) {
-    section { padding: 60px 4%; }
-    .stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
+    section { padding: 56px 4%; }
+    .stats-live-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
-    .search-bar { flex-direction: column; border-radius: 16px; padding: 12px; gap: 8px; }
-    .search-btn { width: 100%; border-radius: 10px; padding: 12px; }
+    .search-bar { flex-direction: column; border-radius: 14px; padding: 10px; gap: 8px; }
+    .search-btn { width: 100%; border-radius: 10px; padding: 11px; }
+    .wa-inner { flex-direction: column; text-align: center; }
   }
 
-  /* Scroll reveal */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'; this.nextSibling.style.display='flex'">
-    <span style="display:none; align-items:center; gap:10px; color:white; font-weight:800; font-size:18px; letter-spacing:-0.02em;">
-      <img src="images/logos/NOBGLOGO.png" style="height:32px" onerror="this.style.display='none'">
-      crulio<span style="color:var(--orange)">.</span>
-    </span>
+    <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks"
+         onerror="this.style.display='none'; document.getElementById('nav-text').style.display='flex'">
+    <span id="nav-text" style="display:none" class="nav-logo-text">crulio<span>.</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#destinations">Destinations</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#partner">For Partners</a></li>
-    <li><a href="#about">About Us</a></li>
+    <li><a href="#why">Why Crulio</a></li>
+    <li><a href="#partner">Partners</a></li>
   </ul>
   <a href="#destinations" class="nav-cta">Plan Yatra</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -479,46 +353,61 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge"><span></span>Now Live — Manauna Dham, Bareilly</div>
-      <h1>Your <em>Yatra,</em><br>Simplified.</h1>
-      <p class="hero-sub">Hotels, food, transport & local services for India's pilgrimage destinations — all in one place. Ground-verified. Pilgrim-first.</p>
+    <div>
+      <div class="hero-badge"><div class="live-dot"></div>Now Live — Manauna Dham, Bareilly</div>
+      <h1>Every Service.<br>Every <em>Dham.</em><br>One Platform.</h1>
+      <p class="hero-sub">Hotels, food, trains, autos, buses, souvenirs — everything you need for your pilgrimage. Ground-verified. Pilgrim-first. Always updated.</p>
       <div class="hero-actions">
         <a href="#destinations" class="btn-primary">Explore Destinations →</a>
         <a href="#partner" class="btn-ghost">Partner With Us</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-val">7.3<span>L+</span></div>
-          <div class="stat-lbl">Impressions Served</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">1000<span>+</span></div>
-          <div class="stat-lbl">Pilgrims Helped</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">₹2.3<span>L</span></div>
-          <div class="stat-lbl">GMV Generated</div>
+      <div class="hero-stats-wrap">
+        <div class="live-indicator"><div class="live-indicator-dot"></div>Live stats — updating in real time</div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="val" id="h-views">0<span class="accent">L+</span></div>
+            <div class="lbl">Search Impressions</div>
+          </div>
+          <div class="stat-item">
+            <div class="val" id="h-clicks">0<span class="accent">K+</span></div>
+            <div class="lbl">Organic Clicks</div>
+          </div>
+          <div class="stat-item">
+            <div class="val" id="h-customers">0<span class="accent">+</span></div>
+            <div class="lbl">Pilgrims Served</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-logo-wrap">
-        <div class="hero-logo-ring"></div>
-        <div class="hero-logo-ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
         <img class="hero-logo-img" src="images/logos/NOBGLOGO.png" alt="Crulio" onerror="this.style.opacity='0'">
       </div>
     </div>
   </div>
 </section>
 
+<!-- MOAT BAND -->
+<div class="moat-band">
+  <div class="moat-inner">
+    <div class="moat-pill"><div class="moat-icon">🗺️</div><div class="moat-text"><strong>Free & Verified</strong> Guide Info</div></div>
+    <div class="moat-pill"><div class="moat-icon">🔄</div><div class="moat-text"><strong>Always Updated,</strong> Never Stale</div></div>
+    <div class="moat-pill"><div class="moat-icon">🧑‍💼</div><div class="moat-text"><strong>Physical Team</strong> at Every Dham</div></div>
+    <div class="moat-pill"><div class="moat-icon">🛒</div><div class="moat-text"><strong>Full Ecosystem</strong> — Think It, We Have It</div></div>
+    <div class="moat-pill"><div class="moat-icon">💰</div><div class="moat-text"><strong>Club Services</strong> → Huge Discounts</div></div>
+    <div class="moat-pill"><div class="moat-icon">💬</div><div class="moat-text"><strong>24 / 7 WhatsApp</strong> Support</div></div>
+  </div>
+</div>
+
 <!-- SEARCH -->
 <div class="search-section">
   <div class="search-inner">
     <div class="search-label">Find your destination</div>
     <div class="search-bar">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b0bec5" stroke-width="2" style="flex-shrink:0;margin-right:4px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Search dham, mandir, city..." id="search-input">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#b0bec5" stroke-width="2" style="flex-shrink:0;margin-right:4px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search dham, mandir, city…" id="search-input">
       <button class="search-btn" onclick="doSearch()">Search</button>
     </div>
     <div class="search-tags">
@@ -532,76 +421,45 @@
 </div>
 
 <!-- DESTINATIONS -->
-<section class="destinations-bg" id="destinations">
+<section id="destinations">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-eyebrow">Our Destinations</div>
+      <div class="eyebrow">Our Destinations</div>
       <h2 class="section-title">Sacred Places, Seamless Services</h2>
-      <p class="section-sub">Each destination is ground-verified by our local team. Real timings, real vendors, real trust.</p>
+      <p class="section-sub">Each destination is ground-visited by our local team. Real timings, real vendors, real trust.</p>
     </div>
     <div class="dest-grid reveal">
-      <!-- Live destination -->
       <a href="https://www.manaunadham.org.in" class="dest-card" target="_blank">
-        <div class="dest-img" style="background: linear-gradient(135deg, #6b0000 0%, #c0392b 100%);">
-          🛕
-          <div class="dest-live">Live</div>
-        </div>
+        <div class="dest-img" style="background:linear-gradient(135deg,#6b0000 0%,#c0392b 100%)">🛕<div class="dest-live-badge">Live</div></div>
         <div class="dest-body">
           <div class="dest-name">Manauna Dham</div>
-          <div class="dest-loc">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Aonla, Bareilly, Uttar Pradesh
-          </div>
+          <div class="dest-loc">📍 Aonla, Bareilly, Uttar Pradesh</div>
           <div class="dest-services">
-            <span class="dest-svc">Hotel</span>
-            <span class="dest-svc">Food</span>
-            <span class="dest-svc">Transport</span>
-            <span class="dest-svc">Shyam Jal</span>
+            <span class="svc-chip">Hotel</span><span class="svc-chip">Food</span><span class="svc-chip">Auto/Taxi</span><span class="svc-chip">Train</span><span class="svc-chip">Shyam Jal</span>
           </div>
         </div>
       </a>
-      <!-- Coming soon cards -->
-      <div class="dest-card" style="cursor:default;">
-        <div class="dest-img" style="background: linear-gradient(135deg, #1a5c8a 0%, #2980b9 100%);">
-          🪔
-          <div class="dest-badge-new">Coming Soon</div>
-        </div>
+      <div class="dest-card" style="cursor:default">
+        <div class="dest-img" style="background:linear-gradient(135deg,#1a5c8a 0%,#2980b9 100%)">🪔<div class="coming-badge">Coming Soon</div></div>
         <div class="dest-body">
           <div class="dest-name">Khatu Shyam Ji</div>
-          <div class="dest-loc">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Sikar, Rajasthan
-          </div>
-          <div class="dest-services">
-            <span class="dest-svc">Hotel</span>
-            <span class="dest-svc">Food</span>
-            <span class="dest-svc">Transport</span>
-          </div>
+          <div class="dest-loc">📍 Sikar, Rajasthan</div>
+          <div class="dest-services"><span class="svc-chip">Hotel</span><span class="svc-chip">Food</span><span class="svc-chip">Transport</span></div>
         </div>
       </div>
-      <div class="dest-card" style="cursor:default;">
-        <div class="dest-img" style="background: linear-gradient(135deg, #2d5a27 0%, #4caf50 50%, #2d5a27 100%);">
-          🌿
-          <div class="dest-badge-new">Coming Soon</div>
-        </div>
+      <div class="dest-card" style="cursor:default">
+        <div class="dest-img" style="background:linear-gradient(135deg,#2d5a27 0%,#4caf50 60%,#2d5a27 100%)">🌿<div class="coming-badge">Coming Soon</div></div>
         <div class="dest-body">
           <div class="dest-name">Vrindavan</div>
-          <div class="dest-loc">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Mathura, Uttar Pradesh
-          </div>
-          <div class="dest-services">
-            <span class="dest-svc">Hotel</span>
-            <span class="dest-svc">Food</span>
-            <span class="dest-svc">Guides</span>
-          </div>
+          <div class="dest-loc">📍 Mathura, Uttar Pradesh</div>
+          <div class="dest-services"><span class="svc-chip">Hotel</span><span class="svc-chip">Food</span><span class="svc-chip">Guides</span></div>
         </div>
       </div>
-      <div class="dest-coming">
-        <div class="dest-coming-icon">📍</div>
+      <div class="dest-coming-card">
+        <div style="font-size:30px">📍</div>
         <strong>Expand to Your Dham</strong>
-        <p>We're building the network, one sacred site at a time.</p>
-        <a href="#partner" class="btn-primary" style="font-size:13px; padding:10px 20px; margin-top:8px;">Partner With Us</a>
+        <p>We're growing the network, one sacred site at a time.</p>
+        <a href="#partner" class="btn-primary" style="font-size:13px;padding:10px 20px;margin-top:10px">Partner With Us →</a>
       </div>
     </div>
   </div>
@@ -611,111 +469,173 @@
 <section class="services-bg" id="services">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-eyebrow" style="background:rgba(232,104,10,0.2); color:var(--orange-light);">What We Offer</div>
-      <h2 class="section-title">Everything a Pilgrim Needs</h2>
-      <p class="section-sub">From the moment you decide to visit, to the moment you return home.</p>
+      <div class="eyebrow" style="background:rgba(232,104,10,0.18);color:#f9a05a">Everything We Offer</div>
+      <h2 class="section-title">Think of It. We Have It.</h2>
+      <p class="section-sub">From the moment you decide to visit, to the moment you get home — every need covered.</p>
     </div>
     <div class="svc-grid reveal">
       <div class="svc-card">
         <div class="svc-icon">🏨</div>
         <div class="svc-name">Hotel & Dharmshala</div>
-        <div class="svc-desc">Comfortable rooms near the temple, verified and fairly priced. No surprise fees.</div>
+        <div class="svc-desc">Rooms near the temple, verified and fairly priced. No surprise fees or commissions.</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">🍱</div>
         <div class="svc-name">Food Delivery</div>
-        <div class="svc-desc">Hot meals from local kitchens, delivered to your stay. Sattvic options available.</div>
+        <div class="svc-desc">Hot, fresh meals from trusted local kitchens delivered to your stay. Sattvic options available.</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">🚖</div>
-        <div class="svc-name">Transport Booking</div>
-        <div class="svc-desc">Taxi, auto, and tempo booking at pilgrim-friendly rates from the nearest station.</div>
+        <div class="svc-name">Auto & E-Rickshaw</div>
+        <div class="svc-desc">Local auto and e-rickshaw booking at fair pilgrim rates. Quick, convenient, safe.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🚗</div>
+        <div class="svc-name">Taxi Booking</div>
+        <div class="svc-desc">Verified taxi partners for door-to-door travel. Outstation and local both available.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🚆</div>
+        <div class="svc-name">Train Booking</div>
+        <div class="svc-desc">Plan and book your train journey to the dham with real-time route assistance.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🚌</div>
+        <div class="svc-name">Bus Booking</div>
+        <div class="svc-desc">State and private bus options to and from the destination — we'll help you find the best route.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎁</div>
+        <div class="svc-name">Souvenir Shops</div>
+        <div class="svc-desc">Browse and order from local dham souvenir shops. Home delivery coming very soon.</div>
+        <div class="svc-tag">Coming Soon</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">📋</div>
-        <div class="svc-name">Local Info & Timings</div>
-        <div class="svc-desc">Ground-verified darshan timings, aarti schedules, and event updates — no outdated info.</div>
+        <div class="svc-name">Darshan Info & Timings</div>
+        <div class="svc-desc">Ground-verified aarti timings, event updates, and local notices — always current.</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">🎥</div>
         <div class="svc-name">Live Darshan</div>
-        <div class="svc-desc">Watch live aarti and darshan from anywhere. For devotees who can't travel.</div>
+        <div class="svc-desc">Watch live aarti from anywhere in the world. For bhakts who cannot make the journey.</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">🌿</div>
-        <div class="svc-name">Special Services</div>
-        <div class="svc-desc">Sacred water, patient tokens, puja bookings and destination-specific offerings.</div>
+        <div class="svc-name">Destination Specials</div>
+        <div class="svc-desc">Sacred water delivery, patient tokens, puja bookings — unique to each dham.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CLUB SERVICES BAND -->
+<div class="club-band">
+  <h3>🎯 Club Your Services — Save Big.</h3>
+  <p>Book hotel + taxi + food together and unlock exclusive combined discounts unavailable anywhere else. The more you club, the more you save.</p>
+  <div class="club-chips">
+    <div class="club-chip">🏨 Hotel + 🚖 Auto</div>
+    <div class="club-chip">🏨 Hotel + 🍱 Food</div>
+    <div class="club-chip">🚆 Train + 🚖 Auto + 🏨 Hotel</div>
+    <div class="club-chip">Full Yatra Bundle</div>
+  </div>
+</div>
+
+<!-- WHATSAPP SUPPORT -->
+<div class="wa-band">
+  <div class="wa-inner">
+    <div class="wa-left">
+      <div class="wa-icon">💬</div>
+      <div>
+        <div class="wa-title">24 / 7 WhatsApp Support</div>
+        <div class="wa-sub">A real person from our team — available any time, any day. No bots, no wait queues.</div>
+      </div>
+    </div>
+    <a href="https://wa.me/91XXXXXXXXXX" class="wa-btn" target="_blank">
+      Chat on WhatsApp →
+    </a>
+  </div>
+</div>
+
 <!-- WHY CRULIO -->
-<section class="why-bg" id="about">
+<section class="why-bg" id="why">
   <div class="section-inner">
     <div class="why-grid reveal">
       <div class="why-left">
         <div class="section-header">
-          <div class="section-eyebrow">Why Crulio</div>
-          <h2 class="section-title">Built on the Ground, Not a Spreadsheet.</h2>
-          <p class="section-sub" style="text-align:left">Every dham we cover, we physically visit. Our team lives near these destinations. That's our edge.</p>
+          <div class="eyebrow">Our Edge</div>
+          <h2 class="section-title">Built on the Ground.<br>Not a Spreadsheet.</h2>
+          <p class="section-sub" style="text-align:left;margin-left:0">We don't scrape data. We physically go to each dham and verify everything ourselves.</p>
         </div>
         <ul class="why-list">
           <li class="why-item">
-            <div class="why-dot">✅</div>
+            <div class="why-dot">🗺️</div>
             <div class="why-text">
-              <strong>Ground-Verified Information</strong>
-              <p>Our team physically visits each destination. Timings, vendors, and routes are personally verified — not scraped from the internet.</p>
+              <strong>Free, Verified & Always Up-to-Date Information</strong>
+              <p>Our on-ground team personally checks timings, routes, and vendor details. You'll never get outdated info from Crulio.</p>
             </div>
           </li>
           <li class="why-item">
-            <div class="why-dot">🛡️</div>
+            <div class="why-dot">🧑‍💼</div>
             <div class="why-text">
-              <strong>Pilgrim-First Pricing</strong>
-              <p>We negotiate with local vendors to ensure fair prices. No platform markup that exploits devotion.</p>
+              <strong>Physical Team at Every Destination</strong>
+              <p>We have real people stationed at each dham — not remote agents. Problems get solved on the spot.</p>
             </div>
           </li>
           <li class="why-item">
-            <div class="why-dot">🌐</div>
+            <div class="why-dot">🛒</div>
             <div class="why-text">
-              <strong>Hyperlocal Network</strong>
-              <p>One platform connecting hotels, food, transport, and services — built around the real rhythm of each dham.</p>
+              <strong>The Complete Ecosystem</strong>
+              <p>Think of anything you need for a pilgrimage — hotel, food, auto, train, bus, souvenirs, live darshan. We have it.</p>
             </div>
           </li>
           <li class="why-item">
-            <div class="why-dot">📈</div>
+            <div class="why-dot">💰</div>
             <div class="why-text">
-              <strong>Proven Traction</strong>
-              <p>Launched with zero investment. 7L+ impressions, 1000+ customers, ₹2.3L GMV in under 3 months — organically.</p>
+              <strong>Club Services for Huge Discounts</strong>
+              <p>Book multiple services together and save significantly. Bundles designed specifically for pilgrims.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-dot">💬</div>
+            <div class="why-text">
+              <strong>24/7 WhatsApp Support</strong>
+              <p>Real humans, any time. Whether you're planning or already at the dham — we're one message away.</p>
             </div>
           </li>
         </ul>
       </div>
       <div class="why-right">
         <div class="stats-box">
-          <div class="stat-box-item">
-            <div class="stat-box-val">7.3<span>L</span></div>
-            <div class="stat-box-label">Search Impressions</div>
-            <div class="stat-box-proof">Google Search Console</div>
+          <div class="stats-box-header">
+            <div class="live-badge"><div class="live-badge-dot"></div>Live</div>
+            <span>Platform statistics — updated daily</span>
           </div>
-          <div class="stat-box-item">
-            <div class="stat-box-val">30<span>K</span></div>
-            <div class="stat-box-label">Organic Clicks</div>
-            <div class="stat-box-proof">Zero Paid Ads</div>
+          <div class="stats-live-grid">
+            <div class="stat-live-item">
+              <div class="stat-live-val" id="s-impressions">0<span class="acc">L</span></div>
+              <div class="stat-live-lbl">Search Impressions</div>
+              <div class="stat-live-proof">Google Search Console</div>
+            </div>
+            <div class="stat-live-item">
+              <div class="stat-live-val" id="s-clicks">0<span class="acc">K</span></div>
+              <div class="stat-live-lbl">Organic Clicks</div>
+              <div class="stat-live-proof">Zero Paid Ads</div>
+            </div>
+            <div class="stat-live-item">
+              <div class="stat-live-val" id="s-pilgrims">0<span class="acc">+</span></div>
+              <div class="stat-live-lbl">Pilgrims Served</div>
+              <div class="stat-live-proof">Real Transactions</div>
+            </div>
+            <div class="stat-live-item">
+              <div class="stat-live-val" id="s-dest">1<span class="acc"> Dham</span></div>
+              <div class="stat-live-lbl">Live Destination</div>
+              <div class="stat-live-proof">Expanding Fast</div>
+            </div>
           </div>
-          <div class="stat-box-item">
-            <div class="stat-box-val">1<span>K+</span></div>
-            <div class="stat-box-label">Pilgrims Served</div>
-            <div class="stat-box-proof">Real Transactions</div>
-          </div>
-          <div class="stat-box-item">
-            <div class="stat-box-val">₹2.3<span>L</span></div>
-            <div class="stat-box-label">Gross GMV</div>
-            <div class="stat-box-proof">3 Months, ₹0 Spent</div>
-          </div>
-          <div class="stat-box-item" style="grid-column: 1/-1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;">
-            <div class="stat-box-val">1 <span style="font-size:1.2rem">Destination</span></div>
-            <div class="stat-box-label">Live — with many more in progress</div>
+          <div class="ticker-row">
+            <div class="ticker-dot"></div>
+            <div class="ticker-text" id="ticker-msg"><strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.</div>
           </div>
         </div>
       </div>
@@ -727,73 +647,55 @@
 <section class="testimonials-bg">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-eyebrow">Pilgrim Stories</div>
+      <div class="eyebrow">Pilgrim Stories</div>
       <h2 class="section-title">What Devotees Say</h2>
     </div>
     <div class="testi-grid reveal">
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"We came from Lucknow for darshan. Found hotel through Crulio, booked taxi, even got food delivered. Everything was exactly as described. Jai Shree Shyam!"</p>
-        <div class="testi-author">
-          <div class="testi-avatar">RS</div>
-          <div>
-            <div class="testi-name">Ramesh Sharma</div>
-            <div class="testi-loc">Lucknow, UP</div>
-          </div>
-        </div>
+        <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
+        <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"The darshan timings on the website were accurate unlike other sites. Hotel was clean and affordable. Highly recommend to all devotees visiting Manauna Dham."</p>
-        <div class="testi-author">
-          <div class="testi-avatar">PG</div>
-          <div>
-            <div class="testi-name">Priya Gupta</div>
-            <div class="testi-loc">Delhi, NCR</div>
-          </div>
-        </div>
+        <p class="testi-text">"The darshan timings were accurate — unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
+        <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Booked auto from Aonla station through the website. Driver was on time, knew the route well. This service is a blessing for out-of-town pilgrims."</p>
-        <div class="testi-author">
-          <div class="testi-avatar">AV</div>
-          <div>
-            <div class="testi-name">Ashok Verma</div>
-            <div class="testi-loc">Bareilly, UP</div>
-          </div>
-        </div>
+        <p class="testi-text">"Booked the full bundle — train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
+        <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PARTNER -->
-<section class="partner-bg" id="partner">
+<section id="partner">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-eyebrow">Join the Network</div>
+      <div class="eyebrow">Join the Network</div>
       <h2 class="section-title">Grow With Crulio</h2>
-      <p class="section-sub">Whether you're a hotel near a dham, a local guide, or want to bring Crulio to your destination — we want to hear from you.</p>
+      <p class="section-sub">Hotel owner, transport provider, or want to bring Crulio to your dham — we want to hear from you.</p>
     </div>
     <div class="partner-grid reveal">
       <div class="partner-card">
         <div class="partner-icon">🏨</div>
         <div class="partner-title">Hotel / Dharmshala Owner</div>
-        <div class="partner-desc">List your property on Crulio and reach thousands of pilgrims searching for accommodation near the dham. Free to list, commission-based.</div>
+        <div class="partner-desc">List your property and reach thousands of pilgrims actively searching for accommodation near the dham. Commission-based, free to list.</div>
       </div>
       <div class="partner-card">
         <div class="partner-icon">🚗</div>
         <div class="partner-title">Transport Provider</div>
-        <div class="partner-desc">Register as a Crulio transport partner and get consistent bookings from pilgrims arriving at stations near your dham.</div>
+        <div class="partner-desc">Register as a Crulio partner and get consistent bookings — taxi, auto, e-rickshaw, bus. We handle discovery, you handle the ride.</div>
       </div>
       <div class="partner-card">
         <div class="partner-icon">📍</div>
         <div class="partner-title">Destination Partner</div>
-        <div class="partner-desc">Know a rising pilgrimage site that lacks an online presence? Partner with us to launch a full Crulio-powered destination platform.</div>
+        <div class="partner-desc">Know a rising pilgrimage site with no digital presence? Partner with us to launch a full Crulio-powered platform for your dham.</div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:36px;">
+    <div style="text-align:center;margin-top:32px">
       <a href="mailto:partner@crulio.com" class="btn-primary">Reach Out to Partner →</a>
     </div>
   </div>
@@ -802,7 +704,7 @@
 <!-- CTA BAND -->
 <div class="cta-band">
   <h2>Plan Your Next Yatra with Crulio.</h2>
-  <p>Trusted information. Verified services. Pilgrim-first, always.</p>
+  <p>Verified info. Every service. Pilgrim-first, always.</p>
   <div class="cta-buttons">
     <a href="https://www.manaunadham.org.in" class="btn-primary" target="_blank">Visit Manauna Dham →</a>
     <a href="mailto:partner@crulio.com" class="btn-ghost">Partner With Us</a>
@@ -822,76 +724,115 @@
         <a href="https://www.manaunadham.org.in" target="_blank">Manauna Dham</a>
         <a href="#">Khatu Shyam Ji</a>
         <a href="#">Vrindavan</a>
-        <a href="#">More coming soon</a>
+        <a href="#">More Soon</a>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="#">Hotel Booking</a>
+        <a href="#">Hotels & Stays</a>
         <a href="#">Food Delivery</a>
         <a href="#">Transport</a>
-        <a href="#">Live Darshan</a>
+        <a href="#">Souvenirs</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Crulio</a>
         <a href="#partner">Partner With Us</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Support</a>
         <a href="mailto:partner@crulio.com">Contact</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Crulio Networks. All rights reserved.</p>
-      <p>Built with 🙏 for India's pilgrims. <a href="#">Privacy Policy</a></p>
+      <p>Built with 🙏 for India's pilgrims &nbsp;·&nbsp; <a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 
 <script>
-  // Mobile menu
-  function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    const cta = document.querySelector('.nav-cta');
-    if (links) {
-      const isOpen = links.style.display === 'flex';
-      links.style.cssText = isOpen ? '' : 'display:flex; flex-direction:column; position:fixed; top:68px; left:0; right:0; background:rgba(26,47,94,0.98); padding:24px; gap:0; z-index:99';
-      if (cta) cta.style.cssText = isOpen ? '' : 'display:block; margin:12px 0 0';
-    }
-  }
+// Mobile menu
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const cta = document.querySelector('.nav-cta');
+  const open = links.style.display === 'flex';
+  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:var(--nav-bg);padding:20px 5%;gap:0;z-index:99;border-bottom:1px solid var(--nav-border)';
+  if (cta) cta.style.cssText = open ? '' : 'display:block;margin:12px 0 0';
+}
 
-  // Search
-  function doSearch() {
-    const val = document.getElementById('search-input').value.trim().toLowerCase();
-    if (val.includes('manauna') || val.includes('manona') || val.includes('shyam')) {
-      window.open('https://www.manaunadham.org.in', '_blank');
-    } else {
-      document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
-    }
+// Search
+function doSearch() {
+  const v = document.getElementById('search-input').value.trim().toLowerCase();
+  if (v.includes('manauna') || v.includes('manona') || v.includes('shyam')) {
+    window.open('https://www.manaunadham.org.in', '_blank');
+  } else {
+    document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
   }
-  document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+}
+document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
 
-  // Scroll reveal
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Animated counter
+function animateVal(id, target, suffix, decimals, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const baseText = el.innerHTML.replace(/[\d.]+/, '');
+  let start = 0;
+  const steps = duration / 16;
+  const inc = target / steps;
+  const timer = setInterval(() => {
+    start = Math.min(start + inc, target);
+    const display = decimals > 0 ? start.toFixed(decimals) : Math.floor(start);
+    el.innerHTML = display + baseText.slice(baseText.indexOf('<'));
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
 
-  // Counter animation on hero stats
-  function animateCount(el, target, suffix, duration) {
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start = Math.min(start + step, target);
-      el.textContent = (target % 1 !== 0 ? start.toFixed(1) : Math.floor(start)) + suffix;
-      if (start >= target) clearInterval(timer);
-    }, 16);
-  }
-  const heroObs = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      animateCount(document.querySelector('.stat-val:nth-child(1) .stat-val'), 7.3, '', 1200);
-      heroObs.disconnect();
+// Scroll reveal + trigger counters once
+const statsTriggered = {};
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Trigger hero counters
+      if (e.target.contains(document.getElementById('h-views')) && !statsTriggered.hero) {
+        statsTriggered.hero = true;
+        animateVal('h-views', 7.3, '', 1, 1400);
+        animateVal('h-clicks', 30, '', 0, 1200);
+        animateVal('h-customers', 1000, '', 0, 1600);
+      }
+      // Trigger stats box counters
+      if (e.target.contains(document.getElementById('s-impressions')) && !statsTriggered.stats) {
+        statsTriggered.stats = true;
+        animateVal('s-impressions', 7.3, '', 1, 1400);
+        animateVal('s-clicks', 30, '', 0, 1200);
+        animateVal('s-pilgrims', 1000, '', 0, 1600);
+      }
+      obs.unobserve(e.target);
     }
   });
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) heroObs.observe(heroStats);
+}, { threshold: 0.15 });
+
+// Observe hero stats wrap
+const heroStats = document.querySelector('.hero-stats-wrap');
+if (heroStats) heroStats.classList.add('reveal'), obs.observe(heroStats);
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Live ticker rotation
+const tickers = [
+  '<strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.',
+  '<strong>1,000+ pilgrims</strong> served across hotels, food, and transport.',
+  '<strong>30,000+ organic clicks</strong> — no paid marketing, ever.',
+  '<strong>Physical team</strong> on the ground — verified info, real people.',
+];
+let ti = 0;
+const tickerEl = document.getElementById('ticker-msg');
+setInterval(() => {
+  if (tickerEl) {
+    ti = (ti + 1) % tickers.length;
+    tickerEl.style.opacity = '0';
+    setTimeout(() => { tickerEl.innerHTML = tickers[ti]; tickerEl.style.opacity = '1'; }, 300);
+  }
+}, 4000);
+tickerEl && (tickerEl.style.transition = 'opacity 0.3s');
 </script>
 </body>
 </html>
