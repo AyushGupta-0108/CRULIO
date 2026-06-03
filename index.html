@@ -43,8 +43,8 @@
     box-shadow: 0 2px 16px rgba(26,47,94,0.08);
   }
   .nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
-  .nav-logo-icon { height: 52px; width: auto; object-fit: contain; }
-  .nav-logo-font { height: 36px; width: auto; object-fit: contain; }
+  .nav-logo-icon { height: 62px; width: auto; object-fit: contain; }
+  .nav-logo-font { height: 44px; width: auto; object-fit: contain; }
   .nav-logo-text {
     font-size: 20px; font-weight: 800; color: var(--navy);
     letter-spacing: -0.03em; display: flex; align-items: center; gap: 1px;
@@ -255,36 +255,20 @@
 
   /* ── TESTIMONIALS ── */
   .testimonials-bg { background: var(--cream); }
-  .testi-carousel-wrap { overflow: hidden; position: relative; }
-  .testi-carousel-wrap::before,
-  .testi-carousel-wrap::after {
-    content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
-  }
-  .testi-carousel-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
-  .testi-carousel-wrap::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
-  .testi-grid {
-    display: flex; gap: 20px;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; padding: 8px 4px 16px;
-    cursor: grab;
-  }
-  .testi-grid::-webkit-scrollbar { display: none; }
-  .testi-grid.dragging { cursor: grabbing; }
-  .testi-card {
-    background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
-    flex-shrink: 0; width: clamp(280px, 80vw, 360px);
-    scroll-snap-align: start;
-  }
+  .testi-track-wrap { overflow: hidden; position: relative; }
+  .testi-track-wrap::before, .testi-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+  .testi-track-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+  .testi-track-wrap::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+  .testi-track { display: flex; gap: 20px; width: max-content; animation: testi-marquee 32s linear infinite; }
+  .testi-track:hover { animation-play-state: paused; }
+  @keyframes testi-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .testi-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; flex-shrink: 0; width: 340px; }
   .testi-stars { color: #f6b30e; font-size: 13px; margin-bottom: 11px; letter-spacing: 2px; }
   .testi-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 16px; }
   .testi-author { display: flex; align-items: center; gap: 11px; }
   .testi-av { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; }
   .testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
   .testi-loc { font-size: 11px; color: var(--text-muted); }
-  .testi-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
-  .testi-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s, transform 0.2s; }
-  .testi-dot.active { background: var(--orange); transform: scale(1.3); }
 
   /* ── PARTNER ── */
   .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -346,8 +330,8 @@
     .wa-inner { flex-direction: column; text-align: center; }
     nav { height: 60px; }
     .hero { padding-top: 60px; }
-    .nav-logo-icon { height: 42px; }
-    .nav-logo-font { height: 30px; }
+    .nav-logo-icon { height: 50px; }
+    .nav-logo-font { height: 36px; }
   }
 
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -590,7 +574,7 @@
         <div class="wa-sub">A real person from our team — available any time, any day. No bots, no wait queues.</div>
       </div>
     </div>
-    <a href="https://wa.me/91XXXXXXXXXX" class="wa-btn" target="_blank">
+    <a href="https://wa.me/917817803342" class="wa-btn" target="_blank">
       Chat on WhatsApp →
     </a>
   </div>
@@ -667,14 +651,14 @@
               <div class="stat-live-proof">Expanding Fast</div>
             </div>
             <div class="stat-live-item" style="grid-column:1/-1">
-              <div class="stat-live-val">₹2.3<span class="acc">L</span></div>
+              <div class="stat-live-val">₹2.5<span class="acc">L</span></div>
               <div class="stat-live-lbl">Total GMV Processed</div>
               <div class="stat-live-proof">₹0 Spent on Ads — Pure Organic</div>
             </div>
           </div>
           <div class="ticker-row">
             <div class="ticker-dot"></div>
-            <div class="ticker-text" id="ticker-msg"><strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.</div>
+            <div class="ticker-text" id="ticker-msg"><strong>800,000+</strong> impressions generated with zero ad spend in under 3 months.</div>
           </div>
         </div>
       </div>
@@ -689,8 +673,8 @@
       <div class="eyebrow">Pilgrim Stories</div>
       <h2 class="section-title">What Devotees Say</h2>
     </div>
-    <div class="testi-carousel-wrap reveal">
-      <div class="testi-grid" id="testi-grid">
+    <div class="testi-track-wrap reveal">
+      <div class="testi-track">
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
           <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
@@ -706,11 +690,42 @@
           <p class="testi-text">"Booked the full bundle — train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
           <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
         </div>
-      </div>
-      <div class="testi-dots" id="testi-dots">
-        <div class="testi-dot active"></div>
-        <div class="testi-dot"></div>
-        <div class="testi-dot"></div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Never expected such smooth service at a dham. Auto was waiting at the station, hotel was clean and close to the temple. Highly recommend Crulio to every pilgrim."</p>
+          <div class="testi-author"><div class="testi-av">SK</div><div><div class="testi-name">Sunita Kumari</div><div class="testi-loc">Kanpur, UP</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"We came as a family of 8 and Crulio arranged everything — stay, food, transport. Zero stress. The WhatsApp support team was with us at every step. Jai Shyam!"</p>
+          <div class="testi-author"><div class="testi-av">MG</div><div><div class="testi-name">Mahesh Gupta</div><div class="testi-loc">Agra, UP</div></div></div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
+          <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The darshan timings were accurate — unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
+          <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Booked the full bundle — train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
+          <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Never expected such smooth service at a dham. Auto was waiting at the station, hotel was clean and close to the temple. Highly recommend Crulio to every pilgrim."</p>
+          <div class="testi-author"><div class="testi-av">SK</div><div><div class="testi-name">Sunita Kumari</div><div class="testi-loc">Kanpur, UP</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"We came as a family of 8 and Crulio arranged everything — stay, food, transport. Zero stress. The WhatsApp support team was with us at every step. Jai Shyam!"</p>
+          <div class="testi-author"><div class="testi-av">MG</div><div><div class="testi-name">Mahesh Gupta</div><div class="testi-loc">Agra, UP</div></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -783,7 +798,7 @@
         <h4>Company</h4>
         <a href="#">About Crulio</a>
         <a href="#partner">Partner With Us</a>
-        <a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Support</a>
+        <a href="https://wa.me/917817803342" target="_blank">WhatsApp Support</a>
         <a href="mailto:partner@crulio.com">Contact</a>
       </div>
     </div>
@@ -824,7 +839,7 @@ function animateVal(id, target, suffix, decimals, duration) {
 function animateGMV(duration) {
   const el = document.getElementById('h-gmv-val');
   if (!el) return;
-  let start = 0; const target = 2.3;
+  let start = 0; const target = 2.5;
   const steps = duration / 16; const inc = target / steps;
   const timer = setInterval(() => {
     start = Math.min(start + inc, target);
@@ -841,13 +856,13 @@ const obs = new IntersectionObserver((entries) => {
       e.target.classList.add('visible');
       if (e.target.contains(document.getElementById('h-views')) && !statsTriggered.hero) {
         statsTriggered.hero = true;
-        animateVal('h-views', 7.3, '', 1, 1400);
+        animateVal('h-views', 8, '', 0, 1400);
         animateVal('h-customers', 1000, '', 0, 1600);
         animateGMV(1800);
       }
       if (e.target.contains(document.getElementById('s-impressions')) && !statsTriggered.stats) {
         statsTriggered.stats = true;
-        animateVal('s-impressions', 7.3, '', 1, 1400);
+        animateVal('s-impressions', 8, '', 0, 1400);
         animateVal('s-pilgrims', 1000, '', 0, 1600);
       }
       obs.unobserve(e.target);
@@ -861,9 +876,9 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // Live ticker rotation
 const tickers = [
-  '<strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.',
+  '<strong>800,000+</strong> impressions generated with zero ad spend in under 3 months.',
   '<strong>1,000+ pilgrims</strong> served across hotels, food, and transport.',
-  '<strong>₹2.3 Lakh GMV</strong> processed — entirely through organic traffic.',
+  '<strong>₹2.5 Lakh GMV</strong> processed — entirely through organic traffic.',
   '<strong>Physical team</strong> on the ground — verified info, real people.',
 ];
 let ti = 0;
@@ -877,62 +892,7 @@ setInterval(() => {
 }, 4000);
 tickerEl && (tickerEl.style.transition = 'opacity 0.3s');
 
-// Testimonial carousel — drag to scroll + dot indicators
-(function() {
-  const grid = document.getElementById('testi-grid');
-  const dots = document.querySelectorAll('.testi-dot');
-  if (!grid) return;
 
-  // Drag to scroll
-  let isDown = false, startX, scrollLeft;
-  grid.addEventListener('mousedown', e => { isDown = true; grid.classList.add('dragging'); startX = e.pageX - grid.offsetLeft; scrollLeft = grid.scrollLeft; });
-  grid.addEventListener('mouseleave', () => { isDown = false; grid.classList.remove('dragging'); });
-  grid.addEventListener('mouseup', () => { isDown = false; grid.classList.remove('dragging'); });
-  grid.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX) * 1.5; });
-
-  // Update dots on scroll
-  function updateDots() {
-    const cards = grid.querySelectorAll('.testi-card');
-    if (!cards.length) return;
-    const cardW = cards[0].offsetWidth + 20;
-    const idx = Math.round(grid.scrollLeft / cardW);
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
-  grid.addEventListener('scroll', updateDots, { passive: true });
-
-  // Click dots to scroll
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      const cards = grid.querySelectorAll('.testi-card');
-      if (!cards.length) return;
-      const cardW = cards[0].offsetWidth + 20;
-      grid.scrollTo({ left: cardW * i, behavior: 'smooth' });
-    });
-  });
-})();
-
-// Testimonial auto-scroll
-(function() {
-  const grid = document.getElementById('testi-grid');
-  if (!grid) return;
-  let paused = false;
-  let dir = 1;
-  grid.addEventListener('mouseenter', () => paused = true);
-  grid.addEventListener('mouseleave', () => paused = false);
-  grid.addEventListener('touchstart', () => paused = true, { passive: true });
-  grid.addEventListener('touchend', () => { setTimeout(() => paused = false, 2000); }, { passive: true });
-
-  function autoScroll() {
-    if (!paused) {
-      grid.scrollLeft += dir;
-      const maxScroll = grid.scrollWidth - grid.clientWidth;
-      if (grid.scrollLeft >= maxScroll) dir = -1;
-      if (grid.scrollLeft <= 0) dir = 1;
-    }
-    requestAnimationFrame(autoScroll);
-  }
-  requestAnimationFrame(autoScroll);
-})();
 </script>
 </body>
 </html>
