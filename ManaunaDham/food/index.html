@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Best Restaurants, Cafes  & Dhabas Near Manauna(Manona) Dham Aonla Bareilly</title>
+<meta name="description" content="Find the best vegetarian restaurants, cafes, dhabas and food options near Manauna Dham (Manona Dham) in Aonla, Bareilly.Order at Food Plaza, Kipps Restaurant, Shiv Pizza Point.">
+<meta name="keywords" content="restaurants near manauna dham, restaurants near manona dham, food near manona dham, cafes aonla, restaurants bareilly, food plaza aonla, kipps restaurant aonla, vegetarian food manauna, khatu shyam temple food">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://manaunadham.org.in/food.html">
+<link rel="icon" href="logonobg.webp" type="image/webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Schema Markup for Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Restaurants Near Manauna Dham",
+  "description": "Best vegetarian restaurant, cafe & dhaba near Manauna Dham in Aonla, Bareilly",
+  "itemListElement": [
+    {
+      "@type": "Restaurant",
+      "position": 1,
+      "name": "Food Plaza Aonla",
+      "servesCuisine": "Vegetarian, North Indian, Desi khana, simple khana",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Aonla",
+        "addressRegion": "Uttar Pradesh"
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+body{margin:0;font-family:Segoe UI,Arial;background:#fff6e6;line-height:1.6}
+
+/* Header */
+header{background:#7a0000;color:white}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:48px;width:auto}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-text strong{font-size:18px;font-weight:700}
+.brand-text span{font-size:13px;opacity:.9}
+
+nav{display:flex;gap:18px;align-items:center}
+nav a{color:white;text-decoration:none;font-weight:600;font-size:15px;padding:6px 0}
+nav a.underline{border-bottom:2px solid #ffd56b}
+nav a.live,nav a.donate{padding:6px 14px;border-radius:5px}
+nav a.live{background:#008000}
+nav a.donate{background:#d10000}
+
+.menu-btn{display:none;font-size:26px;cursor:pointer}
+.mobile-menu{display:none;flex-direction:column;background:#7a0000;padding:10px}
+.mobile-menu a{padding:10px;color:white;text-decoration:none;border-bottom:1px solid #aa0000}
+
+/* Hero Section */
+.hero{
+  background:linear-gradient(135deg,#7a0000 0%,#4d0000 100%);
+  color:white;
+  padding:60px 30px;
+  text-align:center;
+}
+.hero h1{
+  font-size:42px;
+  margin:0 0 15px 0;
+  text-shadow:2px 2px 4px rgba(0,0,0,0.3);
+}
+.hero p{
+  font-size:18px;
+  margin:0;
+  opacity:0.95;
+}
+
+/* Info Section */
+.info-section{
+  background:white;
+  padding:40px 30px;
+  margin:30px auto;
+  max-width:1200px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+.info-section h2{
+  color:#7a0000;
+  border-bottom:4px solid #d4a017;
+  display:inline-block;
+  padding-bottom:6px;
+  margin-bottom:20px;
+}
+
+/* Restaurant Grid */
+.section{padding:30px;max-width:1400px;margin:0 auto}
+.foodgrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+  margin-top:30px;
+}
+
+.foodcard{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,0.12);
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  position:relative;
+}
+.foodcard:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.2);
+}
+
+.foodcard img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
+
+.badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#008000;
+  color:white;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+.badge.coming-soon{background:#ff9800}
+
+.content{padding:25px}
+.content h3{
+  color:#7a0000;
+  margin:0 0 10px 0;
+  font-size:24px;
+}
+.content .cuisine{
+  color:#666;
+  font-size:14px;
+  font-style:italic;
+  margin-bottom:12px;
+}
+.content p{
+  color:#444;
+  font-size:15px;
+  margin:10px 0;
+}
+
+.features{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin:15px 0;
+}
+.feature{
+  background:#fff6e6;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:13px;
+  color:#7a0000;
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.price{
+  font-size:22px;
+  color:#008000;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+.btn{
+  flex:1;
+  min-width:120px;
+  background:#7a0000;
+  color:white;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  text-align:center;
+  font-weight:600;
+  transition:background 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn:hover{background:#5a0000}
+.btn.menu{background:#d4a017;color:#4b0000}
+.btn.menu:hover{background:#b88e15}
+.btn.details{background:#4a148c;color:white}
+.btn.details:hover{background:#38006b}
+
+/* FAQ Section */
+.faq-section{
+  background:white;
+  padding:50px 30px;
+  margin:40px auto;
+  max-width:1000px;
+  border-radius:10px;
+}
+.faq-item{
+  margin-bottom:25px;
+  border-bottom:1px solid #eee;
+  padding-bottom:15px;
+}
+.faq-item h3{
+  color:#7a0000;
+  font-size:18px;
+  margin-bottom:10px;
+}
+.faq-item p{
+  color:#444;
+  line-height:1.7;
+}
+
+/* Footer */
+footer{
+  background:#4d0000;
+  color:white;
+  text-align:center;
+  padding:30px;
+  margin-top:50px;
+}
+
+@media(max-width:900px){
+  nav{display:none}
+  .menu-btn{display:block}
+  .hero h1{font-size:32px}
+  .foodgrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="topbar">
+  <div class="brand">
+    <img src="logonobg.webp" alt="Manauna Dham Logo">
+    <div class="brand-text">
+      <strong>Manauna(Manona) Dham</strong>
+      <span>Latest Information & Services</span>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html" class="underline">Home</a>
+    <a href="accommodations.html" class="underline">Stay</a>
+    <a href="food.html" class="underline">Food</a>
+    <a href="transport.html" class="underline">Travel</a>
+    <a href="patient.html" class="underline">Patient</a>
+    <a href="live.html" class="live">LIVE</a>
+  </nav>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="accommodations.html">Accommodation</a>
+  <a href="food.html">Food & Restaurants</a>
+  <a href="transport.html">Transport</a>
+  <a href="patient.html">Patient Token</a>
+  <a href="live.html">Live Darshan</a>
+</div>
+</header>
+
+  <!-- Sevadar Disclaimer Banner (Slim / Same size as header disclaimer) -->
+<div style="
+  background:#f7f5f2;
+  border-bottom:1px solid #e0d8c8;
+  padding:6px 10px;
+  text-align:center;
+  font-size:12px;
+  color:#555;
+  line-height:1.4
+">
+  <strong style="color:#7a0000">
+    ManaunaDham.org.in is an independent pilgrim services platform.
+  </strong>
+  Not affiliated with temple management.
+</div>
+
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>🍽️ Best restaurants & cafes Near Manauna Dham</h1>
+  <p>Pure Vegetarian Food | Good Food | Delivery available | Near Khatu Shyam Temple Manauna(Manona)</p>
+</div>
+
+<!-- Restaurant Grid -->
+<section class="section">
+  <h2 style="color:#7a0000;font-size:32px;text-align:center;margin-bottom:10px">Our Partners</h2>
+  <p style="text-align:center;color:#666;margin-bottom:40px">Trusted vegetarian dining options for Manauna Dham bhakts</p>
+
+  <div class="foodgrid">
+
+    <!-- Food Plaza -->
+    <div class="foodcard">
+      <img src="images/restaurants/food-plaza/food-plaza-interior2.webp" alt="Food Plaza Aonla - Best Restaurant near Manauna Dham" onerror="this.src='food.avif'">
+      <span class="badge">✓ VERIFIED</span>
+      <div class="content">
+        <h3>Food Plaza Aonla</h3>
+        <p class="cuisine">North Indian, Chinese & Continental</p>
+        <p>Also Known as CHAAP KING</p>
+        
+        <div class="features">
+          <span class="feature"><i class="fa fa-handshake"></i> Cash on Delivery Available</span>
+          <span class="feature"><i class="fa fa-snowflake"></i> AC sitting Available</span>
+          <span class="feature"><i class="fa fa-users"></i> Family Seating</span>
+          <span class="feature"><i class="fa fa-parking"></i> Spacious Parking</span>
+          <span class="feature"><i class="fa fa-utensils"></i> Thalis available</span>
+        </div>
+        
+        <p class="price">Range of items: ₹50-₹570</p>
+        
+        <div class="buttons">
+         <a class="btn" href="javascript:void(0)"
+   onclick="startFoodOrder('Food Plaza Aonla')">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </a>
+          <a class="btn details" href="food-plaza.html">
+            <i class="fa fa-info-circle"></i> Details & Menu
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kipps Restaurant -->
+    <div class="foodcard">
+      <img src="images/restaurants/kipps/kipps-interior2.webp" alt="Kipps Restaurant Aonla - Family Dining near Manona Dham" onerror="this.src='food.avif'">
+      <span class="badge">✓ VERIFIED</span>
+      <div class="content">
+        <h3>Kipps Restaurant</h3>
+        <p class="cuisine">North Indian, Chinese & Continental</p>
+        <p>Spacious family restaurant with modern interiors. Excellent choice for large groups visiting Manauna Dham.</p>
+        
+        <div class="features">
+          <span class="feature"><i class="fa fa-handshake"></i> Cash on Delivery Available</span>
+          <span class="feature"><i class="fa fa-utensils"></i> Thalis available</span>
+          <span class="feature"><i class="fa fa-users"></i> Spacious Sitting</span>
+          <span class="feature"><i class="fa fa-snowflake"></i> AC sitting Available</span>
+        </div>
+        
+        <p class="price">Range: ₹20-₹670</p>
+        
+         <div class="buttons">
+         <a class="btn" href="javascript:void(0)"
+   onclick="startFoodOrder('Kipps Restaurant')">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </a>
+          <a class="btn details" href="kipps.html">
+            <i class="fa fa-info-circle"></i> Details & Menu
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shiv Pizza Point -->
+    <div class="foodcard">
+      <img src="images/restaurants/shiv-pizza/shiv-pizza-interior.webp" alt="Shiv Pizza Point - Authentic Italian Food" onerror="this.src='food.avif'">
+      <span class="badge">✓ VERIFIED</span>
+      <div class="content">
+        <h3>Shiv Pizza Point</h3>
+        <p class="cuisine">Pizza, Burgers, Sandwiches & Pastas</p>
+        <p>Quick service cafe perfect for light meals and snacks. Popular among youth and families looking for quick bites before or after Manauna Dham darshan.</p>
+        
+        <div class="features">
+          <span class="feature"><i class="fa fa-handshake"></i> Cash on Delivery Available</span>
+          <span class="feature"><i class="fa fa-clock"></i> Quick Service</span>
+          <span class="feature"><i class="fa fa-pizza-slice"></i> Authentic Italian Food</span>
+          <span class="feature"><i class="fa fa-hamburger"></i> Fresh Continental Food</span>
+        </div>
+        
+        <p class="price">Range: ₹100 - ₹450</p>
+          <div class="buttons">
+         <a class="btn" href="javascript:void(0)"
+   onclick="startFoodOrder('Shiv Pizza Point')">
+            <i class="fab fa-whatsapp"></i> Order Now
+          </a>
+          <a class="btn details" href="shiv-pizza.html">
+            <i class="fa fa-info-circle"></i> Details & Menu
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+  
+  </div>
+</section>
+
+<!-- Info Section -->
+<div class="info-section">
+  <h2>About Our Food Partners</h2>
+  <p>We have partnered with the best vegetarian restaurants, cafes and dhabas near Manauna Dham (Manona Dham) in Aonla, Bareilly district. All our restaurant partners serve 100% pure vegetarian food in a clean, family-friendly environment perfect for bhakts visiting Shri Khatu Shyam Ji temple.</p>
+  
+  <p><strong>Why Book Through Us?</strong></p>
+  <ul>
+    <li>✅ <strong>Instant Table Confirmation</strong> - No waiting in lines</li>
+    <li>✅ <strong>Special Rates</strong> - Exclusive discounts for Manauna Dham bhakts</li>
+    <li>✅ <strong>Verified Quality</strong> - All restaurants personally verified</li>
+    <li>✅ <strong>Strong Support</strong> - Direct contact for any questions</li>
+  </ul>
+</div>
+  
+<!-- FAQ Section for SEO -->
+<section class="faq-section">
+  <h2 style="color:#7a0000;border-bottom:4px solid #d4a017;display:inline-block;padding-bottom:6px">Frequently Asked Questions</h2>
+  
+  <div class="faq-item">
+    <h3>Where are the best restaurants near Manauna Dham?</h3>
+    <p>The best restaurants near Manauna Dham (Manona Dham) in Aonla include Food Plaza, Kipps Restaurant, and Shiv Pizza Point. All these restaurants are within 10-15 minutes from the Khatu Shyam temple and serve pure vegetarian food.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Is food available inside Manauna Dham temple?</h3>
+    <p>Yes, prasad food stalls are available at the temple ground. However, for family dining and good menu options, we recommend ordering from our partner restaurants near Manauna Dham directly to your location.</p>
+  </div>
+
+
+  <div class="faq-item">
+    <h3>Are these restaurants vegetarian?</h3>
+    <p>Yes, all restaurants listed here serve 100% pure vegetarian food.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How can I book a table at restaurants near Manona Dham?</h3>
+    <p>You can book a table instantly by contacting us. You'll be connected to our WhatsApp support for immediate confirmation.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What is the price range at these restaurants?</h3>
+    <p>Prices range from ₹100 to ₹600 per person depending on the restaurant and person's choice. Budget-friendly options like Shiv Pizza Point start at ₹100</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Which restaurant is best for family dining near Manauna temple?</h3>
+    <p>Food Plaza and Kipps Restaurant are the best options for family dining near Manauna Dham. Both offer spacious seating, AC facilities, and a wide variety of dishes suitable for all age groups.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ManaunaDham.org.in | Best Food Near Manauna Dham</p>
+  <p style="font-size:13px;opacity:.8">ManaunaDham.org.in is a privately operated pilgrim information and services platform.</p>
+</footer>
+
+<script>
+function toggleMenu(){
+  let m=document.getElementById("mobileMenu");
+  m.style.display = m.style.display==="flex" ? "none" : "flex";
+}
+</script>
+  <script src="assets/chatbot.js"></script>
+
+
+</body>
+</html>
