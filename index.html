@@ -42,8 +42,9 @@
     border-bottom: 1px solid var(--nav-border);
     box-shadow: 0 2px 16px rgba(26,47,94,0.08);
   }
-  .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
-  .nav-logo img { height: 54px; width: auto; object-fit: contain; }
+  .nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+  .nav-logo-icon { height: 40px; width: auto; object-fit: contain; }
+  .nav-logo-font { height: 28px; width: auto; object-fit: contain; }
   .nav-logo-text {
     font-size: 20px; font-weight: 800; color: var(--navy);
     letter-spacing: -0.03em; display: flex; align-items: center; gap: 1px;
@@ -65,7 +66,7 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
+    min-height: 100svh;
     background: var(--navy-dark);
     background-image:
       radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,104,10,0.13) 0%, transparent 55%),
@@ -85,7 +86,7 @@
     max-width: 1180px; margin: 0 auto; width: 100%;
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 60px; align-items: center;
-    padding: 80px 0;
+    padding: 48px 0 32px;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -175,9 +176,18 @@
   .section-sub { font-size: 15.5px; color: var(--text-muted); margin-top: 11px; max-width: 540px; margin-left: auto; margin-right: auto; font-weight: 300; }
 
   /* ── MOAT / USP BAND ── */
-  .moat-band { background: var(--navy); padding: 0 5%; }
-  .moat-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
-  .moat-inner::-webkit-scrollbar { display: none; }
+  .moat-band { background: var(--navy); padding: 0; overflow: hidden; }
+  .moat-track-wrap { overflow: hidden; width: 100%; }
+  .moat-track {
+    display: flex; gap: 0;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .moat-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
   .moat-pill {
     display: flex; align-items: center; gap: 10px;
     padding: 18px 28px; border-right: 1px solid rgba(255,255,255,0.07);
@@ -265,14 +275,36 @@
 
   /* ── TESTIMONIALS ── */
   .testimonials-bg { background: var(--cream); }
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .testi-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+  .testi-carousel-wrap { overflow: hidden; position: relative; }
+  .testi-carousel-wrap::before,
+  .testi-carousel-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
+  }
+  .testi-carousel-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+  .testi-carousel-wrap::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+  .testi-grid {
+    display: flex; gap: 20px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding: 8px 4px 16px;
+    cursor: grab;
+  }
+  .testi-grid::-webkit-scrollbar { display: none; }
+  .testi-grid.dragging { cursor: grabbing; }
+  .testi-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+    flex-shrink: 0; width: clamp(280px, 80vw, 360px);
+    scroll-snap-align: start;
+  }
   .testi-stars { color: #f6b30e; font-size: 13px; margin-bottom: 11px; letter-spacing: 2px; }
   .testi-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 16px; }
   .testi-author { display: flex; align-items: center; gap: 11px; }
   .testi-av { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; }
   .testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
   .testi-loc { font-size: 11px; color: var(--text-muted); }
+  .testi-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+  .testi-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+  .testi-dot.active { background: var(--orange); transform: scale(1.3); }
 
   /* ── PARTNER ── */
   .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -303,26 +335,41 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 36px; }
-    .hero-sub { margin: 0 auto 32px; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 24px; padding: 32px 0 20px; }
+    .hero-sub { margin: 0 auto 24px; font-size: 15px; }
     .hero-actions { justify-content: center; }
     .hero-visual { display: none; }
-    .hero-stats { justify-content: center; }
+    .hero-stats { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; gap: 24px; }
+    .hero-stats::-webkit-scrollbar { display: none; }
+    .stat-item { flex-shrink: 0; }
+    .hero-stats-wrap { margin-top: 28px; padding-top: 24px; }
+    .hero-badge { font-size: 10px; }
     .why-grid { grid-template-columns: 1fr; }
     .why-left .section-header { text-align: center; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .testi-grid { grid-template-columns: 1fr; }
     .partner-grid { grid-template-columns: 1fr; }
     nav .nav-links, nav .nav-cta { display: none; }
     .hamburger { display: flex; }
   }
   @media (max-width: 600px) {
-    section { padding: 56px 4%; }
+    section { padding: 48px 4%; }
+    .hero { padding: 64px 4% 0; }
+    .hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 12px; }
+    .hero-sub { font-size: 14px; margin-bottom: 20px; }
+    .hero-badge { font-size: 9.5px; padding: 4px 11px; margin-bottom: 14px; }
+    .hero-stats-wrap { margin-top: 20px; padding-top: 18px; }
+    .hero-stats { gap: 20px; }
+    .stat-item .val { font-size: 1.5rem; }
+    .btn-primary, .btn-ghost { padding: 11px 20px; font-size: 13.5px; }
     .stats-live-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .search-bar { flex-direction: column; border-radius: 14px; padding: 10px; gap: 8px; }
     .search-btn { width: 100%; border-radius: 10px; padding: 11px; }
     .wa-inner { flex-direction: column; text-align: center; }
+    nav { height: 60px; }
+    .hero { padding-top: 60px; }
+    .nav-logo-icon { height: 32px; }
+    .nav-logo-font { height: 22px; }
   }
 
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -334,7 +381,10 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks"
+    <img src="images/logos/NOBGLOGO.png" alt="Crulio" class="nav-logo-icon"
+         onerror="this.style.display='none'">
+    <img src="images/logos/NOBGFONT.png" alt="Crulio Networks" class="nav-logo-font"
+         onerror="this.src='images/logos/FONT.png'"
          onerror="this.style.display='none'; document.getElementById('nav-text').style.display='flex'">
     <span id="nav-text" style="display:none" class="nav-logo-text">crulio<span>.</span></span>
   </a>
@@ -376,6 +426,14 @@
             <div class="val" id="h-customers">0<span class="accent">+</span></div>
             <div class="lbl">Pilgrims Served</div>
           </div>
+          <div class="stat-item">
+            <div class="val" id="h-gmv">₹<span class="accent" id="h-gmv-val">0</span>L</div>
+            <div class="lbl">GMV Processed</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;display:inline-flex;align-items:center;gap:7px;background:rgba(74,222,128,0.09);border:1px solid rgba(74,222,128,0.22);border-radius:50px;padding:5px 14px;">
+          <span style="font-size:10px;color:#4ade80;">●</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.55);font-weight:400;">₹0 spent on ads — every visit, click & booking is 100% organic</span>
         </div>
       </div>
     </div>
@@ -391,13 +449,24 @@
 
 <!-- MOAT BAND -->
 <div class="moat-band">
-  <div class="moat-inner">
-    <div class="moat-pill"><div class="moat-icon">🗺️</div><div class="moat-text"><strong>Free & Verified</strong> Info at Every Destination</div></div>
-    <div class="moat-pill"><div class="moat-icon">🔄</div><div class="moat-text"><strong>Always Updated,</strong> Never Stale</div></div>
-    <div class="moat-pill"><div class="moat-icon">🧑‍💼</div><div class="moat-text"><strong>Physical Team</strong> at Every Dham</div></div>
-    <div class="moat-pill"><div class="moat-icon">🛒</div><div class="moat-text"><strong>Full Ecosystem</strong> — Think It, We Have It</div></div>
-    <div class="moat-pill"><div class="moat-icon">💰</div><div class="moat-text"><strong>Club Services</strong> → Huge Discounts</div></div>
-    <div class="moat-pill"><div class="moat-icon">💬</div><div class="moat-text"><strong>24 / 7 WhatsApp</strong> Support</div></div>
+  <div class="moat-track-wrap">
+    <div class="moat-track">
+      <div class="moat-pill"><div class="moat-icon">🗺️</div><div class="moat-text"><strong>Free & Verified</strong> Info at Every Destination</div></div>
+      <div class="moat-pill"><div class="moat-icon">🔄</div><div class="moat-text"><strong>Always Updated,</strong> Never Stale</div></div>
+      <div class="moat-pill"><div class="moat-icon">🧑‍💼</div><div class="moat-text"><strong>Physical Team</strong> at Every Dham</div></div>
+      <div class="moat-pill"><div class="moat-icon">🛒</div><div class="moat-text"><strong>Full Ecosystem</strong> — Think It, We Have It</div></div>
+      <div class="moat-pill"><div class="moat-icon">💰</div><div class="moat-text"><strong>Club Services</strong> → Huge Discounts</div></div>
+      <div class="moat-pill"><div class="moat-icon">💬</div><div class="moat-text"><strong>24 / 7 WhatsApp</strong> Support</div></div>
+      <div class="moat-pill"><div class="moat-icon">📈</div><div class="moat-text"><strong>Zero Ad Spend</strong> — 100% Organic Traction</div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="moat-pill"><div class="moat-icon">🗺️</div><div class="moat-text"><strong>Free & Verified</strong> Info at Every Destination</div></div>
+      <div class="moat-pill"><div class="moat-icon">🔄</div><div class="moat-text"><strong>Always Updated,</strong> Never Stale</div></div>
+      <div class="moat-pill"><div class="moat-icon">🧑‍💼</div><div class="moat-text"><strong>Physical Team</strong> at Every Dham</div></div>
+      <div class="moat-pill"><div class="moat-icon">🛒</div><div class="moat-text"><strong>Full Ecosystem</strong> — Think It, We Have It</div></div>
+      <div class="moat-pill"><div class="moat-icon">💰</div><div class="moat-text"><strong>Club Services</strong> → Huge Discounts</div></div>
+      <div class="moat-pill"><div class="moat-icon">💬</div><div class="moat-text"><strong>24 / 7 WhatsApp</strong> Support</div></div>
+      <div class="moat-pill"><div class="moat-icon">📈</div><div class="moat-text"><strong>Zero Ad Spend</strong> — 100% Organic Traction</div></div>
+    </div>
   </div>
 </div>
 
@@ -461,6 +530,14 @@
           <div class="dest-name">Hill Stations & Heritage</div>
           <div class="dest-loc">📍 Rishikesh · Shimla · More</div>
           <div class="dest-services"><span class="svc-chip">Hotels</span><span class="svc-chip">Food</span><span class="svc-chip">Transport</span><span class="svc-chip">Guides</span></div>
+        </div>
+      </div>
+      <div class="dest-card" style="cursor:default">
+        <div class="dest-img" style="background:linear-gradient(135deg,#3d1a6b 0%,#7c4dba 100%)">🕍<div class="coming-badge">Next Up</div></div>
+        <div class="dest-body">
+          <div class="dest-name">Jain Mandir, Ramnagar</div>
+          <div class="dest-loc">📍 Ramnagar, Uttar Pradesh</div>
+          <div class="dest-services"><span class="svc-chip">Hotel</span><span class="svc-chip">Food</span><span class="svc-chip">Transport</span><span class="svc-chip">Info</span></div>
         </div>
       </div>
       <div class="dest-coming-card">
@@ -640,6 +717,11 @@
               <div class="stat-live-lbl">Live Destination</div>
               <div class="stat-live-proof">Expanding Fast</div>
             </div>
+            <div class="stat-live-item" style="grid-column:1/-1">
+              <div class="stat-live-val">₹2.3<span class="acc">L</span></div>
+              <div class="stat-live-lbl">Total GMV Processed</div>
+              <div class="stat-live-proof">₹0 Spent on Ads — Pure Organic</div>
+            </div>
           </div>
           <div class="ticker-row">
             <div class="ticker-dot"></div>
@@ -658,21 +740,28 @@
       <div class="eyebrow">Pilgrim Stories</div>
       <h2 class="section-title">What Devotees Say</h2>
     </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
-        <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
+    <div class="testi-carousel-wrap reveal">
+      <div class="testi-grid" id="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
+          <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The darshan timings were accurate — unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
+          <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Booked the full bundle — train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
+          <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
+        </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"The darshan timings were accurate — unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
-        <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Booked the full bundle — train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
-        <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
+      <div class="testi-dots" id="testi-dots">
+        <div class="testi-dot active"></div>
+        <div class="testi-dot"></div>
+        <div class="testi-dot"></div>
       </div>
     </div>
   </div>
@@ -762,7 +851,7 @@ function toggleMenu() {
   const links = document.querySelector('.nav-links');
   const cta = document.querySelector('.nav-cta');
   const open = links.style.display === 'flex';
-  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:var(--nav-bg);padding:20px 5%;gap:0;z-index:99;border-bottom:1px solid var(--nav-border)';
+  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--nav-bg);padding:20px 5%;gap:0;z-index:99;border-bottom:1px solid var(--nav-border)';
   if (cta) cta.style.cssText = open ? '' : 'display:block;margin:12px 0 0';
 }
 
@@ -793,20 +882,32 @@ function animateVal(id, target, suffix, decimals, duration) {
   }, 16);
 }
 
+// GMV counter (targets span inside)
+function animateGMV(duration) {
+  const el = document.getElementById('h-gmv-val');
+  if (!el) return;
+  let start = 0; const target = 2.3;
+  const steps = duration / 16; const inc = target / steps;
+  const timer = setInterval(() => {
+    start = Math.min(start + inc, target);
+    el.textContent = start.toFixed(1);
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
 // Scroll reveal + trigger counters once
 const statsTriggered = {};
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      // Trigger hero counters
       if (e.target.contains(document.getElementById('h-views')) && !statsTriggered.hero) {
         statsTriggered.hero = true;
         animateVal('h-views', 7.3, '', 1, 1400);
         animateVal('h-clicks', 30, '', 0, 1200);
         animateVal('h-customers', 1000, '', 0, 1600);
+        animateGMV(1800);
       }
-      // Trigger stats box counters
       if (e.target.contains(document.getElementById('s-impressions')) && !statsTriggered.stats) {
         statsTriggered.stats = true;
         animateVal('s-impressions', 7.3, '', 1, 1400);
@@ -818,10 +919,8 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-// Observe hero stats wrap
 const heroStats = document.querySelector('.hero-stats-wrap');
 if (heroStats) heroStats.classList.add('reveal'), obs.observe(heroStats);
-
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // Live ticker rotation
@@ -829,6 +928,7 @@ const tickers = [
   '<strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.',
   '<strong>1,000+ pilgrims</strong> served across hotels, food, and transport.',
   '<strong>30,000+ organic clicks</strong> — no paid marketing, ever.',
+  '<strong>₹2.3 Lakh GMV</strong> processed — entirely through organic traffic.',
   '<strong>Physical team</strong> on the ground — verified info, real people.',
 ];
 let ti = 0;
@@ -841,6 +941,40 @@ setInterval(() => {
   }
 }, 4000);
 tickerEl && (tickerEl.style.transition = 'opacity 0.3s');
+
+// Testimonial carousel — drag to scroll + dot indicators
+(function() {
+  const grid = document.getElementById('testi-grid');
+  const dots = document.querySelectorAll('.testi-dot');
+  if (!grid) return;
+
+  // Drag to scroll
+  let isDown = false, startX, scrollLeft;
+  grid.addEventListener('mousedown', e => { isDown = true; grid.classList.add('dragging'); startX = e.pageX - grid.offsetLeft; scrollLeft = grid.scrollLeft; });
+  grid.addEventListener('mouseleave', () => { isDown = false; grid.classList.remove('dragging'); });
+  grid.addEventListener('mouseup', () => { isDown = false; grid.classList.remove('dragging'); });
+  grid.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+
+  // Update dots on scroll
+  function updateDots() {
+    const cards = grid.querySelectorAll('.testi-card');
+    if (!cards.length) return;
+    const cardW = cards[0].offsetWidth + 20;
+    const idx = Math.round(grid.scrollLeft / cardW);
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+  grid.addEventListener('scroll', updateDots, { passive: true });
+
+  // Click dots to scroll
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const cards = grid.querySelectorAll('.testi-card');
+      if (!cards.length) return;
+      const cardW = cards[0].offsetWidth + 20;
+      grid.scrollTo({ left: cardW * i, behavior: 'smooth' });
+    });
+  });
+})();
 </script>
 </body>
 </html>
