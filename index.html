@@ -287,7 +287,7 @@
   /* ── FOOTER ── */
   footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.07); padding: 48px 5% 30px; }
   .footer-inner { max-width: 1180px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 36px; margin-bottom: 36px; }
   .footer-brand img { height: 44px; margin-bottom: 12px; display: block; }
   .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; font-weight: 300; max-width: 250px; }
   .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
@@ -310,10 +310,31 @@
     .hero-badge { font-size: 10px; }
     .why-grid { grid-template-columns: 1fr; }
     .why-left .section-header { text-align: center; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
     .partner-grid { grid-template-columns: 1fr; }
     nav .nav-links, nav .nav-cta { display: none; }
     .hamburger { display: flex; }
+    .nav-links.nav-open {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--nav-bg);
+      border-bottom: 2px solid var(--nav-border);
+      box-shadow: 0 8px 24px rgba(26,47,94,0.12);
+      padding: 8px 0;
+      z-index: 99;
+      gap: 0;
+    }
+    .nav-links.nav-open li { border-bottom: 1px solid var(--nav-border); }
+    .nav-links.nav-open li:last-child { border-bottom: none; }
+    .nav-links.nav-open a {
+      display: block;
+      padding: 14px 24px;
+      font-size: 15px;
+      opacity: 1;
+      color: var(--navy);
+    }
+    .nav-links.nav-open a:hover { background: rgba(26,47,94,0.05); color: var(--orange); }
   }
   @media (max-width: 600px) {
     section { padding: 48px 4%; }
@@ -327,6 +348,7 @@
     .btn-primary, .btn-ghost { padding: 11px 20px; font-size: 13.5px; }
     .stats-live-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
+    .nav-links.nav-open { top: 60px; }
     .wa-inner { flex-direction: column; text-align: center; }
     nav { height: 60px; }
     .hero { padding-top: 60px; }
@@ -356,7 +378,6 @@
     <li><a href="#why">Why Crulio</a></li>
     <li><a href="#partner">Partners</a></li>
   </ul>
-  <a href="#destinations" class="nav-cta">Explore Destinations</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -781,20 +802,6 @@
         <p>India's destination services platform. Starting with pilgrimage sites, expanding everywhere. Ground-verified, always.</p>
       </div>
       <div class="footer-col">
-        <h4>Destinations</h4>
-        <a href="https://www.manaunadham.org.in" target="_blank">Manauna Dham</a>
-        <a href="#">Khatu Shyam Ji</a>
-        <a href="#">Vrindavan</a>
-        <a href="#">More Soon</a>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="#">Hotels & Stays</a>
-        <a href="#">Food Delivery</a>
-        <a href="#">Transport</a>
-        <a href="#">Souvenirs</a>
-      </div>
-      <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Crulio</a>
         <a href="#partner">Partner With Us</a>
@@ -813,10 +820,12 @@
 // Mobile menu
 function toggleMenu() {
   const links = document.querySelector('.nav-links');
-  const cta = document.querySelector('.nav-cta');
-  const open = links.style.display === 'flex';
-  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--nav-bg);padding:20px 5%;gap:0;z-index:99;border-bottom:1px solid var(--nav-border)';
-  if (cta) cta.style.cssText = open ? '' : 'display:block;margin:12px 0 0';
+  const open = links.classList.contains('nav-open');
+  if (open) {
+    links.classList.remove('nav-open');
+  } else {
+    links.classList.add('nav-open');
+  }
 }
 
 // Animated counter
