@@ -43,8 +43,8 @@
     box-shadow: 0 2px 16px rgba(26,47,94,0.08);
   }
   .nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
-  .nav-logo-icon { height: 40px; width: auto; object-fit: contain; }
-  .nav-logo-font { height: 28px; width: auto; object-fit: contain; }
+  .nav-logo-icon { height: 52px; width: auto; object-fit: contain; }
+  .nav-logo-font { height: 36px; width: auto; object-fit: contain; }
   .nav-logo-text {
     font-size: 20px; font-weight: 800; color: var(--navy);
     letter-spacing: -0.03em; display: flex; align-items: center; gap: 1px;
@@ -146,26 +146,6 @@
   .ring:nth-child(3) { width: 370px; height: 370px; animation-direction: reverse; animation-duration: 34s; border-color: rgba(255,255,255,0.05); }
   @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
   .hero-logo-img { width: 220px; position: relative; z-index: 2; filter: drop-shadow(0 6px 36px rgba(232,104,10,0.28)); }
-
-  /* ── SEARCH ── */
-  .search-section { background: var(--cream); padding: 44px 5%; border-bottom: 1px solid var(--border); }
-  .search-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-  .search-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
-  .search-bar {
-    display: flex; align-items: center;
-    background: white; border: 1.5px solid var(--border); border-radius: 50px;
-    padding: 7px 7px 7px 22px;
-    box-shadow: 0 4px 20px rgba(26,47,94,0.07);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 4px 20px rgba(232,104,10,0.14); }
-  .search-bar input { flex: 1; border: none; outline: none; font-family: 'Sora', sans-serif; font-size: 15px; color: var(--text); background: transparent; padding: 6px 0; }
-  .search-bar input::placeholder { color: #b0bec5; }
-  .search-btn { background: var(--navy); color: white; border: none; border-radius: 40px; padding: 11px 26px; font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .search-btn:hover { background: var(--orange); }
-  .search-tags { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
-  .search-tag { background: white; border: 1px solid var(--border); color: var(--text-muted); font-size: 11.5px; padding: 5px 13px; border-radius: 50px; cursor: pointer; transition: all 0.2s; text-decoration: none; font-weight: 500; }
-  .search-tag:hover { border-color: var(--orange); color: var(--orange); }
 
   /* ── SECTIONS ── */
   section { padding: 80px 5%; }
@@ -363,13 +343,11 @@
     .btn-primary, .btn-ghost { padding: 11px 20px; font-size: 13.5px; }
     .stats-live-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
-    .search-bar { flex-direction: column; border-radius: 14px; padding: 10px; gap: 8px; }
-    .search-btn { width: 100%; border-radius: 10px; padding: 11px; }
     .wa-inner { flex-direction: column; text-align: center; }
     nav { height: 60px; }
     .hero { padding-top: 60px; }
-    .nav-logo-icon { height: 32px; }
-    .nav-logo-font { height: 22px; }
+    .nav-logo-icon { height: 42px; }
+    .nav-logo-font { height: 30px; }
   }
 
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -404,7 +382,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><div class="live-dot"></div>Pilgrimage-First · Destination-Ready</div>
+      <a href="https://www.manaunadham.org.in" target="_blank" class="hero-badge" style="text-decoration:none;cursor:pointer;"><div class="live-dot"></div>Now Live — Manauna Dham, Bareilly</a>
       <h1>Every Service.<br>Every <em>Destination.</em><br>Starting with India's Sacred Sites.</h1>
       <p class="hero-sub">Hotels, food, trains, autos, buses, souvenirs — everything you need, at every destination we cover. Pilgrimage sites today. Every popular destination tomorrow.</p>
       <div class="hero-actions">
@@ -412,15 +390,10 @@
         <a href="#partner" class="btn-ghost">Partner With Us</a>
       </div>
       <div class="hero-stats-wrap">
-        <div class="live-indicator"><div class="live-indicator-dot"></div>Live stats — updating in real time</div>
         <div class="hero-stats">
           <div class="stat-item">
             <div class="val" id="h-views">0<span class="accent">L+</span></div>
             <div class="lbl">Search Impressions</div>
-          </div>
-          <div class="stat-item">
-            <div class="val" id="h-clicks">0<span class="accent">K+</span></div>
-            <div class="lbl">Organic Clicks</div>
           </div>
           <div class="stat-item">
             <div class="val" id="h-customers">0<span class="accent">+</span></div>
@@ -466,25 +439,6 @@
       <div class="moat-pill"><div class="moat-icon">💰</div><div class="moat-text"><strong>Club Services</strong> → Huge Discounts</div></div>
       <div class="moat-pill"><div class="moat-icon">💬</div><div class="moat-text"><strong>24 / 7 WhatsApp</strong> Support</div></div>
       <div class="moat-pill"><div class="moat-icon">📈</div><div class="moat-text"><strong>Zero Ad Spend</strong> — 100% Organic Traction</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- SEARCH -->
-<div class="search-section">
-  <div class="search-inner">
-    <div class="search-label">Find your destination</div>
-    <div class="search-bar">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#b0bec5" stroke-width="2" style="flex-shrink:0;margin-right:4px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Search dham, mandir, city…" id="search-input">
-      <button class="search-btn" onclick="doSearch()">Search</button>
-    </div>
-    <div class="search-tags">
-      <a href="https://www.manaunadham.org.in" class="search-tag" target="_blank">🛕 Manauna Dham</a>
-      <span class="search-tag">🕌 Khatu Shyam Ji</span>
-      <span class="search-tag">⛩️ Vrindavan</span>
-      <span class="search-tag">🪔 Mathura</span>
-      <span class="search-tag">🌸 Pushkar</span>
     </div>
   </div>
 </div>
@@ -703,11 +657,6 @@
               <div class="stat-live-proof">Google Search Console</div>
             </div>
             <div class="stat-live-item">
-              <div class="stat-live-val" id="s-clicks">0<span class="acc">K</span></div>
-              <div class="stat-live-lbl">Organic Clicks</div>
-              <div class="stat-live-proof">Zero Paid Ads</div>
-            </div>
-            <div class="stat-live-item">
               <div class="stat-live-val" id="s-pilgrims">0<span class="acc">+</span></div>
               <div class="stat-live-lbl">Pilgrims Served</div>
               <div class="stat-live-proof">Real Transactions</div>
@@ -855,17 +804,6 @@ function toggleMenu() {
   if (cta) cta.style.cssText = open ? '' : 'display:block;margin:12px 0 0';
 }
 
-// Search
-function doSearch() {
-  const v = document.getElementById('search-input').value.trim().toLowerCase();
-  if (v.includes('manauna') || v.includes('manona') || v.includes('shyam')) {
-    window.open('https://www.manaunadham.org.in', '_blank');
-  } else {
-    document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
-  }
-}
-document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
-
 // Animated counter
 function animateVal(id, target, suffix, decimals, duration) {
   const el = document.getElementById(id);
@@ -904,14 +842,12 @@ const obs = new IntersectionObserver((entries) => {
       if (e.target.contains(document.getElementById('h-views')) && !statsTriggered.hero) {
         statsTriggered.hero = true;
         animateVal('h-views', 7.3, '', 1, 1400);
-        animateVal('h-clicks', 30, '', 0, 1200);
         animateVal('h-customers', 1000, '', 0, 1600);
         animateGMV(1800);
       }
       if (e.target.contains(document.getElementById('s-impressions')) && !statsTriggered.stats) {
         statsTriggered.stats = true;
         animateVal('s-impressions', 7.3, '', 1, 1400);
-        animateVal('s-clicks', 30, '', 0, 1200);
         animateVal('s-pilgrims', 1000, '', 0, 1600);
       }
       obs.unobserve(e.target);
@@ -927,7 +863,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 const tickers = [
   '<strong>731,000+</strong> impressions generated with zero ad spend in under 3 months.',
   '<strong>1,000+ pilgrims</strong> served across hotels, food, and transport.',
-  '<strong>30,000+ organic clicks</strong> — no paid marketing, ever.',
   '<strong>₹2.3 Lakh GMV</strong> processed — entirely through organic traffic.',
   '<strong>Physical team</strong> on the ground — verified info, real people.',
 ];
@@ -974,6 +909,29 @@ tickerEl && (tickerEl.style.transition = 'opacity 0.3s');
       grid.scrollTo({ left: cardW * i, behavior: 'smooth' });
     });
   });
+})();
+
+// Testimonial auto-scroll
+(function() {
+  const grid = document.getElementById('testi-grid');
+  if (!grid) return;
+  let paused = false;
+  let dir = 1;
+  grid.addEventListener('mouseenter', () => paused = true);
+  grid.addEventListener('mouseleave', () => paused = false);
+  grid.addEventListener('touchstart', () => paused = true, { passive: true });
+  grid.addEventListener('touchend', () => { setTimeout(() => paused = false, 2000); }, { passive: true });
+
+  function autoScroll() {
+    if (!paused) {
+      grid.scrollLeft += dir;
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      if (grid.scrollLeft >= maxScroll) dir = -1;
+      if (grid.scrollLeft <= 0) dir = 1;
+    }
+    requestAnimationFrame(autoScroll);
+  }
+  requestAnimationFrame(autoScroll);
 })();
 </script>
 </body>
