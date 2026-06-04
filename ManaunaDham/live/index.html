@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Live Darshan – Manauna Dham</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  .desktop-nav{display:flex;gap:15px}
+.menu-btn{display:none;font-size:26px;cursor:pointer;color:white}
+.mobile-menu{display:none;flex-direction:column;background:#7a0000}
+.mobile-menu a{color:white;padding:12px;border-bottom:1px solid #aa0000;text-decoration:none}
+
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .menu-btn{display:block}
+}
+
+body{margin:0;font-family:Segoe UI,Arial;background:#fff6e6;text-align:center}
+header{background:#7a0000;color:white}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px
+}
+.logo{
+  font-weight:bold;
+  font-size:20px;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+nav a.live{
+  background:#008000;
+  padding:8px 14px;
+  border-radius:5px;
+}
+nav a.donate{
+  background:#d10000;
+  padding:8px 14px;
+  border-radius:5px;
+}
+
+.section{padding:70px 30px}
+img{max-width:320px;border-radius:16px;box-shadow:0 0 20px rgba(0,0,0,.35)}
+h2{color:#7a0000;margin-top:30px}
+p{font-size:18px}
+.btn{display:inline-block;margin-top:25px;background:#7a0000;color:white;padding:14px 34px;border-radius:10px;text-decoration:none;font-size:18px}
+</style>
+</head>
+
+<body>
+<header>
+<div class="topbar">
+  <div class="logo">Manauna Dham</div>
+
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="accommodations.html">Stay</a>
+    <a href="food.html">Food</a>
+    <a href="transport.html">Travel</a>
+    <a href="patient.html">Patient</a>
+    <a href="live.html" class="live">LIVE</a>
+  </nav>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="accommodations.html">Accommodation</a>
+  <a href="food.html">Food</a>
+  <a href="transport.html">Transport</a>
+  <a href="patient.html">Patient Token</a>
+  <a href="live.html">Live Darshan</a>
+</div>
+</header>
+
+
+<div class="section">
+<img src="live.jfif">
+<h2>Live Darshan?</h2>
+<p>We get multiple requests from bhakts for live darshan. We will very soon talk from official mandir management to fulfill this wish of bhakts around the world.</p>
+</div>
+<script>
+function toggleMenu(){
+  let m=document.getElementById("mobileMenu");
+  m.style.display = m.style.display==="flex" ? "none" : "flex";
+}
+</script>
+<script src="assets/chatbot.js"></script>
+</body>
+</html>
