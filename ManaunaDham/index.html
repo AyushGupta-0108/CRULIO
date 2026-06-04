@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Manauna Dham- Latest Information & Services</title>
-<meta name="description" content="Find Manauna(Manona) Dham darshan and aarti timings, location, photos, live updates, and pilgrim services for devotees of Shri Khatu Shyam Ji.">
+<title>Manauna Dham- Latest Information & Services | Crulio Networks</title>
+<meta name="description" content="Find Manauna(Manona) Dham darshan and aarti timings, location, photos, live updates, and pilgrim services for devotees of Shri Khatu Shyam Ji. A Crulio Networks platform.">
 <meta name="keywords" content="manauna dham, manona dham address, manona dham address and phone number, manona dham bareilly, manona dham, manona dham aarti, ManaunaDham.org.in contact number, manauna dham shyam jal, manona dham shyam jal, manauna dham video">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://manaunadham.org.in/">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#6b0000">
-
+  
 <link rel="icon" href="images/web/logonobg.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,12 +29,16 @@ gtag('config', 'G-1401GVEYWR');
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "ManaunaDham.org.in",
-  "description": "Independent pilgrim information and services platform",
-  "url": "https://manaunadham.org.in"
+  "description": "Independent pilgrim information and services platform — part of Crulio Networks",
+  "url": "https://manaunadham.org.in",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "Crulio Networks",
+    "url": "https://crulio.com"
+  }
 }
 </script>
 
-<!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,13 +46,17 @@ gtag('config', 'G-1401GVEYWR');
   "itemListElement": [{
     "@type": "ListItem",
     "position": 1,
-    "name": "Home",
+    "name": "Crulio Networks",
+    "item": "https://crulio.com/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Manauna Dham",
     "item": "https://manaunadham.org.in/"
   }]
 }
 </script>
 
-<!-- LocalBusiness Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,7 +81,6 @@ gtag('config', 'G-1401GVEYWR');
 }
 </script>
 
-<!-- FAQPage Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -108,27 +115,27 @@ gtag('config', 'G-1401GVEYWR');
       "name": "Is ManaunaDham.org.in the official temple website?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. ManaunaDham.org.in is a privately operated pilgrim information and services platform, not affiliated with the temple management."
+        "text": "No. ManaunaDham.org.in is a privately operated pilgrim information and services platform powered by Crulio Networks, not affiliated with the temple management."
       }
     }
   ]
 }
 </script>
 
-<!-- Open Graph / Social -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Manauna Dham Bareilly – Shree Khatu Shyam Ji | Latest Info & Services">
-<meta property="og:description" content="Find darshan timings, location, live updates & book hotels, food, taxis for Manauna Dham pilgrimage. Serving 6 Lakh+ visitors.">
-<meta property="og:url" content="https://manaunadham.org.in/">
-<meta property="og:image" content="https://manaunadham.org.in/images/web/ILoveManaunaDham.webp">
+<meta property="og:title" content="Manauna Dham Bareilly – Shree Khatu Shyam Ji | Crulio Networks">
+<meta property="og:description" content="Find darshan timings, location, live updates & book hotels, food, taxis for Manauna Dham pilgrimage. A Crulio Networks platform.">
+<meta property="og:url" content="https://crulio.com/ManaunaDham">
+<meta property="og:image" content="https://crulio.com/ManaunaDham/images/web/ILoveManaunaDham.webp">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Manauna Dham – Shree Khatu Shyam Ji Bareilly">
-<meta name="twitter:description" content="Plan your Manauna Dham darshan – book hotels, food & taxis in one place.">
-<meta name="twitter:image" content="https://manaunadham.org.in/images/web/ILoveManaunaDham.webp">
+<meta name="twitter:title" content="Manauna Dham – Shree Khatu Shyam Ji | Crulio Networks">
+<meta name="twitter:description" content="Plan your Manauna Dham darshan – book hotels, food & taxis in one place. Powered by Crulio Networks.">
+<meta name="twitter:image" content="https://crulio.com/ManaunaDham/images/web/ILoveManaunaDham.webp">
 
 <style>
 :root {
+  /* ManaunaDham brand */
   --crimson: #6b0000;
   --crimson-deep: #430000;
   --crimson-mid: #8b0000;
@@ -149,6 +156,12 @@ gtag('config', 'G-1401GVEYWR');
   --radius-xl: 32px;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Crulio parent brand */
+  --crulio-navy: #1a2f5e;
+  --crulio-navy-deep: #101e3e;
+  --crulio-orange: #c8661a;
+  --crulio-orange-light: #e07828;
 }
 
 *, *::before, *::after {
@@ -173,24 +186,97 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   DISCLAIMER BANNER
+   CRULIO PARENT NETWORK BAR (top of page)
 ═══════════════════════════════════════════ */
-.disclaimer-banner {
-  background: var(--crimson-deep);
-  padding: 9px 16px;
-  text-align: center;
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 0.2px;
+.crulio-network-bar {
+  background: var(--crulio-navy-deep);
+  padding: 0;
+  border-bottom: 2px solid var(--crulio-orange);
 }
 
-.disclaimer-banner a {
-  color: var(--gold-light);
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 4px;
-  border-bottom: 1px solid rgba(232,176,32,0.4);
+.crulio-network-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 10px;
 }
+
+.crulio-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.crulio-bar-logo {
+  height: 28px;
+  width: auto;
+  flex-shrink: 0;
+  filter: brightness(1.4) saturate(1.3);
+}
+
+.crulio-bar-text {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crulio-bar-text strong {
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+}
+
+.crulio-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.crulio-bar-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(200,102,26,0.2);
+  border: 1px solid rgba(200,102,26,0.45);
+  color: var(--crulio-orange-light);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.crulio-bar-pill:hover {
+  background: rgba(200,102,26,0.35);
+}
+
+.crulio-bar-pill-dot {
+  width: 5px; height: 5px;
+  background: var(--crulio-orange-light);
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+.crulio-bar-link {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.crulio-bar-link:hover { color: rgba(255,255,255,0.85); }
 
 /* ═══════════════════════════════════════════
    HEADER / NAV
@@ -247,6 +333,32 @@ header {
   letter-spacing: 0.3px;
 }
 
+/* Crulio badge inside header brand */
+.brand-crulio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(26,47,94,0.55);
+  border: 1px solid rgba(200,102,26,0.5);
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin-top: 3px;
+  width: fit-content;
+}
+
+.brand-crulio-badge img {
+  height: 11px;
+  width: auto;
+  opacity: 0.9;
+}
+
+.brand-crulio-badge span {
+  font-size: 9px !important;
+  color: rgba(255,255,255,0.65) !important;
+  letter-spacing: 0.2px;
+  font-weight: 500 !important;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -263,7 +375,6 @@ nav a {
 
 nav a:hover { color: var(--gold-light); }
 
-/* Nav dropdowns */
 .nav-dropdown { position: relative; }
 
 .nav-dropdown-menu {
@@ -302,6 +413,32 @@ nav a:hover { color: var(--gold-light); }
   padding-left: 24px;
   color: var(--gold-light);
   background: rgba(255,255,255,0.07);
+}
+
+/* Crulio link in nav */
+.nav-crulio-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(26,47,94,0.6);
+  border: 1px solid rgba(200,102,26,0.45);
+  border-radius: 16px;
+  padding: 5px 11px;
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+
+.nav-crulio-link:hover {
+  background: rgba(26,47,94,0.85) !important;
+  color: white !important;
+}
+
+.nav-crulio-link img {
+  height: 13px;
+  width: auto;
+  opacity: 0.85;
 }
 
 .live-btn {
@@ -367,22 +504,36 @@ nav a:hover { color: var(--gold-light); }
 .mobile-menu {
   overflow: hidden;
   max-height: 0;
-  background: var(--crimson-deep);
+  background: var(--crulio-navy-deep);
   transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
-.mobile-menu.open { max-height: 500px; }
+.mobile-menu.open { max-height: 600px; }
+
+/* Crulio section inside mobile menu */
+.mobile-menu-crulio-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px 6px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
 
 .mobile-menu a {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 15px 24px;
-  color: rgba(255,255,255,0.9);
+  padding: 14px 24px;
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: background 0.2s, padding-left 0.2s;
 }
 
@@ -398,8 +549,21 @@ nav a:hover { color: var(--gold-light); }
   font-size: 14px;
 }
 
+.mobile-menu a.crulio-mobile-link {
+  background: rgba(26,47,94,0.4);
+}
+
+.mobile-menu a.crulio-mobile-link i {
+  color: var(--crulio-orange-light);
+}
+
+.mobile-menu a.crulio-mobile-link:hover {
+  background: rgba(26,47,94,0.65);
+  color: white;
+}
+
 /* ═══════════════════════════════════════════
-   HERO SECTION — Full screen sliding bg + service grid
+   HERO
 ═══════════════════════════════════════════ */
 .hero {
   position: relative;
@@ -409,14 +573,12 @@ nav a:hover { color: var(--gold-light); }
   overflow: hidden;
 }
 
-/* Slideshow backgrounds */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-/* Ken Burns continuous motion effect */
 @keyframes kenBurnsA {
   0%   { transform: scale(1.0) translate(0%, 0%); }
   100% { transform: scale(1.08) translate(-1.5%, -1%); }
@@ -425,10 +587,6 @@ nav a:hover { color: var(--gold-light); }
   0%   { transform: scale(1.08) translate(1%, -1%); }
   100% { transform: scale(1.0) translate(-0.5%, 0.5%); }
 }
-@keyframes kenBurnsC {
-  0%   { transform: scale(1.0) translate(-1%, 0%); }
-  100% { transform: scale(1.07) translate(1%, -1.5%); }
-}
 
 .hero-slide {
   position: absolute;
@@ -436,36 +594,26 @@ nav a:hover { color: var(--gold-light); }
   background-size: cover;
   background-position: center;
   opacity: 0;
-  /* Instant reset of transform when not active */
   transition: opacity 1s ease-in-out;
   transform: scale(1);
   will-change: opacity, transform;
 }
 
-/* When a slide becomes active, start Ken Burns zoom */
-.hero-slide.active {
-  opacity: 1;
-}
-.hero-slide.active:nth-child(odd) {
-  animation: kenBurnsA 8s ease-in-out forwards;
-}
-.hero-slide.active:nth-child(even) {
-  animation: kenBurnsB 8s ease-in-out forwards;
-}
+.hero-slide.active { opacity: 1; }
+.hero-slide.active:nth-child(odd)  { animation: kenBurnsA 8s ease-in-out forwards; }
+.hero-slide.active:nth-child(even) { animation: kenBurnsB 8s ease-in-out forwards; }
 
-/* Individual slide backgrounds — ILoveManaunaDham FIRST */
 .hero-slide:nth-child(1)  { background-image: url('images/web/ILoveManaunaDham.webp');   background-position: center 10%; }
 .hero-slide:nth-child(2)  { background-image: url('images/web/EntryGate.webp');           background-position: center top; }
-.hero-slide:nth-child(3)  { background-image: url('images/web/Gathering.webp');           background-position: center center; }
-.hero-slide:nth-child(4)  { background-image: url('images/web/night.webp');               background-position: center center; }
+.hero-slide:nth-child(3)  { background-image: url('images/web/Gathering.webp'); }
+.hero-slide:nth-child(4)  { background-image: url('images/web/night.webp'); }
 .hero-slide:nth-child(5)  { background-image: url('images/web/Omendra3.webp');            background-position: center top; }
-.hero-slide:nth-child(6)  { background-image: url('images/web/Gathering2.webp');          background-position: center center; }
+.hero-slide:nth-child(6)  { background-image: url('images/web/Gathering2.webp'); }
 .hero-slide:nth-child(7)  { background-image: url('images/web/Mandir6.webp');             background-position: center top; }
-.hero-slide:nth-child(8)  { background-image: url('images/web/Mandir5.webp');             background-position: center center; }
-.hero-slide:nth-child(9)  { background-image: url('images/web/Mandir1.webp');             background-position: center center; }
-.hero-slide:nth-child(10) { background-image: url('images/web/Omendra.webp');             background-position: center top; }
+.hero-slide:nth-child(8)  { background-image: url('images/web/Mandir5.webp'); }
+.hero-slide:nth-child(9)  { background-image: url('images/web/Mandir1.webp'); }
+.hero-slide:nth-child(10) { background-image: url('images/web/Omendra.webp');background-position: center top; }
 
-/* Multi-layer gradient overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -488,7 +636,6 @@ nav a:hover { color: var(--gold-light); }
   padding: 0 20px 32px;
 }
 
-/* Badge */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -507,11 +654,39 @@ nav a:hover { color: var(--gold-light); }
   letter-spacing: 0.5px;
 }
 
-.hero-badge-dot {
-  font-size: 16px;
+/* Crulio hero badge */
+.hero-crulio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(26,47,94,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(200,102,26,0.5);
+  border-radius: 30px;
+  padding: 5px 12px 5px 8px;
+  margin-top: 10px;
+  align-self: flex-start;
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
-/* Title block */
+.hero-crulio-badge:hover {
+  background: rgba(26,47,94,0.75);
+}
+
+.hero-crulio-badge img {
+  height: 16px;
+  width: auto;
+}
+
+.hero-crulio-badge span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
 .hero-title-block {
   margin-top: 20px;
   flex: 1;
@@ -532,7 +707,6 @@ nav a:hover { color: var(--gold-light); }
   font-style: italic;
 }
 
-/* NEW: platform subtitle line */
 .hero-platform-line {
   display: inline-flex;
   align-items: center;
@@ -552,21 +726,8 @@ nav a:hover { color: var(--gold-light); }
   width: fit-content;
 }
 
-.hero-platform-line i {
-  color: var(--gold-light);
-  font-size: 13px;
-}
+.hero-platform-line i { color: var(--gold-light); font-size: 13px; }
 
-.hero-subtitle {
-  margin-top: 12px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.82);
-  line-height: 1.7;
-  max-width: 360px;
-  font-weight: 400;
-}
-
-/* Slideshow dots */
 .hero-dots {
   display: flex;
   gap: 5px;
@@ -591,7 +752,6 @@ nav a:hover { color: var(--gold-light); }
   background: var(--gold-light);
 }
 
-/* Service grid on hero */
 .hero-services {
   margin-top: 24px;
   display: grid;
@@ -628,10 +788,7 @@ nav a:hover { color: var(--gold-light); }
   background: rgba(200,150,12,1);
 }
 
-.hero-service-btn i {
-  font-size: 22px;
-  color: white;
-}
+.hero-service-btn i { font-size: 22px; color: white; }
 
 /* ═══════════════════════════════════════════
    STATS SECTION
@@ -692,12 +849,7 @@ nav a:hover { color: var(--gold-light); }
   border-right: 1px solid rgba(0,0,0,0.06);
 }
 
-.stat-icon {
-  font-size: 24px;
-  color: var(--gold);
-  margin-bottom: 10px;
-  display: block;
-}
+.stat-icon { font-size: 24px; color: var(--gold); margin-bottom: 10px; display: block; }
 
 .stat-number-wrap {
   font-family: var(--font-display);
@@ -711,20 +863,8 @@ nav a:hover { color: var(--gold-light); }
   gap: 1px;
 }
 
-.stat-number-wrap .suffix {
-  font-size: 0.55em;
-  font-weight: 700;
-  color: var(--gold);
-}
-
-.stat-label {
-  margin-top: 6px;
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  font-weight: 600;
-}
+.stat-number-wrap .suffix { font-size: 0.55em; font-weight: 700; color: var(--gold); }
+.stat-label { margin-top: 6px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-soft); font-weight: 600; }
 
 /* ═══════════════════════════════════════════
    SERVICES LIST SECTION
@@ -756,10 +896,7 @@ nav a:hover { color: var(--gold-light); }
   border: 1px solid rgba(0,0,0,0.05);
 }
 
-.service-card:active {
-  transform: scale(0.98);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-}
+.service-card:active { transform: scale(0.98); box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
 
 .service-icon-box {
   width: 52px; height: 52px;
@@ -771,34 +908,14 @@ nav a:hover { color: var(--gold-light); }
   flex-shrink: 0;
 }
 
-.service-icon-box i {
-  font-size: 22px;
-  color: white;
-}
+.service-icon-box i { font-size: 22px; color: white; }
 
-.service-info {
-  flex: 1;
-}
+.service-info { flex: 1; }
 
-.service-info h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--crimson);
-  font-family: var(--font-display);
-}
+.service-info h3 { font-size: 16px; font-weight: 700; color: var(--crimson); font-family: var(--font-display); }
+.service-info p { font-size: 13px; color: var(--text-soft); margin-top: 2px; line-height: 1.5; }
 
-.service-info p {
-  font-size: 13px;
-  color: var(--text-soft);
-  margin-top: 2px;
-  line-height: 1.5;
-}
-
-.service-arrow {
-  color: var(--gold);
-  font-size: 16px;
-  opacity: 0.7;
-}
+.service-arrow { color: var(--gold); font-size: 16px; opacity: 0.7; }
 
 .service-tag {
   display: inline-block;
@@ -837,467 +954,348 @@ nav a:hover { color: var(--gold-light); }
   display: block;
 }
 
-.about-body {
-  padding: 28px 24px;
-}
+.about-body { padding: 28px 24px; }
 
-.about-body h2 {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--crimson);
-  margin-bottom: 8px;
-}
+.about-body h2 { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--crimson); margin-bottom: 8px; }
 
-.gold-line {
-  width: 48px; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  border-radius: 2px;
-  margin-bottom: 16px;
-}
+.gold-line { width: 48px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; margin-bottom: 16px; }
 
-.about-body p {
-  font-size: 14.5px;
-  color: var(--text-mid);
-  line-height: 1.8;
-  margin-bottom: 12px;
-}
+.about-body p { font-size: 14.5px; color: var(--text-mid); line-height: 1.8; margin-bottom: 12px; }
+.about-note { font-size: 12px !important; color: var(--text-soft) !important; margin-bottom: 0 !important; }
 
-.about-note {
-  font-size: 12px !important;
-  color: var(--text-soft) !important;
-  margin-bottom: 0 !important;
-}
-
-.btn-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 20px;
-}
+.btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
 
 .btn-primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  background: var(--crimson);
-  color: white;
-  padding: 13px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--crimson); color: white; padding: 13px 10px; border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; text-align: center;
 }
-
 .btn-primary:active { transform: scale(0.97); background: var(--crimson-deep); }
 
 .btn-secondary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  background: transparent;
-  color: var(--crimson);
-  padding: 13px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  border: 2px solid var(--crimson);
-  transition: all 0.2s;
-  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  background: transparent; color: var(--crimson); padding: 13px 10px; border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600; text-decoration: none; border: 2px solid var(--crimson);
+  transition: all 0.2s; text-align: center;
 }
-
 .btn-secondary:active { background: var(--cream); transform: scale(0.97); }
 
-/* Timings card */
 .timings-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  max-width: 560px;
-  margin: 0 auto;
-  box-shadow: 0 4px 20px var(--shadow-warm);
-  border-left: 5px solid var(--gold);
+  background: white; border-radius: var(--radius-lg); padding: 24px;
+  max-width: 560px; margin: 0 auto; box-shadow: 0 4px 20px var(--shadow-warm); border-left: 5px solid var(--gold);
 }
 
-.timings-card h3 {
-  font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--crimson);
-  margin-bottom: 16px;
-}
+.timings-card h3 { font-family: var(--font-display); font-size: 20px; color: var(--crimson); margin-bottom: 16px; }
 
 .timing-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  font-size: 14px;
+  display: flex; align-items: center; gap: 12px; padding: 11px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px;
 }
-
 .timing-row:last-child { border-bottom: none; }
-
-.timing-icon {
-  font-size: 18px;
-  width: 24px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.timing-label {
-  font-weight: 600;
-  color: var(--text-dark);
-  flex: 1;
-}
-
-.timing-val {
-  color: var(--crimson);
-  font-weight: 700;
-}
+.timing-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.timing-label { font-weight: 600; color: var(--text-dark); flex: 1; }
+.timing-val { color: var(--crimson); font-weight: 700; }
 
 /* ═══════════════════════════════════════════
    LOCATION SECTION
 ═══════════════════════════════════════════ */
-.location-section {
-  padding: 52px 20px;
-  background: var(--cream-dark);
-}
-
-.location-section .section-header {
-  margin-bottom: 24px;
-}
+.location-section { padding: 52px 20px; background: var(--cream-dark); }
+.location-section .section-header { margin-bottom: 24px; }
 
 .location-address {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: white;
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  max-width: 560px;
-  margin: 0 auto 20px;
-  font-size: 14px;
-  color: var(--text-mid);
+  display: flex; align-items: center; gap: 10px;
+  background: white; border-radius: var(--radius-sm); padding: 14px 18px;
+  max-width: 560px; margin: 0 auto 20px; font-size: 14px; color: var(--text-mid);
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
 }
+.location-address i { color: var(--gold); font-size: 18px; flex-shrink: 0; }
 
-.location-address i {
-  color: var(--gold);
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.map-wrap {
-  max-width: 560px;
-  margin: 0 auto;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-}
-
-.map-wrap iframe {
-  display: block;
-  width: 100%;
-  height: 280px;
-  border: none;
-}
+.map-wrap { max-width: 560px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+.map-wrap iframe { display: block; width: 100%; height: 280px; border: none; }
 
 /* ═══════════════════════════════════════════
    JOURNEY SECTION
 ═══════════════════════════════════════════ */
-.journey-section {
-  padding: 52px 20px;
-  background: var(--crimson);
-  text-align: center;
-}
+.journey-section { padding: 52px 20px; background: var(--crimson); text-align: center; }
+.journey-section .section-header h2 { color: white; }
+.journey-section .section-header .underline-bar { background: linear-gradient(90deg, var(--gold-light), var(--gold)); }
+.journey-section p { color: rgba(255,255,255,0.75); font-size: 14px; margin-top: 8px; margin-bottom: 28px; }
 
-.journey-section .section-header h2 {
-  color: white;
-}
-
-.journey-section .section-header .underline-bar {
-  background: linear-gradient(90deg, var(--gold-light), var(--gold));
-}
-
-.journey-section p {
-  color: rgba(255,255,255,0.75);
-  font-size: 14px;
-  margin-top: 8px;
-  margin-bottom: 28px;
-}
-
-.journey-btns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  max-width: 400px;
-  margin: 0 auto;
-}
+.journey-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 400px; margin: 0 auto; }
 
 .journey-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 20px 16px;
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 20px 16px; border-radius: var(--radius-md); text-decoration: none;
+  font-size: 14px; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .journey-btn:active { transform: scale(0.96); }
-
-.journey-btn-train {
-  background: white;
-  color: var(--crimson);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
-
-.journey-btn-taxi {
-  background: var(--gold);
-  color: var(--crimson-deep);
-  box-shadow: 0 4px 20px var(--shadow-gold);
-}
-
-.journey-btn i {
-  font-size: 28px;
-}
+.journey-btn-train { background: white; color: var(--crimson); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.journey-btn-taxi { background: var(--gold); color: var(--crimson-deep); box-shadow: 0 4px 20px var(--shadow-gold); }
+.journey-btn i { font-size: 28px; }
 
 /* ═══════════════════════════════════════════
    WEATHER SECTION
 ═══════════════════════════════════════════ */
-.weather-section {
-  padding: 52px 20px;
-  background: var(--cream);
-}
+.weather-section { padding: 52px 20px; background: var(--cream); }
 
 .weather-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  margin-top: 24px;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  margin-top: 24px; max-width: 560px; margin-left: auto; margin-right: auto;
 }
-
 .weather-scroll::-webkit-scrollbar { display: none; }
 
 .weather-card {
-  flex: 0 0 calc(50% - 6px);
-  scroll-snap-align: start;
-  background: white;
-  border-radius: var(--radius-md);
-  padding: 20px 16px;
-  text-align: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
+  flex: 0 0 calc(50% - 6px); scroll-snap-align: start; background: white;
+  border-radius: var(--radius-md); padding: 20px 16px; text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04);
 }
-
 .weather-card .w-emoji { font-size: 32px; }
-.weather-card .w-day {
-  font-weight: 700;
-  font-size: 14px;
-  margin-top: 8px;
-  color: var(--text-dark);
-}
-.weather-card .w-temp {
-  font-size: 13px;
-  color: var(--text-soft);
-  margin-top: 4px;
-}
+.weather-card .w-day { font-weight: 700; font-size: 14px; margin-top: 8px; color: var(--text-dark); }
+.weather-card .w-temp { font-size: 13px; color: var(--text-soft); margin-top: 4px; }
 
-.today-weather {
-  background: white;
-  border-radius: var(--radius-md);
-  padding: 24px;
-  text-align: center;
-  max-width: 260px;
-  margin: 20px auto 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-
-.today-temp {
-  font-family: var(--font-display);
-  font-size: 44px;
-  font-weight: 800;
-  color: var(--crimson);
-  line-height: 1;
-}
-
-.today-meta {
-  font-size: 13px;
-  color: var(--text-soft);
-  margin-top: 6px;
-}
+.today-weather { background: white; border-radius: var(--radius-md); padding: 24px; text-align: center; max-width: 260px; margin: 20px auto 0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.today-temp { font-family: var(--font-display); font-size: 44px; font-weight: 800; color: var(--crimson); line-height: 1; }
+.today-meta { font-size: 13px; color: var(--text-soft); margin-top: 6px; }
 
 /* ═══════════════════════════════════════════
    GALLERY SECTION
 ═══════════════════════════════════════════ */
-.gallery-section {
-  padding: 52px 0;
-  background: var(--cream-dark);
-}
-
-.gallery-section .section-header {
-  padding: 0 20px;
-}
+.gallery-section { padding: 52px 0; background: var(--cream-dark); }
+.gallery-section .section-header { padding: 0 20px; }
 
 .gallery-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 20px 20px 12px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  display: flex; gap: 12px; overflow-x: auto;
+  padding: 20px 20px 12px; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
-
 .gallery-scroll::-webkit-scrollbar { display: none; }
 
 .gallery-scroll img {
-  width: 75vw;
-  max-width: 320px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  scroll-snap-align: start;
-  flex-shrink: 0;
+  width: 75vw; max-width: 320px; height: 220px; object-fit: cover;
+  border-radius: var(--radius-md); scroll-snap-align: start; flex-shrink: 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 /* ═══════════════════════════════════════════
    FAQ SECTION
 ═══════════════════════════════════════════ */
-.faq-section {
-  padding: 52px 20px;
-  background: var(--cream);
-}
+.faq-section { padding: 52px 20px; background: var(--cream); }
 
-.faq-list {
-  max-width: 560px;
-  margin: 24px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.faq-list { max-width: 560px; margin: 24px auto 0; display: flex; flex-direction: column; gap: 12px; }
 
-.faq-item {
-  background: white;
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.04);
-}
+.faq-item { background: white; border-radius: var(--radius-md); box-shadow: 0 2px 12px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid rgba(0,0,0,0.04); }
 
-.faq-q {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 20px;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--crimson);
-  cursor: pointer;
-  gap: 12px;
-  user-select: none;
-}
-
-.faq-q .faq-icon {
-  font-size: 18px;
-  color: var(--gold);
-  transition: transform 0.3s;
-  flex-shrink: 0;
-}
-
+.faq-q { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; font-size: 14.5px; font-weight: 700; color: var(--crimson); cursor: pointer; gap: 12px; user-select: none; }
+.faq-q .faq-icon { font-size: 18px; color: var(--gold); transition: transform 0.3s; flex-shrink: 0; }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .faq-item.open .faq-a { max-height: 200px; }
 
-.faq-a p {
-  padding: 0 20px 18px;
-  font-size: 13.5px;
-  color: var(--text-mid);
-  line-height: 1.7;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  padding-top: 14px;
-}
+.faq-a p { padding: 0 20px 18px; font-size: 13.5px; color: var(--text-mid); line-height: 1.7; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 14px; }
 
 /* ═══════════════════════════════════════════
    DISCLAIMER SECTION
 ═══════════════════════════════════════════ */
-.disclaimer-section {
-  padding: 52px 20px;
-  background: var(--cream-dark);
-  border-top: 4px solid var(--gold);
-}
+.disclaimer-section { padding: 52px 20px; background: var(--cream-dark); border-top: 4px solid var(--gold); }
 
-.disclaimer-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  max-width: 560px;
-  margin: 24px auto 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
+.disclaimer-card { background: white; border-radius: var(--radius-lg); overflow: hidden; max-width: 560px; margin: 24px auto 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
-.disclaimer-block {
-  padding: 22px 24px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
+.disclaimer-block { padding: 22px 24px; border-bottom: 1px solid rgba(0,0,0,0.06); }
 .disclaimer-block:last-child { border-bottom: none; }
 
-.disclaimer-block-head {
+.disclaimer-block-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+
+.disclaimer-icon { width: 38px; height: 38px; background: var(--gold-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.disclaimer-icon i { color: var(--crimson); font-size: 16px; }
+
+.disclaimer-block h3 { font-family: var(--font-display); font-size: 16px; color: var(--crimson); font-weight: 700; }
+.disclaimer-block p { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; }
+
+/* ═══════════════════════════════════════════
+   CRULIO NETWORK SECTION (before footer)
+═══════════════════════════════════════════ */
+.crulio-network-section {
+  background: var(--crulio-navy-deep);
+  padding: 48px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle diagonal stripe texture */
+.crulio-network-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.015) 40px,
+    rgba(255,255,255,0.015) 41px
+  );
+  pointer-events: none;
+}
+
+.crulio-network-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.crulio-network-top {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-.disclaimer-icon {
-  width: 38px; height: 38px;
-  background: var(--gold-pale);
-  border-radius: 10px;
+.crulio-network-logo-wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  gap: 10px;
 }
 
-.disclaimer-icon i {
-  color: var(--crimson);
-  font-size: 16px;
+.crulio-network-logo-wrap img.cn-icon {
+  height: 44px;
+  width: auto;
 }
 
-.disclaimer-block h3 {
+.crulio-network-logo-wrap img.cn-font {
+  height: 18px;
+  width: auto;
+}
+
+.cn-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.15);
+}
+
+.cn-brand-text {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+.cn-brand-text strong {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.crulio-network-tagline {
   font-family: var(--font-display);
-  font-size: 16px;
-  color: var(--crimson);
+  font-size: clamp(18px, 4.5vw, 24px);
+  color: white;
   font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 8px;
 }
 
-.disclaimer-block p {
-  font-size: 13.5px;
-  color: var(--text-mid);
+.crulio-network-tagline em {
+  color: var(--crulio-orange-light);
+  font-style: normal;
+}
+
+.crulio-network-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
   line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Destination pills */
+.crulio-destinations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.cn-dest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.cn-dest-pill.live {
+  background: rgba(0,160,0,0.15);
+  border-color: rgba(0,200,0,0.3);
+  color: #6aff6a;
+}
+
+.cn-dest-pill.live .cn-pill-dot {
+  width: 6px; height: 6px;
+  background: #4dff4d;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.cn-dest-pill.coming {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+}
+
+.cn-dest-pill.live:hover {
+  background: rgba(0,160,0,0.25);
+}
+
+/* CTA row */
+.crulio-network-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--crulio-orange);
+  color: white;
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.cn-cta-primary:hover { background: var(--crulio-orange-light); }
+.cn-cta-primary:active { transform: scale(0.97); }
+
+.cn-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+
+.cn-cta-ghost:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: white;
 }
 
 /* ═══════════════════════════════════════════
@@ -1329,10 +1327,8 @@ footer {
 .footer-col h4::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 32px;
-  height: 2px;
+  bottom: 0; left: 0;
+  width: 32px; height: 2px;
   background: var(--gold);
   border-radius: 1px;
 }
@@ -1355,23 +1351,42 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 
-.footer-bottom p {
-  font-size: 12px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.8;
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+.footer-bottom p:first-child { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 8px; }
+
+/* Crulio footer credit */
+.footer-crulio-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  background: rgba(26,47,94,0.4);
+  border: 1px solid rgba(200,102,26,0.3);
+  border-radius: 20px;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
-.footer-bottom p:first-child {
-  font-size: 13px;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 8px;
+.footer-crulio-credit:hover {
+  background: rgba(26,47,94,0.65);
+}
+
+.footer-crulio-credit img {
+  height: 14px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.footer-crulio-credit span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
 }
 
 /* ═══════════════════════════════════════════
    MEGA OFFER POPUP
 ═══════════════════════════════════════════ */
-
-/* Backdrop */
 .mega-overlay {
   display: none;
   position: fixed;
@@ -1386,16 +1401,13 @@ footer {
   animation: overlayIn 0.4s ease forwards;
 }
 
-.mega-overlay.show {
-  display: flex;
-}
+.mega-overlay.show { display: flex; }
 
 @keyframes overlayIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* Modal card */
 .mega-modal {
   position: relative;
   background: linear-gradient(160deg, #1a0000 0%, #2d0000 40%, #1a0a00 100%);
@@ -1407,10 +1419,7 @@ footer {
   border-top: 2.5px solid rgba(232,176,32,0.6);
   border-left: 1px solid rgba(232,176,32,0.2);
   border-right: 1px solid rgba(232,176,32,0.2);
-  box-shadow:
-    0 -20px 80px rgba(200,150,12,0.18),
-    0 -4px 30px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,220,80,0.15);
+  box-shadow: 0 -20px 80px rgba(200,150,12,0.18), 0 -4px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,220,80,0.15);
   animation: megaSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transform: translateY(100%);
 }
@@ -1420,18 +1429,10 @@ footer {
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* Shimmer sweep */
 .mega-shimmer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 220, 80, 0.06) 48%,
-    rgba(255, 220, 80, 0.12) 50%,
-    rgba(255, 220, 80, 0.06) 52%,
-    transparent 70%
-  );
+  background: linear-gradient(105deg, transparent 30%, rgba(255,220,80,0.06) 48%, rgba(255,220,80,0.12) 50%, rgba(255,220,80,0.06) 52%, transparent 70%);
   background-size: 200% 100%;
   animation: shimmerSweep 3.2s ease-in-out infinite;
   pointer-events: none;
@@ -1462,201 +1463,62 @@ footer {
 }
 .mega-close:hover { background: rgba(255,255,255,0.22); color: white; }
 .mega-close:active { background: rgba(255,255,255,0.3); transform: scale(0.93); }
-/* Header */
-.mega-header {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  margin-bottom: 18px;
-}
 
-.mega-badge-row {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
+.mega-header { position: relative; z-index: 1; text-align: center; margin-bottom: 18px; }
+.mega-badge-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 10px; }
 
 .mega-badge-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(0,160,0,0.2);
-  border: 1px solid rgba(0,200,0,0.35);
-  color: #6aff6a;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(0,160,0,0.2); border: 1px solid rgba(0,200,0,0.35); color: #6aff6a;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;
 }
 
-.mega-live-dot {
-  width: 6px; height: 6px;
-  background: #4dff4d;
-  border-radius: 50%;
-  animation: blink 1s infinite;
-}
+.mega-live-dot { width: 6px; height: 6px; background: #4dff4d; border-radius: 50%; animation: blink 1s infinite; }
 
 .mega-badge-today {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(200,150,12,0.22);
-  border: 1px solid rgba(232,176,32,0.4);
-  color: var(--gold-light);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
+  display: inline-flex; align-items: center;
+  background: rgba(200,150,12,0.22); border: 1px solid rgba(232,176,32,0.4); color: var(--gold-light);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;
 }
 
-.mega-fire-line {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
+.mega-fire-line { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; margin-bottom: 6px; }
+.mega-title { font-family: var(--font-display); font-size: clamp(22px, 6vw, 30px); font-weight: 800; color: white; line-height: 1.2; margin-bottom: 6px; }
+.mega-title-accent { color: var(--gold-light); font-style: italic; }
+.mega-subtitle { font-size: 12.5px; color: rgba(255,255,255,0.55); }
 
-.mega-title {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 6vw, 30px);
-  font-weight: 800;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-
-.mega-title-accent {
-  color: var(--gold-light);
-  font-style: italic;
-}
-
-.mega-subtitle {
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.55);
-}
-
-/* Countdown timer */
 .mega-timer-wrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: rgba(200,150,12,0.12);
-  border: 1px solid rgba(232,176,32,0.25);
-  border-radius: 14px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: rgba(200,150,12,0.12); border: 1px solid rgba(232,176,32,0.25);
+  border-radius: 14px; padding: 10px 16px; margin-bottom: 16px;
 }
 
-.mega-timer-label {
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  font-weight: 600;
-}
+.mega-timer-label { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 600; }
+.mega-timer-boxes { display: flex; align-items: center; gap: 4px; }
 
-.mega-timer-boxes {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+.mega-timer-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(232,176,32,0.3); border-radius: 8px; min-width: 46px; padding: 5px 10px; text-align: center; }
+.mega-timer-box span { display: block; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gold-light); line-height: 1; }
+.mega-timer-box small { font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.8px; }
+.mega-timer-sep { font-size: 22px; font-weight: 800; color: var(--gold); line-height: 1; margin-top: -6px; }
 
-.mega-timer-box {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(232,176,32,0.3);
-  border-radius: 8px;
-  min-width: 46px;
-  padding: 5px 10px;
-  text-align: center;
-}
-
-.mega-timer-box span {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--gold-light);
-  line-height: 1;
-}
-
-.mega-timer-box small {
-  font-size: 9px;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.mega-timer-sep {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--gold);
-  line-height: 1;
-  margin-top: -6px;
-}
-
-/* Deal cards */
-.mega-deals {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-}
+.mega-deals { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 
 .mega-deal {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 14px 16px;
-  text-decoration: none;
-  overflow: hidden;
-  border: 1px solid transparent;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  border-radius: 16px; padding: 14px 16px; text-decoration: none; overflow: hidden;
+  border: 1px solid transparent; transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-
 .mega-deal:active { transform: scale(0.97); }
 
-/* Individual deal colors */
-.mega-deal-hotel {
-  background: linear-gradient(120deg, rgba(107,0,0,0.7) 0%, rgba(70,0,0,0.9) 100%);
-  border-color: rgba(200,150,12,0.35);
-  box-shadow: 0 4px 20px rgba(107,0,0,0.4);
-}
-.mega-deal-taxi {
-  background: linear-gradient(120deg, rgba(140,90,0,0.65) 0%, rgba(80,50,0,0.9) 100%);
-  border-color: rgba(232,176,32,0.4);
-  box-shadow: 0 4px 20px rgba(140,90,0,0.35);
-}
-.mega-deal-food {
-  background: linear-gradient(120deg, rgba(0,80,20,0.65) 0%, rgba(0,50,10,0.9) 100%);
-  border-color: rgba(80,220,80,0.25);
-  box-shadow: 0 4px 20px rgba(0,80,20,0.35);
-}
+.mega-deal-hotel { background: linear-gradient(120deg, rgba(107,0,0,0.7) 0%, rgba(70,0,0,0.9) 100%); border-color: rgba(200,150,12,0.35); box-shadow: 0 4px 20px rgba(107,0,0,0.4); }
+.mega-deal-taxi { background: linear-gradient(120deg, rgba(140,90,0,0.65) 0%, rgba(80,50,0,0.9) 100%); border-color: rgba(232,176,32,0.4); box-shadow: 0 4px 20px rgba(140,90,0,0.35); }
+.mega-deal-food { background: linear-gradient(120deg, rgba(0,80,20,0.65) 0%, rgba(0,50,10,0.9) 100%); border-color: rgba(80,220,80,0.25); box-shadow: 0 4px 20px rgba(0,80,20,0.35); }
 
-/* Shine on each deal card */
 .mega-deal-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 20%,
-    rgba(255,255,255,0.05) 50%,
-    transparent 80%
-  );
-  background-size: 200% 100%;
-  animation: dealShine 4s ease-in-out infinite;
-  pointer-events: none;
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.05) 50%, transparent 80%);
+  background-size: 200% 100%; animation: dealShine 4s ease-in-out infinite; pointer-events: none;
 }
-
 .mega-deal-hotel .mega-deal-shine { animation-delay: 0s; }
 .mega-deal-taxi  .mega-deal-shine { animation-delay: 1.3s; }
 .mega-deal-food  .mega-deal-shine { animation-delay: 2.6s; }
@@ -1668,82 +1530,36 @@ footer {
   100% { background-position: 200% 0; opacity: 0; }
 }
 
-.mega-deal-left {
+.mega-deal-left { display: flex; align-items: center; gap: 12px; }
+.mega-deal-icon { font-size: 26px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.mega-deal-name { font-size: 14px; font-weight: 700; color: white; line-height: 1.2; }
+.mega-deal-desc { font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+.mega-deal-right { display: flex; flex-direction: column; align-items: center; min-width: 58px; }
+.mega-deal-off { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gold-light); line-height: 1; text-shadow: 0 0 12px rgba(232,176,32,0.5); }
+.mega-deal-offlabel { font-size: 9px; font-weight: 800; letter-spacing: 1.2px; color: var(--gold); text-transform: uppercase; }
+.mega-deal-arrow { font-size: 16px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+.mega-footnote { position: relative; z-index: 1; text-align: center; font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* Crulio branding inside popup footer */
+.mega-crulio-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  opacity: 0.4;
 }
 
-.mega-deal-icon {
-  font-size: 26px;
-  line-height: 1;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
-}
+.mega-crulio-brand img { height: 11px; width: auto; filter: brightness(2); }
+.mega-crulio-brand span { font-size: 10px; color: white; font-weight: 500; }
 
-.mega-deal-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
-  line-height: 1.2;
-}
-
-.mega-deal-desc {
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.5);
-  margin-top: 2px;
-}
-
-.mega-deal-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 58px;
-}
-
-.mega-deal-off {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--gold-light);
-  line-height: 1;
-  text-shadow: 0 0 12px rgba(232,176,32,0.5);
-}
-
-.mega-deal-offlabel {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.mega-deal-arrow {
-  font-size: 16px;
-  color: rgba(255,255,255,0.4);
-  margin-top: 3px;
-}
-
-/* Footer */
-.mega-footnote {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
-}
-
-/* Desktop: center it as a floating card instead of bottom sheet */
 @media (min-width: 600px) {
-  .mega-overlay {
-    align-items: center;
-  }
-  .mega-modal {
-    border-radius: 28px;
-    border: 1.5px solid rgba(232,176,32,0.4);
-    max-height: 90vh;
-    overflow-y: auto;
-  }
+  .mega-overlay { align-items: center; }
+  .mega-modal { border-radius: 28px; border: 1.5px solid rgba(232,176,32,0.4); max-height: 90vh; overflow-y: auto; }
 }
+
 /* ═══════════════════════════════════════════
    DESKTOP OVERRIDES
 ═══════════════════════════════════════════ */
@@ -1751,61 +1567,43 @@ footer {
   .hero-services { grid-template-columns: repeat(3, 1fr); }
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
   .stat-item:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.06); }
-  .stat-item:nth-child(1),
-  .stat-item:nth-child(2),
-  .stat-item:nth-child(3),
-  .stat-item:nth-child(4) { border-bottom: none; }
+  .stat-item:nth-child(1), .stat-item:nth-child(2), .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
   .weather-card { flex: 0 0 calc(20% - 12px); min-width: 120px; }
+  .crulio-bar-text { font-size: 12px; }
 }
 
 @media (min-width: 800px) {
   nav { display: flex; }
   .menu-btn { display: none; }
-
   .hero { min-height: 80vh; }
   .hero-content { max-width: 600px; padding: 0 60px 60px; justify-content: flex-end; }
   .hero-badge { margin-top: 40px; }
   .hero-title { font-size: 52px; }
 
-  .stats-card-wrap,
-  .services-list,
-  .about-card,
-  .timings-card,
-  .location-address,
-  .map-wrap,
-  .faq-list,
-  .disclaimer-card,
-  .footer-grid {
-    max-width: 800px;
-  }
+  .stats-card-wrap, .services-list, .about-card, .timings-card,
+  .location-address, .map-wrap, .faq-list, .disclaimer-card,
+  .footer-grid, .crulio-network-inner { max-width: 800px; }
 
   .journey-btns { max-width: 480px; }
-
-  .gallery-scroll img {
-    width: 340px;
-    height: 260px;
-  }
+  .gallery-scroll img { width: 340px; height: 260px; }
 }
 
 @media (max-width: 800px) {
   nav { display: none; }
   .menu-btn { display: flex; }
+  .crulio-bar-link { display: none; }
+}
+
+@media (max-width: 380px) {
+  .crulio-bar-text { display: none; }
+  .crulio-bar-left { gap: 6px; }
 }
 
 /* ═══════════════════════════════════════════
    SCROLL ANIMATIONS
 ═══════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
@@ -1813,46 +1611,64 @@ footer {
 </head>
 <body>
 
-<!-- Disclaimer Banner -->
-<div class="disclaimer-banner">
-  ManaunaDham.org.in is an independent pilgrim services platform — not affiliated with temple management.
-  <a href="#disclaimer-full">Learn more</a>
+<!-- ═══════ CRULIO PARENT NETWORK BAR ═══════ -->
+<div class="crulio-network-bar">
+  <div class="crulio-network-bar-inner">
+    <a href="https://www.crulio.com" class="crulio-bar-left" target="_blank" rel="noopener">
+  <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" class="crulio-bar-logo">
+      <span class="crulio-bar-text">Part of <strong>Crulio Networks</strong></span>
+    </a>
+    <div class="crulio-bar-right">
+      <a href="https://www.crulio.com" class="crulio-bar-pill" target="_blank" rel="noopener">
+        <span class="crulio-bar-pill-dot"></span>
+        View More
+      </a>
+    </div>
+  </div>
 </div>
 
 <!-- Header -->
 <header>
   <div class="topbar">
-    <a href="#" class="brand">
-      <img src="images/web/logonobg.webp" alt="Manauna Dham Logo" class="brand-logo-img" loading="eager">
+    <a href="index.html" class="brand">
+     <img src="images/web/logonobg.webp" alt="Manauna Dham Logo" class="brand-logo-img" loading="eager">
+
       <div class="brand-text">
         <strong>Manauna Dham</strong>
         <span>Latest Information & Services</span>
+        <div class="brand-crulio-badge">
+          <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" style="height:16px;width:auto;filter:brightness(1.5);">
+        </div>
       </div>
     </a>
 
     <nav>
-      <a href="#">Home</a>
+      <a href="index.html">Home</a>
       <div class="nav-dropdown">
         <a href="#">Services ▾</a>
         <div class="nav-dropdown-menu">
-          <a href="hotels">Hotel / Dharmshala</a>
-          <a href="food">Food Delivery</a>
-          <a href="transport">Transport</a>
-          <a href="patient">Patient Token</a>
-          <a href="jal">Shyam Jal</a>
+          <a href="accommodations.html">Hotel / Dharmshala</a>
+          <a href="food.html">Food Delivery</a>
+          <a href="transport.html">Transport</a>
+          <a href="patient.html">Patient Token</a>
+          <a href="jal.html">Shyam Jal</a>
         </div>
       </div>
       <a href="#gallery">Gallery</a>
       <div class="nav-dropdown">
         <a href="#">About ▾</a>
         <div class="nav-dropdown-menu">
-          <a href="khatushyam">Shri Khatu Shyam Ji</a>
-          <a href="mahant">Mahant Omendra Ji</a>
+          <a href="khatushyam.html">Shri Khatu Shyam Ji</a>
+          <a href="mahant.html">Mahant Omendra Ji</a>
           <a href="#manauna">Manauna Dham</a>
         </div>
       </div>
-      <a href="contact">Contact</a>
-      <a href="live" class="live-btn">
+      <a href="contact.html">Contact</a>
+      <a href="https://www.crulio.com" target="_blank" rel="noopener" class="nav-crulio-link">
+        <img src="../images/logos/NOBGLOGO.png" alt="Crulio">
+        Crulio
+      </a>
+      <a href="live.html" class="live-btn">
         <span class="live-dot"></span> LIVE
       </a>
     </nav>
@@ -1865,53 +1681,63 @@ footer {
   </div>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#"><i class="fa fa-home"></i> Home</a>
-    <a href="hotels"><i class="fa fa-hotel"></i> Hotel / Dharmshala</a>
-    <a href="food"><i class="fa fa-utensils"></i> Food Delivery</a>
-    <a href="transport"><i class="fa fa-car"></i> Taxi / Auto</a>
-    <a href="patient"><i class="fa fa-ticket"></i> Patient Token</a>
-    <a href="jal"><i class="fa fa-tint"></i> Shyam Jal</a>
-    <a href="live"><i class="fa fa-circle" style="color:#00c800"></i> Live Darshan</a>
-    <a href="contact"><i class="fa fa-phone"></i> Contact</a>
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="accommodations.html"><i class="fa fa-hotel"></i> Hotel / Dharmshala</a>
+    <a href="food.html"><i class="fa fa-utensils"></i> Food Delivery</a>
+    <a href="transport.html"><i class="fa fa-car"></i> Taxi / Auto</a>
+    <a href="patient.html"><i class="fa fa-ticket"></i> Patient Token</a>
+    <a href="jal.html"><i class="fa fa-tint"></i> Shyam Jal</a>
+    <a href="live.html"><i class="fa fa-circle" style="color:#00c800"></i> Live Darshan</a>
+    <a href="contact.html"><i class="fa fa-phone"></i> Contact</a>
+    <div class="mobile-menu-crulio-divider">Crulio Networks</div>
+    <a href="https://www.crulio.com" target="_blank" rel="noopener" class="crulio-mobile-link">
+      <i class="fa fa-globe" style="color:var(--crulio-orange-light)"></i> Crulio — All Destinations
+    </a>
+    <a href="https://www.crulio.com/#partner" target="_blank" rel="noopener" class="crulio-mobile-link">
+      <i class="fa fa-handshake" style="color:var(--crulio-orange-light)"></i> Partner With Crulio
+    </a>
   </div>
 </header>
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="hero-bg">
-    <!-- ILoveManaunaDham first, then remaining gallery images -->
-    <div class="hero-slide active"></div><!-- ILoveManaunaDham.webp -->
-    <div class="hero-slide"></div><!-- EntryGate.webp -->
-    <div class="hero-slide"></div><!-- Gathering.webp -->
-    <div class="hero-slide"></div><!-- night.webp -->
-    <div class="hero-slide"></div><!-- Omendra3.webp -->
-    <div class="hero-slide"></div><!-- Gathering2.webp -->
-    <div class="hero-slide"></div><!-- Mandir6.webp -->
-    <div class="hero-slide"></div><!-- Mandir5.webp -->
-    <div class="hero-slide"></div><!-- Mandir1.webp -->
-    <div class="hero-slide"></div><!-- Omendra.webp -->
+    <div class="hero-slide active"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
   </div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
     <div class="hero-badge">
-      <span class="hero-badge-dot">🙏</span>
+      <span>🙏</span>
       Jai Shree Shyam
     </div>
+
+    <!-- Crulio hero badge -->
+<a href="https://www.crulio.com" class="hero-crulio-badge" target="_blank" rel="noopener">
+      <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" style="height:34px;width:auto;filter:brightness(1.5) saturate(1.4);">
+      <span>India's Destinations Super Platform</span>
+    </a>
 
     <div class="hero-title-block">
       <h1 class="hero-title">
         Welcome to
         <span class="accent">Manauna Dham</span>
       </h1>
-      <!-- NEW subtitle line -->
       <div class="hero-platform-line">
         <i class="fa fa-circle-info"></i>
         Latest Information &amp; Services Platform
       </div>
     </div>
 
-    <!-- Progress dots — auto-only, no onclick -->
     <div class="hero-dots" id="heroDots">
       <div class="hero-dot active"></div>
       <div class="hero-dot"></div>
@@ -1926,30 +1752,12 @@ footer {
     </div>
 
     <div class="hero-services">
-      <a href="hotels" class="hero-service-btn">
-        <i class="fa fa-hotel"></i>
-        Book Hotel
-      </a>
-      <a href="food" class="hero-service-btn">
-        <i class="fa fa-utensils"></i>
-        Order Food
-      </a>
-      <a href="transport" class="hero-service-btn">
-        <i class="fa fa-car"></i>
-        Book Taxi
-      </a>
-      <a href="jal" class="hero-service-btn">
-        <i class="fa fa-tint"></i>
-        Shyam Jal
-      </a>
-      <a href="patient" class="hero-service-btn">
-        <i class="fa fa-heartbeat"></i>
-        Patient Token
-      </a>
-      <a href="live" class="hero-service-btn">
-        <i class="fa fa-broadcast-tower"></i>
-        Live Darshan
-      </a>
+      <a href="accommodations.html" class="hero-service-btn"><i class="fa fa-hotel"></i> Book Hotel</a>
+      <a href="food.html" class="hero-service-btn"><i class="fa fa-utensils"></i> Order Food</a>
+      <a href="transport.html" class="hero-service-btn"><i class="fa fa-car"></i> Book Taxi</a>
+      <a href="jal.html" class="hero-service-btn"><i class="fa fa-tint"></i> Shyam Jal</a>
+      <a href="patient.html" class="hero-service-btn"><i class="fa fa-heartbeat"></i> Patient Token</a>
+      <a href="live.html" class="hero-service-btn"><i class="fa fa-broadcast-tower"></i> Live Darshan</a>
     </div>
   </div>
 </section>
@@ -1960,39 +1768,26 @@ footer {
     <h2>How Big We Are?</h2>
     <span class="underline-bar"></span>
   </div>
-
   <div class="stats-card-wrap reveal reveal-delay-1">
     <div class="stats-grid">
       <div class="stat-item">
         <span class="stat-icon"><i class="fa fa-eye"></i></span>
-        <div class="stat-number-wrap">
-          <span class="stat-num" data-target="600000" data-display="6Lakh">0</span>
-          <span class="suffix">+</span>
-        </div>
+        <div class="stat-number-wrap"><span class="stat-num" data-target="600000" data-display="8Lakh">0</span><span class="suffix">+</span></div>
         <div class="stat-label">Website Views</div>
       </div>
       <div class="stat-item">
         <span class="stat-icon"><i class="fa fa-star"></i></span>
-        <div class="stat-number-wrap">
-          <span class="stat-num" data-target="10" data-display="10">0</span>
-          <span class="suffix">+</span>
-        </div>
+        <div class="stat-number-wrap"><span class="stat-num" data-target="10" data-display="10">0</span><span class="suffix">+</span></div>
         <div class="stat-label">Services Available</div>
       </div>
       <div class="stat-item">
         <span class="stat-icon"><i class="fa fa-headset"></i></span>
-        <div class="stat-number-wrap">
-          <span class="stat-num" data-target="24" data-display="24" data-special="true">0</span>
-          <span class="suffix">/7</span>
-        </div>
+        <div class="stat-number-wrap"><span class="stat-num" data-target="24" data-display="24" data-special="true">0</span><span class="suffix">/7</span></div>
         <div class="stat-label">Support Available</div>
       </div>
       <div class="stat-item">
         <span class="stat-icon"><i class="fa fa-heart"></i></span>
-        <div class="stat-number-wrap">
-          <span class="stat-num" data-target="1000" data-display="1,000">0</span>
-          <span class="suffix">+</span>
-        </div>
+        <div class="stat-number-wrap"><span class="stat-num" data-target="1000" data-display="1,000">0</span><span class="suffix">+</span></div>
         <div class="stat-label">Bhakts Helped</div>
       </div>
     </div>
@@ -2006,61 +1801,35 @@ footer {
     <span class="underline-bar"></span>
     <p style="font-size:14px;color:var(--text-soft);margin-top:8px">Tap any service below to book or learn more.</p>
   </div>
-
   <div class="services-list">
-    <a href="hotels" class="service-card reveal">
+    <a href="accommodations.html" class="service-card reveal">
       <div class="service-icon-box"><i class="fa fa-hotel"></i></div>
-      <div class="service-info">
-        <h3>Book Hotel / Dharmshala</h3>
-        <p>Comfortable rooms near the temple at fair prices.</p>
-      </div>
+      <div class="service-info"><h3>Book Hotel / Dharmshala</h3><p>Comfortable rooms near the temple at fair prices.</p></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
-
-    <a href="food" class="service-card reveal reveal-delay-1">
+    <a href="food.html" class="service-card reveal reveal-delay-1">
       <div class="service-icon-box"><i class="fa fa-utensils"></i></div>
-      <div class="service-info">
-        <h3>Home Delivery of Food</h3>
-        <p>Get fresh, hot meals delivered to your stay.</p>
-        <span class="service-tag">Popular</span>
-      </div>
+      <div class="service-info"><h3>Home Delivery of Food</h3><p>Get fresh, hot meals delivered to your stay.</p><span class="service-tag">Popular</span></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
-
-    <a href="transport" class="service-card reveal reveal-delay-2">
+    <a href="transport.html" class="service-card reveal reveal-delay-2">
       <div class="service-icon-box"><i class="fa fa-car"></i></div>
-      <div class="service-info">
-        <h3>Taxi / Auto Booking</h3>
-        <p>Reliable transport at discounted pilgrim rates.</p>
-      </div>
+      <div class="service-info"><h3>Taxi / Auto Booking</h3><p>Reliable transport at discounted pilgrim rates.</p></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
-
-    <a href="jal" class="service-card reveal reveal-delay-3">
+    <a href="jal.html" class="service-card reveal reveal-delay-3">
       <div class="service-icon-box"><i class="fa fa-tint"></i></div>
-      <div class="service-info">
-        <h3>Shyam Jal</h3>
-        <p>Sacred water service — information & booking.</p>
-      </div>
+      <div class="service-info"><h3>Shyam Jal</h3><p>Sacred water service — information & booking.</p></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
-
-    <a href="patient" class="service-card reveal">
+    <a href="patient.html" class="service-card reveal">
       <div class="service-icon-box"><i class="fa fa-heartbeat"></i></div>
-      <div class="service-info">
-        <h3>Patient Token</h3>
-        <p>Issued on-site when patients are present at the dham.</p>
-      </div>
+      <div class="service-info"><h3>Patient Token</h3><p>Issued on-site when patients are present at the dham.</p></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
-
-    <a href="live" class="service-card reveal reveal-delay-1">
+    <a href="live.html" class="service-card reveal reveal-delay-1">
       <div class="service-icon-box" style="background:#00a000"><i class="fa fa-broadcast-tower"></i></div>
-      <div class="service-info">
-        <h3>Live Darshan</h3>
-        <p>Watch live aarti and darshan from anywhere.</p>
-        <span class="service-tag" style="background:#e8fce8;color:#007a00">Live Now</span>
-      </div>
+      <div class="service-info"><h3>Live Darshan</h3><p>Watch live aarti and darshan from anywhere.</p><span class="service-tag" style="background:#e8fce8;color:#007a00">Live Now</span></div>
       <i class="fa fa-chevron-right service-arrow"></i>
     </a>
   </div>
@@ -2072,7 +1841,6 @@ footer {
     <h2>Manauna (Manona) Dham</h2>
     <span class="underline-bar"></span>
   </div>
-
   <div class="about-card reveal">
     <img src="images/web/KhatuShyam.webp" alt="Khatu Shyam Ji Manauna Dham" class="about-img" loading="lazy">
     <div class="about-body">
@@ -2081,51 +1849,29 @@ footer {
       <p>Devotees believe that sincere prayer here brings divine grace through Shri Khatu Shyam Ji. The temple is especially known for its sacred rituals conducted by its Chief Priest.</p>
       <p class="about-note">✍️ Manauna is the correct spelling — Manona is the common regional variant.</p>
       <div class="btn-row">
-        <a href="mahant" class="btn-primary"><i class="fa fa-user"></i> Chief Priest</a>
-        <a href="khatushyam" class="btn-secondary"><i class="fa fa-om"></i> Shyam Ji</a>
-        <a href="live" class="btn-primary"><i class="fa fa-broadcast-tower"></i> Live Darshan</a>
-        <a href="contact" class="btn-secondary"><i class="fa fa-phone"></i> Contact</a>
+        <a href="mahant.html" class="btn-primary"><i class="fa fa-user"></i> Chief Priest</a>
+        <a href="khatushyam.html" class="btn-secondary"><i class="fa fa-om"></i> Shyam Ji</a>
+        <a href="live.html" class="btn-primary"><i class="fa fa-broadcast-tower"></i> Live Darshan</a>
+        <a href="contact.html" class="btn-secondary"><i class="fa fa-phone"></i> Contact</a>
       </div>
     </div>
   </div>
-
   <div class="timings-card reveal" style="margin-top:20px">
     <h3><i class="fa fa-clock" style="color:var(--gold);margin-right:8px"></i>Mandir Timings</h3>
-    <div class="timing-row">
-      <span class="timing-icon">🙏</span>
-      <span class="timing-label">Darshan</span>
-      <span class="timing-val">7 AM – 9 PM</span>
-    </div>
-    <div class="timing-row">
-      <span class="timing-icon">🔔</span>
-      <span class="timing-label">Aarti</span>
-      <span class="timing-val">8 AM & 5 PM</span>
-    </div>
-    <div class="timing-row">
-      <span class="timing-icon">🌿</span>
-      <span class="timing-label">Best Season</span>
-      <span class="timing-val">June – December</span>
-    </div>
-    <div class="timing-row">
-      <span class="timing-icon">⚠️</span>
-      <span class="timing-label">Mahant Ji Unavailable</span>
-      <span class="timing-val">Tue & Wed*</span>
-    </div>
+    <div class="timing-row"><span class="timing-icon">🙏</span><span class="timing-label">Darshan</span><span class="timing-val">7 AM – 9 PM</span></div>
+    <div class="timing-row"><span class="timing-icon">🔔</span><span class="timing-label">Aarti</span><span class="timing-val">8 AM & 5 PM</span></div>
+    <div class="timing-row"><span class="timing-icon">🌿</span><span class="timing-label">Best Season</span><span class="timing-val">June – December</span></div>
+    <div class="timing-row"><span class="timing-icon">⚠️</span><span class="timing-label">Mahant Ji Unavailable</span><span class="timing-val">Tue & Wed*</span></div>
   </div>
 </section>
 
 <!-- ═══════ LOCATION ═══════ -->
 <section class="location-section">
-  <div class="section-header reveal">
-    <h2>Temple Location</h2>
-    <span class="underline-bar"></span>
-  </div>
-
+  <div class="section-header reveal"><h2>Temple Location</h2><span class="underline-bar"></span></div>
   <div class="location-address reveal">
     <i class="fa fa-map-marker-alt"></i>
     <span>Shri Khatu Shyam Mandir, Manauna Village, Tehsil Aonla, Bareilly, UP – 243301</span>
   </div>
-
   <div class="map-wrap reveal">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d878.4749208605006!2d79.14032607221374!3d28.2710585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390a9b413b39cef9%3A0x4dbdb472d874534b!2sManauna%20Dham%20Shyam%20Ji%20Mandir!5e0!3m2!1sen!2sin" loading="lazy" title="Manauna Dham Location"></iframe>
   </div>
@@ -2138,16 +1884,9 @@ footer {
     <span class="underline-bar" style="background:linear-gradient(90deg,var(--gold-light),var(--gold))"></span>
   </div>
   <p class="reveal">Check trains from Delhi &amp; nearby cities to reach Manauna Dham easily.</p>
-
   <div class="journey-btns reveal">
-    <a href="https://railyatri.in/train-between-stations?from=DLI&to=AWL" target="_blank" rel="noopener" class="journey-btn journey-btn-train">
-      <i class="fa fa-train"></i>
-      Check Trains
-    </a>
-    <a href="transport" class="journey-btn journey-btn-taxi">
-      <i class="fa fa-car"></i>
-      Book Taxi / Auto
-    </a>
+    <a href="https://railyatri.in/train-between-stations?from=DLI&to=AWL" target="_blank" rel="noopener" class="journey-btn journey-btn-train"><i class="fa fa-train"></i> Check Trains</a>
+    <a href="transport.html" class="journey-btn journey-btn-taxi"><i class="fa fa-car"></i> Book Taxi / Auto</a>
   </div>
 </section>
 
@@ -2158,11 +1897,9 @@ footer {
     <span class="underline-bar"></span>
     <p style="font-size:13px;color:var(--text-soft);margin-top:6px">Bareilly region forecast</p>
   </div>
-
   <div class="weather-scroll" id="weatherCards">
     <div class="weather-card" style="opacity:.5"><div class="w-emoji">🌤️</div><div class="w-day">Loading…</div></div>
   </div>
-
   <div class="today-weather" id="todayWeather">
     <div class="today-temp" id="todayTemp">--°</div>
     <div class="today-meta">Wind: <span id="todayWind">--</span> km/h</div>
@@ -2172,11 +1909,7 @@ footer {
 
 <!-- ═══════ GALLERY ═══════ -->
 <section class="gallery-section" id="gallery">
-  <div class="section-header reveal">
-    <h2>Temple Gallery</h2>
-    <span class="underline-bar"></span>
-  </div>
-
+  <div class="section-header reveal"><h2>Temple Gallery</h2><span class="underline-bar"></span></div>
   <div class="gallery-scroll">
     <img src="images/web/EntryGate.webp" alt="Entry Gate Manauna Dham" loading="lazy">
     <img src="images/web/Gathering.webp" alt="Devotees at Manauna" loading="lazy">
@@ -2215,50 +1948,28 @@ footer {
   </div>
 </section>
 
+<!-- ═══════ FAQ ═══════ -->
 <section class="faq-section">
-  <div class="section-header reveal">
-    <h2>Frequently Asked Questions</h2>
-    <span class="underline-bar"></span>
-  </div>
-
+  <div class="section-header reveal"><h2>Frequently Asked Questions</h2><span class="underline-bar"></span></div>
   <div class="faq-list">
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        Where is Manauna Dham located?
-        <i class="fa fa-plus faq-icon"></i>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)">Where is Manauna Dham located?<i class="fa fa-plus faq-icon"></i></div>
       <div class="faq-a"><p>Manauna Dham is located in Manauna village near Aonla, Bareilly district, Uttar Pradesh – 243301.</p></div>
     </div>
-
     <div class="faq-item reveal reveal-delay-1">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        What are the darshan timings?
-        <i class="fa fa-plus faq-icon"></i>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)">What are the darshan timings?<i class="fa fa-plus faq-icon"></i></div>
       <div class="faq-a"><p>Darshan is available from 7 AM to 9 PM daily. Aarti is performed at 8 AM and 5 PM.</p></div>
     </div>
-
     <div class="faq-item reveal reveal-delay-2">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        How to get a patient token?
-        <i class="fa fa-plus faq-icon"></i>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)">How to get a patient token?<i class="fa fa-plus faq-icon"></i></div>
       <div class="faq-a"><p>Patient tokens can be given only when patients are present in Manauna Dham. We do not issue tokens ourselves — this is based on prevailing on-site practices and may change.</p></div>
     </div>
-
     <div class="faq-item reveal reveal-delay-3">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        Is this the official temple website?
-        <i class="fa fa-plus faq-icon"></i>
-      </div>
-      <div class="faq-a"><p>No. ManaunaDham.org.in is a privately operated pilgrim information and services platform. We are not affiliated with or endorsed by the temple management.</p></div>
+      <div class="faq-q" onclick="toggleFaq(this)">Is this the official temple website?<i class="fa fa-plus faq-icon"></i></div>
+     <div class="faq-a"><p>No. Crulio.com/ManaunaDham is a privately operated pilgrim information and services platform, powered by Crulio Networks. We are not affiliated with or endorsed by the temple management.</p></div>
     </div>
-
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        How to reach Manauna Dham from Delhi?
-        <i class="fa fa-plus faq-icon"></i>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)">How to reach Manauna Dham from Delhi?<i class="fa fa-plus faq-icon"></i></div>
       <div class="faq-a"><p>Take a train from Delhi to Aonla (AWL) station, then auto/taxi to Manauna village (~10 km). You can check trains and book local transport using our services above.</p></div>
     </div>
   </div>
@@ -2266,34 +1977,72 @@ footer {
 
 <!-- ═══════ DISCLAIMER ═══════ -->
 <section class="disclaimer-section" id="disclaimer-full">
-  <div class="section-header reveal">
-    <h2>About ManaunaDham.org.in</h2>
-    <span class="underline-bar"></span>
-  </div>
-
+ <div class="section-header reveal"><h2>About Crulio.com/ManaunaDham</h2><span class="underline-bar"></span></div>
   <div class="disclaimer-card reveal">
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-clipboard-list"></i></div>
         <h3>What We Are</h3>
       </div>
-      <p>ManaunaDham.org.in is a <strong>privately operated information and services platform</strong> created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
-    </div>
-
+   <p>Crulio.com/ManaunaDham is a <strong>privately operated information and services platform</strong> powered by Crulio Networks, created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-landmark"></i></div>
         <h3>What We Are NOT</h3>
       </div>
-      <p>We are <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. We are <strong>NOT affiliated with, endorsed by, or managed by</strong> the temple management or any religious authority.</p>
+     <p>Crulio.com/ManaunaDham is <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. We are <strong>NOT affiliated with, endorsed by, or managed by</strong> the temple management or any religious authority.</p>
     </div>
-
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-balance-scale"></i></div>
         <h3>Legal Notice</h3>
       </div>
       <p>Information is collected from public sources and verified to the best of our ability. Temple policies, timings, and availability may change without notice. Users are advised to confirm critical details independently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CRULIO NETWORK SECTION ═══════ -->
+<section class="crulio-network-section">
+  <div class="crulio-network-inner">
+    <div class="crulio-network-top">
+  <div class="crulio-network-logo-wrap">
+        <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" class="cn-icon" style="height:52px;width:auto;filter:brightness(1.5) saturate(1.3);">
+      </div>
+      <div class="cn-divider"></div>
+      <div class="cn-brand-text">
+        <strong>India's Pilgrimage Super Platform</strong>
+        Every service. Every destination.
+      </div>
+    </div>
+
+    <h2 class="crulio-network-tagline reveal">
+      Manauna Dham is just the beginning.<br>
+      <em>Explore the full Crulio network.</em>
+    </h2>
+
+    <p class="crulio-network-desc reveal">
+      Crulio Networks powers pilgrim services across India's sacred destinations — hotels, food, transport, live darshan, and more. One platform for every yatra.
+    </p>
+
+    <div class="crulio-destinations reveal">
+      <a href="https://www.manaunadham.org.in" class="cn-dest-pill live">
+        <span class="cn-pill-dot"></span>
+        Manauna Dham
+      </a>
+      <span class="cn-dest-pill coming">🪔 Khatu Shyam Ji</span>
+      <span class="cn-dest-pill coming">🌿 Vrindavan</span>
+      <span class="cn-dest-pill coming">🕍 Jain Mandir, Ramnagar</span>
+      <span class="cn-dest-pill coming">🏔️ Hill Stations & More</span>
+    </div>
+
+    <div class="crulio-network-cta reveal">
+      <a href="https://www.crulio.com" target="_blank" rel="noopener" class="cn-cta-primary">
+        <i class="fa fa-globe"></i> Visit Crulio Networks
+      </a>
+      <a href="https://www.crulio.com/#partner" target="_blank" rel="noopener" class="cn-cta-ghost">
+        <i class="fa fa-handshake"></i> Partner With Us
+      </a>
     </div>
   </div>
 </section>
@@ -2308,45 +2057,44 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#">Home</a>
-      <a href="hotels">Hotels</a>
-      <a href="food">Food Services</a>
-      <a href="transport">Transport</a>
-      <a href="contact">Contact Us</a>
+      <a href="index.html">Home</a>
+      <a href="accommodations.html">Hotels</a>
+      <a href="food.html">Food Services</a>
+      <a href="transport.html">Transport</a>
+      <a href="contact.html">Contact Us</a>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="patient">Patient Token</a>
-      <a href="jal">Shyam Jal</a>
-      <a href="live">Live Darshan</a>
-      <a href="khatushyam">Shri Khatu Shyam Ji</a>
-      <a href="mahant">Mahant Omendra Ji</a>
+      <a href="patient.html">Patient Token</a>
+      <a href="jal.html">Shyam Jal</a>
+      <a href="live.html">Live Darshan</a>
+      <a href="khatushyam.html">Shri Khatu Shyam Ji</a>
+      <a href="mahant.html">Mahant Omendra Ji</a>
     </div>
     <div class="footer-col">
       <h4>Community</h4>
       <a href="https://www.instagram.com/explore/tags/manonadham/" target="_blank" rel="noopener">#manonadham</a>
       <a href="https://www.instagram.com/explore/tags/manaunadham/" target="_blank" rel="noopener">#manaunadham</a>
       <a href="https://www.instagram.com/explore/tags/khatushyamji/" target="_blank" rel="noopener">#khatushyamji</a>
+      <a href="https://www.crulio.com" target="_blank" rel="noopener" style="color:var(--crulio-orange-light);margin-top:8px">crulio.com ↗</a>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <p>© 2026 ManaunaDham.org.in — Independent Pilgrim Services Platform</p>
-    <p>ManaunaDham.org.in is a privately operated platform. Not the official website of Manauna Dham temple. Not affiliated with temple management or religious authorities.</p>
+<div class="footer-bottom">
+    <p>© 2026 Crulio.com/ManaunaDham — Independent Pilgrim Services Platform</p>
+    <p>Crulio.com/ManaunaDham is a privately operated platform. Not the official website of Manauna Dham temple. Not affiliated with temple management or religious authorities.</p>
+    <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
+      <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" style="height:32px;width:auto;filter:brightness(1.6) saturate(1.3);">
+    </a>
   </div>
 </footer>
 
 <!-- ═══════ MEGA OFFER POPUP ═══════ -->
 <div class="mega-overlay" id="megaOverlay" onclick="closeMegaPopup(event)">
   <div class="mega-modal" id="megaModal">
-
-    <!-- Shimmer sweep layer -->
     <div class="mega-shimmer"></div>
-
-    <!-- Close -->
     <button class="mega-close" onclick="closeMegaPopupDirect()" aria-label="Close">✕</button>
 
-    <!-- Header -->
     <div class="mega-header">
       <div class="mega-badge-row">
         <span class="mega-badge-live"><span class="mega-live-dot"></span>Limited Time</span>
@@ -2357,7 +2105,6 @@ footer {
       <p class="mega-subtitle">Offers unlocked for visitors right now — don't miss out</p>
     </div>
 
-    <!-- Countdown -->
     <div class="mega-timer-wrap">
       <div class="mega-timer-label">⏳ Offer expires in</div>
       <div class="mega-timer-boxes">
@@ -2367,65 +2114,43 @@ footer {
       </div>
     </div>
 
-    <!-- Deals -->
     <div class="mega-deals">
-      <a href="hotels" class="mega-deal mega-deal-hotel">
+      <a href="accommodations.html" class="mega-deal mega-deal-hotel">
         <div class="mega-deal-shine"></div>
         <div class="mega-deal-left">
           <div class="mega-deal-icon">🏨</div>
-          <div class="mega-deal-info">
-            <div class="mega-deal-name">Hotel / Dharmshala</div>
-            <div class="mega-deal-desc">Rooms near the mandir</div>
-          </div>
+          <div class="mega-deal-info"><div class="mega-deal-name">Hotel / Dharmshala</div><div class="mega-deal-desc">Rooms near the mandir</div></div>
         </div>
-        <div class="mega-deal-right">
-          <div class="mega-deal-off">₹400</div>
-          <div class="mega-deal-offlabel">OFF</div>
-          <div class="mega-deal-arrow">→</div>
-        </div>
+        <div class="mega-deal-right"><div class="mega-deal-off">₹400</div><div class="mega-deal-offlabel">OFF</div><div class="mega-deal-arrow">→</div></div>
       </a>
-
-      <a href="transport" class="mega-deal mega-deal-taxi">
+      <a href="transport.html" class="mega-deal mega-deal-taxi">
         <div class="mega-deal-shine"></div>
         <div class="mega-deal-left">
           <div class="mega-deal-icon">🚖</div>
-          <div class="mega-deal-info">
-            <div class="mega-deal-name">Taxi / Auto Booking</div>
-            <div class="mega-deal-desc">Discounted pilgrim fare</div>
-          </div>
+          <div class="mega-deal-info"><div class="mega-deal-name">Taxi / Auto Booking</div><div class="mega-deal-desc">Discounted pilgrim fare</div></div>
         </div>
-        <div class="mega-deal-right">
-          <div class="mega-deal-off">₹200</div>
-          <div class="mega-deal-offlabel">OFF</div>
-          <div class="mega-deal-arrow">→</div>
-        </div>
+        <div class="mega-deal-right"><div class="mega-deal-off">₹200</div><div class="mega-deal-offlabel">OFF</div><div class="mega-deal-arrow">→</div></div>
       </a>
-
-      <a href="food" class="mega-deal mega-deal-food">
+      <a href="food.html" class="mega-deal mega-deal-food">
         <div class="mega-deal-shine"></div>
         <div class="mega-deal-left">
           <div class="mega-deal-icon">🍱</div>
-          <div class="mega-deal-info">
-            <div class="mega-deal-name">Food Delivery</div>
-            <div class="mega-deal-desc">Hot meals to your stay</div>
-          </div>
+          <div class="mega-deal-info"><div class="mega-deal-name">Food Delivery</div><div class="mega-deal-desc">Hot meals to your stay</div></div>
         </div>
-        <div class="mega-deal-right">
-          <div class="mega-deal-off" style="font-size:15px;line-height:1.2">Instant</div>
-          <div class="mega-deal-offlabel">DISCOUNT</div>
-          <div class="mega-deal-arrow">→</div>
-        </div>
+        <div class="mega-deal-right"><div class="mega-deal-off" style="font-size:15px;line-height:1.2">Instant</div><div class="mega-deal-offlabel">DISCOUNT</div><div class="mega-deal-arrow">→</div></div>
       </a>
     </div>
 
-    <!-- Footer note -->
     <p class="mega-footnote">🙏 Jai Shree Shyam — Serving pilgrims with devotion</p>
-
+    <div class="mega-crulio-brand">
+      <img src="../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks">
+      <span>A Crulio Networks Platform</span>
+    </div>
   </div>
 </div>
-<!-- ═══════════════ SCRIPTS ═══════════════ -->
+
+<!-- ═══════ SCRIPTS ═══════ -->
 <script>
-/* ── Mobile menu ── */
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const hb = document.getElementById('hamburger');
@@ -2433,7 +2158,6 @@ function toggleMenu() {
   hb.classList.toggle('open', open);
 }
 
-/* ── Hero slideshow ── */
 const slides = document.querySelectorAll('.hero-slide');
 const dots   = document.querySelectorAll('#heroDots .hero-dot');
 const TOTAL  = slides.length;
@@ -2453,7 +2177,6 @@ function goSlide(n) {
 
 setInterval(() => goSlide(current + 1), 3000);
 
-/* ── FAQ accordion ── */
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -2461,24 +2184,15 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-/* ── Scroll reveal ── */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
   });
 }, { threshold: 0.12 });
-
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ── Animated counter ── */
 function formatNum(n, target) {
-  if (target >= 100000) {
-    const lakhs = n / 100000;
-    return lakhs >= 6 ? '6Lakh' : Math.floor(lakhs * 10) / 10 + 'L';
-  }
+  if (target >= 100000) { const lakhs = n / 100000; return lakhs >= 8 ? '8Lakh' : Math.floor(lakhs * 10) / 10 + 'L'; }
   if (target === 1000) return n >= 1000 ? '1,000' : n.toLocaleString('en-IN');
   return Math.floor(n).toString();
 }
@@ -2488,7 +2202,6 @@ function animateCounter(el) {
   const isSpecial = el.dataset.special === 'true';
   const duration = 1800;
   const start = performance.now();
-
   function step(now) {
     const progress = Math.min((now - start) / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
@@ -2502,17 +2215,13 @@ function animateCounter(el) {
 
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.stat-num').forEach(animateCounter);
-      statsObserver.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.querySelectorAll('.stat-num').forEach(animateCounter); statsObserver.unobserve(e.target); }
   });
 }, { threshold: 0.4 });
 
 const statsEl = document.querySelector('.stats-card-wrap');
 if (statsEl) statsObserver.observe(statsEl);
 
-/* ── Mega Offer Popup — GLOBAL scope so onclick attributes work ── */
 let megaCountdownSec = 14 * 60 + 59;
 let megaCountdownStarted = false;
 
@@ -2547,14 +2256,12 @@ function closeMegaPopup(e) {
 
 setTimeout(openMegaPopup, 5000);
 
-/* ── Weather ── */
 (async function loadWeather() {
   try {
     const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.2711&longitude=79.1403&daily=temperature_2m_max,temperature_2m_min,weathercode&current_weather=true&timezone=Asia/Kolkata');
     const data = await res.json();
     const { time, temperature_2m_max, temperature_2m_min, weathercode } = data.daily;
     const cw = data.current_weather;
-
     const icon = c => {
       if (c === 0) return '☀️';
       if (c <= 3) return '🌤️';
@@ -2564,16 +2271,10 @@ setTimeout(openMegaPopup, 5000);
       if (c <= 82) return '⛈️';
       return '🌥️';
     };
-
     document.getElementById('weatherCards').innerHTML = time.slice(0, 7).map((d, i) => {
       const day = new Date(d).toLocaleDateString('en-IN', { weekday: 'short' });
-      return `<div class="weather-card">
-        <div class="w-emoji">${icon(weathercode[i])}</div>
-        <div class="w-day">${day}</div>
-        <div class="w-temp">${temperature_2m_max[i]}° / ${temperature_2m_min[i]}°</div>
-      </div>`;
+      return `<div class="weather-card"><div class="w-emoji">${icon(weathercode[i])}</div><div class="w-day">${day}</div><div class="w-temp">${temperature_2m_max[i]}° / ${temperature_2m_min[i]}°</div></div>`;
     }).join('');
-
     document.getElementById('todayTemp').textContent = cw.temperature + '°C';
     document.getElementById('todayWind').textContent = cw.windspeed;
   } catch (e) {
