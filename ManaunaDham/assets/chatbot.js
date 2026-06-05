@@ -548,3 +548,10 @@
   resetChat();
 
 })();
+
+// reload fixer
+async function cacheAndReload() {
+  const cache = await caches.open('page-cache');
+  await cache.add(location.href); // cache current page
+  location.reload();
+}
