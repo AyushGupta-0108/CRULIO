@@ -1525,6 +1525,9 @@ let qrPollingInterval = null;
 let qrTimerInterval   = null;
 let paymentDetected   = false;
 
+// pick cords
+let pickupCoords = null;
+
 const COUPONS = {
   'MANONA100': { value:100, type:'flat',    label:'₹100 off', tripType:'oneway', description:'One-way Manauna special' },
   'BABA5':     { value:5,   type:'percent', label:'5% off',   tripType:'oneway', description:'Shyam Baba 5% off (one-way)' },
@@ -1554,6 +1557,28 @@ const MANAUNA_DHAM = {
 
 const DELHI_AIRPORT_RETURN_7 = 9500;
 const DELHI_AIRPORT_RETURN_5 = 8500;
+
+
+  
+// get distamce
+async function getDistanceKm(start, end) {
+
+    const url =
+    `https://router.project-osrm.org/route/v1/driving/` +
+    `${start.lon},${start.lat};${end.lon},${end.lat}` +
+    `?overview=false`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.routes || !data.routes.length) {
+        throw new Error("Route not found");
+    }
+
+    return data.routes[0].distance / 1000;
+}
+  
+  
 
 //bareilly
 document
@@ -1699,7 +1724,6 @@ document.getElementById("gps-dl").onclick=()=>{
   
 
 
-let pickupCoords = null;
 //bareilly
 async function searchAddressCP(query){
 
@@ -2035,6 +2059,28 @@ function selectCity(city) {
   else if (city === 'up')   { document.getElementById('up-sub').style.display = 'block'; selPickup = 'up-custom'; }
   else if (city === 'delhi'){ document.getElementById('delhi-sub').style.display = 'block'; }
 }
+  
+
+const PICKUP_POINTS = {
+    station: {
+        name: "Bareilly Railway Station",
+        lat: 28.3670,
+        lon: 79.4304
+    },
+
+    airport: {
+        name: "Bareilly Airport",
+        lat: 28.4221,
+        lon: 79.4508
+    },
+
+    airport2: {
+        name: "Indira Gandhi International Airport, Delhi",
+        lat: 28.5562,
+        lon: 77.1000
+    }
+};
+  
 
 function selectPickup(type) {
   selPickup = type;
@@ -2049,6 +2095,19 @@ function selectPickup(type) {
   if (['station','airport','city'].includes(type)) document.getElementById('sub-' + type).classList.add('selected');
   else if (type === 'delhi-airport') document.getElementById('sub-delhi-airport').classList.add('selected');
   else if (type === 'delhi-other')   document.getElementById('sub-delhi-other').classList.add('selected');
+
+if(type === "station"){
+pickupCoords = PICKUP_POINTS.station;
+}
+
+if(type === "airport"){
+pickupCoords = PICKUP_POINTS.airport;
+}
+
+if(type === "delhi-airport"){
+pickupCoords = PICKUP_POINTS.airport2;
+}
+  
 }
 
 // ═════════ STAGE 2 — DATE ═════════
