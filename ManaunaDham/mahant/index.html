@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mahant Omendra Chauhan – Manauna Dham</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1401GVEYWR');
+</script>
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI,Arial;
+  background:#fff6e6;
+}
+
+/* HEADER */
+header{background:#7a0000;color:white}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+}
+.logo{font-weight:bold;font-size:20px}
+
+.desktop-nav{
+  display:flex;
+  gap:15px;
+}
+.desktop-nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+.desktop-nav a.live{
+  background:#008000;
+  padding:8px 14px;
+  border-radius:6px;
+}
+.desktop-nav a.donate{
+  background:#d10000;
+  padding:8px 14px;
+  border-radius:6px;
+}
+
+/* MOBILE MENU */
+.menu-btn{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+  background:#7a0000;
+}
+.mobile-menu a{
+  color:white;
+  padding:14px;
+  border-bottom:1px solid #aa0000;
+  text-decoration:none;
+}
+
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .menu-btn{display:block}
+}
+
+/* PAGE */
+.section{
+  padding:40px 25px;
+  max-width:1000px;
+  margin:auto;
+}
+.hero{
+  display:flex;
+  gap:30px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.hero img{
+  width:320px;
+  border-radius:12px;
+  box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+.hero-text{
+  flex:1;
+  min-width:280px;
+}
+h2{color:#7a0000}
+p{line-height:1.7;font-size:16px}
+
+/* GALLERY */
+.gallery{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  margin-top:30px;
+}
+.gallery img{
+  height:200px;
+  border-radius:12px;
+  flex-shrink:0;
+  box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+
+footer{
+  background:#4d0000;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="topbar">
+  <div class="logo">Manauna Dham</div>
+
+  <nav class="desktop-nav">
+    <a href="../">Home</a>
+    <a href="../hotels">Stay</a>
+    <a href="../food">Food</a>
+    <a href="../transport">Travel</a>
+    <a href="../patient">Patient</a>
+    <a href="../live" class="live">LIVE</a>
+  </nav>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../">Home</a>
+  <a href="../hotels">Accommodation</a>
+  <a href="../food">Food</a>
+  <a href="../transport">Transport</a>
+  <a href="../patient">Patient Token</a>
+  <a href="../live">Live Darshan</a>
+</div>
+</header>
+
+<section class="section">
+
+<div class="hero">
+  <img src="../images/web/Omendra3.webp">
+  <div class="hero-text">
+    <h2>Mahant Shri Omendra Chauhan</h2>
+    <p>
+Mahant Shri Omendra Singh Chauhan is the spiritual head of Manauna Dham in Bareilly, Uttar Pradesh. Born in 1984 in Manona village, he transformed from a national social activist into a spiritual healer devoted to Shri Khatu Shyam Ji.
+    </p>
+    <p>
+He founded Manauna Dham in 2021 after a spiritual awakening and today guides thousands of devotees seeking healing, peace and divine blessings.
+    </p>
+    <p>
+Mahant Ji is known for the sacred “SHYAM JAL” (blessed water) prepared through mantra chanting, which devotees believe brings relief from illness and suffering.
+    </p>
+  </div>
+</div>
+
+<h2 style="margin-top:40px">Spiritual Work & Dham</h2>
+<p>
+Manauna Dham spans over 20 bighas and serves thousands of pilgrims every week. The dham offers free water, dharamshala accommodation and spiritual counseling to devotees from across India.
+</p>
+
+<h2 style="margin-top:40px">Gallery</h2>
+<div class="gallery">
+  <img src="../images/web/Omendra.webp">
+  <img src="../images/web/Omendra3.webp">
+  <img src="../images/web/Patient1.webp">
+  <img src="../images/web/Mandir6.webp">
+</div>
+
+</section>
+
+<footer>
+© 2026 | Manauna Dham | All Rights Reserved
+</footer>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+</script>
+<script src="../assets/chatbot.js"></script>
+</body>
+</html>
