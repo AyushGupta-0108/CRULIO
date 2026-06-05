@@ -1539,7 +1539,7 @@ document
 .getElementById("city-address")
 .addEventListener("input",(e)=>{
 
-    searchAddress(e.target.value);
+    searchAddressCP(e.target.value);
 
 });
   
@@ -1632,7 +1632,7 @@ document.getElementById("gps-up").onclick=()=>{
 //bareilly
 let pickupCoords = null;
 
-async function searchAddress(query){
+async function searchAddressCP(query){
 
     if(query.length < 3){
         document.getElementById("cp-suggestions").innerHTML="";
