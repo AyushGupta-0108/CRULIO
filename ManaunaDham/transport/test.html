@@ -926,10 +926,31 @@ footer p:last-child{font-size:12px;opacity:.65;}
             <div style="margin-top:8px;"><span style="background:#fff3e0;color:#c06000;border:1px solid #f0c060;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Price quoted on WhatsApp</span></div>
           </div>
         </div>
+
+        <!--
         <div class="form-group" id="delhi-other-address-group" style="display:none;margin-top:12px;">
           <label>Your exact address in Delhi / NCR <span class="req">*</span></label>
           <input type="text" id="delhi-other-address" placeholder="e.g. Connaught Place, New Delhi">
         </div>
+        -->
+
+<div class="form-group" id="delhi-other-address-group">
+    <label>Your exact address in Delhi / NCR <span class="req">*</span></label>
+
+    <div class="address-row">
+        <input
+            type="text"
+            id="delhi-other-address"
+            placeholder="Search your exact address">
+
+        <button type="button" id="gps-dl">
+            <i class="fa-solid fa-location-crosshairs"></i>
+        </button>
+    </div>
+
+    <div id="dl-suggestions" class="address-suggestions"></div>
+</div>
+        
         <div class="alert-box info" id="delhi-other-notice" style="display:none;">
           <i class="fa fa-circle-info"></i>
           <div>For custom Delhi/NCR pickup, our driver will confirm the exact price on WhatsApp. You'll be redirected to WhatsApp at the end.</div>
@@ -1552,6 +1573,16 @@ document
 
 });
 
+// up
+document
+.getElementById("delhi-other-address")
+.addEventListener("input",(e)=>{
+
+    searchAddressDL(e.target.value);
+
+});
+  
+
 
 //bareilly
 document.getElementById("gps-cp").onclick=()=>{
@@ -1627,6 +1658,45 @@ document.getElementById("gps-up").onclick=()=>{
     );
 
 };
+
+
+//DL
+document.getElementById("gps-dl").onclick=()=>{
+
+    navigator.geolocation.getCurrentPosition(
+
+        async(pos)=>{
+
+            const lat=pos.coords.latitude;
+            const lon=pos.coords.longitude;
+
+            pickupCoords={lat,lon};
+
+            const res=await fetch(
+                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+            );
+
+            const data=await res.json();
+
+            document.getElementById("delhi-other-address").value=
+                data.display_name;
+
+        },
+
+        ()=>{
+
+            alert("Location permission denied");
+
+        },
+
+        {
+            enableHighAccuracy:true
+        }
+
+    );
+
+};
+  
 
 
 let pickupCoords = null;
@@ -1720,6 +1790,53 @@ async function searchAddress(query){
     });
 
 }
+
+
+//up
+async function searchAddressDL(query){
+
+    if(query.length < 3){
+        document.getElementById("dl-suggestions").innerHTML="";
+        return;
+    }
+
+    const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
+    );
+
+    const data = await res.json();
+
+    const box = document.getElementById("dl-suggestions");
+
+    box.innerHTML="";
+
+    data.slice(0,5).forEach(place=>{
+
+        const div=document.createElement("div");
+
+        div.className="address-item";
+
+        div.innerText=place.display_name;
+
+        div.onclick=()=>{
+
+            document.getElementById("delhi-other-address").value=
+                place.display_name;
+
+            pickupCoords={
+                lat:place.lat,
+                lon:place.lon
+            };
+
+            box.innerHTML="";
+        };
+
+        box.appendChild(div);
+
+    });
+
+}
+  
 
 function getDaysUntil(dateStr) {
   if (!dateStr) return 999;
