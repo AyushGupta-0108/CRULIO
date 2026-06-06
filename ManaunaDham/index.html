@@ -1607,6 +1607,74 @@ footer {
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
+
+  .trust-strip-wrapper {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6b0000 0%, #8b0000 50%, #6b0000 100%);
+  border-top: 2px solid #c9a84c;
+  border-bottom: 2px solid #c9a84c;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.trust-strip-inner {
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* Fade edges */
+.trust-strip-inner::before,
+.trust-strip-inner::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.trust-strip-inner::before {
+  left: 0;
+  background: linear-gradient(90deg, #6b0000, transparent);
+}
+.trust-strip-inner::after {
+  right: 0;
+  background: linear-gradient(270deg, #6b0000, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: marqueeScroll 28s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.t-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
+  color: #f5e6b0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.divider {
+  color: #c9a84c;
+  font-size: 10px;
+  flex-shrink: 0;
+}
 </style>
 </head>
 <body>
@@ -1698,7 +1766,50 @@ footer {
     </a>
   </div>
 </header>
-
+<!-- ManaunaDham Trust Strip — paste just above your hero section -->
+<div class="trust-strip-wrapper">
+  <div class="trust-strip-inner">
+    <div class="marquee-track">
+      <span class="t-item">🔒 Razorpay Secured Payments</span>
+      <span class="divider">•</span>
+      <span class="t-item">✅ SSL Encrypted Checkout</span>
+      <span class="divider">•</span>
+      <span class="t-item">📲 Instant WhatsApp Confirmation</span>
+      <span class="divider">•</span>
+      <span class="t-item">💰 No Hidden Charges</span>
+      <span class="divider">•</span>
+      <span class="t-item">🌐 Powered by Crulio Networks</span>
+      <span class="divider">•</span>
+      <span class="t-item">🕐 Live Support 24/7 on WhatsApp</span>
+      <span class="divider">•</span>
+      <span class="t-item">🛡️ 100% Safe Online Booking</span>
+      <span class="divider">•</span>
+      <span class="t-item">📍 Local Support from Manauna Dham</span>
+      <span class="divider">•</span>
+      <span class="t-item">🔔 Darshan Timings Updated Daily</span>
+      <span class="divider">•</span>
+      <!-- Duplicate all items below for seamless loop -->
+      <span class="t-item">🔒 Razorpay Secured Payments</span>
+      <span class="divider">•</span>
+      <span class="t-item">✅ SSL Encrypted Checkout</span>
+      <span class="divider">•</span>
+      <span class="t-item">📲 Instant WhatsApp Confirmation</span>
+      <span class="divider">•</span>
+      <span class="t-item">💰 No Hidden Charges</span>
+      <span class="divider">•</span>
+      <span class="t-item">🌐 Powered by Crulio Networks</span>
+      <span class="divider">•</span>
+      <span class="t-item">🕐 Live Support 24/7 on WhatsApp</span>
+      <span class="divider">•</span>
+      <span class="t-item">🛡️ 100% Safe Online Booking</span>
+      <span class="divider">•</span>
+      <span class="t-item">📍 Local Team from ManaunaDham</span>
+      <span class="divider">•</span>
+      <span class="t-item">🔔 Darshan Timings Updated Daily</span>
+      <span class="divider">•</span>
+    </div>
+  </div>
+</div>
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="hero-bg">
