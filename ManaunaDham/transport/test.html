@@ -1527,6 +1527,7 @@ let paymentDetected   = false;
 
 // pick cords
 let pickupCoords = null;
+let tripDistanceKm = 0;
 
 const COUPONS = {
   'MANONA100': { value:100, type:'flat',    label:'₹100 off', tripType:'oneway', description:'One-way Manauna special' },
@@ -1561,21 +1562,56 @@ const DELHI_AIRPORT_RETURN_5 = 8500;
 
   
 // get distamce
-async function getDistanceKm(start, end) {
+async function calculateDistance(){
 
-    const url =
-    `https://router.project-osrm.org/route/v1/driving/` +
-    `${start.lon},${start.lat};${end.lon},${end.lat}` +
-    `?overview=false`;
+    if(!pickupCoords) return;
 
-    const res = await fetch(url);
-    const data = await res.json();
+    const route = await fetch(
+        `https://router.project-osrm.org/route/v1/driving/` +
+        `${pickupCoords.lon},${pickupCoords.lat};` +
+        `${MANAUNA_DHAM.lon},${MANAUNA_DHAM.lat}` +
+        `?overview=false`
+    );
 
-    if (!data.routes || !data.routes.length) {
-        throw new Error("Route not found");
+    const data = await route.json();
+
+    if(!data.routes || !data.routes.length){
+        return;
     }
 
-    return data.routes[0].distance / 1000;
+    tripDistanceKm =
+        data.routes[0].distance / 1000;
+
+    updatePriceSummary();
+}
+  
+function getRate(distance, seats){
+
+    if(seats == 5){
+
+        if(distance <= 50) return 36;
+        if(distance <= 100) return 29.2;
+        if(distance <= 150) return 22.3;
+        if(distance <= 200) return 15.5;
+        if(distance <= 250) return 13.9;
+        if(distance <= 300) return 12.3;
+
+        return 12.3;
+    }
+
+    if(seats == 7){
+
+        if(distance <= 50) return 43;
+        if(distance <= 100) return 34.7;
+        if(distance <= 150) return 26.3;
+        if(distance <= 200) return 18;
+        if(distance <= 250) return 16.15;
+        if(distance <= 300) return 14.3;
+
+        return 14.3;
+    }
+
+    return 0;
 }
   
   
@@ -1881,7 +1917,7 @@ function getBasePrice(pickupKey, dateStr, carSeats) {
   else                return t[15];
 }
 
-function computePrices() {
+function computePrices2() {
   let pickupKey = selPickup;
   if (selPickup === 'up-custom') pickupKey = 'city';
   const dateStr = document.getElementById('pickup-date').value;
@@ -1912,8 +1948,72 @@ function computePrices() {
   totalPayNow  = advanceAmt + platformFees;
 }
 
-function updatePriceSummary() {
-  computePrices();
+async function computePrices() {
+
+    if(!pickupCoords){
+        basePrice = 0;
+        return;
+    }
+
+    const seats = selCar || 7;
+
+    const route = await fetch(
+        `https://router.project-osrm.org/route/v1/driving/` +
+        `${pickupCoords.lon},${pickupCoords.lat};` +
+        `${MANAUNA_DHAM.lon},${MANAUNA_DHAM.lat}` +
+        `?overview=false`
+    );
+
+    const data = await route.json();
+
+    if(!data.routes || !data.routes.length){
+        basePrice = 0;
+        return;
+    }
+
+    tripDistanceKm =
+        data.routes[0].distance / 1000;
+
+    const rate = getRate(
+        tripDistanceKm,
+        seats
+    );
+
+    basePrice = Math.round(
+        tripDistanceKm * rate
+    );
+
+    if(selTrip === "return"){
+        basePrice = Math.round(
+            tripDistanceKm * 2 * rate
+        );
+    }
+
+    discAmt = 0;
+
+    if(activeCoupon && COUPONS[activeCoupon]){
+
+        const c = COUPONS[activeCoupon];
+
+        if(c.tripType === selTrip){
+
+            discAmt = c.type === 'flat'
+                ? c.value
+                : Math.round(basePrice * c.value / 100);
+
+        }
+    }
+
+    finalPrice   = Math.max(basePrice - discAmt, 0);
+    advanceAmt   = Math.round(finalPrice * 0.15);
+    platformFees = Math.round(finalPrice * 0.05);
+    totalPayNow  = advanceAmt + platformFees;
+}
+
+//function updatePriceSummary() {
+async function updatePriceSummary() {
+  await computePrices();
+  //computePrices();
   const s = document.getElementById('price-summary');
   s.classList.add('show');
   document.getElementById('ps-pickup').textContent  = getPickupLabel();
