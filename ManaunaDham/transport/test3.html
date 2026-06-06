@@ -1630,7 +1630,7 @@ const POPULAR_LOCATIONS = [
 function initMapsAPI() {
   if (mapsLoaded) return;
   const key = window.GMAPS_KEY;
-  if (!key || key === 'YOUR_MAPS_API_KEY') {
+  if (!key || key === 'AIzaSyBHjqbz3Cprm_VWgTGjuvS7_G8Y7p5h16I') {
     initMapFallback();
     return;
   }
@@ -1785,23 +1785,22 @@ function showDistanceResult(km, durationText, tollOverride) {
   document.getElementById('dist-fare-7').textContent = '₹' + (fare7 + tollAmt).toLocaleString('en-IN');
 }
 
-function reverseGeocode(lat, lng) {
-  if (!geocoder) {
-    // Geocoder not ready — place with coords, distance still calculated
-    placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
-    return;
-  }
-  geocoder.geocode({ location: { lat, lng } }, (results, status) => {
-    if (status === 'OK' && results[0]) {
-      const r = results[0];
-      const name = r.address_components.find(c =>
-        c.types.includes('locality') || c.types.includes('sublocality')
-      )?.long_name || 'My Location';
-      placePickupMarker(lat, lng, name, r.formatted_address);
+async function reverseGeocode(lat, lng) {
+  // Use Nominatim for reverse geocoding — free, no billing needed
+  try {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`;
+    const resp = await fetch(url, { headers: { 'User-Agent': 'ManaunaDhamCabBooking/1.0 (crulio.com)' } });
+    const r = await resp.json();
+    if (r && r.address) {
+      const addr = r.address;
+      const name = addr.road || addr.suburb || addr.neighbourhood || addr.village || addr.town || addr.city || 'My Location';
+      placePickupMarker(lat, lng, name, r.display_name);
     } else {
       placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
     }
-  });
+  } catch(e) {
+    placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+  }
 }
 
 function clearLocation() {
@@ -1817,35 +1816,83 @@ function clearLocation() {
 let searchTimeout = null;
 function handleSearchInput(val) {
   clearTimeout(searchTimeout);
-  if (val.length < 2) { hideSuggestions(); return; }
-  searchTimeout = setTimeout(() => fetchSuggestions(val), 300);
+  if (val.length < 3) { hideSuggestions(); return; }
+  searchTimeout = setTimeout(() => fetchSuggestions(val), 500); // Nominatim rate-limit friendly
 }
 
-function fetchSuggestions(input) {
-  if (mapsLoaded && autocompleteService) {
-    autocompleteService.getPlacePredictions({
-      input: input + ', India',
-      componentRestrictions: { country: 'IN' },
-      types: ['geocode', 'establishment'],
-    }, (preds, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && preds) {
-        renderSuggestions(preds.map(p => ({
-          id: p.place_id,
-          main: p.structured_formatting.main_text,
-          sub:  p.structured_formatting.secondary_text,
-          icon: getSuggestionIcon(p.types || [])
-        })));
-      } else { hideSuggestions(); }
+async function fetchSuggestions(input) {
+  // First show popular matches instantly while Nominatim loads
+  const q = input.toLowerCase();
+  const popularMatches = POPULAR_LOCATIONS.filter(l =>
+    l.name.toLowerCase().includes(q) || l.addr.toLowerCase().includes(q)
+  ).map(l => ({ id: null, main: l.name, sub: l.addr, lat: l.lat, lng: l.lng, icon: l.icon }));
+  if (popularMatches.length) renderSuggestions(popularMatches);
+
+  // Nominatim (OpenStreetMap) — completely free, no billing, no API key required
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
+      q: input + ', India',
+      format: 'json',
+      addressdetails: 1,
+      limit: 7,
+      countrycodes: 'IN',
+      'accept-language': 'en',
     });
-  } else {
-    // No maps — show popular matches filtered by input
-    const q = input.toLowerCase();
-    const matches = POPULAR_LOCATIONS.filter(l =>
-      l.name.toLowerCase().includes(q) || l.addr.toLowerCase().includes(q)
-    ).map(l => ({ id: null, main: l.name, sub: l.addr, lat: l.lat, lng: l.lng, icon: l.icon }));
-    if (matches.length) renderSuggestions(matches);
+    const resp = await fetch(url, {
+      headers: { 'User-Agent': 'ManaunaDhamCabBooking/1.0 (crulio.com)' }
+    });
+    const results = await resp.json();
+    if (!results || !results.length) {
+      if (!popularMatches.length) hideSuggestions();
+      return;
+    }
+    const nominatimItems = results.map(r => {
+      const addr = r.address || {};
+      // Build a clean "main" label — prefer known parts over raw display name
+      const main = addr.road || addr.suburb || addr.neighbourhood ||
+                   addr.city_district || addr.village || addr.town ||
+                   addr.city || r.display_name.split(',')[0];
+      // Build secondary line from address components
+      const parts = [
+        addr.suburb || addr.neighbourhood || addr.city_district,
+        addr.city || addr.town || addr.village || addr.county,
+        addr.state,
+      ].filter(Boolean);
+      const sub = parts.join(', ') || r.display_name;
+      return {
+        id: null,
+        lat: parseFloat(r.lat),
+        lng: parseFloat(r.lon),
+        main: main,
+        sub: sub,
+        icon: getNominatimIcon(r.type, r.class),
+        fullAddr: r.display_name,
+      };
+    });
+    // Merge: popular picks first, then Nominatim results (deduplicated by name)
+    const seen = new Set(popularMatches.map(m => m.main.toLowerCase()));
+    const merged = [
+      ...popularMatches,
+      ...nominatimItems.filter(n => !seen.has(n.main.toLowerCase()))
+    ];
+    if (merged.length) renderSuggestions(merged);
     else hideSuggestions();
+  } catch(err) {
+    console.warn('Nominatim autocomplete error:', err);
+    if (!popularMatches.length) hideSuggestions();
   }
+}
+
+function getNominatimIcon(type, cls) {
+  if (type === 'aerodrome' || cls === 'aeroway') return '✈️';
+  if (type === 'station' || cls === 'railway') return '🚂';
+  if (type === 'bus_stop' || type === 'bus_station') return '🚌';
+  if (cls === 'tourism' && (type === 'hotel' || type === 'hostel' || type === 'motel')) return '🏨';
+  if (cls === 'place' && (type === 'city' || type === 'town')) return '🏙️';
+  if (cls === 'place' && (type === 'village' || type === 'hamlet')) return '🏘️';
+  if (cls === 'amenity' && type === 'hospital') return '🏥';
+  if (cls === 'amenity' && type === 'school') return '🏫';
+  return '📍';
 }
 
 function getSuggestionIcon(types) {
@@ -1908,9 +1955,9 @@ function selectSuggestion(item) {
   hideSuggestions();
   document.getElementById('pickup-search').value = item.main;
 
-  // Case 1: Already have lat/lng (popular locations fallback)
+  // Case 1: Already have lat/lng (popular locations OR Nominatim results)
   if (item.lat) {
-    placePickupMarker(item.lat, item.lng, item.main, item.sub || item.main);
+    placePickupMarker(item.lat, item.lng, item.main, item.fullAddr || item.sub || item.main);
     return;
   }
 
