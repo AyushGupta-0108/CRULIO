@@ -707,8 +707,8 @@ footer p:last-child{font-size:12px;opacity:.65;}
 
 <!-- ══ TOP DISCOUNT BANNER ══ -->
 <div class="top-discount-banner" onclick="document.getElementById('booking-wizard').scrollIntoView({behavior:'smooth',block:'start'})">
-  <span class="tdb-tag">&#128275; UNLOCKED</span>
-  <span>Upto <strong>&#8377;200 discount</strong> unlocked — See prices &amp; apply in the booking form below</span>
+  <span class="tdb-tag">&#128275; UNLOCKED</span> 
+  <span>Upto <strong>&#8377;200 discount</strong></span>
   <span class="tdb-arrow">&#8595;</span>
 </div>
 
@@ -1644,8 +1644,8 @@ function calcDisplayFare(km, carSeats) {
 //  Rule: no toll charged for first 50 km. Beyond 50 km, linear scale anchored at 268 km = ₹750.
 //  Rate per km above 50 = 750 / (268 - 50) = 750 / 218 ≈ 3.44 ₹/km
 function estimateToll(km) {
-  if (km <= 50) return 0;
-  return Math.round((km - 50) * (750 / 218));
+  if (km <= 55) return 0;  // No toll for short-range pickups (covers Bareilly area ~50-55 km)
+  return Math.round((km - 55) * (750 / 213));  // anchor: 268 km = ₹750, adjusted for new base
 }
 
 function getDaysUntil(dateStr) {
@@ -1871,8 +1871,8 @@ function showDistanceResult(km, durationText, tollOverride) {
   computedDistKm = km;
   tollAmt = tollOverride !== null ? tollOverride : estimateToll(km);
 
-  const fare5 = calcDistanceFare(km, 5);
-  const fare7 = calcDistanceFare(km, 7);
+  const fare5 = calcDisplayFare(km, 5);
+  const fare7 = calcDisplayFare(km, 7);
 
   document.getElementById('dist-loading').style.display = 'none';
   document.getElementById('dist-result').style.display = 'block';
