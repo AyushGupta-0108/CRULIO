@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Crulio Landing Page -->
+
+  <url>
+    <loc>https://www.crulio.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Manauna Dham Homepage -->
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/contact</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/patient</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.97</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/accommodations</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.97</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/transport</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/rajgarden</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.93</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/paathak</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/jal</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/mahant</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://www.crulio.com/ManaunaDham/khatushyam</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+</urlset>
