@@ -1180,6 +1180,9 @@ footer p:last-child{font-size:12px;opacity:.65;}
           <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:14px;color:var(--text-muted);border-bottom:1px solid var(--border-soft);">
             <span>Driver collects at pickup (85%)</span><span class="sv" id="ps-remain" style="font-weight:600;color:var(--text);">&#8212;</span>
           </div>
+
+          <div class="ps-row" id="ps-toll-row"><span>🛣 Toll Charges</span><span class="sv" id="ps-toll">₹0</span></div>
+          
           <div class="ps-row ps-advance"><span>&#128274; Advance — 15% (pay now)</span><span class="sv" id="ps-advance">&#8212;</span></div>
           <div class="ps-row ps-platform"><span>&#127991;&#65039; Platform Fee — 5% (pay now)</span><span class="sv" id="ps-platform">&#8212;</span></div>
           <div class="ps-row ps-total-now"><span>&#128179; Total Pay Now</span><span class="sv" id="ps-total-now">&#8212;</span></div>
@@ -2011,6 +2014,8 @@ async function updatePriceSummary() {
   document.getElementById('ps-platform').textContent  = '₹' + platformFees.toLocaleString('en-IN');
   document.getElementById('ps-total-now').textContent = '₹' + totalPayNow.toLocaleString('en-IN');
   document.getElementById('pay-btn-text').textContent = 'Pay ₹' + totalPayNow.toLocaleString('en-IN') + ' via QR Code';
+  document.getElementById('ps-toll').textContent =
+    '₹' + tollAmount.toLocaleString('en-IN');
 }
 
 function getPickupLabel() {
