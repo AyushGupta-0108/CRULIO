@@ -1567,47 +1567,29 @@ const DELHI_AIRPORT_RETURN_5 = 8500;
   
   
 // ─── DISTANCE-BASED RATE ENGINE ───────────────────────────────────────────
-// Three distance tiers (per-km base rate, same for both vehicle types):
-//   Tier 1 :  0 – 50 km  → ₹18 / km
-//   Tier 2 : 51 – 100 km → ₹14 / km
-//   Tier 3 : 101 km +    → ₹11 / km
+// Per-km rates by vehicle type and distance band:
 //
-// Vehicle-type extra charge (added on top of the base rate):
-//   5-Seater (5-wheeler) : +₹3 / km  (standard sedan surcharge)
-//   7-Seater (7-wheeler) : +₹7 / km  (SUV/MUV premium surcharge)
-//
-// Combined effective rates used in calculation:
-//   Distance      | 5-Seater (5W) | 7-Seater (7W)
-//   0 – 50 km     |  ₹21 / km     |  ₹25 / km
-//   51 – 100 km   |  ₹17 / km     |  ₹21 / km
-//   101 km +      |  ₹14 / km     |  ₹18 / km
+//   Distance        | 5-Seater | 7-Seater
+//   0   – 50  km    |  ₹36.0   |  ₹43.0
+//   50  – 100 km    |  ₹29.2   |  ₹34.7
+//   100 – 150 km    |  ₹22.3   |  ₹26.3
+//   150 – 200 km    |  ₹15.5   |  ₹18.0
+//   200 – 250 km    |  ₹13.9   |  ₹16.15
+//   250 – 300 km    |  ₹12.3   |  ₹14.3
+//   300 km +        |  ₹12.3   |  ₹14.3  (same as last band)
 // ─────────────────────────────────────────────────────────────────────────
-const DISTANCE_RATES = {
-  tier1: { maxKm: 50,  baseRate: 18 },   // 0 – 50 km
-  tier2: { maxKm: 100, baseRate: 14 },   // 51 – 100 km
-  tier3: { maxKm: Infinity, baseRate: 11 } // 101 km +
-};
-
-const VEHICLE_SURCHARGE = {
-  5: 3,   // 5-wheeler (5-seater sedan): +₹3/km
-  7: 7    // 7-wheeler (7-seater SUV/MUV): +₹7/km
-};
+const RATE_BANDS = [
+  { maxKm: 50,       rate5: 36,   rate7: 43    },
+  { maxKm: 100,      rate5: 29.2, rate7: 34.7  },
+  { maxKm: 150,      rate5: 22.3, rate7: 26.3  },
+  { maxKm: 200,      rate5: 15.5, rate7: 18    },
+  { maxKm: 250,      rate5: 13.9, rate7: 16.15 },
+  { maxKm: Infinity, rate5: 12.3, rate7: 14.3  },
+];
 
 function getRate(distance, seats) {
-  // Determine base rate from distance tier
-  let baseRate;
-  if (distance <= DISTANCE_RATES.tier1.maxKm) {
-    baseRate = DISTANCE_RATES.tier1.baseRate;
-  } else if (distance <= DISTANCE_RATES.tier2.maxKm) {
-    baseRate = DISTANCE_RATES.tier2.baseRate;
-  } else {
-    baseRate = DISTANCE_RATES.tier3.baseRate;
-  }
-
-  // Add vehicle-type surcharge
-  const surcharge = VEHICLE_SURCHARGE[seats] || 0;
-
-  return baseRate + surcharge;
+  const band = RATE_BANDS.find(b => distance <= b.maxKm) || RATE_BANDS[RATE_BANDS.length - 1];
+  return seats === 5 ? band.rate5 : band.rate7;
 }
   
   
@@ -2000,19 +1982,20 @@ async function updatePriceSummary() {
   const s = document.getElementById('price-summary');
   s.classList.add('show');
   document.getElementById('ps-pickup').textContent  = getPickupLabel();
-  document.getElementById('ps-cartype').textContent = selCar === 5 ? '5-Seater (5-Wheeler)' : '7-Seater (7-Wheeler)';
+  document.getElementById('ps-cartype').textContent = selCar === 5 ? '5-Seater' : '7-Seater';
   document.getElementById('ps-trip').textContent    = selTrip === 'return' ? 'Return Trip (same location)' : 'One Way';
 
   // Distance + rate breakdown
   if (tripDistanceKm > 0) {
-    const distTier = tripDistanceKm <= 50 ? '0–50 km tier' :
-                     tripDistanceKm <= 100 ? '51–100 km tier' : '100+ km tier';
-    const effectiveRate = getRate(tripDistanceKm, selCar || 7);
-    const surcharge = VEHICLE_SURCHARGE[selCar || 7];
-    const baseRate  = effectiveRate - surcharge;
-    let distEl = document.getElementById('ps-distance');
+    const seats = selCar || 7;
+    const effectiveRate = getRate(tripDistanceKm, seats);
+    const bandLabel = tripDistanceKm <= 50  ? '0–50 km band'   :
+                      tripDistanceKm <= 100 ? '50–100 km band' :
+                      tripDistanceKm <= 150 ? '100–150 km band':
+                      tripDistanceKm <= 200 ? '150–200 km band':
+                      tripDistanceKm <= 250 ? '200–250 km band': '250–300 km band';
+    let distEl = document.getElementById('ps-distance-row');
     if (!distEl) {
-      // Inject distance row before base fare row if not already present
       const baseFareRow = document.getElementById('ps-base').closest('.ps-row');
       distEl = document.createElement('div');
       distEl.className = 'ps-row';
@@ -2023,11 +2006,9 @@ async function updatePriceSummary() {
       baseFareRow.parentNode.insertBefore(distEl, baseFareRow);
     }
     document.getElementById('ps-distance').innerHTML =
-      Math.round(tripDistanceKm) + ' km &nbsp;·&nbsp; ' +
-      distTier + '<br>' +
+      Math.round(tripDistanceKm) + ' km &nbsp;·&nbsp; ' + bandLabel + '<br>' +
       '<span style="font-size:11.5px;color:var(--text-muted);">' +
-      'Base ₹' + baseRate + '/km + ' +
-      (selCar === 5 ? '5W' : '7W') + ' surcharge ₹' + surcharge + '/km = <strong>₹' + effectiveRate + '/km</strong>' +
+      (seats === 5 ? '5-Seater' : '7-Seater') + ': <strong>₹' + effectiveRate + '/km</strong>' +
       '</span>';
   }
 
