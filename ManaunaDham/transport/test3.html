@@ -1786,10 +1786,14 @@ function showDistanceResult(km, durationText, tollOverride) {
 }
 
 async function reverseGeocode(lat, lng) {
-  // Use Nominatim for reverse geocoding — free, no billing needed
+  // Use our Vercel proxy → Nominatim for reverse geocoding — free, no billing
   try {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`;
-    const resp = await fetch(url, { headers: { 'User-Agent': 'ManaunaDhamCabBooking/1.0 (crulio.com)' } });
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({
+      mode: 'reverse',
+      lat: lat,
+      lon: lng,
+    });
+    const resp = await fetch(url);
     const r = await resp.json();
     if (r && r.address) {
       const addr = r.address;
@@ -1830,17 +1834,12 @@ async function fetchSuggestions(input) {
 
   // Nominatim (OpenStreetMap) — completely free, no billing, no API key required
   try {
-    const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
-      q: input + ', India',
-      format: 'json',
-      addressdetails: 1,
-      limit: 7,
-      countrycodes: 'IN',
-      'accept-language': 'en',
+    // Call our Vercel proxy — Nominatim blocks direct browser requests (CORS)
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({
+      mode: 'search',
+      q: input,
     });
-    const resp = await fetch(url, {
-      headers: { 'User-Agent': 'ManaunaDhamCabBooking/1.0 (crulio.com)' }
-    });
+    const resp = await fetch(url);
     const results = await resp.json();
     if (!results || !results.length) {
       if (!popularMatches.length) hideSuggestions();
