@@ -1481,9 +1481,9 @@ const QR_API_ENDPOINT   = 'https://harshdeep-api.vercel.app/api/create-qr';
 const CHECK_API         = 'https://harshdeep-api.vercel.app/api/check-payment';
 const BLOCKED_DATES_API = 'https://harshdeep-api.vercel.app/api/blocked-dates?hotel=taxi-service';
 
-// Manauna Dham drop-off coordinates
-const MANAUNA_DHAM_LAT  = 28.1497;
-const MANAUNA_DHAM_LNG  = 79.5343;
+// Manauna Dham drop-off coordinates (Manauna village, Aonla, Bareilly)
+const MANAUNA_DHAM_LAT  = 28.2792;
+const MANAUNA_DHAM_LNG  = 79.1328;
 const MANAUNA_DHAM_ADDR = 'Manauna Dham, Aonla, Bareilly, Uttar Pradesh';
 
 let RAZORPAY_KEY = null;
@@ -1631,13 +1631,17 @@ function initMapsAPI() {
   if (mapsLoaded) return;
   const key = window.GMAPS_KEY;
   if (!key || key === 'YOUR_MAPS_API_KEY') {
-    // No key — use fallback mode
     initMapFallback();
     return;
   }
+  // Make callback global before injecting script
+  window.onMapsReady = onMapsReady;
   const s = document.createElement('script');
-  s.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=onMapsReady`;
-  s.async = true; s.defer = true;
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=' + key + '&libraries=places&callback=onMapsReady&loading=async';
+  s.onerror = function() {
+    console.warn('Maps API failed to load — check API key and enabled APIs');
+    initMapFallback();
+  };
   document.head.appendChild(s);
 }
 
@@ -1653,7 +1657,7 @@ function initMapFull() {
   const mapEl = document.getElementById('pickup-map');
   document.getElementById('map-loading').style.display = 'none';
   map = new google.maps.Map(mapEl, {
-    center: { lat: 28.35, lng: 79.45 },
+    center: { lat: 28.28, lng: 79.13 },
     zoom: 9,
     mapTypeControl: false,
     streetViewControl: false,
@@ -1734,10 +1738,10 @@ function placePickupMarker(lat, lng, name, addr) {
   if (mapsLoaded && distanceService) {
     calcRouteDistance(lat, lng);
   } else {
-    // Straight-line fallback
+    // Straight-line fallback with highway-appropriate road factor (1.15)
     const dlat = lat - MANAUNA_DHAM_LAT;
     const dlng = lng - MANAUNA_DHAM_LNG;
-    const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.35); // ~1.35 road factor
+    const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.15);
     showDistanceResult(km, null, null);
   }
 }
@@ -1759,7 +1763,7 @@ function calcRouteDistance(lat, lng) {
       // Fallback
       const dlat = lat - MANAUNA_DHAM_LAT;
       const dlng = lng - MANAUNA_DHAM_LNG;
-      const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.35);
+      const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.15);
       showDistanceResult(km, null, null);
     }
   });
@@ -1782,12 +1786,20 @@ function showDistanceResult(km, durationText, tollOverride) {
 }
 
 function reverseGeocode(lat, lng) {
-  if (!geocoder) return;
+  if (!geocoder) {
+    // Geocoder not ready — place with coords, distance still calculated
+    placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+    return;
+  }
   geocoder.geocode({ location: { lat, lng } }, (results, status) => {
     if (status === 'OK' && results[0]) {
       const r = results[0];
-      const name = r.address_components.find(c => c.types.includes('locality') || c.types.includes('sublocality'))?.long_name || 'Selected Location';
+      const name = r.address_components.find(c =>
+        c.types.includes('locality') || c.types.includes('sublocality')
+      )?.long_name || 'My Location';
       placePickupMarker(lat, lng, name, r.formatted_address);
+    } else {
+      placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
     }
   });
 }
@@ -1866,24 +1878,46 @@ function handleSearchKey(e) {
 
 function selectSuggestion(item) {
   hideSuggestions();
+  document.getElementById('pickup-search').value = item.main;
+
+  // Case 1: Already have lat/lng (popular locations fallback)
   if (item.lat) {
     placePickupMarker(item.lat, item.lng, item.main, item.sub || item.main);
-  } else if (item.id && geocoder) {
+    return;
+  }
+
+  // Case 2: Have a place_id — use PlacesService (most reliable, works even without geocoder)
+  if (item.id && mapsLoaded) {
+    const svc = new google.maps.places.PlacesService(document.createElement('div'));
+    svc.getDetails({ placeId: item.id, fields: ['geometry', 'formatted_address', 'name'] }, (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+        placePickupMarker(
+          place.geometry.location.lat(),
+          place.geometry.location.lng(),
+          item.main,
+          place.formatted_address || item.sub || item.main
+        );
+      } else {
+        alert('Could not locate this place. Please try a different search term.');
+      }
+    });
+    return;
+  }
+
+  // Case 3: Have place_id but Maps not loaded yet — try geocoder
+  if (item.id && geocoder) {
     geocoder.geocode({ placeId: item.id }, (results, status) => {
       if (status === 'OK' && results[0]) {
         const loc = results[0].geometry.location;
         placePickupMarker(loc.lat(), loc.lng(), item.main, results[0].formatted_address);
+      } else {
+        alert('Could not locate this place. Please try searching again.');
       }
     });
-  } else if (item.id && mapsLoaded) {
-    // use PlacesService to get details
-    const svc = new google.maps.places.PlacesService(document.createElement('div'));
-    svc.getDetails({ placeId: item.id, fields: ['geometry','formatted_address'] }, (place, status) => {
-      if (status === 'OK') {
-        placePickupMarker(place.geometry.location.lat(), place.geometry.location.lng(), item.main, place.formatted_address);
-      }
-    });
+    return;
   }
+
+  alert('Maps are still loading. Please wait a moment and try again.');
 }
 
 // GPS
@@ -1905,7 +1939,8 @@ function useMyLocation() {
       if (mapsLoaded && geocoder) {
         reverseGeocode(lat, lng);
       } else {
-        placePickupMarker(lat, lng, 'My Location', `${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+        // Maps not ready — place marker immediately with coordinates, distance via straight-line
+        placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
       }
       if (map) map.setCenter({ lat, lng });
     },
@@ -1913,7 +1948,10 @@ function useMyLocation() {
       btn.disabled = false;
       btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> Use My Current Location';
       st.style.display = 'none';
-      alert('Could not get your location. Please search manually.');
+      let msg = 'Could not get your location. Please search manually.';
+      if (err.code === 1) msg = 'Location access denied. Please allow location permission in your browser and try again.';
+      if (err.code === 3) msg = 'Location request timed out. Please search your pickup manually.';
+      alert(msg);
     },
     { timeout: 10000, maximumAge: 60000 }
   );
