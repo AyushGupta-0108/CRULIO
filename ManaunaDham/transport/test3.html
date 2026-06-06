@@ -21,7 +21,7 @@
 
 <!-- Google Maps API — replace YOUR_MAPS_API_KEY with your key -->
 <script>
-  window.GMAPS_KEY = 'YOUR_MAPS_API_KEY';
+  window.GMAPS_KEY = 'AIzaSyBHjqbz3Cprm_VWgTGjuvS7_G8Y7p5h16I';
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
 <script>
@@ -723,8 +723,8 @@ footer p:last-child{font-size:12px;opacity:.65;}
   </div>
 </section>
 
-<!-- ══ PRICE TABLE ══ -->
-<div style="background:white;border-bottom:3px solid var(--gold);">
+<!-- ══ PRICE TABLE — internal reference only, hidden from users ══ -->
+<div style="display:none;background:white;border-bottom:3px solid var(--gold);">
   <div style="background:linear-gradient(135deg,var(--maroon-dark),var(--maroon));padding:16px 24px;display:flex;align-items:center;gap:12px;">
     <span style="font-size:20px;">📋</span>
     <div>
@@ -786,16 +786,16 @@ footer p:last-child{font-size:12px;opacity:.65;}
   <div class="price-pill">
     <div class="route">Bareilly (~45 km)</div>
     <div class="amount">from &#8377;1,620</div>
-    <div class="type">5-Seater + Toll</div>
+    <div class="type">5-Seater · No Toll</div>
   </div>
   <div class="price-pill">
-    <div class="route">Delhi NCR (~280 km)</div>
-    <div class="amount">from &#8377;3,444</div>
-    <div class="type">5-Seater + Toll</div>
+    <div class="route">Delhi NCR (~268 km)</div>
+    <div class="amount">from &#8377;4,047</div>
+    <div class="type">5-Seater + &#8377;750 Toll</div>
   </div>
   <div class="price-pill">
     <div class="route">Return Trip</div>
-    <div class="amount">2× Fare</div>
+    <div class="amount">2&times; Fare</div>
     <div class="type">Same route discount</div>
   </div>
   <div class="price-pill">
@@ -1030,16 +1030,16 @@ footer p:last-child{font-size:12px;opacity:.65;}
             <div class="sel-badge">&#10003;</div>
             <div class="opt-icon">&#128205;</div>
             <div class="opt-title">Different Location</div>
-            <div class="opt-sub">Drop somewhere else — WhatsApp for price</div>
+            <div class="opt-sub">Drop somewhere else — fare calculated automatically</div>
           </div>
         </div>
         <div class="form-group" id="diff-drop-group" style="display:none;margin-top:12px;">
           <label>Drop-off address <span class="req">*</span></label>
-          <input type="text" id="diff-drop-addr" placeholder="e.g. Pilibhit Bus Stand, Pilibhit, U.P.">
+          <input type="text" id="diff-drop-addr" placeholder="e.g. Pilibhit Bus Stand, Pilibhit, U.P." oninput="onDiffDropInput(this.value)">
         </div>
         <div class="alert-box info" id="diff-drop-notice" style="display:none;margin-top:12px;">
           <i class="fa fa-circle-info"></i>
-          <div>For a different drop location, we'll confirm the price on WhatsApp. Proceed and we'll send the quote before payment.</div>
+          <div>Type your drop-off address above — we'll calculate the return leg fare automatically.</div>
         </div>
         <div id="return-datetime-group" style="display:none;margin-top:18px;animation:stageIn .3s ease;">
           <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
@@ -1208,7 +1208,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <ul>
         <li><span>Distance</span><b>43 km</b></li>
         <li><span>Drive Time</span><b>~1 hr 15 min</b></li>
-        <li><span>One Way from</span><b>&#8377;1,599</b></li>
+        <li><span>One Way from</span><b>&#8377;1,548</b></li>
       </ul>
     </div>
     <div class="info-card">
@@ -1216,15 +1216,15 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <ul>
         <li><span>Distance</span><b>51 km</b></li>
         <li><span>Drive Time</span><b>~1 hr 25 min</b></li>
-        <li><span>One Way from</span><b>&#8377;1,599</b></li>
+        <li><span>One Way from</span><b>&#8377;1,492</b></li>
       </ul>
     </div>
     <div class="info-card">
       <h3><i class="fa fa-plane-departure" style="color:var(--gold);margin-right:6px;"></i> From Delhi Airport (IGI)</h3>
       <ul>
-        <li><span>Distance</span><b>~250 km</b></li>
+        <li><span>Distance</span><b>~268 km</b></li>
         <li><span>Drive Time</span><b>~4.5 – 5 hrs</b></li>
-        <li><span>One Way from</span><b>&#8377;4,799</b></li>
+        <li><span>One Way from</span><b>&#8377;4,047</b></li>
       </ul>
     </div>
     <div class="info-card">
@@ -1509,6 +1509,8 @@ let platformFees = 0;
 let totalPayNow  = 0;
 let needsWAOnly  = false;
 let computedDistKm = 0;
+let returnDistKm = 0;   // distance for return leg (diff-drop)
+let returnTollAmt = 0;  // toll for return leg
 
 // QR state
 let qrActiveId        = null;
@@ -1544,36 +1546,25 @@ const RATE_SLABS_7 = [
   { upTo: 9999,rate: 13.0  },
 ];
 
+// Flat-slab pricing: find which slab the total km falls into, apply that rate to ALL km.
+// e.g. 268 km falls in 250-300 bracket at Rs.12.3/km => 268 x 12.3 = Rs.3,296
 function calcDistanceFare(km, carSeats) {
   const slabs = carSeats === 5 ? RATE_SLABS_5 : RATE_SLABS_7;
-  let remaining = km;
-  let total = 0;
-  let prev = 0;
+  let rate = slabs[slabs.length - 1].rate;
   for (const slab of slabs) {
-    if (remaining <= 0) break;
-    const slabKm = Math.min(remaining, slab.upTo - prev);
-    total += slabKm * slab.rate;
-    remaining -= slabKm;
-    prev = slab.upTo;
+    if (km <= slab.upTo) { rate = slab.rate; break; }
   }
-  return Math.round(total);
+  return Math.round(km * rate);
 }
 
-// Toll estimation based on route distance from Manauna Dham
-// Uses known NHAI toll booth data on major routes from Manauna:
-//  - Aonla Toll Plaza (~8 km from Manauna): ₹75 per trip (car)
-//  - Bareilly Bypass Toll (~45 km): ₹95
-//  - Delhi–Moradabad NH-9 tolls for longer routes: multiple plazas
+// Toll estimation based on real data:
+//  - Bareilly (~45 km from Manauna): ₹0 toll — no toll plaza on that route
+//  - Delhi (~268 km from Manauna):   ₹750 toll
+//  Rule: no toll charged for first 50 km. Beyond 50 km, linear scale anchored at 268 km = ₹750.
+//  Rate per km above 50 = 750 / (268 - 50) = 750 / 218 ≈ 3.44 ₹/km
 function estimateToll(km) {
-  // One-way toll estimate based on distance bands
-  if (km <= 30)  return 75;           // Local Aonla area — 1 toll
-  if (km <= 60)  return 150;          // Bareilly — Aonla + Bareilly bypass
-  if (km <= 100) return 220;          // Up to 100 km — 3 plazas approx
-  if (km <= 150) return 310;          // Extended UP route
-  if (km <= 200) return 420;          // NH routes
-  if (km <= 250) return 530;          // Delhi outskirts
-  if (km <= 300) return 640;          // Delhi full
-  return Math.round(640 + (km - 300) * 1.5); // beyond 300km
+  if (km <= 50) return 0;
+  return Math.round((km - 50) * (750 / 218));
 }
 
 function getDaysUntil(dateStr) {
@@ -1591,6 +1582,12 @@ function computePrices() {
 
   if (selTrip === 'return' && selDrop === 'same') {
     basePrice = (oneFare + oneToll) * 2;
+  } else if (selTrip === 'return' && selDrop === 'diff') {
+    // Return leg: from Manauna Dham to different drop location
+    const retKm   = returnDistKm || 0;
+    const retFare = calcDistanceFare(retKm, seats);
+    const retToll = returnTollAmt || estimateToll(retKm);
+    basePrice = (oneFare + oneToll) + (retFare + retToll);
   } else {
     basePrice = oneFare + oneToll;
   }
@@ -2061,12 +2058,32 @@ function updatePriceSummary() {
 
   document.getElementById('ps-pickup').textContent  = getPickupLabel();
   document.getElementById('ps-cartype').textContent = selCar === 5 ? '5-Seater' : '7-Seater';
-  document.getElementById('ps-trip').textContent    = selTrip === 'return' ? 'Return Trip (same location)' : 'One Way';
+
+  if (selTrip === 'return' && selDrop === 'same') {
+    document.getElementById('ps-trip').textContent = 'Return Trip (same location)';
+  } else if (selTrip === 'return' && selDrop === 'diff') {
+    const diffAddr = document.getElementById('diff-drop-addr').value.trim() || 'Custom Location';
+    document.getElementById('ps-trip').textContent = 'Return Trip → ' + diffAddr;
+  } else {
+    document.getElementById('ps-trip').textContent = 'One Way';
+  }
 
   // Show breakdown: base fare + toll
-  const baseFareDisplay = selTrip === 'return' && selDrop === 'same' ? baseFare * 2 : baseFare;
-  const tollDisplay     = selTrip === 'return' && selDrop === 'same' ? toll * 2 : toll;
-  document.getElementById('ps-base').textContent    = '₹' + baseFareDisplay.toLocaleString('en-IN') + ' + ₹' + tollDisplay + ' toll';
+  if (selTrip === 'return' && selDrop === 'same') {
+    const baseFareDisplay = baseFare * 2;
+    const tollDisplay     = toll * 2;
+    document.getElementById('ps-base').textContent = '₹' + baseFareDisplay.toLocaleString('en-IN') + ' + ₹' + tollDisplay + ' toll (×2 legs)';
+  } else if (selTrip === 'return' && selDrop === 'diff') {
+    const retKm   = returnDistKm || 0;
+    const retFare = calcDistanceFare(retKm, seats);
+    const retToll = returnTollAmt || estimateToll(retKm);
+    const leg1 = baseFare + toll;
+    const leg2 = retFare + retToll;
+    document.getElementById('ps-base').textContent =
+      '₹' + leg1.toLocaleString('en-IN') + ' (leg 1) + ₹' + leg2.toLocaleString('en-IN') + ' (return leg)';
+  } else {
+    document.getElementById('ps-base').textContent = '₹' + baseFare.toLocaleString('en-IN') + ' + ₹' + toll + ' toll';
+  }
 
   const discRow = document.getElementById('ps-disc-row');
   if (discAmt > 0) {
@@ -2079,6 +2096,12 @@ function updatePriceSummary() {
   document.getElementById('ps-platform').textContent  = '₹' + platformFees.toLocaleString('en-IN');
   document.getElementById('ps-total-now').textContent = '₹' + totalPayNow.toLocaleString('en-IN');
   document.getElementById('pay-btn-text').textContent = 'Pay ₹' + totalPayNow.toLocaleString('en-IN') + ' via QR Code';
+
+  // Auto-scroll to the payment button after a short delay
+  setTimeout(() => {
+    const payBtn = document.getElementById('qr-pay-btn');
+    if (payBtn) payBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 350);
 }
 
 // ═════════ STAGE 2 — DATE ═════════
@@ -2119,6 +2142,7 @@ function selectCar(n) {
 // ═════════ STAGE 4 — TRIP TYPE ═════════
 function selectTrip(type) {
   selTrip = type; selDrop = null; activeCoupon = null;
+  returnDistKm = 0; returnTollAmt = 0;
   ['trip-oneway','trip-return'].forEach(id => document.getElementById(id).classList.remove('selected'));
   document.getElementById('trip-' + type).classList.add('selected');
   const rsub = document.getElementById('return-sub');
@@ -2138,13 +2162,53 @@ function selectDrop(type) {
   document.getElementById('return-datetime-group').style.display = 'block';
   const pickupDate = document.getElementById('pickup-date').value;
   if (pickupDate) document.getElementById('return-date').min = pickupDate;
+  // Reset return leg when switching drop type
+  returnDistKm = 0; returnTollAmt = 0;
+}
+
+// Compute return leg distance: Manauna Dham → diff-drop address
+let returnSearchTimeout = null;
+function onDiffDropInput(val) {
+  returnDistKm = 0; returnTollAmt = 0;
+  clearTimeout(returnSearchTimeout);
+  if (val.trim().length < 5) return;
+  returnSearchTimeout = setTimeout(() => computeReturnLegDistance(val.trim()), 800);
+}
+
+function computeReturnLegDistance(addr) {
+  const notice = document.getElementById('diff-drop-notice');
+  if (notice) notice.innerHTML = '<i class="fa fa-circle-info"></i><div>Calculating return leg distance…</div>';
+  if (mapsLoaded && distanceService) {
+    distanceService.getDistanceMatrix({
+      origins: [{ lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG }],
+      destinations: [addr + ', India'],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    }, (res, status) => {
+      if (status === 'OK' && res.rows[0].elements[0].status === 'OK') {
+        const km = Math.round(res.rows[0].elements[0].distance.value / 1000);
+        returnDistKm  = km;
+        returnTollAmt = estimateToll(km);
+        if (notice) notice.innerHTML = '<i class="fa fa-circle-check" style="color:#1a7a3a;"></i><div>Return leg: <strong>' + km + ' km</strong> · Est. toll ₹' + returnTollAmt + '</div>';
+      } else {
+        // fallback: guess same as pickup distance
+        returnDistKm  = computedDistKm;
+        returnTollAmt = tollAmt || estimateToll(computedDistKm);
+        if (notice) notice.innerHTML = '<i class="fa fa-circle-info"></i><div>Exact return distance could not be computed — using estimated fare. Final price confirmed by driver.</div>';
+      }
+    });
+  } else {
+    // No Maps: use pickup distance as proxy
+    returnDistKm  = computedDistKm;
+    returnTollAmt = tollAmt || estimateToll(computedDistKm);
+    if (notice) notice.innerHTML = '<i class="fa fa-circle-info"></i><div>Return fare estimated (based on distance). Driver will confirm exact price.</div>';
+  }
 }
 
 // ═════════ STAGE 6 — PAYMENT ═════════
 function preparePaymentStage() {
-  // With new maps system, all combos with same-drop can be paid online
-  // Only diff-drop needs WhatsApp
-  needsWAOnly = selTrip === 'return' && selDrop === 'diff';
+  // All trip types now support online payment — diff-drop uses estimated return distance
+  needsWAOnly = false;
 
   document.getElementById('sum-pickup').textContent = getPickupLabel();
   const d = document.getElementById('pickup-date').value;
@@ -2450,7 +2514,7 @@ function buildNotes(invStr) {
   const rt    = selTrip === 'return' ? document.getElementById('return-time').value : '';
   const pax   = document.getElementById('g-passengers').value || '';
   const dropLoc = (selTrip === 'return' && selDrop === 'diff')
-    ? (document.getElementById('diff-drop-addr').value.trim() || 'Manauna Dham')
+    ? (document.getElementById('diff-drop-addr').value.trim() || 'Custom Location')
     : 'Manauna Dham';
   return {
     service:         'Manauna Dham Cab — Crulio.com',
@@ -2468,6 +2532,7 @@ function buildNotes(invStr) {
     car_type:        selCar === 5 ? '5-Seater' : '7-Seater',
     trip_type:       selTrip === 'oneway' ? 'One Way' : 'Return Trip',
     distance_km:     String(computedDistKm),
+    return_leg_km:   selDrop === 'diff' ? String(returnDistKm) : '',
     toll_estimate:   String(tollAmt || estimateToll(computedDistKm)),
     total_fare:      String(basePrice),
     coupon_used:     activeCoupon || 'None',
