@@ -30,6 +30,12 @@
   --radius: 12px;
   --shadow: 0 4px 20px rgba(0,0,0,0.10);
   --shadow-lg: 0 8px 35px rgba(0,0,0,0.15);
+  /* Crulio parent brand */
+  --crulio-navy: #1a2f5e;
+  --crulio-navy-deep: #101e3e;
+  --crulio-orange: #c8661a;
+  --crulio-orange-light: #e07828;
+  --font-display: 'Playfair Display', Georgia, serif;
 }
 
 *, *::before, *::after {
@@ -806,9 +812,134 @@ strong { color: var(--maroon); }
   .info-box { padding: 20px 16px; }
   body { font-size: 15px; }
 }
+
+/* ── CRULIO NETWORK BAR ── */
+.crulio-network-bar {
+  background: var(--crulio-navy-deep);
+  padding: 0;
+  border-bottom: 2px solid var(--crulio-orange);
+}
+.crulio-network-bar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 16px; max-width: 1400px; margin: 0 auto; gap: 10px;
+}
+.crulio-bar-left {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; flex: 1; min-width: 0;
+}
+.crulio-bar-logo {
+  height: 34px; width: 34px; object-fit: contain; flex-shrink: 0;
+  filter: brightness(2.2) saturate(1.5) drop-shadow(0 0 5px rgba(200,102,26,0.6));
+}
+.crulio-bar-font {
+  height: 26px; width: auto; object-fit: contain; flex-shrink: 0;
+  filter: brightness(1.2) saturate(1.2);
+}
+.crulio-bar-text {
+  font-size: 11.5px; color: rgba(255,255,255,0.5); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; font-style: italic;
+}
+.crulio-bar-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+.crulio-bar-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.crulio-bar-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(200,102,26,0.2); border: 1px solid rgba(200,102,26,0.45);
+  color: var(--crulio-orange-light); font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.4px; padding: 3px 9px; border-radius: 20px;
+  text-decoration: none; transition: background 0.2s; white-space: nowrap;
+}
+.crulio-bar-pill:hover { background: rgba(200,102,26,0.35); }
+.crulio-bar-pill-dot {
+  width: 5px; height: 5px; background: var(--crulio-orange-light);
+  border-radius: 50%; animation: pilldot-blink 1.5s infinite;
+}
+@keyframes pilldot-blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@media (max-width: 800px) { .crulio-bar-text { display: none; } }
+
+/* ── CRULIO NETWORK SECTION ── */
+.crulio-network-section {
+  background: var(--crulio-navy-deep);
+  padding: 48px 20px;
+  position: relative; overflow: hidden;
+}
+.crulio-network-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-55deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+  pointer-events: none;
+}
+.crulio-network-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.crulio-network-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.crulio-network-logo-wrap { display: flex; align-items: center; gap: 10px; }
+.cn-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.15); }
+.cn-brand-text { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; line-height: 1.5; }
+.cn-brand-text strong { display: block; font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 600; letter-spacing: 0; }
+.crulio-network-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 4.5vw, 24px); color: white; font-weight: 700;
+  line-height: 1.3; margin-bottom: 8px;
+}
+.crulio-network-tagline em { color: var(--crulio-orange-light); font-style: normal; }
+.crulio-network-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 20px; }
+.crulio-destinations { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.cn-dest-pill {
+  display: inline-flex; align-items: center; gap: 6px; border-radius: 20px;
+  padding: 6px 12px; font-size: 12px; font-weight: 600;
+  text-decoration: none; border: 1px solid; transition: all 0.2s;
+}
+.cn-dest-pill.live { background: rgba(0,160,0,0.15); border-color: rgba(0,200,0,0.3); color: #6aff6a; }
+.cn-dest-pill.live .cn-pill-dot { width:6px;height:6px;background:#4dff4d;border-radius:50%;animation:pilldot-blink 1s infinite; }
+.cn-dest-pill.coming { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
+.cn-dest-pill.live:hover { background: rgba(0,160,0,0.25); }
+.crulio-network-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.cn-cta-primary {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--crulio-orange); color: white;
+  padding: 11px 18px; border-radius: 12px; font-size: 13px; font-weight: 700;
+  text-decoration: none; transition: background 0.2s, transform 0.15s;
+}
+.cn-cta-primary:hover { background: var(--crulio-orange-light); }
+.cn-cta-ghost {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: rgba(255,255,255,0.7);
+  padding: 11px 18px; border-radius: 12px; font-size: 13px; font-weight: 600;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s;
+}
+.cn-cta-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--maroon-dark); color: white;
+  padding: 28px 20px; text-align: center;
+}
+.site-footer p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.9; }
+.site-footer p:first-child { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 6px; }
+.footer-crulio-credit {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+  background: rgba(26,47,94,0.4); border: 1px solid rgba(200,102,26,0.3);
+  border-radius: 20px; padding: 7px 14px; text-decoration: none; transition: background 0.2s;
+}
+.footer-crulio-credit:hover { background: rgba(26,47,94,0.65); }
 </style>
 </head>
 <body>
+
+<!-- ═══════ CRULIO PARENT NETWORK BAR ═══════ -->
+<div class="crulio-network-bar">
+  <div class="crulio-network-bar-inner">
+    <a href="https://www.crulio.com" class="crulio-bar-left" target="_blank" rel="noopener">
+      <img src="../../images/logos/NOBGLOGO.png" alt="Crulio" class="crulio-bar-logo">
+      <img src="../../images/logos/NOBGFONT.png" alt="Crulio Networks" class="crulio-bar-font">
+      <div class="crulio-bar-divider"></div>
+      <span class="crulio-bar-text">Powered by Crulio Networks</span>
+    </a>
+    <div class="crulio-bar-right">
+      <a href="https://www.crulio.com" class="crulio-bar-pill" target="_blank" rel="noopener">
+        <span class="crulio-bar-pill-dot"></span>
+        View More
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ===== STICKY BOTTOM BAR (Mobile) ===== -->
 <div class="sticky-bottom">
@@ -837,6 +968,10 @@ strong { color: var(--maroon); }
       <a href="../food">Food</a>
       <a href="../transport">Travel</a>
       <a href="../patient">Patient</a>
+      <a href="https://www.crulio.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:5px;background:rgba(26,47,94,0.6);border:1px solid rgba(200,102,26,0.45);border-radius:16px;padding:5px 11px;color:rgba(255,255,255,0.85)!important;font-size:12px!important;font-weight:600!important;">
+        <img src="../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:13px;width:auto;opacity:0.85;">
+        Crulio
+      </a>
       <a href="../live" class="live">🔴 LIVE</a>
     </nav>
     <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
@@ -848,13 +983,11 @@ strong { color: var(--maroon); }
     <a href="../transport">🚖 Transport — ₹200 Off</a>
     <a href="../patient">📋 Patient Token</a>
     <a href="../live">🔴 Live Darshan</a>
+    <a href="https://www.crulio.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);">🌐 Crulio Networks</a>
   </div>
 </header>
 
 <!-- ===== DISCLAIMERS ===== -->
-<div class="strip-info">
-  <strong>ManaunaDham.org.in</strong> — Independent Pilgrim Services Platform. Official temple se affiliated nahi.
-</div>
 <div class="strip-warning">
   <strong>⚠️ Zaroori Soochna:</strong> Is page ki jaankari ground-level poochh-taachh par based hai — official source nahi. Yatra se pehle khud verify karein. Hum kisi galati ke zimmedar nahi hain.
 </div>
@@ -1202,6 +1335,60 @@ strong { color: var(--maroon); }
     <a href="../food" class="cta-btn-outline">🍱 Food Order Karein</a>
   </div>
 </div>
+
+<!-- ═══════ CRULIO NETWORK SECTION ═══════ -->
+<section class="crulio-network-section">
+  <div class="crulio-network-inner">
+    <div class="crulio-network-top">
+      <div class="crulio-network-logo-wrap">
+        <img src="../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:52px;width:52px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 10px rgba(200,102,26,0.7));">
+        <img src="../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:38px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);margin-left:8px;">
+      </div>
+      <div class="cn-divider"></div>
+      <div class="cn-brand-text">
+        <strong>India's Pilgrimage Super Platform</strong>
+        Every service. Every destination.
+      </div>
+    </div>
+
+    <h2 class="crulio-network-tagline">
+      Manauna Dham is just the beginning.<br>
+      <em>Explore the full Crulio network.</em>
+    </h2>
+
+    <p class="crulio-network-desc">
+      Crulio Networks powers pilgrim services across India's sacred destinations — hotels, food, transport, live darshan, and more. One platform for every yatra.
+    </p>
+
+    <div class="crulio-destinations">
+      <a href="https://www.crulio.com/ManaunaDham" class="cn-dest-pill live">
+        <span class="cn-pill-dot"></span>
+        Manauna Dham
+      </a>
+      <span class="cn-dest-pill coming">🪔 Khatu Shyam Ji</span>
+      <span class="cn-dest-pill coming">🌿 Vrindavan</span>
+      <span class="cn-dest-pill coming">🕍 Jain Mandir, Ramnagar</span>
+      <span class="cn-dest-pill coming">🏔️ Hill Stations & More</span>
+    </div>
+
+    <div class="crulio-network-cta">
+      <a href="https://www.crulio.com" target="_blank" rel="noopener" class="cn-cta-primary">
+        <i class="fa fa-globe"></i> Visit Crulio Networks
+      </a>
+      <a href="https://www.crulio.com/#partner" target="_blank" rel="noopener" class="cn-cta-ghost">
+        <i class="fa fa-handshake"></i> Partner With Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>© 2026 Crulio.com/ManaunaDham</p>
+  <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
+    <img src="../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:30px;width:30px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 6px rgba(200,102,26,0.6));">
+    <img src="../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
+  </a>
+</footer>
 
 <script>
 function toggleMenu() {
