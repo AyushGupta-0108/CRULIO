@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Admin — Taxi / Transport Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --navy:        #0d1b2a;
+  --navy-dark:   #060f18;
+  --navy-mid:    #1a2d42;
+  --amber:       #f59e0b;
+  --amber-light: #fcd34d;
+  --amber-dark:  #b45309;
+  --green:       #10b981;
+  --red:         #ef4444;
+  --red-dark:    #b91c1c;
+  --bg:          #0f1923;
+  --bg2:         #162030;
+  --surface:     #1e2f42;
+  --surface2:    #243548;
+  --text:        #e8edf2;
+  --text-muted:  #7a90a8;
+  --border:      #2a3f58;
+  --border-soft: #1f3048;
+  --radius:      14px;
+  --radius-sm:   8px;
+  --shadow:      0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.5);
+  --transition:  all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LOGIN ── */
+#login-screen {
+  position: fixed; inset: 0;
+  background: linear-gradient(160deg, var(--navy-dark) 0%, #0a1520 60%, #111e2e 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 20px;
+}
+.login-box {
+  background: var(--surface); border-radius: 20px;
+  padding: 38px 30px;
+  width: 100%; max-width: 360px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.login-logo {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 26px;
+  box-shadow: 0 8px 24px rgba(245,158,11,0.35);
+}
+.login-box h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 21px; color: var(--text);
+  margin-bottom: 4px;
+}
+.login-box p { font-size: 12.5px; color: var(--text-muted); margin-bottom: 26px; }
+.login-input {
+  width: 100%; padding: 13px 16px;
+  border: 2px solid var(--border); border-radius: 10px;
+  font-size: 20px; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 6px; text-align: center;
+  transition: var(--transition); margin-bottom: 12px;
+  background: var(--navy-mid); color: var(--text);
+}
+.login-input:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
+.login-btn {
+  width: 100%; padding: 14px;
+  background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+  color: var(--navy-dark); border: none; border-radius: 10px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: var(--transition); font-family: 'DM Sans', sans-serif;
+  min-height: 48px;
+}
+.login-btn:active { transform: scale(0.98); }
+.login-error { color: var(--red); font-size: 12.5px; font-weight: 600; margin-top: 10px; display: none; }
+
+/* ── HEADER ── */
+header {
+  background: var(--navy-dark);
+  border-bottom: 1px solid var(--border);
+  color: var(--text); padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  position: sticky; top: 0; z-index: 50;
+  gap: 10px;
+}
+.header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.header-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.header-left h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.header-left p { font-size: 11px; color: var(--text-muted); display: none; }
+.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.sync-badge {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 20px;
+  display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.sync-badge.ok   { background: rgba(16,185,129,0.18); color: #34d399; }
+.sync-badge.busy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+.sync-badge.err  { background: rgba(239,68,68,0.2); color: #fca5a5; }
+.logout-btn {
+  background: rgba(255,255,255,0.07); color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 6px 12px; border-radius: 7px;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+.logout-btn:hover { color: var(--text); background: var(--surface); }
+
+/* ── MAIN ── */
+main { max-width: 960px; margin: 0 auto; padding: 16px 12px 120px; }
+
+/* ── REVENUE HERO ── */
+.revenue-hero {
+  background: linear-gradient(145deg, #0a1520 0%, #112036 40%, #0d1e32 70%, #0a1824 100%);
+  border-radius: 20px;
+  padding: 22px 20px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-lg), 0 2px 0 rgba(245,158,11,0.3) inset;
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.revenue-hero::before {
+  content: '🚕';
+  position: absolute; top: -10px; right: -10px;
+  font-size: 120px; opacity: 0.05;
+  line-height: 1; pointer-events: none; user-select: none;
+}
+.revenue-hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+.rh-top { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.rh-badge {
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--amber-light);
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'Syne', sans-serif;
+}
+.rh-tagline { font-size: 11px; color: var(--text-muted); font-style: italic; }
+.rh-income-spotlight {
+  text-align: center;
+  padding: 14px 0 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 16px;
+}
+.rh-income-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: 'Syne', sans-serif;
+}
+.rh-income-label::before, .rh-income-label::after { content: '◆'; font-size: 8px; opacity: .6; }
+.rh-income-value {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 10vw, 56px);
+  font-weight: 800; color: var(--text); line-height: 1;
+  text-shadow: 0 0 40px rgba(245,158,11,0.3), 0 4px 16px rgba(0,0,0,0.5);
+  letter-spacing: -1px;
+}
+.rh-income-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.rh-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.rh-metric {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 10px 8px; text-align: center;
+}
+.rh-metric-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 3px;
+}
+.rh-metric-val.amber { color: var(--amber-light); }
+.rh-metric-lbl { font-size: 9.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; }
+
+/* ── NEXT TRIP BANNER ── */
+.next-trip-banner {
+  background: linear-gradient(135deg, var(--navy-mid), var(--surface));
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--shadow);
+}
+.ntb-icon { width: 46px; height: 46px; flex-shrink: 0; background: rgba(245,158,11,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.ntb-body { min-width: 0; }
+.ntb-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--amber); text-transform: uppercase; margin-bottom: 2px; font-family: 'Syne', sans-serif; }
+.ntb-name  { font-size: 16px; font-weight: 700; font-family: 'Syne', sans-serif; color: var(--text); }
+.ntb-meta  { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+.ntb-date  { margin-left: auto; flex-shrink: 0; text-align: right; }
+.ntb-date-big { font-size: 22px; font-weight: 800; font-family: 'Syne', sans-serif; color: var(--amber); line-height: 1; }
+.ntb-date-day { font-size: 11px; color: var(--text-muted); }
+.ntb-days-away { display: inline-block; margin-top: 4px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700; color: var(--amber-light); }
+.ntb-banner.today-class { border-left-color: var(--green); }
+.ntb-banner.today-class .ntb-label { color: var(--green); }
+.ntb-banner.today-class .ntb-date-big { color: var(--green); }
+.ntb-banner.today-class .ntb-days-away { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.3); color: #34d399; }
+
+/* ── LAST BOOKING CARD ── */
+.last-booking-card {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border); border-left: 4px solid var(--amber);
+  padding: 14px 18px; margin-bottom: 14px; box-shadow: var(--shadow); display: none;
+}
+.last-booking-card h3 { font-size: 11px; font-weight: 700; letter-spacing: .8px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; font-family: 'Syne', sans-serif; }
+.lb-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.lb-name { font-size: 15px; font-weight: 700; color: var(--amber-light); font-family: 'Syne', sans-serif; }
+.lb-badge { font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; background: rgba(245,158,11,0.15); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.lb-meta { font-size: 12.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.8; }
+.lb-meta strong { color: var(--text); font-weight: 600; }
+
+/* ── STAT CARDS ── */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.stat-card { background: var(--surface); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); border: 1px solid var(--border); border-top: 3px solid transparent; }
+.stat-card.red    { border-top-color: var(--red); }
+.stat-card.amber  { border-top-color: var(--amber); }
+.stat-card.green  { border-top-color: var(--green); }
+.stat-card .label { font-size: 10px; color: var(--text-muted); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 5px; font-family: 'Syne', sans-serif; }
+.stat-card .value { font-size: 26px; font-weight: 800; color: var(--text); font-family: 'Syne', sans-serif; line-height: 1; }
+.stat-card .sub   { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+
+/* ── SECTION DIVIDER ── */
+.section-divider { display: flex; align-items: center; gap: 12px; margin: 22px 0 14px; }
+.section-divider-line { flex: 1; height: 1px; background: var(--border); }
+.section-divider-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; display: flex; align-items: center; gap: 6px; font-family: 'Syne', sans-serif; }
+
+/* ── NOTE CARD ── */
+.note-card { background: var(--surface); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); border-left: 4px solid var(--amber); }
+.note-card h2 { font-family: 'Syne', sans-serif; font-size: 15px; color: var(--amber); margin-bottom: 4px; display: flex; align-items: center; gap: 7px; }
+.note-card .note-sub { font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; }
+.note-textarea { width: 100%; padding: 10px 13px; border: 2px solid var(--border); border-radius: 9px; font-size: 14px; font-family: 'DM Sans', sans-serif; resize: vertical; transition: border-color 0.2s; line-height: 1.6; min-height: 60px; background: var(--navy-mid); color: var(--text); }
+.note-textarea:focus { outline: none; border-color: var(--amber); }
+.note-textarea::placeholder { color: var(--text-muted); }
+.note-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.note-count { font-size: 11px; color: var(--text-muted); }
+
+/* ── LEGEND ── */
+.legend-bar { display: flex; gap: 10px; flex-wrap: wrap; background: var(--surface); padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 14px; font-size: 12px; font-weight: 600; box-shadow: var(--shadow); }
+.legend-item { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.legend-dot.available { background: rgba(16,185,129,0.2); border: 2px solid #34d399; }
+.legend-dot.blocked   { background: rgba(239,68,68,0.2); border: 2px solid var(--red); }
+.legend-dot.today     { background: rgba(245,158,11,0.2); border: 2px solid var(--amber); }
+.legend-dot.past      { background: rgba(255,255,255,0.05); border: 2px solid var(--border); }
+
+/* ── QUICK ACTIONS ── */
+.quick-actions { display: flex; gap: 8px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 16px; padding-bottom: 4px; scrollbar-width: none; }
+.quick-actions::-webkit-scrollbar { display: none; }
+.qa-btn {
+  padding: 10px 16px; border-radius: 9px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  border: 2px solid transparent; transition: var(--transition);
+  font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; gap: 6px;
+  white-space: nowrap; flex-shrink: 0; min-height: 44px;
+}
+.qa-btn.primary  { background: var(--amber); color: var(--navy-dark); border-color: var(--amber); }
+.qa-btn.primary:active { background: var(--amber-dark); transform: scale(0.97); }
+.qa-btn.outline  { background: transparent; color: var(--amber); border-color: var(--amber); }
+.qa-btn.outline:active { background: rgba(245,158,11,0.1); }
+.qa-btn.danger   { background: transparent; color: var(--red); border-color: var(--red); }
+.qa-btn.danger:hover { background: rgba(239,68,68,0.1); }
+.qa-btn.green-btn { background: var(--green); color: white; border-color: var(--green); }
+.qa-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── SECTION TITLES ── */
+.section-title { font-family: 'Syne', sans-serif; font-size: 17px; color: var(--amber); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+
+/* ── CALENDARS ── */
+.calendars-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 24px; }
+.cal-widget { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); }
+.cal-header { background: var(--navy-mid); border-bottom: 1px solid var(--border); color: var(--text); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+.cal-header .month-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--amber-light); }
+.cal-body { padding: 10px 12px 14px; }
+.cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 4px; }
+.cal-weekday  { text-align: center; font-size: 10px; font-weight: 700; color: var(--text-muted); padding: 3px 0; }
+.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal-day { aspect-ratio: 1; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; cursor: pointer; transition: var(--transition); border: 2px solid transparent; position: relative; user-select: none; -webkit-user-select: none; min-height: 38px; color: var(--text); }
+.cal-day.empty { cursor: default; }
+.cal-day.past  { color: var(--border); cursor: not-allowed; background: rgba(255,255,255,0.02); }
+.cal-day.today { background: rgba(245,158,11,0.12); border-color: var(--amber); color: var(--amber-light); font-weight: 800; }
+.cal-day.available { background: rgba(16,185,129,0.08); color: #34d399; }
+.cal-day.available:active { background: rgba(16,185,129,0.2); transform: scale(0.95); }
+.cal-day.blocked  { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.4); color: var(--red); font-weight: 700; }
+.cal-day.blocked:active { background: rgba(239,68,68,0.2); transform: scale(0.95); }
+.cal-day.blocked::after { content:'✕'; position:absolute; top:1px; right:2px; font-size:7px; color:var(--red); opacity:.6; }
+.cal-day.has-trip { outline: 2px solid var(--amber); outline-offset: -2px; }
+.cal-day.has-trip::before { content:'▲'; position:absolute; bottom:1px; left:50%; transform:translateX(-50%); font-size:6px; color:var(--amber); }
+.cal-footer { padding: 8px 14px 12px; text-align: center; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+.cal-footer strong { color: var(--amber); }
+
+/* ── BLOCKED LIST ── */
+.blocked-list { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); margin-bottom: 24px; }
+.blocked-empty { padding: 30px; text-align: center; color: var(--text-muted); font-size: 14px; }
+.blocked-empty i { font-size: 28px; margin-bottom: 8px; display: block; color: var(--green); }
+.blocked-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.blocked-item:last-child { border-bottom: none; }
+.bi-date { font-weight: 700; font-size: 14px; color: var(--amber-light); }
+.bi-day  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.bi-unblock { background: transparent; color: var(--red); border: 1.5px solid rgba(239,68,68,0.4); padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif; min-height: 40px; display: flex; align-items: center; gap: 5px; }
+.bi-unblock:hover { background: rgba(239,68,68,0.12); border-color: var(--red); }
+
+/* ── RANGE PICKER ── */
+.range-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 18px; border: 1px solid var(--border); margin-bottom: 20px; }
+.range-section h2 { font-family: 'Syne', sans-serif; font-size: 17px; color: var(--amber); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.range-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.range-field label { font-size: 10px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: .5px; text-transform: uppercase; }
+.range-field input[type="date"] { width: 100%; padding: 11px 12px; border: 2px solid var(--border); border-radius: 9px; font-size: 14px; font-family: 'DM Sans', sans-serif; transition: var(--transition); background: var(--navy-mid); color: var(--text); }
+.range-field input[type="date"]:focus { outline: none; border-color: var(--amber); }
+
+/* ── TOAST ── */
+#toast-container { position: fixed; top: 12px; left: 12px; right: 12px; z-index: 9999; display: flex; flex-direction: column; gap: 7px; pointer-events: none; }
+.toast { background: var(--surface2); color: var(--text); padding: 11px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 600; box-shadow: 0 8px 28px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); animation: slideDown .3s ease; }
+.toast.ok    { background: rgba(16,185,129,0.2); border-color: rgba(16,185,129,0.4); color: #34d399; }
+.toast.err   { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+.toast.info  { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.3); color: var(--amber-light); }
+@keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeOut   { to { opacity: 0; transform: translateY(-8px); } }
+
+/* ── SAVE BAR ── */
+#save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy-dark); border-top: 2px solid var(--amber); padding: 12px 16px; display: none; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 -4px 24px rgba(0,0,0,0.5); z-index: 40; }
+#save-bar.show { display: flex; animation: slideUp .25s ease; }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.save-msg { font-size: 13px; color: var(--text-muted); min-width: 0; }
+.save-msg strong { color: var(--amber); }
+.save-btns { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ── BOOKINGS TABLE ── */
+.bookings-toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.search-input { flex: 1; min-width: 140px; padding: 9px 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; transition: border-color .2s; background: var(--surface); color: var(--text); }
+.search-input:focus { outline: none; border-color: var(--amber); }
+.search-input::placeholder { color: var(--text-muted); }
+.filter-select { padding: 9px 10px; border: 2px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--text); cursor: pointer; }
+.bookings-table-wrap { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow-x: auto; margin-bottom: 24px; -webkit-overflow-scrolling: touch; }
+table.bookings-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 700px; }
+table.bookings-table thead tr { background: var(--navy-mid); }
+table.bookings-table th { padding: 10px 12px; text-align: left; font-weight: 700; font-size: 11px; letter-spacing: .4px; white-space: nowrap; color: var(--amber-light); font-family: 'Syne', sans-serif; }
+table.bookings-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; color: var(--text); }
+table.bookings-table tbody tr:last-child td { border-bottom: none; }
+table.bookings-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+table.bookings-table tbody tr.latest-row { background: rgba(245,158,11,0.05); }
+.badge-new { background: var(--amber); color: var(--navy-dark); font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 20px; vertical-align: middle; margin-left: 4px; }
+.badge-vehicle { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: rgba(245,158,11,0.12); color: var(--amber-light); border: 1px solid rgba(245,158,11,0.2); white-space: nowrap; }
+.amount-income { color: var(--green); font-weight: 700; }
+.empty-bookings { padding: 40px; text-align: center; color: var(--text-muted); }
+.empty-bookings i { font-size: 30px; display: block; margin-bottom: 10px; color: var(--amber); }
+
+/* ── ACTION BUTTONS IN TABLE ── */
+.row-actions { display: flex; gap: 5px; }
+.row-btn {
+  padding: 5px 9px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  border: 1.5px solid transparent; transition: var(--transition);
+  font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.row-btn.edit-btn   { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.3); }
+.row-btn.edit-btn:hover   { background: var(--amber); color: var(--navy-dark); }
+.row-btn.delete-btn { background: rgba(239,68,68,0.1); color: var(--red); border-color: rgba(239,68,68,0.3); }
+.row-btn.delete-btn:hover { background: var(--red); color: white; border-color: var(--red); }
+
+/* ── MANUAL ENTRY ── */
+.manual-entry-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 18px; border: 1px solid var(--border); border-left: 4px solid var(--amber); margin-bottom: 18px; display: none; }
+.manual-entry-section h3 { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--amber); margin-bottom: 4px; display: flex; align-items: center; gap: 7px; }
+.manual-entry-section .subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+.me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.me-field label { font-size: 10px; font-weight: 700; color: var(--text-muted); letter-spacing: .4px; text-transform: uppercase; display: block; margin-bottom: 5px; font-family: 'Syne', sans-serif; }
+.me-field input, .me-field select {
+  width: 100%; padding: 10px 11px; border: 2px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-family: 'DM Sans', sans-serif; transition: border-color .2s;
+  background: var(--navy-mid); color: var(--text);
+}
+.me-field input:focus, .me-field select:focus { outline: none; border-color: var(--amber); }
+.me-field input::placeholder { color: var(--text-muted); }
+.me-field select option { background: var(--navy-mid); }
+.me-field input.required-err { border-color: var(--red); }
+.me-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.me-hint { font-size: 11px; color: var(--text-muted); }
+.bulk-import-box { background: var(--bg2); border: 2px dashed var(--border); border-radius: 10px; padding: 16px; margin-top: 16px; }
+.bulk-import-box h4 { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 5px; font-family: 'Syne', sans-serif; }
+.bulk-import-box p { font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.6; }
+.bulk-textarea { width: 100%; padding: 10px 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 11.5px; font-family: monospace; resize: vertical; min-height: 120px; background: var(--navy-mid); color: var(--text); }
+.bulk-textarea:focus { outline: none; border-color: var(--amber); }
+.bulk-preview { margin-top: 8px; font-size: 12px; color: var(--green); font-weight: 600; min-height: 16px; }
+.bulk-preview.err { color: var(--red); }
+
+/* ── INFO CARDS ── */
+.info-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.info-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 14px 16px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; }
+.info-card-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.info-card.blocked-style { border-left: 4px solid var(--red); }
+.info-card.blocked-style .info-card-icon { background: rgba(239,68,68,0.1); }
+.info-card.notice-style  { border-left: 4px solid var(--amber); }
+.info-card.notice-style  .info-card-icon { background: rgba(245,158,11,0.1); }
+.info-card-body { min-width: 0; }
+.info-card-label { font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; font-family: 'Syne', sans-serif; }
+.info-card-value { font-size: 14px; font-weight: 700; color: var(--amber-light); font-family: 'Syne', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.info-card.blocked-style .info-card-value { color: var(--red); }
+.info-card-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── SECTION TOGGLE BUTTONS ── */
+.section-toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.section-toggle-btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); box-shadow: var(--shadow); text-align: left; }
+.section-toggle-btn:active { transform: scale(0.98); }
+.section-toggle-btn.avail  { border-color: var(--red); }
+.section-toggle-btn.notice { border-color: var(--amber); }
+.section-toggle-btn.active.avail  { background: rgba(239,68,68,0.12); }
+.section-toggle-btn.active.notice { background: rgba(245,158,11,0.1); }
+.stb-left { display: flex; align-items: center; gap: 10px; }
+.stb-icon { width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.section-toggle-btn.avail  .stb-icon { background: rgba(239,68,68,0.1); }
+.section-toggle-btn.notice .stb-icon { background: rgba(245,158,11,0.1); }
+.stb-text { min-width: 0; }
+.stb-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.2; font-family: 'Syne', sans-serif; }
+.stb-sub   { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.stb-chevron { font-size: 12px; color: var(--text-muted); transition: transform .22s ease; flex-shrink: 0; }
+.section-toggle-btn.active .stb-chevron { transform: rotate(180deg); }
+.collapsible-panel { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; opacity: 0; }
+.collapsible-panel.open { max-height: 4000px; opacity: 1; }
+
+/* ── SHIMMER ── */
+.rh-loading .rh-income-value, .rh-loading .rh-metric-val { background: rgba(255,255,255,0.07); border-radius: 8px; color: transparent; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 0%,100% { opacity: .3; } 50% { opacity: .6; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── OWNER PASS MODAL ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(3px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; animation: fadeInOverlay .2s ease; }
+@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+.modal-box { background: var(--surface); border-radius: 18px; width: 100%; max-width: 420px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); overflow: hidden; animation: popIn .25s cubic-bezier(0.34,1.56,0.64,1); border: 1px solid var(--border); }
+@keyframes popIn { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-header { background: var(--navy-mid); border-bottom: 1px solid var(--border); color: var(--text); padding: 18px 22px; display: flex; align-items: center; gap: 10px; }
+.modal-header-icon { font-size: 20px; }
+.modal-header h3 { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--amber); }
+.modal-header p  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.modal-body { padding: 22px; }
+.modal-field label { font-size: 10px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; font-family: 'Syne', sans-serif; }
+.modal-field input { width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; font-size: 18px; letter-spacing: 4px; text-align: center; font-family: 'DM Sans', sans-serif; transition: var(--transition); background: var(--navy-mid); color: var(--text); }
+.modal-field input:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,158,11,0.1); }
+.modal-error { color: var(--red); font-size: 12px; font-weight: 600; margin-top: 8px; display: none; }
+.modal-footer { display: flex; gap: 8px; margin-top: 16px; }
+.modal-footer button { flex: 1; }
+
+/* ── EDIT MODAL ── */
+.edit-modal-box { background: var(--surface); border-radius: 18px; width: 100%; max-width: 600px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); overflow: hidden; max-height: 90vh; overflow-y: auto; animation: popIn .25s cubic-bezier(0.34,1.56,0.64,1); border: 1px solid var(--border); }
+.edit-modal-header { background: var(--navy-mid); border-bottom: 1px solid var(--border); color: var(--text); padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1; }
+.edit-modal-header h3 { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--amber); display: flex; align-items: center; gap: 8px; }
+.modal-close-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); color: var(--text-muted); width: 30px; height: 30px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
+.modal-close-btn:hover { background: rgba(255,255,255,0.14); color: var(--text); }
+.edit-modal-body { padding: 20px 22px; }
+.edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.edit-field label { font-size: 10px; font-weight: 700; color: var(--text-muted); letter-spacing: .4px; text-transform: uppercase; display: block; margin-bottom: 5px; font-family: 'Syne', sans-serif; }
+.edit-field input, .edit-field select { width: 100%; padding: 10px 11px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'DM Sans', sans-serif; transition: border-color .2s; background: var(--navy-mid); color: var(--text); }
+.edit-field input:focus, .edit-field select:focus { outline: none; border-color: var(--amber); }
+.edit-field input[readonly] { background: rgba(255,255,255,0.03); color: var(--text-muted); cursor: not-allowed; }
+.edit-field select option { background: var(--navy-mid); }
+.edit-modal-footer { padding: 0 22px 22px; display: flex; gap: 8px; }
+
+/* ── RESPONSIVE ── */
+@media (min-width: 600px) {
+  main { padding: 24px 20px 100px; }
+  header { padding: 14px 24px; }
+  .header-left p { display: block; }
+  .calendars-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .rh-metrics { grid-template-columns: repeat(4, 1fr); }
+  .me-grid { grid-template-columns: repeat(3, 1fr); }
+  .edit-grid { grid-template-columns: repeat(3, 1fr); }
+  .range-grid { grid-template-columns: 1fr 1fr auto; align-items: end; }
+  #toast-container { left: auto; width: 320px; right: 16px; top: 16px; }
+  .quick-actions { flex-wrap: wrap; overflow-x: visible; }
+}
+@media (max-width: 420px) {
+  .info-cards-row     { grid-template-columns: 1fr; }
+  .section-toggle-row { grid-template-columns: 1fr; }
+  .edit-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🚕</div>
+    <h1>Taxi Admin Panel</h1>
+    <p>Enter your admin password to manage trips & availability</p>
+    <input class="login-input" type="password" id="login-input" placeholder="••••••••" autocomplete="current-password">
+    <button class="login-btn" onclick="attemptLogin()">
+      <i class="fa fa-unlock"></i> &nbsp;Access Admin Panel
+    </button>
+    <div class="login-error" id="login-error">❌ Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- ── OWNER PASSWORD MODAL ── -->
+<div class="modal-overlay" id="owner-pass-modal" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-header-icon">🔐</div>
+      <div>
+        <h3>Owner Password Required</h3>
+        <p id="owner-modal-action-label">This action requires owner authorization</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-field">
+        <label>Owner Password</label>
+        <input type="password" id="owner-pass-input" placeholder="••••••••" autocomplete="off">
+      </div>
+      <div class="modal-error" id="owner-pass-error">❌ Wrong password. Try again.</div>
+      <div class="modal-footer">
+        <button class="qa-btn outline" onclick="closeOwnerModal()" style="font-size:13px;">Cancel</button>
+        <button class="qa-btn primary" onclick="submitOwnerPass()" style="font-size:13px;"><i class="fa fa-unlock"></i> Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EDIT BOOKING MODAL ── -->
+<div class="modal-overlay" id="edit-modal" style="display:none;">
+  <div class="edit-modal-box">
+    <div class="edit-modal-header">
+      <h3><i class="fa fa-pencil-alt"></i> Edit Trip Booking</h3>
+      <button class="modal-close-btn" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="edit-modal-body">
+      <div class="edit-grid">
+        <div class="edit-field">
+          <label>Invoice No. (locked)</label>
+          <input type="text" id="edit-invoice" readonly>
+        </div>
+        <div class="edit-field">
+          <label>Customer Name</label>
+          <input type="text" id="edit-name" placeholder="Customer Name">
+        </div>
+        <div class="edit-field">
+          <label>Customer Phone</label>
+          <input type="tel" id="edit-phone" placeholder="9876543210" maxlength="10">
+        </div>
+        <div class="edit-field">
+          <label>Vehicle Type</label>
+          <select id="edit-vehicle">
+            <option>Auto Rickshaw</option>
+            <option>Car (Hatchback)</option>
+            <option>Car (Sedan)</option>
+            <option>Car (SUV)</option>
+            <option>Tempo Traveller (9-Seater)</option>
+            <option>Tempo Traveller (12-Seater)</option>
+            <option>Mini Bus</option>
+            <option>Bus</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="edit-field">
+          <label>Pickup Location</label>
+          <input type="text" id="edit-pickup" placeholder="e.g. Bareilly Station">
+        </div>
+        <div class="edit-field">
+          <label>Drop Location</label>
+          <input type="text" id="edit-drop" placeholder="e.g. Manauna Dham">
+        </div>
+        <div class="edit-field">
+          <label>Journey Date</label>
+          <input type="date" id="edit-journeydate">
+        </div>
+        <div class="edit-field">
+          <label>Journey Time</label>
+          <input type="time" id="edit-journeytime">
+        </div>
+        <div class="edit-field">
+          <label>Passengers</label>
+          <input type="number" id="edit-passengers" min="1" max="60" placeholder="e.g. 4">
+        </div>
+        <div class="edit-field">
+          <label>Total Fare (₹)</label>
+          <input type="number" id="edit-fare" min="0">
+        </div>
+        <div class="edit-field">
+          <label>Advance Paid (₹)</label>
+          <input type="number" id="edit-advance" min="0">
+        </div>
+        <div class="edit-field">
+          <label>Payment ID</label>
+          <input type="text" id="edit-payid">
+        </div>
+        <div class="edit-field">
+          <label>Source</label>
+          <select id="edit-source">
+            <option value="website">Website</option>
+            <option value="manual">Manual Entry</option>
+            <option value="walk-in">Walk-in</option>
+            <option value="phone">Phone Booking</option>
+            <option value="whatsapp">WhatsApp</option>
+          </select>
+        </div>
+        <div class="edit-field">
+          <label>Booked On Date</label>
+          <input type="date" id="edit-bookedon">
+        </div>
+      </div>
+    </div>
+    <div class="edit-modal-footer">
+      <button class="qa-btn outline" onclick="closeEditModal()" style="font-size:13px;"><i class="fa fa-times"></i> Cancel</button>
+      <button class="qa-btn primary" onclick="submitEditBooking()" style="font-size:13px;flex:1;"><i class="fa fa-save"></i> Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-left">
+    <div class="header-icon">🚕</div>
+    <div>
+      <h1>Taxi Admin Panel</h1>
+      <p>Manage trips · Block dates · Track revenue</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="sync-badge busy" id="sync-badge"><i class="fa fa-sync fa-spin"></i> Syncing</div>
+    <button class="logout-btn" onclick="logout()"><i class="fa fa-sign-out-alt"></i></button>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- REVENUE HERO -->
+  <div class="revenue-hero" id="revenue-hero">
+    <div class="rh-top">
+      <div class="rh-badge"><i class="fa fa-rupee-sign"></i> Revenue Dashboard</div>
+      <div class="rh-tagline">Taxi / Transport Service · All Time</div>
+    </div>
+    <div class="rh-income-spotlight">
+      <div class="rh-income-label">Total Revenue</div>
+      <div class="rh-income-value" id="rh-income">Loading…</div>
+      <div class="rh-income-sub">Total fare collected (all trips)</div>
+    </div>
+    <div class="rh-metrics">
+      <div class="rh-metric"><div class="rh-metric-val amber" id="rh-total-rev">—</div><div class="rh-metric-lbl">Total Fare</div></div>
+      <div class="rh-metric"><div class="rh-metric-val" id="rh-bookings">—</div><div class="rh-metric-lbl">Total Trips</div></div>
+      <div class="rh-metric"><div class="rh-metric-val" id="rh-passengers">—</div><div class="rh-metric-lbl">Passengers</div></div>
+      <div class="rh-metric"><div class="rh-metric-val amber" id="rh-avg">—</div><div class="rh-metric-lbl">Avg Trip Fare</div></div>
+    </div>
+  </div>
+
+  <!-- NEXT TRIP BANNER -->
+  <div class="next-trip-banner ntb-banner" id="next-trip-banner" style="display:none;">
+    <div class="ntb-icon">🛣️</div>
+    <div class="ntb-body">
+      <div class="ntb-label">Next Upcoming Trip</div>
+      <div class="ntb-name" id="ntb-name">—</div>
+      <div class="ntb-meta" id="ntb-meta">—</div>
+    </div>
+    <div class="ntb-date">
+      <div class="ntb-date-big" id="ntb-date">—</div>
+      <div class="ntb-date-day"  id="ntb-day">—</div>
+      <div class="ntb-days-away" id="ntb-away">—</div>
+    </div>
+  </div>
+
+  <!-- LAST BOOKING CARD -->
+  <div class="last-booking-card" id="last-booking-card">
+    <h3><i class="fa fa-star" style="color:var(--amber);"></i> Most Recent Booking</h3>
+    <div class="lb-row">
+      <span class="lb-name" id="lb-name">—</span>
+      <span class="lb-badge" id="lb-invoice">—</span>
+    </div>
+    <div class="lb-meta" id="lb-meta">—</div>
+  </div>
+
+  <!-- INFO CARDS ROW -->
+  <div class="info-cards-row">
+    <div class="info-card blocked-style">
+      <div class="info-card-icon">🚫</div>
+      <div class="info-card-body">
+        <div class="info-card-label">Next Unavailable Date</div>
+        <div class="info-card-value" id="ic-blocked-date">—</div>
+        <div class="info-card-sub"  id="ic-blocked-sub">Loading…</div>
+      </div>
+    </div>
+    <div class="info-card notice-style">
+      <div class="info-card-icon">📢</div>
+      <div class="info-card-body">
+        <div class="info-card-label">Live Guest Notice</div>
+        <div class="info-card-value" id="ic-notice-value">—</div>
+        <div class="info-card-sub"  id="ic-notice-sub">Shown on booking page</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION TOGGLE BUTTONS -->
+  <div class="section-toggle-row">
+    <button class="section-toggle-btn avail" id="avail-toggle-btn" onclick="toggleSection('avail')">
+      <div class="stb-left">
+        <div class="stb-icon">📅</div>
+        <div class="stb-text">
+          <div class="stb-title">Availability Management</div>
+          <div class="stb-sub">Block unavailable dates</div>
+        </div>
+      </div>
+      <i class="fa fa-chevron-down stb-chevron"></i>
+    </button>
+    <button class="section-toggle-btn notice" id="notice-toggle-btn" onclick="toggleSection('notice')">
+      <div class="stb-left">
+        <div class="stb-icon">📝</div>
+        <div class="stb-text">
+          <div class="stb-title">Display Notice for Guests</div>
+          <div class="stb-sub">Edit booking page banner</div>
+        </div>
+      </div>
+      <i class="fa fa-chevron-down stb-chevron"></i>
+    </button>
+  </div>
+
+  <!-- COLLAPSIBLE: AVAILABILITY -->
+  <div class="collapsible-panel" id="avail-panel">
+    <div class="stats" style="margin-top:4px;">
+      <div class="stat-card red"><div class="label">Unavailable</div><div class="value" id="stat-blocked">—</div><div class="sub">next 30 days</div></div>
+      <div class="stat-card green"><div class="label">Available</div><div class="value" id="stat-available">—</div><div class="sub">next 30 days</div></div>
+      <div class="stat-card amber"><div class="label">Next Blocked</div><div class="value" id="stat-next" style="font-size:16px;margin-top:5px;">—</div><div class="sub">upcoming date</div></div>
+      <div class="stat-card green"><div class="label">Total Trips</div><div class="value" id="stat-total-bookings">—</div><div class="sub">all time</div></div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><div class="legend-dot available"></div> Available</div>
+      <div class="legend-item"><div class="legend-dot blocked"></div> Unavailable</div>
+      <div class="legend-item"><div class="legend-dot today"></div> Today</div>
+      <div class="legend-item"><div class="legend-dot past"></div> Past</div>
+    </div>
+    <div class="quick-actions">
+      <button class="qa-btn primary" onclick="saveChanges()" id="save-btn" disabled><i class="fa fa-save"></i> Save</button>
+      <button class="qa-btn outline" onclick="showRangePicker()"><i class="fa fa-calendar-plus"></i> Block Range</button>
+      <button class="qa-btn outline" onclick="reloadDates()"><i class="fa fa-sync"></i> Refresh</button>
+      <button class="qa-btn danger" onclick="clearAllBlocked()"><i class="fa fa-trash"></i> Clear All</button>
+    </div>
+    <div class="range-section" id="range-section" style="display:none;">
+      <h2><i class="fa fa-calendar-plus" style="font-size:16px;"></i> Block a Date Range</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Mark multiple consecutive dates as unavailable.</p>
+      <div class="range-grid">
+        <div class="range-field"><label>Start Date</label><input type="date" id="range-start"></div>
+        <div class="range-field"><label>End Date (inclusive)</label><input type="date" id="range-end"></div>
+        <div><button class="qa-btn primary" onclick="applyRange()" style="width:100%;"><i class="fa fa-check"></i> Block Range</button></div>
+      </div>
+      <button class="qa-btn outline" onclick="hideRangePicker()" style="font-size:12px;padding:8px 14px;margin-top:10px;"><i class="fa fa-times"></i> Cancel</button>
+    </div>
+    <div>
+      <div class="section-title"><i class="fa fa-calendar-alt" style="font-size:16px;"></i> Tap a date to mark available / unavailable</div>
+      <div class="calendars-grid" id="calendars-grid"></div>
+    </div>
+    <div>
+      <div class="section-title"><i class="fa fa-ban" style="font-size:16px;color:var(--red);"></i> Currently Blocked Dates</div>
+      <div class="blocked-list" id="blocked-list">
+        <div class="blocked-empty"><i class="fa fa-check-circle"></i>All dates available — nothing blocked yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLAPSIBLE: NOTICE EDITOR -->
+  <div class="collapsible-panel" id="notice-panel">
+    <div class="note-card" style="margin-top:4px;">
+      <h2><i class="fa fa-sticky-note" style="color:var(--amber);"></i> Guest Notice</h2>
+      <p class="note-sub">Shown as a banner on the booking page. Leave blank to hide.</p>
+      <textarea class="note-textarea" id="owner-note-input" maxlength="300" rows="2"
+        placeholder="E.g. Tempo Traveller unavailable on weekends this month."
+        oninput="onNoteInput()"></textarea>
+      <div class="note-footer">
+        <span class="note-count" id="note-char-count">0 / 300</span>
+        <span style="font-size:11px;color:var(--text-muted);">Saves with <strong style="color:var(--amber);">Save Notice</strong></span>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="qa-btn primary" onclick="saveChanges()" style="font-size:13px;padding:10px 18px;"><i class="fa fa-save"></i> Save Notice</button>
+        <button class="qa-btn outline" onclick="clearNotice()" style="font-size:13px;padding:10px 14px;"><i class="fa fa-times"></i> Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING HISTORY -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label"><i class="fa fa-route"></i> Trip Booking History</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+    <button class="qa-btn outline" onclick="toggleManualEntry()" id="manual-entry-toggle-btn" style="font-size:13px;"><i class="fa fa-plus-circle"></i> Add Past Trip</button>
+    <button class="qa-btn danger" onclick="clearBookingHistory()" style="font-size:12px;"><i class="fa fa-trash"></i> Clear History</button>
+  </div>
+
+  <!-- MANUAL ENTRY FORM -->
+  <div class="manual-entry-section" id="manual-entry-section">
+    <h3><i class="fa fa-pencil-alt" style="color:var(--amber);"></i> Add a Past Trip Booking</h3>
+    <p class="subtitle">Fill in details from your register or WhatsApp. Fields marked * are required.</p>
+    <div class="me-grid">
+      <div class="me-field"><label>Invoice No. *</label><input type="text" id="me-invoice" placeholder="e.g. TX-001"></div>
+      <div class="me-field"><label>Customer Name *</label><input type="text" id="me-name" placeholder="e.g. Ramesh Sharma"></div>
+      <div class="me-field"><label>Customer Phone</label><input type="tel" id="me-phone" placeholder="9876543210" maxlength="10"></div>
+      <div class="me-field"><label>Vehicle Type *</label>
+        <select id="me-vehicle">
+          <option value="">— Select —</option>
+          <option>Auto Rickshaw</option>
+          <option>Car (Hatchback)</option>
+          <option>Car (Sedan)</option>
+          <option>Car (SUV)</option>
+          <option>Tempo Traveller (9-Seater)</option>
+          <option>Tempo Traveller (12-Seater)</option>
+          <option>Mini Bus</option>
+          <option>Bus</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="me-field"><label>Pickup Location *</label><input type="text" id="me-pickup" placeholder="e.g. Bareilly Station"></div>
+      <div class="me-field"><label>Drop Location *</label><input type="text" id="me-drop" placeholder="e.g. Manauna Dham"></div>
+      <div class="me-field"><label>Journey Date *</label><input type="date" id="me-journeydate"></div>
+      <div class="me-field"><label>Journey Time</label><input type="time" id="me-journeytime"></div>
+      <div class="me-field"><label>Passengers</label><input type="number" id="me-passengers" placeholder="e.g. 4" min="1" max="60"></div>
+      <div class="me-field"><label>Total Fare (₹) *</label><input type="number" id="me-fare" placeholder="e.g. 1500" min="0"></div>
+      <div class="me-field"><label>Advance Paid (₹)</label><input type="number" id="me-advance" placeholder="e.g. 300" min="0"></div>
+      <div class="me-field"><label>Payment ID</label><input type="text" id="me-payid" placeholder="pay_XXXX (optional)"></div>
+      <div class="me-field"><label>Booking Date *</label><input type="date" id="me-bookingdate"></div>
+      <div class="me-field"><label>Source</label>
+        <select id="me-source">
+          <option value="manual">Manual Entry</option>
+          <option value="walk-in">Walk-in</option>
+          <option value="phone">Phone Booking</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="website">Website (missed)</option>
+        </select>
+      </div>
+    </div>
+    <div class="me-actions">
+      <button class="qa-btn primary" onclick="submitManualBooking()"><i class="fa fa-save"></i> Save Trip</button>
+      <button class="qa-btn outline" onclick="clearManualForm()" style="font-size:12px;"><i class="fa fa-undo"></i> Clear</button>
+      <span class="me-hint">All fields help build accurate revenue reports.</span>
+    </div>
+
+    <!-- BULK IMPORT -->
+    <div class="bulk-import-box">
+      <h4><i class="fa fa-file-import" style="color:var(--green);margin-right:5px;"></i> Bulk Import — Paste from Register</h4>
+      <p>Paste one or more trip confirmations. Use a blank line to separate multiple records.</p>
+      <textarea class="bulk-textarea" id="bulk-csv-input"
+        placeholder="Invoice No.&#9;TX-001&#10;Customer Name&#9;Ramesh Sharma&#10;Phone&#9;9876543210&#10;Vehicle&#9;Tempo Traveller (9-Seater)&#10;Pickup&#9;Bareilly Station&#10;Drop&#9;Manauna Dham&#10;Journey Date&#9;15 May 2026&#10;Passengers&#9;8&#10;Total Fare&#9;&#8377;2,500&#10;Advance Paid&#9;&#8377;500"
+        oninput="previewBulk()"></textarea>
+      <div class="bulk-preview" id="bulk-preview"></div>
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button class="qa-btn primary" onclick="submitBulkBookings()" style="font-size:13px;"><i class="fa fa-upload"></i> Import All</button>
+        <button class="qa-btn outline" onclick="document.getElementById('bulk-csv-input').value='';document.getElementById('bulk-preview').textContent='';" style="font-size:12px;">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE TOOLBAR -->
+  <div class="bookings-toolbar">
+    <input class="search-input" id="booking-search" type="text" placeholder="🔍 Name, phone, invoice, vehicle…" oninput="renderBookingsTable()">
+    <select class="filter-select" id="booking-filter" onchange="renderBookingsTable()">
+      <option value="all">All time</option>
+      <option value="7">Last 7 days</option>
+      <option value="30">Last 30 days</option>
+      <option value="90">Last 90 days</option>
+    </select>
+    <button class="qa-btn outline" onclick="loadBookings()" style="font-size:12px;padding:9px 12px;"><i class="fa fa-sync"></i></button>
+  </div>
+
+  <!-- BOOKINGS TABLE -->
+  <div class="bookings-table-wrap" id="bookings-table-wrap">
+    <div class="empty-bookings"><i class="fa fa-spinner fa-spin"></i><br>Loading trip history…</div>
+  </div>
+
+</main>
+
+<!-- SAVE BAR -->
+<div id="save-bar">
+  <div class="save-msg"><strong id="unsaved-count">0</strong> unsaved change(s)</div>
+  <div class="save-btns">
+    <button class="qa-btn outline" onclick="discardChanges()" style="padding:9px 16px;font-size:13px;">Discard</button>
+    <button class="qa-btn primary" onclick="saveChanges()" style="padding:9px 18px;font-size:13px;"><i class="fa fa-save"></i> Save Now</button>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script>
+// ══════════════════════════════════════════
+// CONFIG — change passwords here
+// ══════════════════════════════════════════
+const ADMIN_PASS   = 'manauna2026';          // ← change this
+const HOTEL_ID     = 'taxi-service';      // ← unique key for this taxi provider
+const API_BASE     = 'https://harshdeep-api.vercel.app/api/blocked-dates';
+const BOOKINGS_API = 'https://harshdeep-api.vercel.app/api/bookings';
+const MONTHS_AHEAD = 3;
+const STATS_DAYS   = 30;
+
+let blockedDates = new Set();
+let savedDates   = new Set();
+let hasUnsaved   = false;
+let allBookings  = [];
+
+// ── OWNER PASSWORD ──
+let ownerPassSession    = sessionStorage.getItem('taxi_owner') || '';
+let ownerPendingCallback = null;
+
+function requireOwner(actionLabel, callback) {
+  if (ownerPassSession) { callback(ownerPassSession); return; }
+  ownerPendingCallback = callback;
+  document.getElementById('owner-modal-action-label').textContent = actionLabel;
+  document.getElementById('owner-pass-input').value = '';
+  document.getElementById('owner-pass-error').style.display = 'none';
+  document.getElementById('owner-pass-modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('owner-pass-input').focus(), 100);
+}
+function submitOwnerPass() {
+  const val = document.getElementById('owner-pass-input').value.trim();
+  if (!val) { document.getElementById('owner-pass-error').style.display = 'block'; return; }
+  ownerPassSession = val;
+  sessionStorage.setItem('taxi_owner', val);
+  closeOwnerModal();
+  if (ownerPendingCallback) { ownerPendingCallback(val); ownerPendingCallback = null; }
+}
+function closeOwnerModal() { document.getElementById('owner-pass-modal').style.display = 'none'; ownerPendingCallback = null; }
+function handleOwnerRejected() { ownerPassSession = ''; sessionStorage.removeItem('taxi_owner'); toast('❌ Owner password rejected. Try again.', 'err'); }
+document.getElementById('owner-pass-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitOwnerPass(); if (e.key === 'Escape') closeOwnerModal(); });
+
+// ── AUTH ──
+function attemptLogin() {
+  const val = document.getElementById('login-input').value;
+  if (val === ADMIN_PASS) {
+    sessionStorage.setItem('taxi_admin', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    init();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('login-input').value = '';
+    document.getElementById('login-input').focus();
+  }
+}
+document.getElementById('login-input').addEventListener('keydown', e => { if (e.key === 'Enter') attemptLogin(); });
+function logout() { sessionStorage.removeItem('taxi_admin'); sessionStorage.removeItem('taxi_owner'); location.reload(); }
+
+// ── INIT ──
+async function init() {
+  document.getElementById('revenue-hero').classList.add('rh-loading');
+  await Promise.all([reloadDates(), loadBookings()]);
+  renderCalendars();
+}
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('taxi_admin')) init();
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('range-start').min = today;
+  document.getElementById('range-end').min   = today;
+  document.getElementById('me-bookingdate').value = today;
+});
+
+// ── API ──
+function setSyncBadge(state) {
+  const b = document.getElementById('sync-badge');
+  if (state === 'ok')   { b.className = 'sync-badge ok';   b.innerHTML = '<i class="fa fa-check"></i> Synced'; }
+  if (state === 'busy') { b.className = 'sync-badge busy'; b.innerHTML = '<i class="fa fa-sync fa-spin"></i> Syncing'; }
+  if (state === 'err')  { b.className = 'sync-badge err';  b.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Error'; }
+}
+
+async function reloadDates() {
+  setSyncBadge('busy');
+  try {
+    const res  = await fetch(`${API_BASE}?hotel=${HOTEL_ID}`);
+    const data = await res.json();
+    blockedDates = new Set(data.dates || []);
+    savedDates   = new Set(data.dates || []);
+    const noteEl = document.getElementById('owner-note-input');
+    if (noteEl) { noteEl.value = data.note || ''; updateNoteCount(); renderNoticeCard(); }
+    hasUnsaved = false;
+    setSyncBadge('ok');
+    renderCalendars();
+    renderBlockedList();
+    updateStats();
+    updateSaveBar();
+  } catch {
+    setSyncBadge('err');
+    toast('Could not load availability. Check connection.', 'err');
+  }
+}
+
+async function saveChanges() {
+  if (!hasUnsaved) return;
+  setSyncBadge('busy');
+  document.getElementById('save-btn').disabled = true;
+  try {
+    const note = document.getElementById('owner-note-input')?.value.trim() || '';
+    const res  = await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ADMIN_PASS}` },
+      body: JSON.stringify({ hotel: HOTEL_ID, dates: [...blockedDates], note }),
+    });
+    if (!res.ok) throw new Error();
+    savedDates = new Set(blockedDates);
+    hasUnsaved = false;
+    setSyncBadge('ok');
+    updateSaveBar();
+    toast('✅ Saved! Booking page updated.', 'ok');
+  } catch {
+    setSyncBadge('err');
+    toast('❌ Save failed. Try again.', 'err');
+  } finally {
+    document.getElementById('save-btn').disabled = false;
+  }
+}
+
+// ── SECTION TOGGLES ──
+function toggleSection(which) {
+  const panel = document.getElementById(which + '-panel');
+  const btn   = document.getElementById(which + '-toggle-btn');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('active', !isOpen);
+}
+
+// ── INFO CARDS ──
+function renderNextBlockedCard() {
+  const upcoming = [...blockedDates].filter(d => !isPast(d)).sort();
+  const valEl = document.getElementById('ic-blocked-date');
+  const subEl = document.getElementById('ic-blocked-sub');
+  if (!upcoming.length) {
+    valEl.textContent = 'None upcoming';
+    valEl.style.color = 'var(--green)';
+    subEl.textContent = 'All future dates are available';
+  } else {
+    const d = upcoming[0];
+    const daysAway = Math.round((new Date(d) - new Date(new Date().toISOString().split('T')[0])) / 86400000);
+    valEl.textContent = fmtDate(d);
+    valEl.style.color = '';
+    subEl.textContent = daysAway === 0 ? 'TODAY · ' + upcoming.length + ' blocked total'
+                      : daysAway === 1 ? 'TOMORROW · ' + upcoming.length + ' blocked total'
+                      : daysAway + ' days away · ' + upcoming.length + ' blocked total';
+  }
+}
+function renderNoticeCard() {
+  const note  = document.getElementById('owner-note-input')?.value?.trim() || '';
+  const valEl = document.getElementById('ic-notice-value');
+  const subEl = document.getElementById('ic-notice-sub');
+  if (!note) { valEl.textContent = 'No notice set'; valEl.style.color = 'var(--text-muted)'; subEl.textContent = 'Nothing shown to guests'; }
+  else { valEl.textContent = note.length > 48 ? note.slice(0, 48) + '…' : note; valEl.style.color = ''; subEl.textContent = 'Live on booking page'; }
+}
+function clearNotice() { const el = document.getElementById('owner-note-input'); if (el) { el.value = ''; updateNoteCount(); renderNoticeCard(); markUnsaved(); } }
+function updateNoteCount() { const el = document.getElementById('owner-note-input'); const ct = document.getElementById('note-char-count'); if (el && ct) ct.textContent = el.value.length + ' / 300'; }
+function onNoteInput() { updateNoteCount(); renderNoticeCard(); markUnsaved(); }
+
+// ── TOGGLE DATE ──
+function toggleDate(dateStr) {
+  if (isPast(dateStr)) return;
+  if (blockedDates.has(dateStr)) { blockedDates.delete(dateStr); toast(`✅ ${fmtDate(dateStr)} available`, 'ok'); }
+  else { blockedDates.add(dateStr); toast(`🚫 ${fmtDate(dateStr)} unavailable`, 'info'); }
+  markUnsaved(); renderCalendars(); renderBlockedList(); updateStats();
+}
+function markUnsaved() { hasUnsaved = true; updateSaveBar(); document.getElementById('save-btn').disabled = false; }
+function discardChanges() { blockedDates = new Set(savedDates); hasUnsaved = false; reloadDates(); toast('Changes discarded.', 'info'); }
+function clearAllBlocked() {
+  if (blockedDates.size === 0) { toast('No blocked dates to clear.', 'info'); return; }
+  if (!confirm(`Remove all ${blockedDates.size} blocked date(s)?`)) return;
+  blockedDates.clear(); markUnsaved(); renderCalendars(); renderBlockedList(); updateStats();
+  toast('All dates cleared — remember to Save!', 'info');
+}
+
+// ── RANGE PICKER ──
+function showRangePicker() { const s = document.getElementById('range-section'); s.style.display = 'block'; s.scrollIntoView({behavior:'smooth',block:'start'}); }
+function hideRangePicker() { document.getElementById('range-section').style.display = 'none'; }
+function applyRange() {
+  const start = document.getElementById('range-start').value;
+  const end   = document.getElementById('range-end').value;
+  if (!start || !end) { toast('Select both dates.', 'err'); return; }
+  if (end < start)    { toast('End must be after start.', 'err'); return; }
+  let d = new Date(start); const endD = new Date(end); let count = 0;
+  while (d <= endD) {
+    const str = d.toISOString().split('T')[0];
+    if (!isPast(str)) { blockedDates.add(str); count++; }
+    d.setDate(d.getDate() + 1);
+  }
+  if (count === 0) { toast('All selected dates are in the past.', 'err'); return; }
+  toast(`🚫 ${count} date(s) blocked. Remember to Save!`, 'info');
+  markUnsaved(); renderCalendars(); renderBlockedList(); updateStats(); hideRangePicker();
+}
+
+// ── CALENDARS ──
+function getTripDates() {
+  const set = new Set();
+  allBookings.forEach(b => { if (b.journeyDate || b.checkin) set.add(b.journeyDate || b.checkin); });
+  return set;
+}
+function renderCalendars() {
+  const grid = document.getElementById('calendars-grid');
+  grid.innerHTML = '';
+  const now = new Date();
+  for (let i = 0; i < MONTHS_AHEAD; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    grid.appendChild(buildCalendar(d));
+  }
+}
+function buildCalendar(monthDate) {
+  const year  = monthDate.getFullYear();
+  const month = monthDate.getMonth();
+  const today = new Date().toISOString().split('T')[0];
+  const tripSet = getTripDates();
+  const widget = document.createElement('div');
+  widget.className = 'cal-widget';
+  const monthName    = monthDate.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+  const blockedCount = getMonthBlockedCount(year, month);
+  widget.innerHTML = `
+    <div class="cal-header">
+      <div class="month-name">${monthName}</div>
+      <div style="font-size:11px;color:var(--text-muted);">${blockedCount} unavailable</div>
+    </div>
+    <div class="cal-body">
+      <div class="cal-weekdays">${['Su','Mo','Tu','We','Th','Fr','Sa'].map(d=>`<div class="cal-weekday">${d}</div>`).join('')}</div>
+      <div class="cal-days" id="caldays-${year}-${month}"></div>
+    </div>
+    <div class="cal-footer"><strong>${blockedCount}</strong> of ${getDaysInMonth(year,month)} unavailable</div>`;
+  const daysGrid = widget.querySelector(`#caldays-${year}-${month}`);
+  const firstDay = new Date(year, month, 1).getDay();
+  for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); e.className = 'cal-day empty'; daysGrid.appendChild(e); }
+  for (let d = 1; d <= getDaysInMonth(year, month); d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const past    = isPast(dateStr);
+    const isToday = dateStr === today;
+    const blocked = blockedDates.has(dateStr);
+    const hasTrip = tripSet.has(dateStr);
+    const dayEl   = document.createElement('div');
+    dayEl.textContent = d;
+    let cls = 'cal-day';
+    if (past) cls += ' past';
+    else if (isToday && blocked) cls += ' blocked today';
+    else if (isToday) cls += ' today';
+    else if (blocked) cls += ' blocked';
+    else cls += ' available';
+    if (hasTrip && !past) cls += ' has-trip';
+    dayEl.className = cls;
+    dayEl.title = past ? 'Past' : hasTrip ? (blocked ? 'Trip booked (unavailable)' : 'Trip booked') : (blocked ? 'Tap to make available' : 'Tap to block');
+    if (!past) dayEl.addEventListener('click', () => toggleDate(dateStr));
+    daysGrid.appendChild(dayEl);
+  }
+  return widget;
+}
+function getMonthBlockedCount(y, m) { let c = 0; const p = `${y}-${String(m+1).padStart(2,'0')}-`; blockedDates.forEach(d => { if (d.startsWith(p)) c++; }); return c; }
+function getDaysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
+
+// ── BLOCKED LIST ──
+function renderBlockedList() {
+  const container = document.getElementById('blocked-list');
+  const sorted    = [...blockedDates].filter(d => !isPast(d)).sort();
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="blocked-empty"><i class="fa fa-check-circle"></i>All dates available — nothing blocked yet.</div>';
+    return;
+  }
+  container.innerHTML = sorted.map(d => `
+    <div class="blocked-item">
+      <div><div class="bi-date">🚫 ${fmtDate(d)}</div><div class="bi-day">${getDayName(d)}</div></div>
+      <button class="bi-unblock" onclick="toggleDate('${d}')"><i class="fa fa-unlock"></i> Unblock</button>
+    </div>`).join('');
+}
+
+// ── STATS ──
+function updateStats() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end   = new Date(today); end.setDate(end.getDate() + STATS_DAYS);
+  let blocked = 0;
+  blockedDates.forEach(d => { const dt = new Date(d); if (dt >= today && dt <= end) blocked++; });
+  document.getElementById('stat-blocked').textContent   = blocked;
+  document.getElementById('stat-available').textContent = STATS_DAYS - blocked;
+  const upcoming = [...blockedDates].filter(d => !isPast(d)).sort();
+  document.getElementById('stat-next').textContent = upcoming.length ? fmtDateShort(upcoming[0]) : 'None';
+  document.getElementById('stat-total-bookings').textContent = allBookings.length || '—';
+  renderNextBlockedCard();
+}
+
+// ── NEXT TRIP BANNER ──
+function renderNextTripBanner() {
+  const banner = document.getElementById('next-trip-banner');
+  if (!allBookings.length) { banner.style.display = 'none'; return; }
+  const todayStr = new Date().toISOString().split('T')[0];
+  const upcoming = allBookings
+    .filter(b => (b.journeyDate || b.checkin || '') >= todayStr)
+    .sort((a, b) => (a.journeyDate || a.checkin || '').localeCompare(b.journeyDate || b.checkin || ''));
+  if (!upcoming.length) { banner.style.display = 'none'; return; }
+  const next = upcoming[0];
+  const journeyDateStr = next.journeyDate || next.checkin || '';
+  const daysAway = journeyDateStr ? Math.round((new Date(journeyDateStr) - new Date(todayStr)) / 86400000) : -1;
+  document.getElementById('ntb-name').textContent = next.guestName || next.customerName || 'Customer';
+  document.getElementById('ntb-meta').textContent = `${next.vehicleType || next.roomType || 'Vehicle'} · ${next.pickupLocation || '—'} → ${next.dropLocation || '—'} · #${next.invoiceNo || '—'}`;
+  document.getElementById('ntb-date').textContent = journeyDateStr ? fmtDateShort(journeyDateStr) : '—';
+  document.getElementById('ntb-day').textContent  = journeyDateStr ? getDayName(journeyDateStr) : '';
+  document.getElementById('ntb-away').textContent = daysAway === 0 ? 'TODAY' : daysAway === 1 ? 'TOMORROW' : daysAway > 0 ? `${daysAway} days away` : '—';
+  banner.className = 'next-trip-banner ntb-banner' + (daysAway === 0 ? ' today-class' : '');
+  banner.style.display = 'flex';
+}
+
+// ── LAST BOOKING CARD ──
+function renderLastBookingCard() {
+  const card = document.getElementById('last-booking-card');
+  if (!allBookings.length) { card.style.display = 'none'; return; }
+  const sorted = [...allBookings].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+  const b = sorted[0];
+  const bookedOn = b.timestamp ? new Date(b.timestamp).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+  document.getElementById('lb-name').textContent    = b.guestName || b.customerName || 'Unknown';
+  document.getElementById('lb-invoice').textContent = `#${b.invoiceNo || '—'}`;
+  document.getElementById('lb-meta').innerHTML =
+    `<strong>${b.vehicleType || b.roomType || '—'}</strong> &nbsp;·&nbsp; Journey: <strong>${fmtDate(b.journeyDate || b.checkin)}</strong> &nbsp;·&nbsp; ₹${(b.roomPrice || b.fare || 0).toLocaleString('en-IN')} &nbsp;·&nbsp; Booked on ${bookedOn}`;
+  card.style.display = 'block';
+}
+
+// ── REVENUE HERO ──
+function updateRevenueHero() {
+  const b          = allBookings;
+  const totalFare  = b.reduce((s, x) => s + (x.roomPrice || x.fare || 0), 0);
+  const advance    = b.reduce((s, x) => s + (x.advancePaid || 0), 0);
+  const passengers = b.reduce((s, x) => s + (x.passengers || 1), 0);
+  const fmt = n => '₹' + Math.round(n).toLocaleString('en-IN');
+  document.getElementById('rh-income').textContent    = fmt(totalFare);
+  document.getElementById('rh-total-rev').textContent = fmt(totalFare);
+  document.getElementById('rh-bookings').textContent  = b.length;
+  document.getElementById('rh-passengers').textContent = passengers;
+  document.getElementById('rh-avg').textContent       = b.length ? fmt(totalFare / b.length) : '—';
+  document.getElementById('revenue-hero').classList.remove('rh-loading');
+}
+
+// ── SAVE BAR ──
+function updateSaveBar() {
+  const bar = document.getElementById('save-bar');
+  if (hasUnsaved) {
+    bar.classList.add('show');
+    document.getElementById('unsaved-count').textContent = symmDiff(blockedDates, savedDates).size;
+  } else { bar.classList.remove('show'); }
+}
+
+// ── HELPERS ──
+function isPast(dateStr) { const t = new Date(); t.setHours(0,0,0,0); return new Date(dateStr) < t; }
+function fmtDate(str) { return str ? new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'long', year:'numeric' }) : '—'; }
+function fmtDateShort(str) { return str ? new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'short' }) : '—'; }
+function getDayName(str) { return str ? new Date(str).toLocaleDateString('en-IN', { weekday:'long' }) : '—'; }
+function symmDiff(a, b) { const d = new Set(); a.forEach(v => { if (!b.has(v)) d.add(v); }); b.forEach(v => { if (!a.has(v)) d.add(v); }); return d; }
+function toast(msg, type = 'info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => { t.style.animation = 'fadeOut .3s forwards'; setTimeout(() => t.remove(), 300); }, 3000);
+}
+
+// ── BOOKINGS ──
+async function loadBookings() {
+  document.getElementById('bookings-table-wrap').innerHTML =
+    '<div class="empty-bookings"><i class="fa fa-spinner fa-spin"></i><br>Loading…</div>';
+  try {
+    const res  = await fetch(`${BOOKINGS_API}?hotel=${HOTEL_ID}`, {
+      headers: { 'Authorization': `Bearer ${ADMIN_PASS}` },
+    });
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    allBookings = data.bookings || [];
+    updateRevenueHero(); renderBookingsTable();
+    renderNextTripBanner(); renderLastBookingCard(); updateStats(); renderCalendars();
+  } catch {
+    document.getElementById('bookings-table-wrap').innerHTML =
+      '<div class="empty-bookings"><i class="fa fa-exclamation-circle" style="color:var(--red)"></i><br>Could not load bookings.</div>';
+    document.getElementById('revenue-hero').classList.remove('rh-loading');
+  }
+}
+
+function getFilteredBookings() {
+  const q    = (document.getElementById('booking-search')?.value || '').toLowerCase();
+  const days = parseInt(document.getElementById('booking-filter')?.value) || 0;
+  const cutoff = days ? Date.now() - days * 86400000 : 0;
+  return allBookings
+    .filter(b => {
+      if (cutoff && b.timestamp < cutoff) return false;
+      if (!q) return true;
+      const vType = b.vehicleType || b.roomType || '';
+      return [b.guestName, b.customerName, b.guestPhone, b.invoiceNo, vType, b.pickupLocation, b.dropLocation].some(v => (v||'').toLowerCase().includes(q));
+    })
+    .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+}
+
+function renderBookingsTable() {
+  const wrap = document.getElementById('bookings-table-wrap');
+  const list = getFilteredBookings();
+  if (!list.length) {
+    wrap.innerHTML = `<div class="empty-bookings"><i class="fa fa-route"></i><br>No trips found${allBookings.length ? ' matching filter' : ' yet'}.</div>`;
+    return;
+  }
+  const latestTs = list[0]?.timestamp || 0;
+  const rows = list.map((b, i) => {
+    const fare      = b.roomPrice || b.fare || 0;
+    const advance   = b.advancePaid || 0;
+    const remaining = fare - advance;
+    const date      = b.timestamp ? new Date(b.timestamp).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+    const vType     = b.vehicleType || b.roomType || '—';
+    const pickup    = b.pickupLocation || '—';
+    const drop      = b.dropLocation || '—';
+    const journeyDate = b.journeyDate || b.checkin || '';
+    const isLatest  = b.timestamp === latestTs && i === 0;
+    const newBadge  = isLatest ? '<span class="badge-new">NEW</span>' : '';
+    const src       = b.source && b.source !== 'website' ? `<br><span style="font-size:10px;color:var(--text-muted);">[${b.source}]</span>` : '';
+    const inv       = (b.invoiceNo || '').replace(/'/g, "\\'");
+    const name      = b.guestName || b.customerName || 'Unknown';
+    const nameEsc   = name.replace(/'/g, "\\'");
+    return `<tr class="${isLatest ? 'latest-row' : ''}">
+      <td style="color:var(--text-muted);font-size:11px;">${i+1}</td>
+      <td style="color:var(--amber-light);font-weight:700;">#${b.invoiceNo||'—'}${newBadge}${src}</td>
+      <td>${date}</td>
+      <td><strong>${name}</strong><br><span style="font-size:11px;color:var(--text-muted);">+91 ${b.guestPhone||'—'}</span></td>
+      <td><span class="badge-vehicle">${vType}</span>${b.passengers ? `<br><span style="font-size:11px;color:var(--text-muted);">${b.passengers} pax</span>` : ''}</td>
+      <td style="font-size:12px;">${pickup}<br><span style="color:var(--text-muted);">→ ${drop}</span></td>
+      <td style="font-size:12px;">${journeyDate ? fmtDate(journeyDate) : '—'}${b.journeyTime ? `<br><span style="color:var(--text-muted);">${b.journeyTime}</span>` : ''}</td>
+      <td>₹${fare.toLocaleString('en-IN')}</td>
+      <td class="amount-income">₹${advance.toLocaleString('en-IN')}</td>
+      <td style="color:var(--text-muted);">₹${remaining.toLocaleString('en-IN')}</td>
+      <td>
+        <div class="row-actions">
+          <button class="row-btn edit-btn"   onclick="openEditModal('${inv}')"><i class="fa fa-pencil-alt"></i> Edit</button>
+          <button class="row-btn delete-btn" onclick="deleteBooking('${inv}', '${nameEsc}')"><i class="fa fa-trash"></i></button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `
+    <table class="bookings-table">
+      <thead><tr>
+        <th>#</th><th>Invoice</th><th>Booked On</th><th>Customer</th>
+        <th>Vehicle</th><th>Route</th><th>Journey Date</th>
+        <th>Total Fare</th><th>Advance Paid</th><th>Balance Due</th><th>Actions</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+// ── DELETE ──
+function deleteBooking(invoiceNo, customerName) {
+  requireOwner(`Delete booking #${invoiceNo} — ${customerName}`, async (ownerPass) => {
+    if (!confirm(`Delete booking #${invoiceNo} for ${customerName}? This cannot be undone.`)) return;
+    try {
+      const res = await fetch(`${BOOKINGS_API}?hotel=${HOTEL_ID}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ADMIN_PASS}`, 'X-Owner-Secret': ownerPass },
+        body: JSON.stringify({ invoiceNo }),
+      });
+      if (res.status === 403) { handleOwnerRejected(); return; }
+      if (!res.ok) throw new Error();
+      allBookings = allBookings.filter(b => b.invoiceNo !== invoiceNo);
+      updateRevenueHero(); renderBookingsTable();
+      renderNextTripBanner(); renderLastBookingCard(); updateStats();
+      toast(`🗑️ Booking #${invoiceNo} deleted.`, 'ok');
+    } catch { toast('❌ Failed to delete booking.', 'err'); }
+  });
+}
+
+// ── EDIT MODAL ──
+let editingInvoiceNo = null;
+function openEditModal(invoiceNo) {
+  requireOwner(`Edit booking #${invoiceNo}`, (ownerPass) => {
+    const b = allBookings.find(x => x.invoiceNo === invoiceNo);
+    if (!b) { toast('Booking not found.', 'err'); return; }
+    editingInvoiceNo = invoiceNo;
+    document.getElementById('edit-invoice').value     = b.invoiceNo     || '';
+    document.getElementById('edit-name').value        = b.guestName || b.customerName || '';
+    document.getElementById('edit-phone').value       = b.guestPhone    || '';
+    document.getElementById('edit-vehicle').value     = b.vehicleType || b.roomType || 'Car (Sedan)';
+    document.getElementById('edit-pickup').value      = b.pickupLocation|| '';
+    document.getElementById('edit-drop').value        = b.dropLocation  || '';
+    document.getElementById('edit-journeydate').value = b.journeyDate || b.checkin || '';
+    document.getElementById('edit-journeytime').value = b.journeyTime   || '';
+    document.getElementById('edit-passengers').value  = b.passengers    || '';
+    document.getElementById('edit-fare').value        = b.roomPrice || b.fare || '';
+    document.getElementById('edit-advance').value     = b.advancePaid   || '';
+    document.getElementById('edit-payid').value       = b.paymentId     || '';
+    document.getElementById('edit-source').value      = b.source        || 'website';
+    document.getElementById('edit-bookedon').value    = b.timestamp ? new Date(b.timestamp).toISOString().split('T')[0] : '';
+    document.getElementById('edit-modal').style.display = 'flex';
+  });
+}
+function closeEditModal() { document.getElementById('edit-modal').style.display = 'none'; editingInvoiceNo = null; }
+document.getElementById('edit-modal').addEventListener('click', e => { if (e.target === document.getElementById('edit-modal')) closeEditModal(); });
+
+async function submitEditBooking() {
+  if (!editingInvoiceNo) return;
+  const updates = {
+    guestName:       document.getElementById('edit-name').value.trim(),
+    customerName:    document.getElementById('edit-name').value.trim(),
+    guestPhone:      document.getElementById('edit-phone').value.trim(),
+    vehicleType:     document.getElementById('edit-vehicle').value,
+    roomType:        document.getElementById('edit-vehicle').value, // compatibility
+    pickupLocation:  document.getElementById('edit-pickup').value.trim(),
+    dropLocation:    document.getElementById('edit-drop').value.trim(),
+    journeyDate:     document.getElementById('edit-journeydate').value,
+    checkin:         document.getElementById('edit-journeydate').value, // compatibility
+    journeyTime:     document.getElementById('edit-journeytime').value,
+    passengers:      parseInt(document.getElementById('edit-passengers').value) || 1,
+    fare:            parseInt(document.getElementById('edit-fare').value) || 0,
+    roomPrice:       parseInt(document.getElementById('edit-fare').value) || 0, // compatibility
+    advancePaid:     parseInt(document.getElementById('edit-advance').value) || 0,
+    paymentId:       document.getElementById('edit-payid').value.trim(),
+    source:          document.getElementById('edit-source').value,
+    timestamp:       document.getElementById('edit-bookedon').value ? new Date(document.getElementById('edit-bookedon').value).getTime() : undefined,
+  };
+  try {
+    const res = await fetch(`${BOOKINGS_API}?hotel=${HOTEL_ID}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ADMIN_PASS}`, 'X-Owner-Secret': ownerPassSession },
+      body: JSON.stringify({ invoiceNo: editingInvoiceNo, updates }),
+    });
+    if (res.status === 403) { handleOwnerRejected(); closeEditModal(); return; }
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const idx  = allBookings.findIndex(b => b.invoiceNo === editingInvoiceNo);
+    if (idx !== -1) allBookings[idx] = data.booking;
+    updateRevenueHero(); renderBookingsTable();
+    renderNextTripBanner(); renderLastBookingCard(); updateStats();
+    toast(`✅ Booking #${editingInvoiceNo} updated.`, 'ok');
+    closeEditModal();
+  } catch { toast('❌ Failed to save changes.', 'err'); }
+}
+
+// ── CLEAR ALL ──
+async function clearBookingHistory() {
+  requireOwner('Clear ALL trip history', async (ownerPass) => {
+    if (!confirm('Delete ALL trip history? Cannot be undone.')) return;
+    try {
+      const res = await fetch(`${BOOKINGS_API}?hotel=${HOTEL_ID}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ADMIN_PASS}`, 'X-Owner-Secret': ownerPass },
+        body: JSON.stringify({}),
+      });
+      if (res.status === 403) { handleOwnerRejected(); return; }
+      if (!res.ok) throw new Error();
+      allBookings = [];
+      updateRevenueHero(); renderBookingsTable();
+      renderNextTripBanner(); renderLastBookingCard(); updateStats();
+      toast('Trip history cleared.', 'info');
+    } catch { toast('Failed to clear history.', 'err'); }
+  });
+}
+
+// ── MANUAL ENTRY ──
+function toggleManualEntry() {
+  const s = document.getElementById('manual-entry-section');
+  const b = document.getElementById('manual-entry-toggle-btn');
+  const open = s.style.display === 'block';
+  s.style.display = open ? 'none' : 'block';
+  b.innerHTML = open ? '<i class="fa fa-plus-circle"></i> Add Past Trip' : '<i class="fa fa-times"></i> Close Form';
+  if (!open) document.getElementById('me-bookingdate').value = new Date().toISOString().split('T')[0];
+}
+
+function clearManualForm() {
+  ['me-invoice','me-name','me-phone','me-pickup','me-drop','me-fare','me-advance','me-payid','me-passengers','me-journeytime']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  document.getElementById('me-vehicle').value      = '';
+  document.getElementById('me-source').value       = 'manual';
+  document.getElementById('me-journeydate').value  = '';
+  document.getElementById('me-bookingdate').value  = new Date().toISOString().split('T')[0];
+}
+
+function buildTripBooking(invoiceNo, name, phone, vehicleType, pickup, drop, journeyDate, journeyTime, passengers, fare, advance, bookingDate, paymentId, source) {
+  return {
+    invoiceNo:       invoiceNo  || 'TX-' + Date.now(),
+    paymentId:       paymentId  || '',
+    guestName:       name       || 'Unknown',
+    customerName:    name       || 'Unknown',
+    guestPhone:      phone      || '',
+    vehicleType:     vehicleType|| 'N/A',
+    roomType:        vehicleType|| 'N/A', // compatibility
+    pickupLocation:  pickup     || '',
+    dropLocation:    drop       || '',
+    journeyDate:     journeyDate|| '',
+    checkin:         journeyDate|| '', // compatibility
+    journeyTime:     journeyTime|| '',
+    passengers:      parseInt(passengers) || 1,
+    fare:            parseInt(fare)    || 0,
+    roomPrice:       parseInt(fare)    || 0, // compatibility
+    advancePaid:     parseInt(advance) || 0,
+    hotelName:       'Taxi Service',
+    timestamp:       bookingDate ? new Date(bookingDate).getTime() : Date.now(),
+    source:          source || 'manual',
+    addedBy:         'admin-manual',
+  };
+}
+
+async function submitManualBooking() {
+  const required = {
+    'me-invoice':'Invoice No.','me-name':'Customer Name','me-vehicle':'Vehicle Type',
+    'me-pickup':'Pickup Location','me-drop':'Drop Location',
+    'me-journeydate':'Journey Date','me-fare':'Total Fare','me-bookingdate':'Booking Date',
+  };
+  for (const [id, label] of Object.entries(required)) {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.classList.add('required-err'); toast(`${label} is required.`, 'err'); return; }
+    else el.classList.remove('required-err');
+  }
+  const booking = buildTripBooking(
+    document.getElementById('me-invoice').value.trim(),
+    document.getElementById('me-name').value.trim(),
+    document.getElementById('me-phone').value.trim(),
+    document.getElementById('me-vehicle').value,
+    document.getElementById('me-pickup').value.trim(),
+    document.getElementById('me-drop').value.trim(),
+    document.getElementById('me-journeydate').value,
+    document.getElementById('me-journeytime').value,
+    document.getElementById('me-passengers').value,
+    document.getElementById('me-fare').value,
+    document.getElementById('me-advance').value,
+    document.getElementById('me-bookingdate').value,
+    document.getElementById('me-payid').value.trim(),
+    document.getElementById('me-source').value,
+  );
+  await pushBookingsToRedis([booking], 'Trip saved!');
+  clearManualForm();
+}
+
+// ── BULK IMPORT ──
+function parseBulkCSV(raw) {
+  const blocks = raw.trim().split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+  return blocks.map(block => {
+    const get = (patterns) => {
+      for (const pat of patterns) { const m = block.match(pat); if (m) return m[1].trim(); }
+      return '';
+    };
+    const invoiceNo   = get([/Invoice\s*No\.?\s*[:\t]\s*#?([^\n]+)/i]);
+    const name        = get([/Customer\s*Name\s*[:\t]\s*([^\n]+)/i, /Guest\s*Name\s*[:\t]\s*([^\n]+)/i, /Name\s*[:\t]\s*([^\n]+)/i]);
+    const rawPhone    = get([/Phone\s*[:\t]\s*([^\n]+)/i]);
+    const phone       = rawPhone.replace(/^\+91\s*/, '').replace(/\D/g,'').slice(-10);
+    const vehicleType = get([/Vehicle(?:\s*Type)?\s*[:\t]\s*([^\n]+)/i]);
+    const pickup      = get([/Pickup(?:\s*Location)?\s*[:\t]\s*([^\n]+)/i]);
+    const drop        = get([/Drop(?:\s*Location)?\s*[:\t]\s*([^\n]+)/i]);
+    const journeyRaw  = get([/Journey\s*Date\s*[:\t]\s*([^\n]+)/i, /Date\s*[:\t]\s*([^\n]+)/i]);
+    const time        = get([/Journey\s*Time\s*[:\t]\s*([^\n]+)/i, /Time\s*[:\t]\s*([^\n]+)/i]);
+    const passengers  = get([/Passengers?\s*[:\t]\s*([^\n]+)/i]);
+    const paymentId   = get([/Payment\s*ID\s*[:\t]\s*([^\n]+)/i]);
+    const parseAmt    = s => parseInt(s.replace(/[₹,\s]/g,'')) || 0;
+    const fare        = parseAmt(get([/Total\s*Fare\s*[:\t]\s*([\₹\d,]+)/i, /Fare\s*[:\t]\s*([\₹\d,]+)/i]));
+    const advance     = parseAmt(get([/Advance\s*Paid[^:\t]*[:\t]\s*([\₹\d,]+)/i]));
+    const parseDate   = str => {
+      if (!str) return '';
+      const d = new Date(str);
+      if (!isNaN(d)) { const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; }
+      const dmy = str.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+      if (dmy) return `${dmy[3]}-${dmy[2].padStart(2,'0')}-${dmy[1].padStart(2,'0')}`;
+      return '';
+    };
+    const journeyDate = parseDate(journeyRaw);
+    if (!journeyDate || !fare) return null;
+    return buildTripBooking(invoiceNo, name, phone, vehicleType, pickup, drop, journeyDate, time, passengers, fare, advance, '', paymentId, 'bulk-import');
+  }).filter(Boolean);
+}
+
+function previewBulk() {
+  const raw = document.getElementById('bulk-csv-input').value;
+  const p   = document.getElementById('bulk-preview');
+  if (!raw.trim()) { p.textContent = ''; return; }
+  try {
+    const rows = parseBulkCSV(raw);
+    p.className   = 'bulk-preview' + (rows.length === 0 ? ' err' : '');
+    p.textContent = rows.length > 0 ? `✅ ${rows.length} trip(s) ready to import` : '❌ Could not parse — check format';
+  } catch { p.className = 'bulk-preview err'; p.textContent = '❌ Parse error'; }
+}
+
+async function submitBulkBookings() {
+  const raw = document.getElementById('bulk-csv-input').value;
+  if (!raw.trim()) { toast('Paste some records first.', 'err'); return; }
+  const bookings = parseBulkCSV(raw);
+  if (!bookings.length) { toast('No valid trips found.', 'err'); return; }
+  if (!confirm(`Import ${bookings.length} trip(s)?`)) return;
+  await pushBookingsToRedis(bookings, `${bookings.length} trip(s) imported!`);
+  document.getElementById('bulk-csv-input').value = '';
+  document.getElementById('bulk-preview').textContent = '';
+}
+
+async function pushBookingsToRedis(newBookings, successMsg) {
+  try {
+    const merged = [...newBookings, ...allBookings];
+    const res    = await fetch(`${BOOKINGS_API}?hotel=${HOTEL_ID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ADMIN_PASS}` },
+      body: JSON.stringify({ bookings: merged }),
+    });
+    if (!res.ok) throw new Error();
+    allBookings = merged;
+    updateRevenueHero(); renderBookingsTable();
+    renderNextTripBanner(); renderLastBookingCard(); updateStats();
+    toast('✅ ' + successMsg, 'ok');
+  } catch { toast('❌ Failed to save.', 'err'); }
+}
+</script>
+</body>
+</html>
