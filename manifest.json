@@ -1,0 +1,22 @@
+{
+  "name": "CRULIO",
+  "short_name": "CRULIO",
+  "description": "Crulio Networks — India's Pilgrimage Super Platform. Book hotels, food, transport & local services at every sacred destination.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/logos/NOBGLOGO.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logos/NOBGLOGO.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
