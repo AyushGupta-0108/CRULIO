@@ -435,18 +435,10 @@
   .reel-social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
   .reel-embed-wrap {
     position: relative; border-radius: 16px; overflow: hidden;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    aspect-ratio: 9/16; max-height: 540px; width: 100%; max-width: 300px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+    width: 100%; max-width: 340px; margin: 0 auto;
   }
-  .reel-embed-wrap iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
-  .reel-embed-placeholder {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 14px; padding: 32px; text-align: center;
-  }
-  .reel-embed-placeholder .play-icon { font-size: 52px; }
-  .reel-embed-placeholder p { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.6; }
-  .reel-embed-placeholder a { color: var(--orange-light); text-decoration: none; font-weight: 600; font-size: 13px; }
+  .reel-embed-wrap .instagram-media { margin: 0 auto !important; border-radius: 16px !important; }
 
   /* ── GUIDES / HOW-TO ── */
   .guides-section { background: var(--cream); }
@@ -910,30 +902,25 @@
   <div class="reel-inner">
     <div class="reel-text reveal">
       <div class="eyebrow" style="background:rgba(232,104,10,0.18);color:#f9a05a">See It In Action</div>
-      <h2>90% of Pilgrims Make This Mistake Before Visiting Manauna Dham.</h2>
+      <h2>90% of Devotees Make This Mistake Before Visiting Manauna Dham.</h2>
       <p>We made a short reel showing exactly how Crulio makes the Manauna Dham yatra simpler — taxi, hotel, darshan timings, all in one place. Over 90% of visitors waste time searching multiple sources. You don't have to.</p>
       <div class="reel-social-links">
-        <a href="https://www.instagram.com/crulio.networks/" target="_blank" class="reel-social-btn insta">
-          <span>📸</span> Follow on Instagram
+        <a href="https://www.instagram.com/reel/DZjn3zsBunT/" target="_blank" class="reel-social-btn insta">
+          <span>📸</span> Watch the Reel
         </a>
-        <a href="https://www.youtube.com/@CrulioNetworks" target="_blank" class="reel-social-btn yt">
+        <a href="https://www.youtube.com/@crulionetworks" target="_blank" class="reel-social-btn yt">
           <span>▶</span> Watch on YouTube
         </a>
       </div>
     </div>
     <div class="reel-embed-wrap reveal">
-      <!-- 
-        INTEGRATION NOTE:
-        Once the Instagram reel is public, replace this placeholder with the embed code.
-        From Instagram: Share → Embed → copy the <blockquote> + <script> code here.
-        OR use a direct video file:
-        <video src="images/reels/manauna-reel.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px"></video>
-      -->
-      <div class="reel-embed-placeholder">
-        <div class="play-icon">🎬</div>
-        <p>Reel live on Instagram.<br>Embed code goes here once the post is public.</p>
-        <a href="https://www.instagram.com/crulio.networks/" target="_blank">Watch on Instagram →</a>
-      </div>
+      <blockquote class="instagram-media"
+        data-instgrm-captioned
+        data-instgrm-permalink="https://www.instagram.com/reel/DZjn3zsBunT/"
+        data-instgrm-version="14"
+        style="background:#FFF;border:0;border-radius:16px;box-shadow:none;margin:0;max-width:100%;min-width:0;width:100%;">
+      </blockquote>
+      <script async src="//www.instagram.com/embed.js"></script>
     </div>
   </div>
 </section>
@@ -966,7 +953,7 @@
         <div class="guide-icon">🚖</div>
         <div>
           <div class="guide-title">How to Book a Taxi or Auto to the Dham</div>
-          <div class="guide-sub">From your city or from Aonla station — booking steps, pricing, and what to carry.</div>
+          <div class="guide-sub">From your city or from Bareilly station — booking steps, pricing, and what to carry.</div>
           <div class="guide-video-links">
             <a href="TAXI_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
             <a href="TAXI_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
