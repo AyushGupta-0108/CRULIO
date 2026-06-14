@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Crulio Networks — India's Pilgrimage Super Platform. Book hotels, food, taxi and transport near Manauna Dham, Khatu Shyam Ji and India's sacred pilgrimage sites. Verified information, 24/7 WhatsApp support, zero hidden charges.">
-<meta name="keywords" content="crulio networks, pilgrimage booking india, manauna dham hotels, khatu shyam ji services, hotels near dham, pilgrim services india, dharamshala booking, taxi near mandir, yatra booking platform">
+<meta name="description" content="Crulio — India's Destination Services Platform. Book hotels, food, taxi and transport at Manauna Dham, Khatu Shyam Ji and India's sacred pilgrimage sites. Verified information, 24/7 WhatsApp support, zero hidden charges.">
+<meta name="keywords" content="crulio, pilgrimage booking india, manauna dham hotels, manauna dham taxi booking, khatu shyam ji services, hotels near dham, pilgrim services india, dharamshala booking, taxi near mandir, yatra booking platform, manauna dham guide, how to book manauna dham taxi">
 <meta name="theme-color" content="#1a2f5e">
-<title>Crulio Networks — India's Pilgrimage Super Platform</title>
+<title>Crulio — India's Destination Services Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -162,18 +162,30 @@
   .stat-item .val .accent { color: var(--orange); }
   .stat-item .lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; font-weight: 400; letter-spacing: 0.02em; }
 
-  /* ── HERO VISUAL ── */
+  /* ── HERO VISUAL (proof cards) ── */
   .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
   .hero-logo-wrap { position: relative; width: 340px; height: 340px; display: flex; align-items: center; justify-content: center; }
-  .ring {
-    position: absolute; border-radius: 50%;
-    border: 1px solid rgba(232,104,10,0.18);
-    animation: spin-slow 22s linear infinite;
+  .hero-logo-img { width: 160px; position: relative; z-index: 2; filter: drop-shadow(0 6px 36px rgba(232,104,10,0.28)); }
+  .hero-proof-cards { position: absolute; inset: 0; pointer-events: none; }
+  .hpc {
+    position: absolute;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px;
+    padding: 11px 14px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+    min-width: 90px;
+    animation: hpc-float 3s ease-in-out infinite;
   }
-  .ring:nth-child(2) { width: 290px; height: 290px; }
-  .ring:nth-child(3) { width: 370px; height: 370px; animation-direction: reverse; animation-duration: 34s; border-color: rgba(255,255,255,0.05); }
-  @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-  .hero-logo-img { width: 220px; position: relative; z-index: 2; filter: drop-shadow(0 6px 36px rgba(232,104,10,0.28)); }
+  .hpc-tl { top: 18px; left: 0; animation-delay: 0s; }
+  .hpc-tr { top: 18px; right: 0; animation-delay: 0.8s; }
+  .hpc-bl { bottom: 18px; left: 0; animation-delay: 1.6s; }
+  .hpc-br { bottom: 18px; right: 0; animation-delay: 0.4s; }
+  @keyframes hpc-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .hpc-icon { font-size: 18px; margin-bottom: 4px; }
+  .hpc-val { font-size: 15px; font-weight: 800; color: white; line-height: 1; }
+  .hpc-lbl { font-size: 9.5px; color: rgba(255,255,255,0.5); margin-top: 2px; font-weight: 400; }
 
   /* ── SECTIONS ── */
   section { padding: 80px 5%; }
@@ -406,6 +418,62 @@
     .nav-logo-font { height: 36px; }
   }
 
+  /* ── SOCIAL PROOF / REEL ── */
+  .reel-section { background: var(--navy-dark); padding: 72px 5%; }
+  .reel-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .reel-text .eyebrow { margin-bottom: 14px; }
+  .reel-text h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 800; color: white; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .reel-text p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.8; font-weight: 300; margin-bottom: 24px; max-width: 460px; }
+  .reel-social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .reel-social-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .reel-social-btn.insta { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: white; }
+  .reel-social-btn.yt { background: #ff0000; color: white; }
+  .reel-social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+  .reel-embed-wrap {
+    position: relative; border-radius: 16px; overflow: hidden;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    aspect-ratio: 9/16; max-height: 540px; width: 100%; max-width: 300px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reel-embed-wrap iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
+  .reel-embed-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; padding: 32px; text-align: center;
+  }
+  .reel-embed-placeholder .play-icon { font-size: 52px; }
+  .reel-embed-placeholder p { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.6; }
+  .reel-embed-placeholder a { color: var(--orange-light); text-decoration: none; font-weight: 600; font-size: 13px; }
+
+  /* ── GUIDES / HOW-TO ── */
+  .guides-section { background: var(--cream); }
+  .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; margin-top: 10px; }
+  .guide-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 20px; display: flex; gap: 14px; align-items: flex-start;
+    transition: all 0.2s; text-decoration: none; color: inherit;
+  }
+  .guide-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(232,104,10,0.1); transform: translateY(-2px); }
+  .guide-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .guide-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .guide-sub { font-size: 12px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+  .guide-tag { display: inline-block; margin-top: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--orange-pale); color: var(--orange); padding: 2px 8px; border-radius: 20px; }
+  .guide-tag.live { background: rgba(74,222,128,0.12); color: #16a34a; }
+  .guide-video-links { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; }
+  .gvl-btn { font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 20px; text-decoration: none; transition: opacity 0.2s; }
+  .gvl-btn:hover { opacity: 0.82; }
+  .gvl-insta { background: linear-gradient(135deg,#f09433,#dc2743,#bc1888); color: white; }
+  .gvl-yt { background: #ff0000; color: white; }
+
+  @media (max-width: 900px) {
+    .reel-inner { grid-template-columns: 1fr; gap: 36px; }
+    .reel-embed-wrap { max-height: 420px; max-width: 240px; }
+    .reel-text p { max-width: 100%; }
+  }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 </style>
@@ -417,12 +485,13 @@
   <a href="/" class="nav-logo">
     <img src="images/logos/NOBGLOGO.png" alt="Crulio" class="nav-logo-icon"
          onerror="this.style.display='none'">
-    <img src="images/logos/NOBGFONT.png" alt="Crulio Networks" class="nav-logo-font"
-         onerror="this.src='images/logos/FONT.png'"
+    <img src="images/logos/justcrulionobg.png" alt="Crulio" class="nav-logo-font"
+         onerror="this.src='images/logos/justcrulio.png'"
          onerror="this.style.display='none'; document.getElementById('nav-text').style.display='flex'">
     <span id="nav-text" style="display:none" class="nav-logo-text">crulio<span>.</span></span>
   </a>
   <ul class="nav-links">
+    <li><a href="https://www.crulio.com/ManaunaDham" target="_blank">Manauna Dham</a></li>
     <li><a href="#destinations">Destinations</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Crulio</a></li>
@@ -437,9 +506,9 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <a href="https://www.crulio.com/ManaunaDham" target="_blank" class="hero-badge" style="text-decoration:none;cursor:pointer;"><div class="live-dot"></div>Now Live — Manauna Dham, Bareilly</a>
-      <h1>Every Service.<br>Every <em>Destination.</em><br>Starting with India's Sacred Sites.</h1>
-      <p class="hero-sub">Hotels, food, trains, autos, buses, souvenirs — everything you need, at every destination we cover. Pilgrimage sites today. Every popular destination tomorrow.</p>
+      <a href="https://www.crulio.com/ManaunaDham" target="_blank" class="hero-badge" style="text-decoration:none;cursor:pointer;"><div class="live-dot"></div>Live at Manauna Dham, Bareilly</a>
+      <h1>One Platform.<br>Every Service at <em>Every Destination.</em></h1>
+      <p class="hero-sub">Hotels, food, taxi, trains, autos — everything you need, fully covered at every destination we operate. India's pilgrimage sites today. Every destination worth visiting, tomorrow.</p>
       <div class="hero-actions">
         <a href="#destinations" class="btn-primary">Explore Destinations →</a>
         <a href="#partner" class="btn-ghost">Partner With Us</a>
@@ -447,16 +516,16 @@
       <div class="hero-stats-wrap">
         <div class="hero-stats">
           <div class="stat-item">
-            <div class="val" id="h-views">0<span class="accent">L+</span></div>
-            <div class="lbl">Search Impressions</div>
-          </div>
-          <div class="stat-item">
             <div class="val" id="h-customers">0<span class="accent">+</span></div>
             <div class="lbl">Pilgrims Served</div>
           </div>
           <div class="stat-item">
             <div class="val" id="h-gmv">₹<span class="accent" id="h-gmv-val">0</span>L</div>
             <div class="lbl">GMV Processed</div>
+          </div>
+          <div class="stat-item">
+            <div class="val" id="h-views">0<span class="accent">L+</span></div>
+            <div class="lbl">Search Impressions</div>
           </div>
         </div>
         <div style="margin-top:14px;display:inline-flex;align-items:center;gap:7px;background:rgba(74,222,128,0.09);border:1px solid rgba(74,222,128,0.22);border-radius:50px;padding:5px 14px;">
@@ -467,9 +536,29 @@
     </div>
     <div class="hero-visual">
       <div class="hero-logo-wrap">
-        <div class="ring"></div>
-        <div class="ring"></div>
         <img class="hero-logo-img" src="images/logos/NOBGLOGO.png" alt="Crulio" onerror="this.style.opacity='0'">
+        <div class="hero-proof-cards">
+          <div class="hpc hpc-tl">
+            <div class="hpc-icon">📍</div>
+            <div class="hpc-val">1 Live</div>
+            <div class="hpc-lbl">Destination</div>
+          </div>
+          <div class="hpc hpc-tr">
+            <div class="hpc-icon">🙏</div>
+            <div class="hpc-val">1000+</div>
+            <div class="hpc-lbl">Pilgrims Served</div>
+          </div>
+          <div class="hpc hpc-bl">
+            <div class="hpc-icon">🛎️</div>
+            <div class="hpc-val">6+</div>
+            <div class="hpc-lbl">Services Active</div>
+          </div>
+          <div class="hpc hpc-br">
+            <div class="hpc-icon">🗺️</div>
+            <div class="hpc-val">4+</div>
+            <div class="hpc-lbl">In Pipeline</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -503,8 +592,8 @@
   <div class="section-inner">
     <div class="section-header reveal">
       <div class="eyebrow">Our Destinations</div>
-      <h2 class="section-title">Sacred Sites Today. Every Destination Tomorrow.</h2>
-      <p class="section-sub">We start where the gap is biggest — pilgrimage destinations that are underserved online. More destination types coming soon.</p>
+      <h2 class="section-title">Pilgrimage Sites Today. Every Destination Tomorrow.</h2>
+      <p class="section-sub">We go where the digital gap is biggest — starting with India's sacred sites. Ground-verified, fully staffed, fully operational.</p>
     </div>
     <div class="dest-grid reveal">
       <a href="https://www.crulio.com/ManaunaDham" class="dest-card" target="_blank">
@@ -532,7 +621,7 @@
         </div>
       </a>
       <div class="dest-card" style="cursor:default">
-        <div class="dest-img" style="background:linear-gradient(135deg,#1a5c8a 0%,#2980b9 100%)">🪔<div class="coming-badge">Coming Soon</div></div>
+        <div class="dest-img" style="background:linear-gradient(135deg,#1a5c8a 0%,#2980b9 100%)">🪔<div class="coming-badge">Launching Next</div></div>
         <div class="dest-body">
           <div class="dest-name">Khatu Shyam Ji</div>
           <div class="dest-loc">📍 Sikar, Rajasthan</div>
@@ -540,7 +629,7 @@
         </div>
       </div>
       <div class="dest-card" style="cursor:default">
-        <div class="dest-img" style="background:linear-gradient(135deg,#2d5a27 0%,#4caf50 60%,#2d5a27 100%)">🌿<div class="coming-badge">Coming Soon</div></div>
+        <div class="dest-img" style="background:linear-gradient(135deg,#2d5a27 0%,#4caf50 60%,#2d5a27 100%)">🌿<div class="coming-badge">Expansion Underway</div></div>
         <div class="dest-body">
           <div class="dest-name">Vrindavan</div>
           <div class="dest-loc">📍 Mathura, Uttar Pradesh</div>
@@ -565,9 +654,9 @@
       </div>
       <div class="dest-coming-card">
         <div style="font-size:30px">📍</div>
-        <strong>Expand to Your Dham</strong>
-        <p>We're growing the network, one sacred site at a time.</p>
-        <a href="#partner" class="btn-primary" style="font-size:13px;padding:10px 20px;margin-top:10px">Partner With Us →</a>
+        <strong>Bring Crulio to Your Dham</strong>
+        <p>Know a destination that needs this? Partner with us to launch next.</p>
+        <a href="#partner" class="btn-primary" style="font-size:13px;padding:10px 20px;margin-top:10px">Become a Destination Partner →</a>
       </div>
     </div>
   </div>
@@ -578,8 +667,8 @@
   <div class="section-inner">
     <div class="section-header reveal">
       <div class="eyebrow" style="background:rgba(232,104,10,0.18);color:#f9a05a">Everything We Offer</div>
-      <h2 class="section-title">One Platform. Every Destination. Every Service.</h2>
-      <p class="section-sub">Built for pilgrimage. Designed for every destination. From the moment you decide to go, to the moment you return.</p>
+      <h2 class="section-title">One Platform. Every Service. Every Destination.</h2>
+      <p class="section-sub">Built first for pilgrimage, designed for everywhere. From the moment you plan, to the moment you return home.</p>
     </div>
     <div class="svc-grid reveal">
       <div class="svc-card">
@@ -639,8 +728,8 @@
 
 <!-- CLUB SERVICES BAND -->
 <div class="club-band">
-  <h3>🎯 Club Services Across Any Destination — Save Big.</h3>
-  <p>Book hotel + taxi + food together and unlock exclusive combined discounts unavailable anywhere else. The more you club, the more you save.</p>
+  <h3>🎯 Bundle Services. Save More.</h3>
+  <p>Book hotel + taxi + food together and unlock exclusive discounts you won't find anywhere else. The more you bundle, the more you save.</p>
   <div class="club-chips">
     <div class="club-chip">🏨 Hotel + 🚖 Auto</div>
     <div class="club-chip">🏨 Hotel + 🍱 Food</div>
@@ -816,13 +905,135 @@
   </div>
 </section>
 
+<!-- REEL / SOCIAL PROOF -->
+<section class="reel-section">
+  <div class="reel-inner">
+    <div class="reel-text reveal">
+      <div class="eyebrow" style="background:rgba(232,104,10,0.18);color:#f9a05a">See It In Action</div>
+      <h2>90% of Pilgrims Make This Mistake Before Visiting Manauna Dham.</h2>
+      <p>We made a short reel showing exactly how Crulio makes the Manauna Dham yatra simpler — taxi, hotel, darshan timings, all in one place. Over 90% of visitors waste time searching multiple sources. You don't have to.</p>
+      <div class="reel-social-links">
+        <a href="https://www.instagram.com/crulio.networks/" target="_blank" class="reel-social-btn insta">
+          <span>📸</span> Follow on Instagram
+        </a>
+        <a href="https://www.youtube.com/@CrulioNetworks" target="_blank" class="reel-social-btn yt">
+          <span>▶</span> Watch on YouTube
+        </a>
+      </div>
+    </div>
+    <div class="reel-embed-wrap reveal">
+      <!-- 
+        INTEGRATION NOTE:
+        Once the Instagram reel is public, replace this placeholder with the embed code.
+        From Instagram: Share → Embed → copy the <blockquote> + <script> code here.
+        OR use a direct video file:
+        <video src="images/reels/manauna-reel.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px"></video>
+      -->
+      <div class="reel-embed-placeholder">
+        <div class="play-icon">🎬</div>
+        <p>Reel live on Instagram.<br>Embed code goes here once the post is public.</p>
+        <a href="https://www.instagram.com/crulio.networks/" target="_blank">Watch on Instagram →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW-TO GUIDES -->
+<section class="guides-section" id="guides">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Step-by-Step Guides</div>
+      <h2 class="section-title">Everything You Need to Know — Before You Go.</h2>
+      <p class="section-sub">Detailed video guides for every service at Manauna Dham. Watch on Instagram or YouTube.</p>
+    </div>
+    <div class="guides-grid reveal">
+
+      <!-- HOTEL GUIDE -->
+      <div class="guide-card">
+        <div class="guide-icon">🏨</div>
+        <div>
+          <div class="guide-title">How to Book a Hotel Near Manauna Dham</div>
+          <div class="guide-sub">Step-by-step: choosing a property, checking in, and what to expect on arrival.</div>
+          <div class="guide-video-links">
+            <a href="HOTEL_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+            <a href="HOTEL_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAXI GUIDE -->
+      <div class="guide-card">
+        <div class="guide-icon">🚖</div>
+        <div>
+          <div class="guide-title">How to Book a Taxi or Auto to the Dham</div>
+          <div class="guide-sub">From your city or from Aonla station — booking steps, pricing, and what to carry.</div>
+          <div class="guide-video-links">
+            <a href="TAXI_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+            <a href="TAXI_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD GUIDE -->
+      <div class="guide-card">
+        <div class="guide-icon">🍱</div>
+        <div>
+          <div class="guide-title">How to Order Food at Manauna Dham</div>
+          <div class="guide-sub">Local kitchen options, sattvic meals, delivery to your stay — a complete walkthrough.</div>
+          <div class="guide-video-links">
+            <a href="FOOD_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+            <a href="FOOD_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DARSHAN GUIDE -->
+      <div class="guide-card">
+        <div class="guide-icon">📋</div>
+        <div>
+          <div class="guide-title">Darshan Timings, Aarti & Events</div>
+          <div class="guide-sub">Maharaj Ji's baithak schedule, aarti timings, and how to stay updated during your yatra.</div>
+          <div class="guide-video-links">
+            <a href="DARSHAN_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+            <a href="DARSHAN_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAIN/BUS GUIDE -->
+      <div class="guide-card">
+        <div class="guide-icon">🚆</div>
+        <div>
+          <div class="guide-title">Train & Bus Routes to Manauna Dham</div>
+          <div class="guide-sub">Which station to arrive at, last-mile options, and how to plan the journey from your city.</div>
+          <div class="guide-video-links">
+            <a href="TRAIN_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+            <a href="TRAIN_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHATSAPP FALLBACK -->
+      <a href="https://wa.me/917817803342" target="_blank" class="guide-card" style="border-color:#25d366;background:rgba(37,211,102,0.04)">
+        <div class="guide-icon">💬</div>
+        <div>
+          <div class="guide-title">Still Confused? Ask Us on WhatsApp.</div>
+          <div class="guide-sub">Real team, real answers. Any time of day. We'll sort it out in one message.</div>
+          <div class="guide-tag live">Always Available</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
 <!-- PARTNER -->
 <section id="partner">
   <div class="section-inner">
     <div class="section-header reveal">
       <div class="eyebrow">Join the Network</div>
       <h2 class="section-title">Grow With Crulio</h2>
-      <p class="section-sub">Own a hotel near a dham or popular destination? Run transport? Know a location that needs Crulio? Let's talk.</p>
+      <p class="section-sub">Own a hotel near a dham? Run transport? Know a destination that's underserved? We want to hear from you.</p>
     </div>
     <div class="partner-grid reveal">
       <div class="partner-card">
@@ -849,10 +1060,10 @@
 
 <!-- CTA BAND -->
 <div class="cta-band">
-  <h2>Your Next Destination. Fully Covered.</h2>
-  <p>Starting with India's sacred sites — and growing to every destination worth visiting.</p>
+  <h2>Your Next Destination.<br>Fully Covered.</h2>
+  <p>India's sacred sites today — and every destination worth visiting, tomorrow. Come experience what ground-level service actually feels like.</p>
   <div class="cta-buttons">
-    <a href="https://www.crulio.com/ManaunaDham" class="btn-primary" target="_blank">Visit Manauna Dham →</a>
+    <a href="https://www.crulio.com/ManaunaDham" class="btn-primary" target="_blank">Explore Manauna Dham →</a>
     <a href="mailto:partner@crulio.com" class="btn-ghost">Partner With Us</a>
   </div>
 </div>
@@ -863,11 +1074,12 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'">
-        <p>India's destination services platform. Starting with pilgrimage sites, expanding everywhere. Ground-verified, always.</p>
+        <p>India's destination services platform — starting with pilgrimage sites, expanding to everywhere worth visiting. Ground-verified, always.</p>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Crulio</a>
+        <a href="https://www.crulio.com/ManaunaDham" target="_blank">Manauna Dham</a>
         <a href="#partner">Partner With Us</a>
         <a href="https://wa.me/917817803342" target="_blank">WhatsApp Support</a>
         <a href="mailto:partner@crulio.com">Contact</a>
