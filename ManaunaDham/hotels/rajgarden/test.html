@@ -798,16 +798,6 @@ nav a:hover { background: rgba(255,255,255,0.15); color: white; }
 .rbtn-print:hover { background: var(--maroon-dark); }
 .rbtn-close { background: white; color: var(--text); border: 2px solid var(--border); }
 .rbtn-close:hover { background: #f0f0f0; }
-.ract-wa { display: flex; flex-direction: column; gap: 8px; padding: 0 28px 20px; }
-.ract-wa-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 2px; }
-.rbtn-wa-customer {
-  width: 100%; padding: 12px; border-radius: 8px;
-  background: var(--wa-green); color: white;
-  border: none; font-weight: 700; font-size: 14px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: var(--transition);
-}
-.rbtn-wa-customer:hover { background: var(--wa-dark); }
 .wa-auto-note { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 28px 16px; }
 
 /* ══ QR MODAL ══ */
@@ -821,7 +811,7 @@ nav a:hover { background: rgba(255,255,255,0.15); color: white; }
     padding: 0 !important; overflow: visible !important; display: block !important;
   }
   .receipt-box { width: 100% !important; max-width: 480px !important; margin: 0 auto !important; box-shadow: none !important; position: static !important; border-radius: 0 !important; }
-  .ract, .ract-wa, .wa-auto-note, #receipt-email-msg { display: none !important; }
+  .ract, .wa-auto-note, #receipt-email-msg { display: none !important; }
   div[style*="receipt-email-input"], div[style*="Save Your Receipt"] { display: none !important; }
   @page { margin: 10mm; size: A5 portrait; }
 }
@@ -865,7 +855,6 @@ footer p:last-child { font-size: 12px; opacity: .65; }
   .cta-btn { justify-content: center; }
   .rb { padding: 20px; }
   .ract { padding: 4px 20px 20px; }
-  .ract-wa { padding: 0 20px 16px; }
   .wa-auto-note { padding: 0 20px 12px; }
   .rr.rr-big, .rr.rr-hotel { margin: 0 -20px; padding: 12px 20px; }
   .bcb-options { grid-template-columns: 1fr; }
@@ -1689,6 +1678,15 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       <div id="receipt-email-msg" style="font-size:12.5px;display:none;padding:8px 12px;border-radius:6px;margin-bottom:4px;"></div>
     </div>
 
+    <!-- WhatsApp deep link -->
+    <div style="padding:0 28px 12px;">
+      <button onclick="sendReceiptWhatsApp()" id="wa-receipt-btn"
+        style="width:100%;padding:12px;background:#25D366;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--transition);"
+        onmouseover="this.style.background='#1da851'" onmouseout="this.style.background='#25D366'">
+        <i class="fab fa-whatsapp" style="font-size:16px;"></i> Send to WhatsApp
+      </button>
+    </div>
+
     <div class="ract">
       <button class="rbtn-print" onclick="copyReceiptText(this)" style="flex:1;min-width:100px;">
         <i class="fa fa-copy"></i> <span>Copy Text</span>
@@ -1823,6 +1821,41 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     <img src="../../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
   </a>
 </footer>
+
+<!-- RESEND RECEIPT SECTION -->
+<section style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:28px;margin-bottom:8px;">📧</div>
+      <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
+      <p style="margin:0;font-size:13px;color:#888;line-height:1.5;">Enter your invoice number and email below — we'll resend it instantly.</p>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Invoice Number</label>
+        <input type="text" id="resend-invoice-input" placeholder="e.g. RG0828042"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Email Address</label>
+        <input type="email" id="resend-email-input" placeholder="your@email.com"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <button id="resend-btn" onclick="resendReceiptByInvoice()"
+        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;"
+        onmouseover="this.style.background='#4d0000'" onmouseout="this.style.background='#7a0000'">
+        Resend Receipt
+      </button>
+      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;"></div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:#aaa;margin-top:14px;">
+      Still having trouble? WhatsApp us at <a href="https://wa.me/917817803342" target="_blank" style="color:#7a0000;">+91 7817803342</a>
+    </p>
+  </div>
+</section>
+
 
 <script>
 // ══════════════════════════════════════
@@ -2438,6 +2471,113 @@ async function sendReceiptEmail() {
 
 function showEmailMsg(text, type) {
   const el = document.getElementById('receipt-email-msg');
+  el.textContent = text;
+  el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+// ── WHATSAPP DEEP LINK — send receipt text to WhatsApp ────────────────────────
+function sendReceiptWhatsApp() {
+  if (!lastBooking) return;
+  const text = buildReceiptMsg(lastBooking);
+  const encoded = encodeURIComponent(text);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
+}
+
+// ── RESEND RECEIPT BY INVOICE NUMBER ─────────────────────────────────────────
+async function resendReceiptByInvoice() {
+  const invoiceInput = document.getElementById('resend-invoice-input');
+  const emailInput   = document.getElementById('resend-email-input');
+  const btn          = document.getElementById('resend-btn');
+
+  const invoice = invoiceInput.value.trim().toUpperCase();
+  const email   = emailInput.value.trim();
+
+  if (!invoice) {
+    showResendMsg('Please enter your invoice number.', 'error'); return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showResendMsg('Please enter a valid email address.', 'error'); return;
+  }
+
+  btn.textContent = '⏳ Looking up…';
+  btn.disabled = true;
+
+  try {
+    // 1. Look up booking by invoice number (public endpoint — no secret needed)
+    const lookupResp = await fetch(
+      `https://harshdeep-api.vercel.app/api/resend-lookup?invoice=${encodeURIComponent(invoice)}`
+    );
+    const lookupData = await lookupResp.json();
+
+    if (!lookupResp.ok || !lookupData.found) {
+      showResendMsg('❌ Invoice not found. Please double-check the number or contact us on WhatsApp.', 'error');
+      btn.textContent = 'Resend Receipt';
+      btn.disabled = false;
+      return;
+    }
+
+    const b = lookupData.booking;
+    const isTaxi = !!b.pickupLocation;
+
+    // 2. Send receipt email using existing send-guest-receipt endpoint
+    const payload = isTaxi ? {
+      propertyType:  'taxi',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    'taxi-service',
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      carType:       b.roomType,
+      passengers:    b.passengers,
+      pickupLabel:   b.pickupLocation,
+      dropLocation:  b.dropLocation,
+      totalFare:     b.roomPrice,
+      discAmt:       b.couponDiscount,
+      advancePaid:   b.advancePaid,
+      platformFee:   b.platformFees,
+      payId:         b.paymentId,
+    } : {
+      propertyType:  'hotel',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    PROPERTY.id,
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      roomName:      b.roomType,
+      roomRate:      String(Math.round((b.roomPrice || 0) / (b.nights || 1))),
+      ci:            b.checkin,
+      co:            b.checkout,
+      nights:        b.nights,
+      discAmt:       b.couponDiscount,
+      finalTotal:    b.roomPrice,
+      advAmt:        b.advancePaid,
+      payId:         b.paymentId,
+    };
+
+    const sendResp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!sendResp.ok) throw new Error('Send failed');
+
+    showResendMsg('✅ Receipt sent! Check your inbox (and spam folder just in case).', 'ok');
+    btn.textContent = '✓ Sent';
+
+  } catch (err) {
+    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp.', 'error');
+    btn.textContent = 'Resend Receipt';
+    btn.disabled = false;
+  }
+}
+
+function showResendMsg(text, type) {
+  const el = document.getElementById('resend-msg');
   el.textContent = text;
   el.style.display = 'block';
   el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
