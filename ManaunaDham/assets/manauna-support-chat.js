@@ -15,6 +15,13 @@
       hotel: "YOUR_HOTEL_BOOKING_VIDEO_LINK",
       taxi:  "YOUR_TAXI_BOOKING_VIDEO_LINK",
       food:  "YOUR_FOOD_ORDER_VIDEO_LINK",
+      intro: "https://youtube.com/shorts/GLnD9qJ3WQA",
+    },
+    social: {
+      instagram: "https://www.instagram.com/reel/DZjn3zsBunT/",
+      igHandle:  "@crulionetworks",
+      ytChannel: "https://www.youtube.com/@crulionetworks",
+      ytHandle:  "@crulionetworks",
     },
     pages: {
       jal:        "https://www.crulio.com/ManaunaDham/jal",
@@ -173,6 +180,43 @@
     }
     .msc-input:focus { outline: none; border-color: #7a0000; }
 
+    /* social strip */
+    .msc-social {
+      display: flex; gap: 8px; margin-top: 4px; margin-bottom: 12px;
+    }
+    .msc-social-card {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 10px 6px; border-radius: 10px;
+      border: 1.5px solid #eee; background: #fafafa;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+      font-family: Segoe UI, Arial, sans-serif;
+    }
+    .msc-social-card:hover { background: #f0f0f0; border-color: #ccc; }
+    .msc-social-card.ig { border-color: #e1306c22; }
+    .msc-social-card.ig:hover { background: #fff0f5; border-color: #e1306c; }
+    .msc-social-card.yt { border-color: #ff000022; }
+    .msc-social-card.yt:hover { background: #fff5f5; border-color: #ff0000; }
+    .msc-social-icon { font-size: 20px; }
+    .msc-social-handle { font-size: 10px; color: #555; font-weight: 600; }
+    .msc-social-label  { font-size: 10px; color: #999; }
+
+    .msc-reel {
+      border-radius: 10px; overflow: hidden; margin-bottom: 12px;
+      border: 1.5px solid #eee; background: #000;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; cursor: pointer;
+    }
+    .msc-reel-thumb {
+      width: 100%; display: block; border-radius: 8px;
+    }
+    .msc-reel-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      background: rgba(0,0,0,0.55); border-radius: 50%;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: white;
+    }
+
     /* fact row */
     .msc-fact { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 13px; color: #333; }
     .msc-fact-icon { flex-shrink:0; font-size:15px; }
@@ -257,6 +301,7 @@
   // ══════════════════════════════════════
 
   window.mscShowMain = function () { showMain(); };
+  window.showMain = showMain;
 
   function showMain() {
     render(`
@@ -272,6 +317,28 @@
       <button class="msc-opt green" onclick="showServiceMenu('hotel')">🏨 Hotel Booking</button>
       <button class="msc-opt green" onclick="showServiceMenu('taxi')">🚕 Taxi Booking</button>
       <button class="msc-opt green" onclick="showServiceMenu('food')">🍽️ Food Order</button>
+
+      <hr class="msc-div">
+      <div class="msc-label">📹 Hamaari Seva Dekhein</div>
+      <a class="msc-yt" href="${CONFIG.social.ytChannel}/shorts/GLnD9qJ3WQA" target="_blank">
+        <div class="msc-yt-icon">▶️</div>
+        <div>
+          <div class="msc-yt-text">Manauna Dham — Platform Tour</div>
+          <div class="msc-yt-sub">YouTube Shorts · ${CONFIG.social.ytHandle}</div>
+        </div>
+      </a>
+      <div class="msc-social">
+        <a class="msc-social-card ig" href="${CONFIG.social.instagram}" target="_blank">
+          <span class="msc-social-icon">📸</span>
+          <span class="msc-social-handle">${CONFIG.social.igHandle}</span>
+          <span class="msc-social-label">Instagram</span>
+        </a>
+        <a class="msc-social-card yt" href="${CONFIG.social.ytChannel}" target="_blank">
+          <span class="msc-social-icon">▶️</span>
+          <span class="msc-social-handle">${CONFIG.social.ytHandle}</span>
+          <span class="msc-social-label">YouTube</span>
+        </a>
+      </div>
     `);
   }
 
@@ -295,7 +362,7 @@
         ℹ️ Inki puri jaankari humne website par likhi hai. Kripya page zaroor dekhein —
         aapke sabhi sawaalon ke jawab wahan milenge.
       </div>
-      <button class="msc-opt ghost" onclick="showMain()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
     `);
   };
 
@@ -322,7 +389,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Poori Jaankari — Patient Page Dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
     `);
   };
 
@@ -347,7 +414,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient Page par aur jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
     `);
   };
 
@@ -372,7 +439,7 @@
         Actual time rush ke hisaab se change ho sakta hai.
       </div>
 
-      <button class="msc-opt ghost" onclick="showInfoMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
     `);
   };
 
@@ -397,7 +464,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Shyam Jal ki poori jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
     `);
   };
 
@@ -416,7 +483,7 @@
 
       <hr class="msc-div">
       <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels Page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
     `);
   };
 
@@ -434,7 +501,7 @@
         💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (advance nahi, sirf remaining amount).
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
     `);
   };
 
@@ -453,7 +520,7 @@
         💡 Best approach: <b>Dopahar 1 PM ke aas-paas pahunchein</b> taaki standard check-in time par room pakka mile.
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
     `);
   };
 
@@ -480,7 +547,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
     `);
   };
 
@@ -501,7 +568,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel contact number chahiye — receipt nahi mili.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
     `);
   };
 
@@ -531,7 +598,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
     `);
   };
 
@@ -557,7 +624,7 @@
 
       <hr class="msc-div">
       <button class="msc-opt ghost" onclick="window.open('${s.page}','_blank')">📋 ${s.name} page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
     `);
   };
 
@@ -595,7 +662,7 @@
       ${contactBlock(preMsg)}
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Wapas</button>
     `);
   };
 
@@ -642,7 +709,7 @@
       </button>
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Wapas</button>
     `);
   };
 
@@ -665,7 +732,7 @@
       ${contactBlock(preMsg)}
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showAlreadyBooked('${service}')">🔙 Wapas Jaayein</button>
+      <button class="msc-opt ghost" onclick="showAlreadyBooked('${service}')">← Wapas</button>
     `);
   };
 
