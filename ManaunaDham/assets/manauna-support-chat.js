@@ -61,7 +61,7 @@
       transition: transform 0.15s, box-shadow 0.15s;
     }
     .msc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(122,0,0,0.55); }
-.msc-btn { display: none !important; }
+
     .msc-box {
       display: none;
       position: fixed;
@@ -1324,13 +1324,13 @@
   // INIT
   // ══════════════════════════════════════
   showMain();
-// Expose toggle + hide the floating button
-window.mscToggle = function() {
-  if (box.style.display === "block") {
-    box.style.display = "none";
-  } else {
-    box.style.display = "block";
-    showMain();
-  }
-};
+  window.mscToggle = function() {
+    if (box.style.display === "block") {
+      box.style.display = "none";
+    } else {
+      box.style.display = "block";
+      showMain();
+    }
+  };
+
 })();
