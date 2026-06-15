@@ -6,7 +6,7 @@
 <meta name="description" content="Hotel Raj Garden Aonla - AC rooms near Manauna Dham temple. Standard ₹1,899/night, Deluxe ₹2,299/night. WiFi, geyser, parking, in-house restaurant. 3-4 km from Khatu Shyam temple. Book online!">
 <meta name="keywords" content="hotel raj garden aonla, hotels near manauna dham, raj garden hotel aonla, budget hotel aonla, hotel near khatu shyam temple, accommodation manauna, aonla hotels with restaurant, deluxe room aonla">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://manaunadham.org.in/hotels/rajgarden">
+<link rel="canonical" href="https://crulio.com/ManaunaDham/hotels/rajgarden">
 <link rel="icon" href="https://www.crulio.com/ManaunaDham/images/web/logonobg.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1660,7 +1660,7 @@ footer p:last-child { font-size: 12px; opacity: .65; }
         15% advance paid is <strong>non-refundable</strong>.<br>
         Remaining 85% to be paid <strong>at the hotel on arrival</strong>.<br>
         Show this receipt at check-in for your confirmed booking.<br>
-        ManaunaDham.org.in is an independent booking platform.
+        ManaunaDham is part of the Crulio.com network.
       </div>
 
       <!-- MANAGER CONTACT NOTE -->
@@ -1673,11 +1673,32 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     </div>
     <div class="wa-auto-note">Hotel has been notified of your confirmed booking. 🏨✅</div>
 
-    <!-- Email send row -->
-    <div style="padding:0 28px 12px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:8px;">📲 Save Your Receipt</div>
+    <!-- Email section -->
+    <div style="padding:0 28px 14px;">
+      <!-- Auto-sent confirmation banner — shown only when email was auto-sent at payment time -->
+      <div id="receipt-email-auto-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border:1.5px solid #81c784;border-radius:10px;padding:11px 14px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;color:#1a5c2a;margin-bottom:2px;">✅ Receipt emailed automatically</div>
+        <div style="font-size:12.5px;color:#2d6a3a;line-height:1.5;">
+          A booking receipt was sent to <strong id="receipt-email-auto-address" style="color:#1a5c2a;">—</strong> when your payment was confirmed.
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">📲 Send Receipt by Email</div>
+
+      <!-- Quick-resend buttons — shown when guestEmail is known -->
+      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;display:none;">
+        <button id="resend-self-btn" onclick="resendToSelf()"
+          style="width:100%;padding:9px 14px;background:#f0fdf4;border:1.5px solid #81c784;border-radius:8px;font-size:13px;font-weight:700;color:#1a5c2a;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:6px;"
+          onmouseover="this.style.background='#e0f5e8'" onmouseout="this.style.background='#f0fdf4'">
+          <i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>
+          Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>
+        </button>
+      </div>
+
+      <!-- Send to a different / any email -->
+      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;" id="receipt-email-other-label">Or send to a different email:</div>
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
-        <input type="email" id="receipt-email-input" placeholder="Enter email for receipt" autocomplete="email"
+        <input type="email" id="receipt-email-input" placeholder="Enter email address" autocomplete="email"
           style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',inherit;transition:var(--transition);"
           onfocus="this.style.borderColor='var(--maroon)'" onblur="this.style.borderColor='var(--border)'">
         <button onclick="sendReceiptEmail()" id="send-email-btn"
@@ -2382,16 +2403,51 @@ function showReceipt(d) {
 
   lastBooking = d;
 
-  // Pre-fill email input — from data (resume path) or from live form
-  const emailInput = document.getElementById('receipt-email-input');
-  const formEmail  = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
-  const knownEmail = d.guestEmail || formEmail;
-  if (emailInput && knownEmail) {
-    emailInput.value = knownEmail;
-    // If the webhook already sent the email automatically, show confirmation
-    if (d.emailAlreadySent) {
-      showEmailMsg('\u2705 A receipt was automatically sent to ' + knownEmail + ' at the time of payment. You can resend below if needed.', 'ok');
-    }
+  // ── Email UI setup ────────────────────────────────────────────────────────
+  const emailInput    = document.getElementById('receipt-email-input');
+  const formEmail     = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
+  const knownEmail    = d.guestEmail || formEmail;
+
+  // Reset email section state
+  const autoBanner    = document.getElementById('receipt-email-auto-banner');
+  const quickRow      = document.getElementById('receipt-email-quick-row');
+  const otherLabel    = document.getElementById('receipt-email-other-label');
+  const resendSelfBtn = document.getElementById('resend-self-btn');
+  const resendSelfLbl = document.getElementById('resend-self-label');
+  const emailMsgEl    = document.getElementById('receipt-email-msg');
+  const sendBtn       = document.getElementById('send-email-btn');
+
+  if (emailMsgEl)    { emailMsgEl.style.display = 'none'; emailMsgEl.textContent = ''; }
+  if (sendBtn)       { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  if (emailInput)    emailInput.value = '';
+
+  if (knownEmail && d.emailAlreadySent) {
+    // Auto-sent banner
+    if (autoBanner) autoBanner.style.display = 'block';
+    const addrEl = document.getElementById('receipt-email-auto-address');
+    if (addrEl) addrEl.textContent = knownEmail;
+
+    // "Resend to my email" quick button
+    if (quickRow) quickRow.style.display = 'block';
+    if (resendSelfLbl) resendSelfLbl.textContent = knownEmail;
+
+    // Other email label updated
+    if (otherLabel) otherLabel.textContent = 'Or send to a different email:';
+    if (emailInput) emailInput.placeholder = 'Enter another email address';
+
+  } else if (knownEmail) {
+    // Email known but not yet auto-sent — pre-fill the input
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) { emailInput.value = knownEmail; emailInput.placeholder = 'Enter email address'; }
+
+  } else {
+    // No email known at all
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) emailInput.placeholder = 'Enter email address';
   }
 
   document.getElementById('r-inv').textContent    = '#' + d.invStr;
@@ -2452,7 +2508,7 @@ function buildReceiptMsg(d) {
     '━━━━━━━━━━━━━━━━━━━━\n' +
     '⚠️ Show this at check-in.\n' +
     'Check-in after 1 PM · Check-out before 11 AM\n' +
-    '_' + PROPERTY.name + ' via ManaunaDham.org.in_'
+    '_' + PROPERTY.name + ' via Crulio.com/ManaunaDham_'
   );
 }
 
@@ -2479,6 +2535,48 @@ function copyReceiptText(btn) {
     btn.style.background = 'var(--green)';
     setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
   });
+}
+
+// ── RESEND TO ORIGINAL EMAIL (one-tap) ───────────────────────────────────────
+async function resendToSelf() {
+  if (!lastBooking) return;
+  const email = lastBooking.guestEmail || '';
+  if (!email) return;
+
+  const btn = document.getElementById('resend-self-btn');
+  if (btn) { btn.textContent = '⏳ Sending…'; btn.disabled = true; }
+
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      roomName:     lastBooking.roomName,
+      roomRate:     lastBooking.roomRate,
+      ci:           lastBooking.ci,
+      co:           lastBooking.co,
+      nights:       lastBooking.nights,
+      discAmt:      lastBooking.discAmt,
+      finalTotal:   lastBooking.finalTotal,
+      advAmt:       lastBooking.advAmt,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt resent to ' + email + '! Check your inbox.', 'ok');
+    if (btn) { btn.textContent = '✓ Sent to ' + email; }
+  } catch (err) {
+    showEmailMsg('❌ Could not resend. Please use the email field below.', 'error');
+    if (btn) { btn.textContent = '↩ Resend to ' + email; btn.disabled = false; }
+  }
 }
 
 // ── SEND RECEIPT TO EMAIL ─────────────────────────────────────────────────────
@@ -2844,6 +2942,13 @@ function closeReceipt() {
   if (emailInput) emailInput.value = '';
   if (emailMsg)   { emailMsg.style.display = 'none'; emailMsg.textContent = ''; }
   if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  // Reset new email UI
+  const autoBanner = document.getElementById('receipt-email-auto-banner');
+  const quickRow   = document.getElementById('receipt-email-quick-row');
+  const selfBtn    = document.getElementById('resend-self-btn');
+  if (autoBanner) autoBanner.style.display = 'none';
+  if (quickRow)   quickRow.style.display = 'none';
+  if (selfBtn)    { selfBtn.textContent = '<i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>'; selfBtn.disabled = false; }
   // Reset form
   ['g-name','g-phone','g-checkin','g-checkout','g-email','coupon-input'].forEach(id => {
     const el = document.getElementById(id);
@@ -2973,7 +3078,7 @@ I need help completing my online payment for a room booking.
 💳 *15% Advance to Pay:* ₹${advance.toLocaleString()}${issueLine}${blockedLine}
 
 Please guide me to complete the online payment. 🙏
-_Sent via ManaunaDham.org.in_`;
+_Sent via Crulio.com/ManaunaDham_`;
 
   window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
 }
