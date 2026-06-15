@@ -1707,12 +1707,15 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       </button>
       <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
     </div>
-    <!-- Confirm-close strip — only shown when receipt hasn't been saved yet -->
+    <!-- Confirm-close strip — shown when receipt hasn't been saved, or as confirmation when it has -->
     <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
       ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
       <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
         ✓ I've saved it — Close
       </button>
+    </div>
+    <div id="receipt-pdf-saved-badge" style="display:none;background:#e6f4ec;border-top:2px solid #81c784;padding:10px 20px;text-align:center;font-size:13px;color:#1a5c2a;font-weight:600;">
+      ✅ PDF already saved — you're all set!
     </div>
   </div>
 </div>
@@ -2039,6 +2042,7 @@ async function showQRPayment() {
     try {
       localStorage.setItem('rg_pending_qr', JSON.stringify({
         qrId:      data.qr_id,
+        imageUrl:  data.image_url,          // ← NEW: needed to re-show QR on reload
         notes:     notes,
         savedAt:   Date.now(),
         roomRate:  ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
@@ -2359,8 +2363,18 @@ const PROPERTY = {
 // ── SHOW RECEIPT ──────────────────────────────────────────────────────────────
 function showReceipt(d) {
   receiptSavedByUser = false;
+  // If this booking was already in storage with pdfDownloaded=true, honour it
+  try {
+    const stored = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}');
+    if (stored.pdfDownloaded && stored.invStr === d.invStr) {
+      receiptSavedByUser = true;
+    }
+  } catch(e) {}
+
   const reminder = document.getElementById('receipt-save-reminder');
   if (reminder) reminder.style.display = 'none';
+  const pdfBadge = document.getElementById('receipt-pdf-saved-badge');
+  if (pdfBadge) pdfBadge.style.display = receiptSavedByUser ? 'block' : 'none';
   // Normalise: always carry roomName + roomRate in the data object itself
   // so it works whether selRoom is set or not (e.g. QR flow after tab switch)
   if (!d.roomName) d.roomName = selRoom ? ROOMS[selRoom].name  : (d.room_type || '—');
@@ -2639,7 +2653,15 @@ const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 function saveBookingToStorage(d) {
   try {
-    const record = { ...d, savedAt: Date.now(), propertyId: PROPERTY.id };
+    // Preserve existing pdfDownloaded flag if already set
+    let existing = {};
+    try { existing = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}'); } catch(e) {}
+    const record = {
+      ...d,
+      savedAt:      Date.now(),
+      propertyId:   PROPERTY.id,
+      pdfDownloaded: existing.pdfDownloaded || false,
+    };
     localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
   } catch (e) { /* storage full or private mode — fail silently */ }
 }
@@ -2668,7 +2690,7 @@ function dismissReturningBanner() {
   document.getElementById('returning-guest-banner').style.display = 'none';
 }
 
-// ── PENDING QR RESUME — checks if a QR was paid while the browser was closed ──
+// ── PENDING QR RESUME — re-shows QR or receipt seamlessly on tab reload ────────
 async function resumePendingQRIfAny() {
   let pending;
   try {
@@ -2677,18 +2699,19 @@ async function resumePendingQRIfAny() {
     pending = JSON.parse(raw);
   } catch(e) { return; }
 
-  // Only hard-expire after 24h — the QR itself may be expired for scanning,
-  // but Razorpay still returns paid:true for up to 24h after payment.
+  // Hard-expire after 24h
   if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
     localStorage.removeItem('rg_pending_qr');
     return;
   }
 
-  // Silently check if payment went through
+  // Check if payment has gone through
   try {
     const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
     const data = await res.json();
+
     if (data.paid) {
+      // ── PAID: clear QR session, show receipt immediately ──────────────────
       localStorage.removeItem('rg_pending_qr');
       const n = pending.notes || {};
       const guestEmail = n.guest_email || '';
@@ -2709,25 +2732,65 @@ async function resumePendingQRIfAny() {
         guestEmail:       guestEmail,
         emailAlreadySent: !!guestEmail,
       };
-      // Save to the 24h receipt storage so banner + PDF persist across reloads
       saveBookingToStorage(receiptData);
       showReceipt(receiptData);
+
     } else {
-      // QR not paid and expired — clean up
-      if ((Date.now() - pending.savedAt) > 10 * 60 * 1000) {
-        localStorage.removeItem('rg_pending_qr');
+      // ── NOT YET PAID: re-open the QR modal with the same QR image ─────────
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000; // 10 min scanning window
+      if (qrExpired) { localStorage.removeItem('rg_pending_qr'); return; }
+
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      if (pending.imageUrl) {
+        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+        setQRState('ready');
+      } else {
+        setQRState('loading');
       }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
     }
+
   } catch(e) {
-    // Network error — leave pending in storage, try again next reload
+    // Network error — still re-show QR if image is stored and it hasn't expired
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
+    }
   }
 }
 
 function checkForReturningGuest() {
   const d = loadBookingFromStorage();
-  if (d) {
-    document.getElementById('returning-guest-banner').style.display = 'block';
-  }
+  if (!d) return;
+
+  const banner = document.getElementById('returning-guest-banner');
+  const pdfNote = d.pdfDownloaded
+    ? '<span style="color:#1a5c2a;font-size:13px;margin-left:10px;">✅ PDF saved</span>'
+    : '<span style="color:#c47000;font-size:13px;margin-left:10px;">⚠️ PDF not yet saved</span>';
+
+  banner.innerHTML =
+    '<span style="font-size:14px;font-weight:700;color:#1a5c2a;">🏨 Welcome back! Your booking receipt is ready.' + pdfNote + '</span>' +
+    '<button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>' +
+    '<button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>';
+
+  banner.style.display = 'block';
 }
 
 // ── SAFE CLOSE — warns user to save PDF first ────────────────────────────────
@@ -2735,6 +2798,15 @@ let receiptSavedByUser = false;
 
 function savePDFAndMark() {
   receiptSavedByUser = true;
+  // Mark in storage that the PDF has been downloaded
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (raw) {
+      const record = JSON.parse(raw);
+      record.pdfDownloaded = true;
+      localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+    }
+  } catch(e) {}
   // Hide the reminder if it was showing
   const reminder = document.getElementById('receipt-save-reminder');
   if (reminder) reminder.style.display = 'none';
