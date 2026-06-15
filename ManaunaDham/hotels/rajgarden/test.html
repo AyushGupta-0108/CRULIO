@@ -1691,10 +1691,17 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       <button class="rbtn-print" onclick="copyReceiptText(this)" style="flex:1;min-width:100px;">
         <i class="fa fa-copy"></i> <span>Copy Text</span>
       </button>
-      <button class="rbtn-print" onclick="window.print()" style="flex:1;min-width:100px;background:#444;">
+      <button class="rbtn-print" onclick="savePDFAndMark()" style="flex:1;min-width:100px;background:#444;">
         <i class="fa fa-download"></i> <span>Save PDF</span>
       </button>
-      <button class="rbtn-close" onclick="closeReceipt()">Close</button>
+      <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
+    </div>
+    <!-- Confirm-close strip — only shown when receipt hasn't been saved yet -->
+    <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
+      ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
+      <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
+        ✓ I've saved it — Close
+      </button>
     </div>
   </div>
 </div>
@@ -1823,7 +1830,7 @@ footer p:last-child { font-size: 12px; opacity: .65; }
 </footer>
 
 <!-- RESEND RECEIPT SECTION -->
-<section style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
+<section id="resend-section" style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
   <div style="max-width:480px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:20px;">
       <div style="font-size:28px;margin-bottom:8px;">📧</div>
@@ -2094,20 +2101,23 @@ function onQRPaymentSuccess(data) {
   setTimeout(() => {
     document.getElementById('qr-modal').style.display = 'none';
     const n = data.notes || {};
+    const guestEmail = n.guest_email || '';
     showReceipt({
-      invStr:     n.invoice_no  || ('RG' + Date.now()),
-      name:       n.guest_name,
-      phone:      n.guest_phone,
-      ci:         n.checkin,
-      co:         n.checkout,
-      nights:     parseInt(n.nights),
-      baseTotal:  parseInt(n.room_price),
-      discAmt:    parseInt(n.coupon_discount) || 0,
-      finalTotal: parseInt(n.room_price),
-      advAmt:     parseInt(n.platform_fee),
-      payId:      data.payment_id,
-      roomName:   n.room_type,
-      roomRate:   parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      invStr:          n.invoice_no  || ('RG' + Date.now()),
+      name:            n.guest_name,
+      phone:           n.guest_phone,
+      ci:              n.checkin,
+      co:              n.checkout,
+      nights:          parseInt(n.nights),
+      baseTotal:       parseInt(n.room_price),
+      discAmt:         parseInt(n.coupon_discount) || 0,
+      finalTotal:      parseInt(n.room_price),
+      advAmt:          parseInt(n.platform_fee),
+      payId:           data.payment_id,
+      roomName:        n.room_type,
+      roomRate:        parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      guestEmail:      guestEmail,
+      emailAlreadySent: !!guestEmail,
     });
   }, 1800);
 }
@@ -2337,6 +2347,9 @@ const PROPERTY = {
 
 // ── SHOW RECEIPT ──────────────────────────────────────────────────────────────
 function showReceipt(d) {
+  receiptSavedByUser = false;
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
   // Normalise: always carry roomName + roomRate in the data object itself
   // so it works whether selRoom is set or not (e.g. QR flow after tab switch)
   if (!d.roomName) d.roomName = selRoom ? ROOMS[selRoom].name  : (d.room_type || '—');
@@ -2344,10 +2357,17 @@ function showReceipt(d) {
 
   lastBooking = d;
 
-  // Pre-fill email input from form if available
+  // Pre-fill email input — from data (resume path) or from live form
   const emailInput = document.getElementById('receipt-email-input');
   const formEmail  = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
-  if (emailInput && formEmail) emailInput.value = formEmail;
+  const knownEmail = d.guestEmail || formEmail;
+  if (emailInput && knownEmail) {
+    emailInput.value = knownEmail;
+    // If the webhook already sent the email automatically, show confirmation
+    if (d.emailAlreadySent) {
+      showEmailMsg('\u2705 A receipt was automatically sent to ' + knownEmail + ' at the time of payment. You can resend below if needed.', 'ok');
+    }
+  }
 
   document.getElementById('r-inv').textContent    = '#' + d.invStr;
   document.getElementById('r-date').textContent   = new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
@@ -2646,8 +2666,9 @@ async function resumePendingQRIfAny() {
     pending = JSON.parse(raw);
   } catch(e) { return; }
 
-  // Expire after 10 minutes (QR codes expire in 10 min on Razorpay)
-  if (!pending.qrId || (Date.now() - pending.savedAt) > 10 * 60 * 1000) {
+  // Only hard-expire after 24h — the QR itself may be expired for scanning,
+  // but Razorpay still returns paid:true for up to 24h after payment.
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
     localStorage.removeItem('rg_pending_qr');
     return;
   }
@@ -2659,28 +2680,35 @@ async function resumePendingQRIfAny() {
     if (data.paid) {
       localStorage.removeItem('rg_pending_qr');
       const n = pending.notes || {};
-      // Merge payment_id from poll response, rest from saved notes
-      showReceipt({
-        invStr:     n.invoice_no  || ('RG' + Date.now()),
-        name:       n.guest_name,
-        phone:      n.guest_phone,
-        ci:         n.checkin,
-        co:         n.checkout,
-        nights:     parseInt(n.nights),
-        baseTotal:  parseInt(n.room_price),
-        discAmt:    parseInt(n.coupon_discount) || 0,
-        finalTotal: parseInt(n.room_price),
-        advAmt:     parseInt(n.platform_fee),
-        payId:      data.payment_id || 'Verified',
-        roomName:   n.room_type,
-        roomRate:   pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
-      });
+      const guestEmail = n.guest_email || '';
+      const receiptData = {
+        invStr:           n.invoice_no  || ('RG' + Date.now()),
+        name:             n.guest_name,
+        phone:            n.guest_phone,
+        ci:               n.checkin,
+        co:               n.checkout,
+        nights:           parseInt(n.nights),
+        baseTotal:        parseInt(n.room_price),
+        discAmt:          parseInt(n.coupon_discount) || 0,
+        finalTotal:       parseInt(n.room_price),
+        advAmt:           parseInt(n.platform_fee),
+        payId:            data.payment_id || 'Verified',
+        roomName:         n.room_type,
+        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+        guestEmail:       guestEmail,
+        emailAlreadySent: !!guestEmail,
+      };
+      // Save to the 24h receipt storage so banner + PDF persist across reloads
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
     } else {
-      // Payment not done — clean up the stale pending QR
-      localStorage.removeItem('rg_pending_qr');
+      // QR not paid and expired — clean up
+      if ((Date.now() - pending.savedAt) > 10 * 60 * 1000) {
+        localStorage.removeItem('rg_pending_qr');
+      }
     }
   } catch(e) {
-    // Network error — leave pending in storage, maybe next load will catch it
+    // Network error — leave pending in storage, try again next reload
   }
 }
 
@@ -2689,6 +2717,39 @@ function checkForReturningGuest() {
   if (d) {
     document.getElementById('returning-guest-banner').style.display = 'block';
   }
+}
+
+// ── SAFE CLOSE — warns user to save PDF first ────────────────────────────────
+let receiptSavedByUser = false;
+
+function savePDFAndMark() {
+  receiptSavedByUser = true;
+  // Hide the reminder if it was showing
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  window.print();
+}
+
+function closeReceiptSafe() {
+  if (!receiptSavedByUser) {
+    // Show the warning strip instead of closing
+    const reminder = document.getElementById('receipt-save-reminder');
+    if (reminder) reminder.style.display = 'block';
+    // Scroll to it so user sees it on mobile
+    reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  // Already saved — clear storage and close
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  closeReceipt();
+}
+
+function confirmCloseReceipt() {
+  receiptSavedByUser = true;
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  closeReceipt();
 }
 
 function closeReceipt() {
@@ -2962,5 +3023,31 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 </script>
   <script src="../../assets/manauna-support-chat.js"></script>
+
+<!-- Floating "Resend Receipt" scroll button -->
+<button id="resend-fab"
+  onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'});this.style.display='none';"
+  title="Didn't receive your receipt?"
+  style="position:fixed;bottom:80px;right:16px;z-index:8000;
+         background:#7a0000;color:white;border:none;border-radius:24px;
+         padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;
+         box-shadow:0 4px 16px rgba(122,0,0,0.35);
+         display:flex;align-items:center;gap:7px;
+         transition:opacity .2s;opacity:0;pointer-events:none;">
+  📧 <span>Resend Receipt</span>
+</button>
+<script>
+(function() {
+  // Show the FAB only after the page has been open 4 seconds,
+  // so it doesn't clutter the UI for people who don't need it.
+  setTimeout(function() {
+    var fab = document.getElementById('resend-fab');
+    if (fab) {
+      fab.style.opacity = '1';
+      fab.style.pointerEvents = 'auto';
+    }
+  }, 4000);
+})();
+</script>
 </body>
 </html>
