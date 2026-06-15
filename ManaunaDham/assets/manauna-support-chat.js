@@ -219,7 +219,7 @@
   // ══════════════════════════════════════
   const btn = document.createElement("div");
   btn.className = "msc-btn";
-  btn.innerHTML = `🙏 Customer Support`;
+  btn.innerHTML = `Customer Support`;
   btn.onclick = () => {
     if (box.style.display === "block") {
       box.style.display = "none";
