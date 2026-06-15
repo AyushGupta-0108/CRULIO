@@ -11,7 +11,6 @@
   const CONFIG = {
     whatsappNumber: "917817803342",
     callNumber: "+91-78178-03342",
-    driverNumber: "+91-89092-08453",
     youtube: {
       hotel: "YOUR_HOTEL_BOOKING_VIDEO_LINK",
       taxi:  "YOUR_TAXI_BOOKING_VIDEO_LINK",
@@ -302,14 +301,8 @@
       <button class="msc-opt" onclick="showAboutCrulio()">🌐 Crulio ke baare mein</button>
 
       <hr class="msc-div">
-      <div class="msc-label">📹 Hamaari Seva Dekhein</div>
-      <a class="msc-yt" href="${CONFIG.social.ytChannel}/shorts/GLnD9qJ3WQA" target="_blank">
-        <div class="msc-yt-icon">▶️</div>
-        <div>
-          <div class="msc-yt-text">Manauna Dham - Platform Tour</div>
-          <div class="msc-yt-sub">YouTube Shorts · ${CONFIG.social.ytHandle}</div>
-        </div>
-      </a>
+      <div class="msc-label">📹 Follow Us</div>
+
       <div class="msc-social">
         <a class="msc-social-card ig" href="${CONFIG.social.instagram}" target="_blank">
           <span class="msc-social-icon">📸</span>
@@ -366,7 +359,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient page par aur jaankari dekhein</button>
-      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+      ${backBtn("showPatientTokenMenu()")}
     `);
   };
 
@@ -391,7 +384,7 @@
         ❌ Walk-in ke liye <b>kisiko paise na de</b> - seedha aakar counter par jaayein.
       </div>
 
-      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+      ${backBtn("showPatientTokenMenu()")}
     `);
   };
 
@@ -417,7 +410,7 @@
       </div>
 
       <button class="msc-opt" onclick="showPatientCantCome()">🏠 Patient khud nahi aa sakta - kya karein?</button>
-      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+      ${backBtn("showPatientTokenMenu()")}
     `);
   };
 
@@ -440,7 +433,7 @@
         ℹ️ Yeh estimate ground-level experience par based hai. Actual time rush ke hisaab se change ho sakta hai.
       </div>
 
-      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+      ${backBtn("showPatientTokenMenu()")}
     `);
   };
 
@@ -463,7 +456,7 @@
 
   
       <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.jal}','_blank')">💧 Shyam Jal puri jaankari</button>
-      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+      ${backBtn("showPatientTokenMenu()")}
     `);
   };
 
@@ -507,7 +500,7 @@
       <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Koi side effect nahi hota - yeh sirf positive prabhav dalta hai</span></div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Poori jaankari dekhein</button>
-      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+      ${backBtn("showShyamJalMenu()")}
     `);
   };
 
@@ -534,7 +527,7 @@
         ⚠️ Mahant Ji <b>Tuesday & Wednesday</b> ko nahi baithte. Kabhi-kabhi urgent kaam se anya din bhi unavailable ho sakte hain.
       </div>
 
-      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+      ${backBtn("showShyamJalMenu()")}
     `);
   };
 
@@ -554,7 +547,7 @@
         ℹ️ Koi side effect nahi hota. Yeh Abhimantrit jal hai - sirf positive prabhav dalta hai.
       </div>
 
-      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+      ${backBtn("showShyamJalMenu()")}
     `);
   };
 
@@ -575,7 +568,7 @@
         Khud Manauna Dham aayen aur mandir ground ke andar official counter se lein.
       </div>
 
-      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+      ${backBtn("showShyamJalMenu()")}
     `);
   };
 
@@ -590,7 +583,7 @@
       <div class="msc-info"><b>Q: Koi side effect toh nahi?</b><br>Nahi. Yeh Abhimantrit jal hai - koi side effect nahi hota.</div>
       <div class="msc-info"><b>Q: Agar main Manauna Dham nahi aa sakta?</b><br>Aap humse WhatsApp par baat kar sakte hain - hum koshish karenge solution dhundhne ki.</div>
 
-      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+      ${backBtn("showShyamJalMenu()")}
     `);
   };
 
@@ -628,7 +621,7 @@
   
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.mahant}','_blank')">📖 Mahant Ji ki poori jaankari dekhein</button>
-      ${backBtn("showMahantMenu()", "Mahant Ji")}
+      ${backBtn("showMahantMenu()")}
     `);
   };
 
@@ -660,7 +653,7 @@
         In dino Patient Token system available nahi hota.
       </div>
 
-      ${backBtn("showMahantMenu()", "Mahant Ji")}
+      ${backBtn("showMahantMenu()")}
     `);
   };
 
@@ -684,7 +677,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient page par aur jaankari</button>
-      ${backBtn("showMahantMenu()", "Mahant Ji")}
+      ${backBtn("showMahantMenu()")}
     `);
   };
 
@@ -732,7 +725,7 @@
         💰 <b>Baaki payment hotel par check-in ke waqt karein</b> - receipt mein likha bacha hua amount dena hoga.
       </div>
 
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -751,7 +744,7 @@
         💡 Best approach: <b>Dopahar 1 PM ke aas-paas pahunchein</b> taaki standard check-in time par room pakka mile.
       </div>
 
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -776,7 +769,7 @@
       </div>
 
       ${waBtn("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -804,7 +797,7 @@
       </div>
 
       ${waBtn("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -823,7 +816,7 @@
       </div>
 
       ${waBtn("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -842,7 +835,7 @@
       </div>
 
       ${waBtn("Namaste 🙏\n\nMujhe apni hotel booking ki dates change karni hain.\n\nBooking ka naam / confirmation number:\nCurrent dates:\nNew dates jo chahiye:\n\n_Sent via ManaunaDham_", "💬 WhatsApp par Dates Change Request Karein")}
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -862,7 +855,7 @@
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels page - address dekhein</button>
       ${waBtn("Namaste 🙏\n\nMujhe apne hotel ka address chahiye.\n\n_Sent via ManaunaDham_", "💬 WhatsApp par Address Maangein")}
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -890,7 +883,7 @@
 
       ${waBtn(preMsg)}
       <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -909,7 +902,7 @@
       <button class="msc-opt green" onclick="showHotelBookedContact('Payment se related query')">💳 Payment se related query</button>
       <button class="msc-opt green" onclick="showHotelBookedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
 
-      ${backBtn("showHotelMenu()", "Hotel")}
+      ${backBtn("showHotelMenu()")}
     `);
   };
 
@@ -979,7 +972,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.transport}','_blank')">🚕 Exact price check karein (booking form)</button>
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -999,7 +992,7 @@
         ↩️ <b>Return Trip:</b> Same pickup ya different drop location bhi available hai.
       </div>
 
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1022,7 +1015,7 @@
         ❌ <b>Advance aur platform fee non-refundable hain.</b> Booking cancel karne par wapas nahi milte.
       </div>
 
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1040,7 +1033,7 @@
         🔜 <b>5-Seater (Sedan/Hatchback)</b> - Coming Soon. Abhi sirf 7-Seater available hai.
       </div>
 
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1061,7 +1054,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('https://maps.app.goo.gl/bF7V8LSARG6mNSy97','_blank')">🗺️ Google Maps par Location Dekhein</button>
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1089,7 +1082,7 @@
 
       ${waBtn(preMsg)}
       <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1106,7 +1099,7 @@
       <button class="msc-opt green" onclick="showTaxiBookedContact('Payment se related query')">💳 Payment se related query</button>
       <button class="msc-opt green" onclick="showTaxiBookedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
 
-      ${backBtn("showTaxiMenu()", "Taxi")}
+      ${backBtn("showTaxiMenu()")}
     `);
   };
 
@@ -1154,7 +1147,7 @@
 
       ${waBtn(preMsg)}
       <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
-      <div class="msc-info" style="margin-top:8px;">🚗 <b>Direct Driver Helpline:</b> ${CONFIG.driverNumber}</div>
+      <div class="msc-info" style="margin-top:8px;">ℹ️ <b>Driver ka number booking receipt mein share kiya jaayega.</b></div>
 
       ${backBtn("showTaxiAlreadyBooked()", "Back")}
     `);
@@ -1202,7 +1195,7 @@
         💡 Order karte waqt apna exact location / room number zaroor bataayen.
       </div>
 
-      ${backBtn("showFoodMenu()", "Food")}
+      ${backBtn("showFoodMenu()")}
     `);
   };
 
@@ -1221,7 +1214,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.food}','_blank')">🍽️ Menu dekhein - Food page</button>
-      ${backBtn("showFoodMenu()", "Food")}
+      ${backBtn("showFoodMenu()")}
     `);
   };
 
@@ -1248,7 +1241,7 @@
       <div class="msc-warn">⚠️ Agar page dekhne ke baad bhi query hai toh neeche contact karein.</div>
 
       ${waBtn(preMsg)}
-      ${backBtn("showFoodMenu()", "Food")}
+      ${backBtn("showFoodMenu()")}
     `);
   };
 
@@ -1264,7 +1257,7 @@
       <button class="msc-opt green" onclick="showFoodOrderedContact('Payment se related query')">💳 Payment se related query</button>
       <button class="msc-opt green" onclick="showFoodOrderedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
 
-      ${backBtn("showFoodMenu()", "Food")}
+      ${backBtn("showFoodMenu()")}
     `);
   };
 
