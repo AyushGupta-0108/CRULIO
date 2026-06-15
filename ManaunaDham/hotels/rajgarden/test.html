@@ -1995,6 +1995,7 @@ async function showQRPayment() {
     checkin:      ci,
     checkout:     co,
     nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
     room_price:   String(finalTotal),
     platform_fee: String(advAmt),
     coupon_used:  activeCoupon || 'None',
@@ -2015,6 +2016,17 @@ async function showQRPayment() {
     document.getElementById('qr-img').src = data.image_url + '?size=600';
     setQRState('ready');
     startQRTimer(600);
+
+    // ── Save pending QR session so receipt survives browser close ──
+    try {
+      localStorage.setItem('rg_pending_qr', JSON.stringify({
+        qrId:      data.qr_id,
+        notes:     notes,
+        savedAt:   Date.now(),
+        roomRate:  ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
+      }));
+    } catch(e) {}
+
     setTimeout(() => startPolling(data.qr_id), 3000);
 
   } catch (err) {
@@ -2074,23 +2086,28 @@ function onQRPaymentSuccess(data) {
   paymentDetected = true;
   clearInterval(qrPollingInterval);
   clearInterval(qrTimerInterval);
+
+  // Clear the pending QR session — no longer needed
+  try { localStorage.removeItem('rg_pending_qr'); } catch(e) {}
+
   setQRState('success');
   setTimeout(() => {
     document.getElementById('qr-modal').style.display = 'none';
+    const n = data.notes || {};
     showReceipt({
-      invStr:     data.notes.invoice_no  || ('RG' + Date.now()),
-      name:       data.notes.guest_name,
-      phone:      data.notes.guest_phone,
-      ci:         data.notes.checkin,
-      co:         data.notes.checkout,
-      nights:     parseInt(data.notes.nights),
-      baseTotal:  parseInt(data.notes.room_price),
-      discAmt:    parseInt(data.notes.coupon_discount) || 0,
-      finalTotal: parseInt(data.notes.room_price),
-      advAmt:     parseInt(data.notes.platform_fee),
+      invStr:     n.invoice_no  || ('RG' + Date.now()),
+      name:       n.guest_name,
+      phone:      n.guest_phone,
+      ci:         n.checkin,
+      co:         n.checkout,
+      nights:     parseInt(n.nights),
+      baseTotal:  parseInt(n.room_price),
+      discAmt:    parseInt(n.coupon_discount) || 0,
+      finalTotal: parseInt(n.room_price),
+      advAmt:     parseInt(n.platform_fee),
       payId:      data.payment_id,
-      roomName:   data.notes.room_type,
-      roomRate:   Math.round(parseInt(data.notes.room_price) / (parseInt(data.notes.nights) || 1)),
+      roomName:   n.room_type,
+      roomRate:   parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
     });
   }, 1800);
 }
@@ -2255,6 +2272,7 @@ async function initiatePayment() {
     checkin:      ci,
     checkout:     co,
     nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
     room_price:   String(finalTotal),
     platform_fee: String(advAmt),
     coupon_used:  activeCoupon || 'None',
@@ -2619,6 +2637,53 @@ function dismissReturningBanner() {
   document.getElementById('returning-guest-banner').style.display = 'none';
 }
 
+// ── PENDING QR RESUME — checks if a QR was paid while the browser was closed ──
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('rg_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
+
+  // Expire after 10 minutes (QR codes expire in 10 min on Razorpay)
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 10 * 60 * 1000) {
+    localStorage.removeItem('rg_pending_qr');
+    return;
+  }
+
+  // Silently check if payment went through
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
+    if (data.paid) {
+      localStorage.removeItem('rg_pending_qr');
+      const n = pending.notes || {};
+      // Merge payment_id from poll response, rest from saved notes
+      showReceipt({
+        invStr:     n.invoice_no  || ('RG' + Date.now()),
+        name:       n.guest_name,
+        phone:      n.guest_phone,
+        ci:         n.checkin,
+        co:         n.checkout,
+        nights:     parseInt(n.nights),
+        baseTotal:  parseInt(n.room_price),
+        discAmt:    parseInt(n.coupon_discount) || 0,
+        finalTotal: parseInt(n.room_price),
+        advAmt:     parseInt(n.platform_fee),
+        payId:      data.payment_id || 'Verified',
+        roomName:   n.room_type,
+        roomRate:   pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      });
+    } else {
+      // Payment not done — clean up the stale pending QR
+      localStorage.removeItem('rg_pending_qr');
+    }
+  } catch(e) {
+    // Network error — leave pending in storage, maybe next load will catch it
+  }
+}
+
 function checkForReturningGuest() {
   const d = loadBookingFromStorage();
   if (d) {
@@ -2833,6 +2898,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initCouponBanner();
   document.getElementById('wa-checkout').addEventListener('change', calcWAStay);
   checkForReturningGuest();
+  resumePendingQRIfAny();   // ← new: check if a QR payment was done while browser was closed
 
   // ▼ Fetch blocked dates + owner note from admin API
   fetchBlockedDates();
