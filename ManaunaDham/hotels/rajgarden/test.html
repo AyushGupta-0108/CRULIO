@@ -1222,6 +1222,17 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       Powered by Razorpay · 100% Secure · UPI, Cards, Net Banking, Wallets
     </div>
 
+    <!-- Resend Receipt Link -->
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'})"
+        style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12.5px;font-family:'DM Sans',sans-serif;padding:6px 10px;border-radius:6px;transition:all .2s;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(107,107,107,0.4);"
+        onmouseover="this.style.color='var(--maroon)';this.style.textDecorationColor='var(--maroon)'"
+        onmouseout="this.style.color='var(--text-muted)';this.style.textDecorationColor='rgba(107,107,107,0.4)'">
+        <i class="fa fa-envelope" style="font-size:11px;"></i>
+        Didn't receive your receipt?
+      </button>
+    </div>
+
     <div class="or-divider">Trouble paying online?</div>
     <div style="text-align:center;">
       <button onclick="scrollToWA()" style="background:var(--wa-dark);color:white;border:none;padding:13px 30px;border-radius:10px;font-size:14.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 3px 14px rgba(18,140,126,0.3);"
@@ -3024,30 +3035,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 </script>
   <script src="../../assets/manauna-support-chat.js"></script>
 
-<!-- Floating "Resend Receipt" scroll button -->
-<button id="resend-fab"
-  onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'});this.style.display='none';"
-  title="Didn't receive your receipt?"
-  style="position:fixed;bottom:80px;right:16px;z-index:8000;
-         background:#7a0000;color:white;border:none;border-radius:24px;
-         padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;
-         box-shadow:0 4px 16px rgba(122,0,0,0.35);
-         display:flex;align-items:center;gap:7px;
-         transition:opacity .2s;opacity:0;pointer-events:none;">
-  📧 <span>Resend Receipt</span>
-</button>
-<script>
-(function() {
-  // Show the FAB only after the page has been open 4 seconds,
-  // so it doesn't clutter the UI for people who don't need it.
-  setTimeout(function() {
-    var fab = document.getElementById('resend-fab');
-    if (fab) {
-      fab.style.opacity = '1';
-      fab.style.pointerEvents = 'auto';
-    }
-  }, 4000);
-})();
-</script>
+
 </body>
 </html>
