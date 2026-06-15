@@ -498,7 +498,7 @@
 
       <div class="msc-info">
         📄 Hotel pahunchne par <b>booking receipt</b> zaroor saath laayen - jo payment ke baad download karne ka option aata hai.<br><br>
-        💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (advance nahi, sirf remaining amount).
+        💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (Bacha hua amount- receipt ke hisab se).
       </div>
 
       <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
