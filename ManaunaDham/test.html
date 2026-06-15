@@ -802,6 +802,7 @@ nav a:hover { color: var(--gold-light); }
 
 .hero-service-btn i { font-size: 22px; color: white; }
 
+
 /* ═══════════════════════════════════════════
    STATS SECTION
 ═══════════════════════════════════════════ */
@@ -1874,6 +1875,9 @@ footer {
       <a href="jal" class="hero-service-btn"><i class="fa fa-tint"></i> Shyam Jal</a>
       <a href="patient" class="hero-service-btn"><i class="fa fa-heartbeat"></i> Patient Token</a>
       <a href="live" class="hero-service-btn"><i class="fa fa-broadcast-tower"></i> Live Darshan</a>
+      <button onclick="mscToggle()" class="hero-service-btn">
+  <i class="fa fa-headset"></i> Support
+</button>
     </div>
   </div>
 </section>
@@ -2402,5 +2406,6 @@ setTimeout(openMegaPopup, 5000);
 })();
 </script>
 <script src="assets/manauna-support-chat.js"></script>
+<style>.msc-btn { display: none !important; }</style>
 </body>
 </html>
