@@ -309,8 +309,8 @@
       <div class="msc-sub">Aap kaise help chahte hain?</div>
 
       <div class="msc-label">📚 Free Jaankari</div>
-      <button class="msc-opt" onclick="showInfoMenu()">🛕 Darshan, Jal, Mahant Ji ke baare mein</button>
-      <button class="msc-opt" onclick="showHotelRulesMenu()">🏨 Hotel - Check-in / Rules / Timing</button>
+      <button class="msc-opt" onclick="showInfoMenu()">🛕 Darshan Timings, Shaym Jal Information, Patient token Information, Mahant Ji Information</button>
+      <button class="msc-opt" onclick="showHotelRulesMenu()">Hotel/Taxi -Early Check-in policy, Advance Payment, Manager contact number, Booking receipt</button>
 
       <hr class="msc-div">
       <div class="msc-label">🛎️ Paid Services - Booking / Query</div>
@@ -362,7 +362,7 @@
         ℹ️ Inki puri jaankari humne website par likhi hai. Kripya page zaroor dekhein -
         aapke sabhi sawaalon ke jawab wahan milenge.
       </div>
-      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
     `);
   };
 
@@ -389,7 +389,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Poori Jaankari - Patient Page Dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
     `);
   };
 
@@ -414,7 +414,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient Page par aur jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
     `);
   };
 
@@ -439,7 +439,7 @@
         Actual time rush ke hisaab se change ho sakta hai.
       </div>
 
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
     `);
   };
 
@@ -464,7 +464,7 @@
       </div>
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Shyam Jal ki poori jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
     `);
   };
 
@@ -472,7 +472,7 @@
   window.showHotelRulesMenu = function () {
     render(`
       ${breadcrumb([])}
-      <div class="msc-greet" style="font-size:14px;">🏨 Hotel - Check-in / Rules / Timing</div>
+      <div class="msc-greet" style="font-size:14px;">Hotel/Taxi - Jaankari, Early Check-in, Advance Payment, Manager contact number, Booking receipt</div>
       <div class="msc-sub">Kya jaanna chahte hain?</div>
 
       <button class="msc-opt" onclick="showCheckinInfo()">🕐 Check-in / Checkout Timing</button>
@@ -483,7 +483,7 @@
 
       <hr class="msc-div">
       <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels Page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
     `);
   };
 
@@ -501,7 +501,7 @@
         💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (Bacha hua amount- receipt ke hisab se).
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
     `);
   };
 
@@ -520,7 +520,7 @@
         💡 Best approach: <b>Dopahar 1 PM ke aas-paas pahunchein</b> taaki standard check-in time par room pakka mile.
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
     `);
   };
 
@@ -531,7 +531,7 @@
 
       <div class="msc-alert">
         ❌ <b>Advance fee non-refundable hai.</b><br><br>
-        Booking cancel karne par advance amount wapas nahi milta.<br>
+        Booking cancel karne par advance amount Back nahi milta.<br>
         Isliye booking confirm karne se pehle dates pakki kar lein.
       </div>
 
@@ -547,7 +547,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
     `);
   };
 
@@ -568,7 +568,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
     `);
   };
 
@@ -598,7 +598,7 @@
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
     `);
   };
 
@@ -624,7 +624,7 @@
 
       <hr class="msc-div">
       <button class="msc-opt ghost" onclick="window.open('${s.page}','_blank')">📋 ${s.name} page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
     `);
   };
 
@@ -662,7 +662,7 @@
       ${contactBlock(preMsg)}
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Back</button>
     `);
   };
 
@@ -709,7 +709,7 @@
       </button>
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Back</button>
     `);
   };
 
@@ -732,7 +732,7 @@
       ${contactBlock(preMsg)}
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showAlreadyBooked('${service}')">← Wapas</button>
+      <button class="msc-opt ghost" onclick="showAlreadyBooked('${service}')">← Back</button>
     `);
   };
 
