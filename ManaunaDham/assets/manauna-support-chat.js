@@ -358,8 +358,7 @@
       </div>
 
       <div class="msc-warn">
-        ⚠️ <b>Sirf app se hi online booking hoti hai.</b> Website par online booking ka option nahi hai.<br><br>
-        App se book karne par bhi <b>patient ka khud present hona zaroori hai</b> darshan ke din.
+        ⚠️ Patient ko saath leke jae darshan ke liye.
       </div>
 
       <div class="msc-blue">
@@ -389,7 +388,7 @@
       </div>
 
       <div class="msc-alert">
-        ❌ Walk-in ke liye <b>koi advance booking nahi hoti</b> - seedha aakar counter par jaayein.
+        ❌ Walk-in ke liye <b>kisiko paise na de</b> - seedha aakar counter par jaayein.
       </div>
 
       ${backBtn("showPatientTokenMenu()", "Patient Token")}
@@ -406,15 +405,15 @@
       </div>
 
       <div class="msc-label">✅ Token milega</div>
-      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Patient jo <b>khud Manauna Dham aa sakta ho</b></span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Bimari ya gambhir samasya waale log</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Patient jo <b>cancer ya stratecher pe ho</b></span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Koi gambhir samasya waale log</span></div>
 
       <div class="msc-label">❌ Token nahi milega</div>
-      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span><b>Family member ko token nahi milta</b> patient ki jagah par</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span>Patient ghar par ho aur koi aur jaaye - yeh valid nahi hai</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span><b>Sirf or sirf</b> patient ko hi milega healthy insaan ko nhi milega</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span>Patient ghar par ho aur koi aur jaaye unki jgh - yeh valid nahi hai</span></div>
 
       <div class="msc-warn">
-        ℹ️ Agar family member jaata hai toh <b>normal line mein lag sakte hain</b>. Mahant Ji ka personal darshan nahi hoga, lekin <b>General Shyam Jal line se Jal le sakte hain</b>.
+        ℹ️ Baaki log jo patients nahi hai aur mahant ji ke darshan krna chahta hai vo normal line mai lage jal lene ke baad
       </div>
 
       <button class="msc-opt" onclick="showPatientCantCome()">🏠 Patient khud nahi aa sakta - kya karein?</button>
@@ -457,17 +456,13 @@
 
       <div class="msc-warn">
         💡 Is situation mein family member jaa sakta hai aur:<br><br>
-        • <b>General Shyam Jal line</b> mein lag ke Jal le aa sakta hai<br>
-        • Mahant Ji ka personal darshan is case mein nahi hoga
+        • <b>Normal line</b> mein lag ke mahant ji se mil sakte hai<br>
       </div>
 
-      <div class="msc-info">
-        🆘 Agar aapki situation alag hai - humse WhatsApp par baat karein.<br>
-        Hum milke hal dhundhenge.
-      </div>
+    
 
-      ${waBtn("Namaste 🙏\n\nHamara patient khud nahi aa sakta Manauna Dham. Kripya help karein.\n\n_Sent via ManaunaDham_")}
-      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.jal}','_blank')">💧 Shyam Jal page dekhein (alternative)</button>
+  
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.jal}','_blank')">💧 Shyam Jal puri jaankari</button>
       ${backBtn("showPatientTokenMenu()", "Patient Token")}
     `);
   };
@@ -528,7 +523,7 @@
 
       <div class="msc-label">📋 Do Tarike</div>
       <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko (SABSE PAVITRA):</b><br>Pehle Shyam Jal counter se Jal khareedein → fir Patient Token counter par line lagein → token milne par Mahant Ji seedha apne haath se Abhimantrit Jal denge.</span></div>
-      <div class="msc-fact" style="margin-top:8px;"><span class="msc-fact-icon">💧</span><span><b>General visitors (bina token ke):</b><br>Official Shyam Jal counter se bottle lein (₹20 each), phir normal darshan line mein lagein. Mahant Ji ka personal darshan nahi hoga.</span></div>
+      <div class="msc-fact" style="margin-top:8px;"><span class="msc-fact-icon">💧</span><span><b>General visitors (bina token ke):</b><br>Official Shyam Jal counter se bottle lein (₹20 each), phir normal darshan line mein lagein.</span></div>
 
       <div class="msc-info">
         🏷️ Bottle <b>₹20</b> ki hai aur plastic bottle mein milti hai jiske cap par <b>official Manauna Dham logo</b> hota hai.<br><br>
@@ -595,7 +590,6 @@
       <div class="msc-info"><b>Q: Koi side effect toh nahi?</b><br>Nahi. Yeh Abhimantrit jal hai - koi side effect nahi hota.</div>
       <div class="msc-info"><b>Q: Agar main Manauna Dham nahi aa sakta?</b><br>Aap humse WhatsApp par baat kar sakte hain - hum koshish karenge solution dhundhne ki.</div>
 
-      ${waBtn("Namaste 🙏\n\nMujhe Shyam Jal ke baare mein kuch poochna tha.\n\n_Sent via ManaunaDham_")}
       ${backBtn("showShyamJalMenu()", "Shyam Jal")}
     `);
   };
@@ -631,9 +625,7 @@
         Patient Token se aane wale bhakton ko woh apne haathon se Jal dete hain aur unki samasya sunkar <b>ashirwad dete hain</b>.
       </div>
 
-      <div class="msc-warn">
-        📌 Mahant Ji <b>temple management ke authorized sant</b> hain - woh mandir ke sevadar hain, Crulio/ManaunaDham platform ke nahi.
-      </div>
+  
 
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.mahant}','_blank')">📖 Mahant Ji ki poori jaankari dekhein</button>
       ${backBtn("showMahantMenu()", "Mahant Ji")}
@@ -656,7 +648,7 @@
 
       <div class="msc-label">Tarika 2 - Normal / General Line</div>
       <div class="msc-fact"><span class="msc-fact-icon">💧</span><span>Patient token nahi hai toh <b>Normal line</b> mein lagein.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">⚠️</span><span>Mahant Ji ka <b>personal darshan nahi hoga</b> - General Shyam Jal counter se Jal milega.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">⚠️</span><span>Mahant Ji ka <b>personal darshan bhi hoga</b> - Shyam Jal counter se Jal milega.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">⏱️</span><span>Yeh line Patient Token line se <b>lambi hoti hai</b>.</span></div>
 
       <div class="msc-label">⏰ Timing</div>
@@ -971,11 +963,11 @@
       <div class="msc-greet" style="font-size:14px;">💰 Taxi Prices</div>
 
       <div class="msc-label">📋 Route-wise Fares (7-Seater)</div>
-      <div class="msc-fact"><span class="msc-fact-icon">🚉</span><span><b>Bareilly Railway Station → Dham:</b> ₹1,899 – ₹1,999 (One Way)</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">✈️</span><span><b>Bareilly Airport → Dham:</b> ₹1,999 – ₹2,099 (One Way)</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">📌</span><span><b>Anywhere in Bareilly → Dham:</b> ₹1,699 – ₹1,899 (One Way)</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">🛫</span><span><b>Delhi Airport (IGI) → Dham:</b> ₹4,799 – ₹4,999 (One Way, 7-Seater)</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">↩️</span><span><b>Return Trip:</b> Bareilly return ₹3,598 – ₹4,198 (bigger discount)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🚉</span><span><b>Bareilly Railway Station → Dham:</b> from ₹1,599 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✈️</span><span><b>Bareilly Airport → Dham:</b>  from ₹1,599 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">📌</span><span><b>Anywhere in Bareilly → Dham:</b> from ₹1,599 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🛫</span><span><b>Delhi Airport (IGI) → Dham:</b> from ₹3,099 (One Way, 7-Seater)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">↩️</span><span><b>Return Trip:</b> Bareilly return from ₹2,999 (bigger discount)</span></div>
 
       <div class="msc-info">
         💡 <b>Return trip par zyada discount milta hai.</b> Book karte waqt "Return Trip" select karein.<br><br>
@@ -1127,7 +1119,7 @@
       <div class="msc-greet" style="font-size:14px;">📄 Taxi Booking Receipt</div>
 
       <div class="msc-info">
-        ✅ Payment complete hone ke baad <b>receipt screen par aati hai</b>.<br><br>
+        ✅ Payment complete hone ke baad <b>receipt download krne ka option aata hai</b>.<br><br>
         <b>Receipt mein milega:</b><br>
         • Driver helpline number<br>
         • Pickup date & time<br>
@@ -1141,9 +1133,6 @@
         85% fare driver ko directly dein at pickup.
       </div>
 
-      <div class="msc-info">
-        🚗 <b>Driver Helpline:</b> ${CONFIG.driverNumber}
-      </div>
 
       <div class="msc-alert">
         ❓ Receipt nahi mili? Humse WhatsApp par sampark karein.
