@@ -1324,13 +1324,6 @@
   // INIT
   // ══════════════════════════════════════
   showMain();
-  window.mscToggle = function() {
-    if (box.style.display === "block") {
-      box.style.display = "none";
-    } else {
-      box.style.display = "block";
-      showMain();
-    }
-  };
+
 
 })();
