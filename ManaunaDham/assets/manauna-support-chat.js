@@ -11,6 +11,7 @@
   const CONFIG = {
     whatsappNumber: "917817803342",
     callNumber: "+91-78178-03342",
+    driverNumber: "+91-89092-08453",
     youtube: {
       hotel: "YOUR_HOTEL_BOOKING_VIDEO_LINK",
       taxi:  "YOUR_TAXI_BOOKING_VIDEO_LINK",
@@ -128,6 +129,8 @@
     .msc-opt.call:hover { background: #1565C0; color: white; }
     .msc-opt.ghost  { border-color: #ccc; color: #888; font-weight: 400; font-size: 13px; }
     .msc-opt.ghost:hover { background: #f5f5f5; color: #555; transform: none; }
+    .msc-opt.blue   { border-color: #1565C0; color: #1565C0; }
+    .msc-opt.blue:hover { background: #1565C0; color: white; }
 
     .msc-label {
       font-size: 11px; font-weight: 700; text-transform: uppercase;
@@ -201,23 +204,6 @@
     .msc-social-handle { font-size: 10px; color: #555; font-weight: 600; }
     .msc-social-label  { font-size: 10px; color: #999; }
 
-    .msc-reel {
-      border-radius: 10px; overflow: hidden; margin-bottom: 12px;
-      border: 1.5px solid #eee; background: #000;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; cursor: pointer;
-    }
-    .msc-reel-thumb {
-      width: 100%; display: block; border-radius: 8px;
-    }
-    .msc-reel-play {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      background: rgba(0,0,0,0.55); border-radius: 50%;
-      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: white;
-    }
-
-    /* fact row */
     .msc-fact { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 13px; color: #333; }
     .msc-fact-icon { flex-shrink:0; font-size:15px; }
 
@@ -277,23 +263,12 @@
     return html;
   }
 
-  const DISCLAIMER = `
-    <div class="msc-alert">
-      ⚠️ <b>Customer support sirf paid services ke liye hai</b>:Hotel, Taxi, Food.<br>
-      Darshan / Jal / Mahant Ji ki info ke liye website pages dekhein.
-    </div>`;
+  function waBtn(msg, label) {
+    return `<button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}','_blank')">${label || "💬 WhatsApp par Contact Karein"}</button>`;
+  }
 
-  function contactBlock(prefilledMsg) {
-    const waMsg = encodeURIComponent(prefilledMsg);
-    return `
-      ${DISCLAIMER}
-      <div class="msc-label">📞 Humse Sampark Karein</div>
-      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}','_blank')">
-        💬 WhatsApp par Message Karein
-      </button>
-      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">
-        📞 Call Karein - ${CONFIG.callNumber}
-      </button>`;
+  function backBtn(fn, label) {
+    return `<button class="msc-opt ghost" onclick="${fn}">← ${label || "Back"}</button>`;
   }
 
   // ══════════════════════════════════════
@@ -303,20 +278,28 @@
   window.mscShowMain = function () { showMain(); };
   window.showMain = showMain;
 
+  // ──────────────────────────────────────
+  // HOME
+  // ──────────────────────────────────────
   function showMain() {
     render(`
       <div class="msc-greet">Jai Shree Shyam 🙏</div>
-      <div class="msc-sub">Aap kaise help chahte hain?</div>
+      <div class="msc-sub">Aapka sawaal kis baare mein hai?</div>
 
-      <div class="msc-label">📚 Free Jaankari</div>
-      <button class="msc-opt" onclick="showInfoMenu()">🛕 Darshan Timings, Shaym Jal Information, Patient token Information, Mahant Ji Information</button>
-      <button class="msc-opt" onclick="showHotelRulesMenu()">Hotel/Taxi -Early Check-in policy, Advance Payment, Manager contact number, Booking receipt</button>
+      <div class="msc-label">🛕 Jaankari</div>
+      <button class="msc-opt" onclick="showPatientTokenMenu()">🔖 Patient Token</button>
+      <button class="msc-opt" onclick="showShyamJalMenu()">💧 Shyam Jal</button>
+      <button class="msc-opt" onclick="showMahantMenu()">🧘 Mahant Ji</button>
 
       <hr class="msc-div">
-      <div class="msc-label">🛎️ Paid Services - Booking / Query</div>
-      <button class="msc-opt green" onclick="showServiceMenu('hotel')">🏨 Hotel Booking</button>
-      <button class="msc-opt green" onclick="showServiceMenu('taxi')">🚕 Taxi Booking</button>
-      <button class="msc-opt green" onclick="showServiceMenu('food')">🍽️ Food Order</button>
+      <div class="msc-label">🛎️ Booking / Services</div>
+      <button class="msc-opt green" onclick="showHotelMenu()">🏨 Hotel</button>
+      <button class="msc-opt green" onclick="showTaxiMenu()">🚕 Taxi / Cab</button>
+      <button class="msc-opt green" onclick="showFoodMenu()">🍽️ Food Order</button>
+
+      <hr class="msc-div">
+      <div class="msc-label">ℹ️ About</div>
+      <button class="msc-opt" onclick="showAboutCrulio()">🌐 Crulio ke baare mein</button>
 
       <hr class="msc-div">
       <div class="msc-label">📹 Hamaari Seva Dekhein</div>
@@ -342,64 +325,359 @@
     `);
   }
 
-  // ── INFO MENU ──────────────────────────
-  window.showInfoMenu = function () {
+  // ══════════════════════════════════════
+  // 1. PATIENT TOKEN
+  // ══════════════════════════════════════
+
+  window.showPatientTokenMenu = function () {
     render(`
       ${breadcrumb([])}
-      <div class="msc-greet" style="font-size:14px;">🛕 Free Jaankari</div>
-      <div class="msc-sub">Kis topic ke baare mein jaanna chahte hain?</div>
+      <div class="msc-greet" style="font-size:14px;">🔖 Patient Token</div>
+      <div class="msc-sub">Kya jaanna chahte hain?</div>
 
-      <button class="msc-opt" onclick="showPatientTokenInfo()">🔖 Patient Token - kaise milta hai?</button>
-      <button class="msc-opt" onclick="showMahantTiming()">🕐 Mahant Ji kab baithte hain?</button>
-      <button class="msc-opt" onclick="showWaitTime()">⏳ Kitna time lagta hai - line mein?</button>
-      <button class="msc-opt" onclick="showShyamJalInfo()">💧 Shyam Jal kaise milta hai?</button>
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.khatushyam}','_blank')">🛕 Khatu Shyam Ji ke baare mein</button>
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.mahant}','_blank')">🧘 Mahant Ji ke baare mein</button>
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.main}','_blank')">🏠 Manauna Dham ke baare mein</button>
+      <button class="msc-opt" onclick="showPatientBookOnline()">📱 Online advance booking kaise karein?</button>
+      <button class="msc-opt" onclick="showPatientBookOffline()">🚶 Walk-in (offline) par kaise milta hai?</button>
+      <button class="msc-opt" onclick="showPatientEligibility()">👥 Kisko milta hai Patient Token?</button>
+      <button class="msc-opt" onclick="showPatientAfterToken()">⏱️ Token milne ke baad Mahant Ji se milne mein kitna samay?</button>
+      <button class="msc-opt" onclick="showPatientCantCome()">🏠 Patient khud nahi aa sakta - kya karein?</button>
 
       <hr class="msc-div">
-      <div class="msc-warn">
-        ℹ️ Inki puri jaankari humne website par likhi hai. Kripya page zaroor dekhein -
-        aapke sabhi sawaalon ke jawab wahan milenge.
-      </div>
-      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient Token page dekhein</button>
+      ${backBtn("showMain()")}
     `);
   };
 
-  // ── PATIENT TOKEN INFO ─────────────────
-  window.showPatientTokenInfo = function () {
+  window.showPatientBookOnline = function () {
     render(`
-      ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">🔖 Patient Token - Kaise Milta Hai?</div>
+      ${breadcrumb([{label: "🔖 Patient Token", fn: "showPatientTokenMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📱 Online Advance Booking</div>
 
       <div class="msc-info">
-        <b>✅ Patient Token ke liye patient ka khud present hona zaroori hai.</b><br>
-        Family member ke jaane par token nahi milta - sirf Shyam Jal mahant ji se abhimantrit kara skte hai normal line me lagkar.
+        ✅ Online advance booking ke liye <b>"Manauna Dham" official app</b> download karein.<br><br>
+        📲 Available on: <b>Play Store</b> (Android) aur <b>App Store</b> (iPhone)
       </div>
-
-      <div class="msc-label">📋 Step-by-Step Process</div>
-      <div class="msc-fact"><span class="msc-fact-icon">1️⃣</span><span>Manauna Dham pahunchein - Main Gate se andar jayein.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">2️⃣</span><span>Patient Token counter par line mein lagein (mandir ground ke andar).</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">3️⃣</span><span>Token milne par Mahant Ji ke paas jayein, apni problem batayein.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">4️⃣</span><span>Mahant Ji apne haathon se Abhimantrit Shyam Jal denge aur ashirwad denge.</span></div>
 
       <div class="msc-warn">
-        📱 <b>Online advance booking</b> ke liye <b>"Manauna Dham" official app</b> download karein (Play Store / App Store).<br>
-        Walk-in ke liye koi advance booking nahi hoti - seedha aakar line mein lagein.
+        ⚠️ <b>Sirf app se hi online booking hoti hai.</b> Website par online booking ka option nahi hai.<br><br>
+        App se book karne par bhi <b>patient ka khud present hona zaroori hai</b> darshan ke din.
       </div>
 
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Poori Jaankari - Patient Page Dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
+      <div class="msc-blue">
+        💡 <b>Tip:</b> Online booking se aapko jaldi token milta hai - bheed mein line nahi lagni padti.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient page par aur jaankari dekhein</button>
+      ${backBtn("showPatientTokenMenu()", "Patient Token")}
     `);
   };
 
-  // ── MAHANT JI TIMING ───────────────────
+  window.showPatientBookOffline = function () {
+    render(`
+      ${breadcrumb([{label: "🔖 Patient Token", fn: "showPatientTokenMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🚶 Walk-in (Offline) Process</div>
+
+      <div class="msc-label">📋 Step-by-Step</div>
+      <div class="msc-fact"><span class="msc-fact-icon">1️⃣</span><span>Manauna Dham pahunchein - Main Gate se andar jayein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">2️⃣</span><span><b>Shyam Jal counter par jaayein</b> aur pehle Shyam Jal khareedein (₹20/bottle).</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">3️⃣</span><span><b>Patient Token counter</b> par line mein lagein (mandir ground ke andar).</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">4️⃣</span><span>Token milne par apna number aane ka intezaar karein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">5️⃣</span><span>Number aane par Mahant Ji ke paas jayein, apni problem batayein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">6️⃣</span><span>Mahant Ji apne haathon se Abhimantrit Shyam Jal denge aur ashirwad denge.</span></div>
+
+      <div class="msc-info">
+        ⏱️ Patient Token line general line se <b>comparatively fast</b> hoti hai.
+      </div>
+
+      <div class="msc-alert">
+        ❌ Walk-in ke liye <b>koi advance booking nahi hoti</b> - seedha aakar counter par jaayein.
+      </div>
+
+      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+    `);
+  };
+
+  window.showPatientEligibility = function () {
+    render(`
+      ${breadcrumb([{label: "🔖 Patient Token", fn: "showPatientTokenMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">👥 Kisko Milta Hai Patient Token?</div>
+
+      <div class="msc-info">
+        ✅ <b>Patient Token sirf un logon ko milta hai jinhe Mahant Ji se seedha darshan lena ho</b> - yaani jo khud beemar hain ya koi gambhir samasya hai.
+      </div>
+
+      <div class="msc-label">✅ Token milega</div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Patient jo <b>khud Manauna Dham aa sakta ho</b></span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Bimari ya gambhir samasya waale log</span></div>
+
+      <div class="msc-label">❌ Token nahi milega</div>
+      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span><b>Family member ko token nahi milta</b> patient ki jagah par</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">❌</span><span>Patient ghar par ho aur koi aur jaaye - yeh valid nahi hai</span></div>
+
+      <div class="msc-warn">
+        ℹ️ Agar family member jaata hai toh <b>normal line mein lag sakte hain</b>. Mahant Ji ka personal darshan nahi hoga, lekin <b>General Shyam Jal line se Jal le sakte hain</b>.
+      </div>
+
+      <button class="msc-opt" onclick="showPatientCantCome()">🏠 Patient khud nahi aa sakta - kya karein?</button>
+      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+    `);
+  };
+
+  window.showPatientAfterToken = function () {
+    render(`
+      ${breadcrumb([{label: "🔖 Patient Token", fn: "showPatientTokenMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">⏱️ Token ke Baad Kitna Samay Lagta Hai?</div>
+
+      <div class="msc-label">🕐 Approximate Time</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token line:</b> Approx. <b>30 min – 2 ghante</b> - rush par depend karta hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General (Normal) line:</b> Patient token line se lambi hoti hai - zyada bheed hoti hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Patient Token walon ko <b>comparatively jaldi</b> darshan milta hai general visitors se.</span></div>
+
+      <div class="msc-warn">
+        📅 <b>Tuesday & Wednesday ko avoid karein</b> - Mahant Ji in dino nahi baithte.<br>
+        Peak season (weekends, festivals) mein wait time aur badh sakta hai.
+      </div>
+
+      <div class="msc-blue">
+        ℹ️ Yeh estimate ground-level experience par based hai. Actual time rush ke hisaab se change ho sakta hai.
+      </div>
+
+      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+    `);
+  };
+
+  window.showPatientCantCome = function () {
+    render(`
+      ${breadcrumb([{label: "🔖 Patient Token", fn: "showPatientTokenMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🏠 Patient Khud Nahi Aa Sakta</div>
+
+      <div class="msc-alert">
+        ❌ Agar patient khud nahi aa sakta toh <b>Patient Token nahi milega</b>.<br>
+        Token sirf patient ke khud present hone par milta hai.
+      </div>
+
+      <div class="msc-warn">
+        💡 Is situation mein family member jaa sakta hai aur:<br><br>
+        • <b>General Shyam Jal line</b> mein lag ke Jal le aa sakta hai<br>
+        • Mahant Ji ka personal darshan is case mein nahi hoga
+      </div>
+
+      <div class="msc-info">
+        🆘 Agar aapki situation alag hai - humse WhatsApp par baat karein.<br>
+        Hum milke hal dhundhenge.
+      </div>
+
+      ${waBtn("Namaste 🙏\n\nHamara patient khud nahi aa sakta Manauna Dham. Kripya help karein.\n\n_Sent via ManaunaDham_")}
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.jal}','_blank')">💧 Shyam Jal page dekhein (alternative)</button>
+      ${backBtn("showPatientTokenMenu()", "Patient Token")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 2. SHYAM JAL
+  // ══════════════════════════════════════
+
+  window.showShyamJalMenu = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">💧 Shyam Jal</div>
+      <div class="msc-sub">Kya jaanna chahte hain?</div>
+
+      <button class="msc-opt" onclick="showShyamJalKyaHai()">❓ Shyam Jal kya hai?</button>
+      <button class="msc-opt" onclick="showShyamJalKahan()">📍 Kahan milta hai? (Kaise lein)</button>
+      <button class="msc-opt" onclick="showShyamJalKabPiyen()">🕐 Kab aur kitna piyen?</button>
+      <button class="msc-opt" onclick="showShyamJalOnline()">🛒 Online/Meesho se le sakte hain?</button>
+      <button class="msc-opt" onclick="showShyamJalFaq()">❓ Aksar Pooche Jaane Waale Sawaal</button>
+
+      <hr class="msc-div">
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Shyam Jal page dekhein</button>
+      ${backBtn("showMain()")}
+    `);
+  };
+
+  window.showShyamJalKyaHai = function () {
+    render(`
+      ${breadcrumb([{label: "💧 Shyam Jal", fn: "showShyamJalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">❓ Shyam Jal Kya Hai?</div>
+
+      <div class="msc-info">
+        Manauna Dham <b>Shri Khatu Shyam Ji ki Janmbhoomi</b> hai. Yahan ka Shyam Jal <b>Mahant Omendra Chauhan Ji</b> dwara <b>Abhimantrit</b> kiya jata hai.<br><br>
+        Har bottle mein Mahant Ji ka aashirwad hota hai.<br><br>
+        💧 Manauna Dham ka jal shareer aur ghar ki <b>negative energies ko door</b> karta hai aur <b>Shri Khatu Shyam Ji ka aashirwad</b> milta hai.
+      </div>
+
+      <div class="msc-label">✨ Labh (Benefits)</div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Shareer ki negative urja door hoti hai</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Shri Khatu Shyam Ji ka aashirwad milta hai</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Ghar ke sabhi logo ko de sakte hain</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Koi side effect nahi hota - yeh sirf positive prabhav dalta hai</span></div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Poori jaankari dekhein</button>
+      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+    `);
+  };
+
+  window.showShyamJalKahan = function () {
+    render(`
+      ${breadcrumb([{label: "💧 Shyam Jal", fn: "showShyamJalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📍 Shyam Jal Kahan Se Milta Hai?</div>
+
+      <div class="msc-alert">
+        ⚠️ Shyam Jal <b>sirf Manauna Dham mandir ground ke andar ek official counter</b> se milta hai.<br>
+        Bahar se ya online koi bhi Shyam Jal genuine nahi hota.
+      </div>
+
+      <div class="msc-label">📋 Do Tarike</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko (SABSE PAVITRA):</b><br>Pehle Shyam Jal counter se Jal khareedein → fir Patient Token counter par line lagein → token milne par Mahant Ji seedha apne haath se Abhimantrit Jal denge.</span></div>
+      <div class="msc-fact" style="margin-top:8px;"><span class="msc-fact-icon">💧</span><span><b>General visitors (bina token ke):</b><br>Official Shyam Jal counter se bottle lein (₹20 each), phir normal darshan line mein lagein. Mahant Ji ka personal darshan nahi hoga.</span></div>
+
+      <div class="msc-info">
+        🏷️ Bottle <b>₹20</b> ki hai aur plastic bottle mein milti hai jiske cap par <b>official Manauna Dham logo</b> hota hai.<br><br>
+        Jitni chahein utni bottles le jaa sakte hain.
+      </div>
+
+      <div class="msc-warn">
+        ⚠️ Mahant Ji <b>Tuesday & Wednesday</b> ko nahi baithte. Kabhi-kabhi urgent kaam se anya din bhi unavailable ho sakte hain.
+      </div>
+
+      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+    `);
+  };
+
+  window.showShyamJalKabPiyen = function () {
+    render(`
+      ${breadcrumb([{label: "💧 Shyam Jal", fn: "showShyamJalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🕐 Kab Aur Kitna Piyen?</div>
+
+      <div class="msc-info">
+        📌 <b>Mahant Ji ka nirdesh:</b><br><br>
+        • Roz subah <b>11:55 AM se pehle</b> ek dhakkan (cap) Shyam Jal piyen<br>
+        • Ghar ke <b>poore parivar</b> ko de sakte hain<br>
+        • Jitni baar chahein utna le ke jaa sakte hain dham se
+      </div>
+
+      <div class="msc-blue">
+        ℹ️ Koi side effect nahi hota. Yeh Abhimantrit jal hai - sirf positive prabhav dalta hai.
+      </div>
+
+      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+    `);
+  };
+
+  window.showShyamJalOnline = function () {
+    render(`
+      ${breadcrumb([{label: "💧 Shyam Jal", fn: "showShyamJalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🛒 Online / Meesho se Le Sakte Hain?</div>
+
+      <div class="msc-alert">
+        ❌ <b>Bilkul nahi.</b><br><br>
+        Shyam Jal mandir dwara online mangwana <b>mana hai</b>.<br>
+        Meesho ya kisi bhi online platform se becha jaane wala Shyam Jal <b>adhikrit nahi</b> hai - yeh dhokha ho sakta hai.<br><br>
+        Duplicate aur naqli bottles market mein milti hain - isliye hamesha official counter se hi lein.
+      </div>
+
+      <div class="msc-info">
+        ✅ <b>Saccha Shyam Jal paane ka ek hi rasta hai:</b><br>
+        Khud Manauna Dham aayen aur mandir ground ke andar official counter se lein.
+      </div>
+
+      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+    `);
+  };
+
+  window.showShyamJalFaq = function () {
+    render(`
+      ${breadcrumb([{label: "💧 Shyam Jal", fn: "showShyamJalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">❓ Shyam Jal - FAQ</div>
+
+      <div class="msc-label">Sawaal aur Jawab</div>
+      <div class="msc-info"><b>Q: Kya roz le sakta hoon?</b><br>Haan. Mahant Ji kehte hain roz subah 11:55 AM se pehle ek dhakkan zaroor piyen.</div>
+      <div class="msc-info"><b>Q: Kya poore parivar ko de sakte hain?</b><br>Haan, zaroor. Ghar mein sabko fayda milta hai.</div>
+      <div class="msc-info"><b>Q: Koi side effect toh nahi?</b><br>Nahi. Yeh Abhimantrit jal hai - koi side effect nahi hota.</div>
+      <div class="msc-info"><b>Q: Agar main Manauna Dham nahi aa sakta?</b><br>Aap humse WhatsApp par baat kar sakte hain - hum koshish karenge solution dhundhne ki.</div>
+
+      ${waBtn("Namaste 🙏\n\nMujhe Shyam Jal ke baare mein kuch poochna tha.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showShyamJalMenu()", "Shyam Jal")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 3. MAHANT JI
+  // ══════════════════════════════════════
+
+  window.showMahantMenu = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">🧘 Mahant Ji</div>
+      <div class="msc-sub">Kya jaanna chahte hain?</div>
+
+      <button class="msc-opt" onclick="showMahantAbout()">🙏 Mahant Ji ke baare mein</button>
+      <button class="msc-opt" onclick="showMahantMilneTarike()">👁️ Mahant Ji se milne ke 2 tarike</button>
+      <button class="msc-opt" onclick="showMahantTiming()">🕐 Kab baithte hain? (Timing & Off Days)</button>
+
+      <hr class="msc-div">
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.mahant}','_blank')">📖 Mahant Ji ka page dekhein</button>
+      ${backBtn("showMain()")}
+    `);
+  };
+
+  window.showMahantAbout = function () {
+    render(`
+      ${breadcrumb([{label: "🧘 Mahant Ji", fn: "showMahantMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🙏 Mahant Omendra Chauhan Ji</div>
+
+      <div class="msc-info">
+        <b>Mahant Omendra Chauhan Ji</b> Manauna Dham ke pradhan sant hain.<br><br>
+        Woh <b>Shyam Jal ko Abhimantrit</b> karte hain - har bottle mein unka aashirwad hota hai.<br><br>
+        Patient Token se aane wale bhakton ko woh apne haathon se Jal dete hain aur unki samasya sunkar <b>ashirwad dete hain</b>.
+      </div>
+
+      <div class="msc-warn">
+        📌 Mahant Ji <b>temple management ke authorized sant</b> hain - woh mandir ke sevadar hain, Crulio/ManaunaDham platform ke nahi.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.mahant}','_blank')">📖 Mahant Ji ki poori jaankari dekhein</button>
+      ${backBtn("showMahantMenu()", "Mahant Ji")}
+    `);
+  };
+
+  window.showMahantMilneTarike = function () {
+    render(`
+      ${breadcrumb([{label: "🧘 Mahant Ji", fn: "showMahantMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">👁️ Mahant Ji Se Milne Ke 2 Tarike</div>
+
+      <div class="msc-info">
+        <b>⭐ Sabse Pehle:</b> Shyam Jal counter se Jal zaroor khareedein - yeh pehla kadam hai.
+      </div>
+
+      <div class="msc-label">Tarika 1 - Patient Token (Best Option)</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span>Patient khud present ho toh <b>Patient Token counter</b> par jaayein aur token lein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span>Token milne par Mahant Ji ke paas seedha jaayein - woh <b>apne haathon se Abhimantrit Shyam Jal</b> denge aur ashirwad denge.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">⏱️</span><span>Line comparatively fast hoti hai.</span></div>
+
+      <div class="msc-label">Tarika 2 - Normal / General Line</div>
+      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span>Patient token nahi hai toh <b>Normal line</b> mein lagein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">⚠️</span><span>Mahant Ji ka <b>personal darshan nahi hoga</b> - General Shyam Jal counter se Jal milega.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">⏱️</span><span>Yeh line Patient Token line se <b>lambi hoti hai</b>.</span></div>
+
+      <div class="msc-label">⏰ Timing</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🙏</span><span><b>Darshan:</b> Subah 7 AM – Raat 9 PM</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🔔</span><span><b>Aarti:</b> Subah 8 AM aur Shaam 5 PM</span></div>
+
+      <div class="msc-alert">
+        ❌ <b>Tuesday & Wednesday</b> - Mahant Ji nahi baithte.<br>
+        In dino Patient Token system available nahi hota.
+      </div>
+
+      ${backBtn("showMahantMenu()", "Mahant Ji")}
+    `);
+  };
+
   window.showMahantTiming = function () {
     render(`
-      ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">🕐 Mahant Ji - Timing & Availability</div>
+      ${breadcrumb([{label: "🧘 Mahant Ji", fn: "showMahantMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🕐 Mahant Ji - Timing & Off Days</div>
 
-      <div class="msc-label">📅 Darshan Timing</div>
+      <div class="msc-label">📅 Regular Timing</div>
       <div class="msc-fact"><span class="msc-fact-icon">🙏</span><span><b>Darshan:</b> Subah 7 AM – Raat 9 PM</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">🔔</span><span><b>Aarti:</b> Subah 8 AM aur Shaam 5 PM</span></div>
 
@@ -413,83 +691,44 @@
         💡 <b>Tip:</b> Door se aa rahe hain toh <b>Tuesday–Wednesday avoid karein</b>. Baki dino aana safer hai.
       </div>
 
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient Page par aur jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Patient page par aur jaankari</button>
+      ${backBtn("showMahantMenu()", "Mahant Ji")}
     `);
   };
 
-  // ── WAIT TIME (manually written - not on any page) ──
-  window.showWaitTime = function () {
-    render(`
-      ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">⏳ Kitna Time Lagta Hai?</div>
+  // ══════════════════════════════════════
+  // 4. HOTEL
+  // ══════════════════════════════════════
 
-      <div class="msc-label">🕐 Approximate Wait Times</div>
-      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token line:</b> Generally 30 min – 2 ghante lag sakte hain, rush par depend karta hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>Normal line:</b> Patient token line se lambi hoti hai - zyada bheed hoti hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">✅</span><span><b>Patient Token walon ko</b> comparatively jaldi darshan milta hai.</span></div>
-
-      <div class="msc-warn">
-        📅 <b>Tuesday & Wednesday avoid karein</b> - Mahant Ji nahi baithte in dino.<br>
-        Peak season (weekends, festivals) mein wait time aur badh sakta hai.
-      </div>
-
-      <div class="msc-blue">
-        ℹ️ Yeh jaankari ground-level anubhav par based hai - official source nahi.
-        Actual time rush ke hisaab se change ho sakta hai.
-      </div>
-
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
-    `);
-  };
-
-  // ── SHYAM JAL INFO ─────────────────────
-  window.showShyamJalInfo = function () {
-    render(`
-      ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">💧 Shyam Jal - Kaise Milta Hai?</div>
-
-      <div class="msc-info">
-        Shyam Jal <b>sirf Manauna Dham mandir ground ke andar ek official counter</b> se milta hai.<br>
-        Bahar se koi bhi Shyam Jal genuine nahi hota - dhokha ho sakta hai.
-      </div>
-
-      <div class="msc-label">📋 Do Tarike</div>
-      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko:</b> Mahant Ji apne haath se Abhimantrit Shyam Jal dete hain - yeh sabse pavitra form hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General visitors:</b> Official counter se Shyam Jal lein, phir normal line mein lagein. Har bottle ₹20 ki hai.</span></div>
-
-      <div class="msc-warn">
-        ⚠️ Meesho ya kisi bhi online platform se Shyam Jal mat khareedein - yeh adhikrit nahi hai.<br>
-        Roz subah <b>11:55 AM se pehle</b> ek dhakkan peena chahiye (Mahant Ji ka nirdesh).
-      </div>
-
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.jal}','_blank')">📖 Shyam Jal ki poori jaankari dekhein</button>
-      <button class="msc-opt ghost" onclick="showInfoMenu()">← Back</button>
-    `);
-  };
-
-  // ── HOTEL RULES MENU (manually written - not on any page) ──
-  window.showHotelRulesMenu = function () {
+  window.showHotelMenu = function () {
     render(`
       ${breadcrumb([])}
-      <div class="msc-greet" style="font-size:14px;">Hotel/Taxi - Jaankari, Early Check-in, Advance Payment, Manager contact number, Booking receipt</div>
-      <div class="msc-sub">Kya jaanna chahte hain?</div>
+      <div class="msc-greet" style="font-size:14px;">🏨 Hotel</div>
+      <div class="msc-sub">Aap kya jaanna chahte hain?</div>
 
-      <button class="msc-opt" onclick="showCheckinInfo()">🕐 Check-in / Checkout Timing</button>
-      <button class="msc-opt" onclick="showEarlyCheckin()">⚡ Early Check-in Possible Hai?</button>
-      <button class="msc-opt" onclick="showAdvanceFeeInfo()">💳 Advance Fee - Refundable Hai?</button>
-      <button class="msc-opt" onclick="showHotelContactInfo()">📞 Hotel ka Contact Number</button>
-      <button class="msc-opt" onclick="showReceiptInfo()">📄 Booking Receipt kahan milti hai?</button>
+      <div class="msc-label">📋 Jaankari</div>
+      <button class="msc-opt" onclick="showHotelCheckin()">🕐 Check-in & Checkout timing</button>
+      <button class="msc-opt" onclick="showHotelEarlyCheckin()">⚡ Early check-in possible hai?</button>
+      <button class="msc-opt" onclick="showHotelAdvanceFee()">💳 Advance fee - refundable hai?</button>
+      <button class="msc-opt" onclick="showHotelReceipt()">📄 Booking receipt kahan milegi?</button>
+      <button class="msc-opt" onclick="showHotelManagerNumber()">📞 Hotel manager ka number</button>
+      <button class="msc-opt" onclick="showHotelDateChange()">📅 Booking dates change karni hain</button>
+      <button class="msc-opt" onclick="showHotelAddress()">📍 Hotel ka address kahan dekhein?</button>
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels Page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
+      <div class="msc-label">🛎️ Booking / Query</div>
+      <button class="msc-opt green" onclick="showHotelBookNew()">➕ Naya booking karna hai</button>
+      <button class="msc-opt green" onclick="showHotelAlreadyBooked()">✅ Maine book kar liya - kuch poochna hai</button>
+
+      <hr class="msc-div">
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels page dekhein</button>
+      ${backBtn("showMain()")}
     `);
   };
 
-  window.showCheckinInfo = function () {
+  window.showHotelCheckin = function () {
     render(`
-      ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
       <div class="msc-greet" style="font-size:14px;">🕐 Check-in & Checkout Timing</div>
 
       <div class="msc-label">⏰ Standard Timings</div>
@@ -497,17 +736,17 @@
       <div class="msc-fact"><span class="msc-fact-icon">🚪</span><span><b>Checkout:</b> Subah 11:00 AM se pehle</span></div>
 
       <div class="msc-info">
-        📄 Hotel pahunchne par <b>booking receipt</b> zaroor saath laayen - jo payment ke baad download karne ka option aata hai.<br><br>
-        💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (Bacha hua amount- receipt ke hisab se).
+        📄 Hotel pahunchne par <b>booking receipt</b> zaroor saath laayen.<br><br>
+        💰 <b>Baaki payment hotel par check-in ke waqt karein</b> - receipt mein likha bacha hua amount dena hoga.
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  window.showEarlyCheckin = function () {
+  window.showHotelEarlyCheckin = function () {
     render(`
-      ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
       <div class="msc-greet" style="font-size:14px;">⚡ Early Check-in</div>
 
       <div class="msc-warn">
@@ -520,18 +759,18 @@
         💡 Best approach: <b>Dopahar 1 PM ke aas-paas pahunchein</b> taaki standard check-in time par room pakka mile.
       </div>
 
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  window.showAdvanceFeeInfo = function () {
+  window.showHotelAdvanceFee = function () {
     render(`
-      ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
       <div class="msc-greet" style="font-size:14px;">💳 Advance Fee - Refund Policy</div>
 
       <div class="msc-alert">
         ❌ <b>Advance fee non-refundable hai.</b><br><br>
-        Booking cancel karne par advance amount Back nahi milta.<br>
+        Booking cancel karne par advance amount wapas nahi milta.<br>
         Isliye booking confirm karne se pehle dates pakki kar lein.
       </div>
 
@@ -544,37 +783,14 @@
         📋 <b>Booking dates change karna ho toh:</b> Jaldi se jaldi humse WhatsApp par baat karein.
       </div>
 
-      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}','_blank')">
-        💬 WhatsApp par Contact Karein
-      </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
+      ${waBtn("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  window.showHotelContactInfo = function () {
+  window.showHotelReceipt = function () {
     render(`
-      ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">📞 Hotel/Taxi Contact Number</div>
-
-      <div class="msc-info">
-        📄 Hotel/Taxi ka contact number aapki <b>booking receipt par likha hota hai</b>.<br><br>
-        Payment complete hone ke baad receipt download karein - uspe hotel ki saari details mil jaayengi.
-      </div>
-
-      <div class="msc-warn">
-        ⚠️ Agar receipt nahi mili ya problem hai toh humse WhatsApp par baat karein - hum help karenge.
-      </div>
-
-      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}','_blank')">
-        💬 WhatsApp par Contact Karein
-      </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
-    `);
-  };
-
-  window.showReceiptInfo = function () {
-    render(`
-      ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
       <div class="msc-greet" style="font-size:14px;">📄 Booking Receipt</div>
 
       <div class="msc-info">
@@ -588,151 +804,537 @@
       </div>
 
       <div class="msc-warn">
-        📌 Receipt saath zaroor laayen hotel check-in ke waqt - yeh identity proof hai aapki booking ka.
+        📌 Receipt saath zaroor laayen hotel check-in ke waqt - yeh aapki booking ka identity proof hai.
       </div>
 
       <div class="msc-alert">
         ❓ Receipt nahi mili? Humse WhatsApp par baat karein.
       </div>
 
-      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}','_blank')">
-        💬 WhatsApp par Contact Karein
-      </button>
-      <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Back</button>
+      ${waBtn("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  // ── SERVICE MENU ───────────────────────
-  window.showServiceMenu = function (service) {
-    const labels = {
-      hotel: { emoji: "🏨", name: "Hotel Booking",  page: CONFIG.pages.hotels },
-      taxi:  { emoji: "🚕", name: "Taxi Booking",   page: CONFIG.pages.transport },
-      food:  { emoji: "🍽️", name: "Food Order",    page: CONFIG.pages.food },
-    };
-    const s = labels[service];
+  window.showHotelManagerNumber = function () {
     render(`
-      ${breadcrumb([])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name}</div>
-      <div class="msc-sub">Aap kya jaanna chahte hain?</div>
-
-      <button class="msc-opt green" onclick="showHowToBook('${service}')">
-        ❓ Book karna hai - kaise karein?
-      </button>
-      <button class="msc-opt green" onclick="showAlreadyBooked('${service}')">
-        ✅ Maine already book kar liya - mujhe kuch poochna hai
-      </button>
-
-      <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="window.open('${s.page}','_blank')">📋 ${s.name} page dekhein</button>
-      <button class="msc-opt ghost" onclick="showMain()">← Back</button>
-    `);
-  };
-
-  // ── HOW TO BOOK ────────────────────────
-  window.showHowToBook = function (service) {
-    const labels = {
-      hotel: { emoji: "🏨", name: "Hotel Booking",  ytLink: CONFIG.youtube.hotel, ytTitle: "Hotel kaise book karein - Step by step" },
-      taxi:  { emoji: "🚕", name: "Taxi Booking",   ytLink: CONFIG.youtube.taxi,  ytTitle: "Taxi kaise book karein - Step by step" },
-      food:  { emoji: "🍽️", name: "Food Order",    ytLink: CONFIG.youtube.food,  ytTitle: "Khana kaise order karein - Step by step" },
-    };
-    const s = labels[service];
-    const preMsg = `Namaste 🙏\n\nMujhe ${s.name} ke baare mein kuch poochna tha.\n\n_Sent via ManaunaDham_`;
-
-    render(`
-      ${breadcrumb([{label: s.emoji + " " + s.name, fn: "showServiceMenu('" + service + "')"}])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} - Kaise Karein?</div>
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📞 Hotel Manager Ka Number</div>
 
       <div class="msc-info">
-        📹 Humne ek <b>step-by-step video</b> banaya hai. Pehle yeh dekh lein -
-        zyaadatar sawaalon ke jawab mil jaate hain!
+        📄 Hotel manager ka contact number aapki <b>booking receipt par likha hota hai</b>.<br><br>
+        Payment complete hone ke baad receipt download karein - uspe hotel ki saari contact details mil jaayengi.
       </div>
 
-      <a class="msc-yt" href="${s.ytLink}" target="_blank">
+      <div class="msc-warn">
+        ⚠️ Agar receipt nahi mili ya problem hai toh humse WhatsApp par baat karein - hum help karenge.
+      </div>
+
+      ${waBtn("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showHotelMenu()", "Hotel")}
+    `);
+  };
+
+  window.showHotelDateChange = function () {
+    render(`
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📅 Booking Dates Change</div>
+
+      <div class="msc-warn">
+        ⚠️ Dates change karna <b>guaranteed nahi</b> hai - availability par depend karta hai.<br><br>
+        Jaldi se jaldi humse contact karein - last minute mein mushkil ho sakti hai.
+      </div>
+
+      <div class="msc-alert">
+        ❌ Agar booking cancel ho jaaye toh <b>advance fee wapas nahi milti</b>.
+      </div>
+
+      ${waBtn("Namaste 🙏\n\nMujhe apni hotel booking ki dates change karni hain.\n\nBooking ka naam / confirmation number:\nCurrent dates:\nNew dates jo chahiye:\n\n_Sent via ManaunaDham_", "💬 WhatsApp par Dates Change Request Karein")}
+      ${backBtn("showHotelMenu()", "Hotel")}
+    `);
+  };
+
+  window.showHotelAddress = function () {
+    render(`
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📍 Hotel Ka Address</div>
+
+      <div class="msc-info">
+        📄 Hotel ka <b>exact address aapki booking receipt mein</b> hota hai.<br><br>
+        Payment ke baad receipt download karein - usme hotel ka address, Google Maps link sab milega.
+      </div>
+
+      <div class="msc-blue">
+        🏨 Hotels page par <b>har hotel ki location aur basic details</b> bhi dekh sakte hain.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels page - address dekhein</button>
+      ${waBtn("Namaste 🙏\n\nMujhe apne hotel ka address chahiye.\n\n_Sent via ManaunaDham_", "💬 WhatsApp par Address Maangein")}
+      ${backBtn("showHotelMenu()", "Hotel")}
+    `);
+  };
+
+  window.showHotelBookNew = function () {
+    const preMsg = "Namaste 🙏\n\nMujhe Manauna Dham ke liye hotel book karna hai.\n\n_Sent via ManaunaDham_";
+    render(`
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🏨 Hotel Book Karna Hai</div>
+
+      <div class="msc-info">
+        📹 Humne ek <b>step-by-step video</b> banaya hai. Pehle yeh dekh lein - zyaadatar sawaalon ke jawab mil jaate hain!
+      </div>
+
+      <a class="msc-yt" href="${CONFIG.youtube.hotel}" target="_blank">
         <div class="msc-yt-icon">▶️</div>
         <div>
-          <div class="msc-yt-text">${s.ytTitle}</div>
+          <div class="msc-yt-text">Hotel kaise book karein - Step by step</div>
           <div class="msc-yt-sub">YouTube par dekhein · ManaunaDham</div>
         </div>
       </a>
 
-      <div class="msc-warn">
-        ⚠️ Agar video dekhne ke baad bhi query hai, tabhi neeche contact karein.
-      </div>
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.hotels}','_blank')">🏨 Hotels page par jaayein aur book karein</button>
 
-      ${contactBlock(preMsg)}
+      <div class="msc-warn">⚠️ Agar page dekhne ke baad bhi query hai toh neeche contact karein.</div>
 
-      <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Back</button>
+      ${waBtn(preMsg)}
+      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  // ── ALREADY BOOKED ─────────────────────
-  window.showAlreadyBooked = function (service) {
-    const labels = {
-      hotel: { emoji: "🏨", name: "Hotel Booking" },
-      taxi:  { emoji: "🚕", name: "Taxi Booking"  },
-      food:  { emoji: "🍽️", name: "Food Order"   },
-    };
-    const s = labels[service];
-
-    // Extra hotel-specific options
-    const hotelExtra = service === "hotel" ? `
-      <button class="msc-opt green" onclick="showHotelRulesMenu()">
-        🏨 Check-in timing / Rules jaanni hain
-      </button>
-      <button class="msc-opt green" onclick="showHotelContactInfo()">
-        📞 Hotel ka contact number chahiye
-      </button>
-      <button class="msc-opt green" onclick="showReceiptInfo()">
-        📄 Receipt nahi mili
-      </button>
-    ` : "";
-
+  window.showHotelAlreadyBooked = function () {
     render(`
-      ${breadcrumb([{label: s.emoji + " " + s.name, fn: "showServiceMenu('" + service + "')"}])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} - Query</div>
+      ${breadcrumb([{label: "🏨 Hotel", fn: "showHotelMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">✅ Booking Ho Gayi - Query</div>
       <div class="msc-sub">Aapki query kya hai?</div>
 
-      <div class="msc-label">Query type chunein</div>
-      ${hotelExtra}
-      <button class="msc-opt green" onclick="showBookedContact('${service}', 'Booking confirm nahi mili')">
-        📩 Booking confirm nahi mili
-      </button>
-      <button class="msc-opt green" onclick="showBookedContact('${service}', 'Booking cancel / change karni hai')">
-        🔄 Booking cancel / change karni hai
-      </button>
-      <button class="msc-opt green" onclick="showBookedContact('${service}', 'Payment se related query')">
-        💳 Payment se related query
-      </button>
-      <button class="msc-opt green" onclick="showBookedContact('${service}', 'Koi aur sawaal')">
-        💬 Koi aur sawaal
-      </button>
+      <button class="msc-opt green" onclick="showHotelCheckin()">🕐 Check-in timing jaanni hai</button>
+      <button class="msc-opt green" onclick="showHotelReceipt()">📄 Receipt nahi mili</button>
+      <button class="msc-opt green" onclick="showHotelManagerNumber()">📞 Hotel ka number chahiye</button>
+      <button class="msc-opt green" onclick="showHotelDateChange()">📅 Dates change karni hain</button>
+      <button class="msc-opt green" onclick="showHotelAddress()">📍 Hotel ka address chahiye</button>
+      <button class="msc-opt green" onclick="showHotelBookedContact('Booking confirm nahi mili')">📩 Booking confirm nahi mili</button>
+      <button class="msc-opt green" onclick="showHotelBookedContact('Payment se related query')">💳 Payment se related query</button>
+      <button class="msc-opt green" onclick="showHotelBookedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
 
-      <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showServiceMenu('${service}')">← Back</button>
+      ${backBtn("showHotelMenu()", "Hotel")}
     `);
   };
 
-  window.showBookedContact = function (service, queryType) {
-    const labels = {
-      hotel: { emoji: "🏨", name: "Hotel Booking" },
-      taxi:  { emoji: "🚕", name: "Taxi Booking"  },
-      food:  { emoji: "🍽️", name: "Food Order"   },
-    };
-    const s = labels[service];
-    const preMsg = `Namaste 🙏\n\nMujhe ${s.name} ke baare mein poochna tha.\n\nQuery: ${queryType}\n\n_Sent via ManaunaDham_`;
-
+  window.showHotelBookedContact = function (queryType) {
+    const preMsg = `Namaste 🙏\n\nMeri hotel booking ke baare mein poochna tha.\n\nQuery: ${queryType}\n\n_Sent via ManaunaDham_`;
     render(`
       ${breadcrumb([
-        {label: s.emoji + " " + s.name, fn: "showServiceMenu('" + service + "')"},
-        {label: "Already Booked",       fn: "showAlreadyBooked('" + service + "')"},
+        {label: "🏨 Hotel", fn: "showHotelMenu()"},
+        {label: "Already Booked", fn: "showHotelAlreadyBooked()"},
       ])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${queryType}</div>
+      <div class="msc-greet" style="font-size:14px;">🏨 ${queryType}</div>
 
-      ${contactBlock(preMsg)}
+      ${waBtn(preMsg)}
+      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
+
+      ${backBtn("showHotelAlreadyBooked()", "Back")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 5. TAXI / CAB
+  // ══════════════════════════════════════
+
+  window.showTaxiMenu = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">🚕 Taxi / Cab</div>
+      <div class="msc-sub">Aap kya jaanna chahte hain?</div>
+
+      <div class="msc-label">📋 Jaankari & Pricing</div>
+      <button class="msc-opt" onclick="showTaxiPrices()">💰 Kitna kiraya lagega? (Prices)</button>
+      <button class="msc-opt" onclick="showTaxiRoutes()">🗺️ Kahan se kahan tak service hai?</button>
+      <button class="msc-opt" onclick="showTaxiAdvanceFee()">💳 Advance kitna dena hoga?</button>
+      <button class="msc-opt" onclick="showTaxiCabType()">🚗 Kaun sa cab available hai?</button>
+      <button class="msc-opt" onclick="showTaxiDistance()">📏 Manauna Dham kitna door hai?</button>
 
       <hr class="msc-div">
-      <button class="msc-opt ghost" onclick="showAlreadyBooked('${service}')">← Back</button>
+      <div class="msc-label">🛎️ Booking / Query</div>
+      <button class="msc-opt green" onclick="showTaxiBookNew()">➕ Cab book karna hai</button>
+      <button class="msc-opt green" onclick="showTaxiAlreadyBooked()">✅ Maine book kar liya - kuch poochna hai</button>
+
+      <hr class="msc-div">
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.transport}','_blank')">🚕 Transport page dekhein</button>
+      ${backBtn("showMain()")}
+    `);
+  };
+
+  window.showTaxiPrices = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">💰 Taxi Prices</div>
+
+      <div class="msc-label">📋 Route-wise Fares (7-Seater)</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🚉</span><span><b>Bareilly Railway Station → Dham:</b> ₹1,899 – ₹1,999 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✈️</span><span><b>Bareilly Airport → Dham:</b> ₹1,999 – ₹2,099 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">📌</span><span><b>Anywhere in Bareilly → Dham:</b> ₹1,699 – ₹1,899 (One Way)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🛫</span><span><b>Delhi Airport (IGI) → Dham:</b> ₹4,799 – ₹4,999 (One Way, 7-Seater)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">↩️</span><span><b>Return Trip:</b> Bareilly return ₹3,598 – ₹4,198 (bigger discount)</span></div>
+
+      <div class="msc-info">
+        💡 <b>Return trip par zyada discount milta hai.</b> Book karte waqt "Return Trip" select karein.<br><br>
+        🎁 Upto ₹200 discount bhi available hai - booking form mein apply karein.
+      </div>
+
+      <div class="msc-blue">
+        📌 Other U.P. cities ya Other Delhi/NCR locations ke liye price WhatsApp par confirm hoga.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.transport}','_blank')">🚕 Exact price check karein (booking form)</button>
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiRoutes = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🗺️ Service Routes</div>
+
+      <div class="msc-label">✅ Available Pickup Points</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🏙️</span><span><b>Bareilly</b> - Station, Airport, ya koi bhi jagah</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">📍</span><span><b>Other U.P. Cities</b> - Price WhatsApp par confirm hoga</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✈️</span><span><b>Delhi Airport (IGI)</b> - Terminal 1, 2, ya 3</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🏛️</span><span><b>Other Delhi/NCR</b> (Noida, Gurgaon, etc.) - Price WhatsApp par confirm hoga</span></div>
+
+      <div class="msc-info">
+        🏁 <b>Destination:</b> Sabhi trips ka destination Manauna Dham (Aonla, Bareilly) hai.<br><br>
+        ↩️ <b>Return Trip:</b> Same pickup ya different drop location bhi available hai.
+      </div>
+
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiAdvanceFee = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">💳 Advance Payment</div>
+
+      <div class="msc-info">
+        ✅ Booking confirm karne ke liye sirf <b>15% advance online pay</b> karna hota hai.<br><br>
+        Remaining <b>85% fare driver ko seedha pickup ke waqt dein</b>.
+      </div>
+
+      <div class="msc-warn">
+        ⚠️ Online payment mein <b>5% platform fee bhi lagti hai</b> - yeh booking management ke liye hoti hai aur ek baar charge hoti hai.<br><br>
+        Yaani Total Pay Now = 15% advance + 5% platform fee.
+      </div>
+
+      <div class="msc-alert">
+        ❌ <b>Advance aur platform fee non-refundable hain.</b> Booking cancel karne par wapas nahi milte.
+      </div>
+
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiCabType = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🚗 Available Cab Types</div>
+
+      <div class="msc-info">
+        ✅ <b>7-Seater cab available hai</b> - spacious aur comfortable, families ke liye best.<br>
+        Up to 7 passengers + luggage easily fit hota hai.
+      </div>
+
+      <div class="msc-warn">
+        🔜 <b>5-Seater (Sedan/Hatchback)</b> - Coming Soon. Abhi sirf 7-Seater available hai.
+      </div>
+
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiDistance = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📏 Manauna Dham - Distance</div>
+
+      <div class="msc-label">🗺️ Route Distances</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🚉</span><span><b>Bareilly Station:</b> ~43 km · ~1 hr 15 min</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✈️</span><span><b>Bareilly Airport:</b> ~51 km · ~1 hr 25 min</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🛫</span><span><b>Delhi Airport (IGI):</b> ~250 km · ~4.5 – 5 hrs</span></div>
+
+      <div class="msc-blue">
+        📍 Manauna Dham address:<br>
+        Shri Shyam Ji Mandir, Manauna, Tehsil - Aonla,<br>
+        District - Bareilly, Uttar Pradesh - 243301
+      </div>
+
+      <button class="msc-opt" onclick="window.open('https://maps.app.goo.gl/bF7V8LSARG6mNSy97','_blank')">🗺️ Google Maps par Location Dekhein</button>
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiBookNew = function () {
+    const preMsg = "Jai Shyam! 🙏\n\nMujhe Manauna Dham ke liye cab chahiye.\n\n_Sent via ManaunaDham_";
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🚕 Cab Book Karna Hai</div>
+
+      <div class="msc-info">
+        📹 Pehle <b>step-by-step video</b> dekh lein - booking process samajh aayegi!
+      </div>
+
+      <a class="msc-yt" href="${CONFIG.youtube.taxi}" target="_blank">
+        <div class="msc-yt-icon">▶️</div>
+        <div>
+          <div class="msc-yt-text">Taxi kaise book karein - Step by step</div>
+          <div class="msc-yt-sub">YouTube par dekhein · ManaunaDham</div>
+        </div>
+      </a>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.transport}','_blank')">🚕 Transport page par jaayein aur book karein</button>
+
+      <div class="msc-warn">⚠️ Agar page dekhne ke baad bhi query hai toh neeche contact karein.</div>
+
+      ${waBtn(preMsg)}
+      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiAlreadyBooked = function () {
+    render(`
+      ${breadcrumb([{label: "🚕 Taxi", fn: "showTaxiMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">✅ Booking Ho Gayi - Query</div>
+      <div class="msc-sub">Aapki query kya hai?</div>
+
+      <button class="msc-opt green" onclick="showTaxiBookedContact('Driver ka number chahiye')">📞 Driver ka number chahiye</button>
+      <button class="msc-opt green" onclick="showTaxiReceiptInfo()">📄 Receipt nahi mili</button>
+      <button class="msc-opt green" onclick="showTaxiBookedContact('Booking confirm nahi mili')">📩 Booking confirm nahi mili</button>
+      <button class="msc-opt green" onclick="showTaxiBookedContact('Booking cancel / change karni hai')">🔄 Booking cancel / change karni hai</button>
+      <button class="msc-opt green" onclick="showTaxiBookedContact('Payment se related query')">💳 Payment se related query</button>
+      <button class="msc-opt green" onclick="showTaxiBookedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
+
+      ${backBtn("showTaxiMenu()", "Taxi")}
+    `);
+  };
+
+  window.showTaxiReceiptInfo = function () {
+    render(`
+      ${breadcrumb([
+        {label: "🚕 Taxi", fn: "showTaxiMenu()"},
+        {label: "Already Booked", fn: "showTaxiAlreadyBooked()"},
+      ])}
+      <div class="msc-greet" style="font-size:14px;">📄 Taxi Booking Receipt</div>
+
+      <div class="msc-info">
+        ✅ Payment complete hone ke baad <b>receipt screen par aati hai</b>.<br><br>
+        <b>Receipt mein milega:</b><br>
+        • Driver helpline number<br>
+        • Pickup date & time<br>
+        • Invoice / Booking number<br>
+        • Advance paid aur remaining 85% amount<br>
+        • Cab type aur trip details
+      </div>
+
+      <div class="msc-warn">
+        📌 Pickup ke waqt driver ko yeh receipt dikhaayen.<br>
+        85% fare driver ko directly dein at pickup.
+      </div>
+
+      <div class="msc-info">
+        🚗 <b>Driver Helpline:</b> ${CONFIG.driverNumber}
+      </div>
+
+      <div class="msc-alert">
+        ❓ Receipt nahi mili? Humse WhatsApp par sampark karein.
+      </div>
+
+      ${waBtn("Namaste 🙏\n\nMujhe taxi booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showTaxiAlreadyBooked()", "Back")}
+    `);
+  };
+
+  window.showTaxiBookedContact = function (queryType) {
+    const preMsg = `Namaste 🙏\n\nMeri taxi booking ke baare mein poochna tha.\n\nQuery: ${queryType}\n\n_Sent via ManaunaDham_`;
+    render(`
+      ${breadcrumb([
+        {label: "🚕 Taxi", fn: "showTaxiMenu()"},
+        {label: "Already Booked", fn: "showTaxiAlreadyBooked()"},
+      ])}
+      <div class="msc-greet" style="font-size:14px;">🚕 ${queryType}</div>
+
+      ${waBtn(preMsg)}
+      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
+      <div class="msc-info" style="margin-top:8px;">🚗 <b>Direct Driver Helpline:</b> ${CONFIG.driverNumber}</div>
+
+      ${backBtn("showTaxiAlreadyBooked()", "Back")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 6. FOOD
+  // ══════════════════════════════════════
+
+  window.showFoodMenu = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">🍽️ Food Order</div>
+      <div class="msc-sub">Aap kya jaanna chahte hain?</div>
+
+      <div class="msc-label">📋 Jaankari</div>
+      <button class="msc-opt" onclick="showFoodDelivery()">🚚 Food kahan deliver hoga?</button>
+      <button class="msc-opt" onclick="showFoodType()">🥗 Khane ka type (Satvik / Veg?)</button>
+
+      <hr class="msc-div">
+      <div class="msc-label">🛎️ Booking / Query</div>
+      <button class="msc-opt green" onclick="showFoodBookNew()">➕ Khana order karna hai</button>
+      <button class="msc-opt green" onclick="showFoodAlreadyOrdered()">✅ Maine order kar liya - kuch poochna hai</button>
+
+      <hr class="msc-div">
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.pages.food}','_blank')">🍽️ Food page dekhein</button>
+      ${backBtn("showMain()")}
+    `);
+  };
+
+  window.showFoodDelivery = function () {
+    render(`
+      ${breadcrumb([{label: "🍽️ Food", fn: "showFoodMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🚚 Food Delivery Location</div>
+
+      <div class="msc-info">
+        📍 Food delivery <b>aapke hotel/dharamshala</b> ya <b>mandir ke bahar designated area</b> mein milti hai.
+      </div>
+
+      <div class="msc-alert">
+        ❌ <b>Mandir ke andar delivery possible nahi hai.</b>
+      </div>
+
+      <div class="msc-blue">
+        💡 Order karte waqt apna exact location / room number zaroor bataayen.
+      </div>
+
+      ${backBtn("showFoodMenu()", "Food")}
+    `);
+  };
+
+  window.showFoodType = function () {
+    render(`
+      ${breadcrumb([{label: "🍽️ Food", fn: "showFoodMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🥗 Khane Ka Type</div>
+
+      <div class="msc-info">
+        ✅ Manauna Dham mein <b>satvik (pure vegetarian)</b> khana milta hai - pilgrimage ke anukool.<br><br>
+        Delicious, fresh meals local restaurants se available hain.
+      </div>
+
+      <div class="msc-blue">
+        💡 Pre-order available hai - pehle se order karein taaki waqt par mile.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.food}','_blank')">🍽️ Menu dekhein - Food page</button>
+      ${backBtn("showFoodMenu()", "Food")}
+    `);
+  };
+
+  window.showFoodBookNew = function () {
+    const preMsg = "Namaste 🙏\n\nMujhe Manauna Dham mein khana order karna hai.\n\n_Sent via ManaunaDham_";
+    render(`
+      ${breadcrumb([{label: "🍽️ Food", fn: "showFoodMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🍽️ Khana Order Karna Hai</div>
+
+      <div class="msc-info">
+        📹 Pehle <b>step-by-step video</b> dekh lein!
+      </div>
+
+      <a class="msc-yt" href="${CONFIG.youtube.food}" target="_blank">
+        <div class="msc-yt-icon">▶️</div>
+        <div>
+          <div class="msc-yt-text">Khana kaise order karein - Step by step</div>
+          <div class="msc-yt-sub">YouTube par dekhein · ManaunaDham</div>
+        </div>
+      </a>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.food}','_blank')">🍽️ Food page par jaayein aur order karein</button>
+
+      <div class="msc-warn">⚠️ Agar page dekhne ke baad bhi query hai toh neeche contact karein.</div>
+
+      ${waBtn(preMsg)}
+      ${backBtn("showFoodMenu()", "Food")}
+    `);
+  };
+
+  window.showFoodAlreadyOrdered = function () {
+    render(`
+      ${breadcrumb([{label: "🍽️ Food", fn: "showFoodMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">✅ Order Ho Gaya - Query</div>
+      <div class="msc-sub">Aapki query kya hai?</div>
+
+      <button class="msc-opt green" onclick="showFoodOrderedContact('Order confirm nahi mila')">📩 Order confirm nahi mila</button>
+      <button class="msc-opt green" onclick="showFoodOrderedContact('Delivery nahi aayi')">🚚 Delivery nahi aayi</button>
+      <button class="msc-opt green" onclick="showFoodOrderedContact('Order cancel karni hai')">🔄 Order cancel karni hai</button>
+      <button class="msc-opt green" onclick="showFoodOrderedContact('Payment se related query')">💳 Payment se related query</button>
+      <button class="msc-opt green" onclick="showFoodOrderedContact('Koi aur sawaal')">💬 Koi aur sawaal</button>
+
+      ${backBtn("showFoodMenu()", "Food")}
+    `);
+  };
+
+  window.showFoodOrderedContact = function (queryType) {
+    const preMsg = `Namaste 🙏\n\nMere food order ke baare mein poochna tha.\n\nQuery: ${queryType}\n\n_Sent via ManaunaDham_`;
+    render(`
+      ${breadcrumb([
+        {label: "🍽️ Food", fn: "showFoodMenu()"},
+        {label: "Already Ordered", fn: "showFoodAlreadyOrdered()"},
+      ])}
+      <div class="msc-greet" style="font-size:14px;">🍽️ ${queryType}</div>
+
+      ${waBtn(preMsg)}
+      <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">📞 Call Karein - ${CONFIG.callNumber}</button>
+
+      ${backBtn("showFoodAlreadyOrdered()", "Back")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 7. ABOUT CRULIO
+  // ══════════════════════════════════════
+
+  window.showAboutCrulio = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">🌐 Crulio - ManaunaDham Platform</div>
+
+      <div class="msc-info">
+        <b>Crulio Networks</b> ek <b>destination-based pilgrim services platform</b> hai.<br><br>
+        ManaunaDham (crulio.com/ManaunaDham) Crulio ka pehla destination hai - jahan aap <b>free information</b> ke saath saath <b>hotel booking, cab, aur food order</b> kar sakte hain - sab ek jagah par.
+      </div>
+
+      <div class="msc-label">ℹ️ Important Note</div>
+      <div class="msc-warn">
+        ⚠️ Crulio aur ManaunaDham.org.in ek <b>independent pilgrim services platform</b> hai.<br>
+        Hum mandir management se affiliated nahi hain. Hum sirf bhakton ki madad karte hain.
+      </div>
+
+      <div class="msc-label">✅ Hamaari Services</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🏨</span><span>Verified hotel/dharamshala bookings</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🚕</span><span>Cab/taxi booking (Bareilly, U.P., Delhi)</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🍽️</span><span>Food delivery coordination</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">📚</span><span>Shyam Jal, Patient Token, Mahant Ji ki jaankari</span></div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.main}','_blank')">🏠 ManaunaDham main page dekhein</button>
+      <div class="msc-social" style="margin-top:12px;">
+        <a class="msc-social-card ig" href="${CONFIG.social.instagram}" target="_blank">
+          <span class="msc-social-icon">📸</span>
+          <span class="msc-social-handle">${CONFIG.social.igHandle}</span>
+          <span class="msc-social-label">Instagram</span>
+        </a>
+        <a class="msc-social-card yt" href="${CONFIG.social.ytChannel}" target="_blank">
+          <span class="msc-social-icon">▶️</span>
+          <span class="msc-social-handle">${CONFIG.social.ytHandle}</span>
+          <span class="msc-social-label">YouTube</span>
+        </a>
+      </div>
+      ${backBtn("showMain()")}
     `);
   };
 
