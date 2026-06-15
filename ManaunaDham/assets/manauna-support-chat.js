@@ -374,7 +374,7 @@
 
       <div class="msc-info">
         <b>✅ Patient Token ke liye patient ka khud present hona zaroori hai.</b><br>
-        Family member ke jaane par token nahi milta - sirf Shyam Jal milta hai general line se.
+        Family member ke jaane par token nahi milta - sirf Shyam Jal mahant ji se abhimantrit kara skte hai normal line me lagkar.
       </div>
 
       <div class="msc-label">📋 Step-by-Step Process</div>
@@ -426,7 +426,7 @@
 
       <div class="msc-label">🕐 Approximate Wait Times</div>
       <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token line:</b> Generally 30 min – 2 ghante lag sakte hain, rush par depend karta hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General Shyam Jal line:</b> Patient token line se lambi hoti hai - zyada bheed hoti hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>Normal line:</b> Patient token line se lambi hoti hai - zyada bheed hoti hai.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">✅</span><span><b>Patient Token walon ko</b> comparatively jaldi darshan milta hai.</span></div>
 
       <div class="msc-warn">
@@ -456,7 +456,7 @@
 
       <div class="msc-label">📋 Do Tarike</div>
       <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko:</b> Mahant Ji apne haath se Abhimantrit Shyam Jal dete hain - yeh sabse pavitra form hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General visitors:</b> Official counter se Shyam Jal lein, phir general line mein lagein. Har bottle ₹20 ki hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General visitors:</b> Official counter se Shyam Jal lein, phir normal line mein lagein. Har bottle ₹20 ki hai.</span></div>
 
       <div class="msc-warn">
         ⚠️ Meesho ya kisi bhi online platform se Shyam Jal mat khareedein - yeh adhikrit nahi hai.<br>
@@ -541,7 +541,7 @@
       </div>
 
       <div class="msc-warn">
-        📋 <b>Cancel / change karna ho toh:</b> Jaldi se jaldi humse WhatsApp par baat karein.
+        📋 <b>Booking dates change karna ho toh:</b> Jaldi se jaldi humse WhatsApp par baat karein.
       </div>
 
       <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel booking cancel/change karni hai.\n\n_Sent via ManaunaDham_")}','_blank')">
@@ -554,10 +554,10 @@
   window.showHotelContactInfo = function () {
     render(`
       ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">📞 Hotel Contact Number</div>
+      <div class="msc-greet" style="font-size:14px;">📞 Hotel/Taxi Contact Number</div>
 
       <div class="msc-info">
-        📄 Hotel ka contact number aapki <b>booking receipt par likha hota hai</b>.<br><br>
+        📄 Hotel/Taxi ka contact number aapki <b>booking receipt par likha hota hai</b>.<br><br>
         Payment complete hone ke baad receipt download karein - uspe hotel ki saari details mil jaayengi.
       </div>
 
@@ -580,11 +580,11 @@
       <div class="msc-info">
         ✅ Payment complete hone ke baad <b>receipt download karne ka option aata hai</b>.<br><br>
         <b>Receipt mein milega:</b><br>
-        • Hotel ka naam aur address<br>
         • Hotel ka contact number<br>
         • Check-in / Checkout date<br>
         • Booking confirmation number<br>
-        • Remaining amount jo hotel par dena hai
+        • Remaining amount jo hotel par dena hai<br>
+        • Booking se related saari jaankari
       </div>
 
       <div class="msc-warn">
