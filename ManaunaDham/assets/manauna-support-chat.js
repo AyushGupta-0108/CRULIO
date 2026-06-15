@@ -279,7 +279,7 @@
 
   const DISCLAIMER = `
     <div class="msc-alert">
-      ⚠️ <b>Customer support sirf paid services ke liye hai</b> — Hotel, Taxi, Food.<br>
+      ⚠️ <b>Customer support sirf paid services ke liye hai</b>:Hotel, Taxi, Food.<br>
       Darshan / Jal / Mahant Ji ki info ke liye website pages dekhein.
     </div>`;
 
@@ -292,7 +292,7 @@
         💬 WhatsApp par Message Karein
       </button>
       <button class="msc-opt call" onclick="window.location.href='tel:${CONFIG.callNumber}'">
-        📞 Call Karein — ${CONFIG.callNumber}
+        📞 Call Karein - ${CONFIG.callNumber}
       </button>`;
   }
 
@@ -310,10 +310,10 @@
 
       <div class="msc-label">📚 Free Jaankari</div>
       <button class="msc-opt" onclick="showInfoMenu()">🛕 Darshan, Jal, Mahant Ji ke baare mein</button>
-      <button class="msc-opt" onclick="showHotelRulesMenu()">🏨 Hotel — Check-in / Rules / Timing</button>
+      <button class="msc-opt" onclick="showHotelRulesMenu()">🏨 Hotel - Check-in / Rules / Timing</button>
 
       <hr class="msc-div">
-      <div class="msc-label">🛎️ Paid Services — Booking / Query</div>
+      <div class="msc-label">🛎️ Paid Services - Booking / Query</div>
       <button class="msc-opt green" onclick="showServiceMenu('hotel')">🏨 Hotel Booking</button>
       <button class="msc-opt green" onclick="showServiceMenu('taxi')">🚕 Taxi Booking</button>
       <button class="msc-opt green" onclick="showServiceMenu('food')">🍽️ Food Order</button>
@@ -323,7 +323,7 @@
       <a class="msc-yt" href="${CONFIG.social.ytChannel}/shorts/GLnD9qJ3WQA" target="_blank">
         <div class="msc-yt-icon">▶️</div>
         <div>
-          <div class="msc-yt-text">Manauna Dham — Platform Tour</div>
+          <div class="msc-yt-text">Manauna Dham - Platform Tour</div>
           <div class="msc-yt-sub">YouTube Shorts · ${CONFIG.social.ytHandle}</div>
         </div>
       </a>
@@ -349,9 +349,9 @@
       <div class="msc-greet" style="font-size:14px;">🛕 Free Jaankari</div>
       <div class="msc-sub">Kis topic ke baare mein jaanna chahte hain?</div>
 
-      <button class="msc-opt" onclick="showPatientTokenInfo()">🔖 Patient Token — kaise milta hai?</button>
+      <button class="msc-opt" onclick="showPatientTokenInfo()">🔖 Patient Token - kaise milta hai?</button>
       <button class="msc-opt" onclick="showMahantTiming()">🕐 Mahant Ji kab baithte hain?</button>
-      <button class="msc-opt" onclick="showWaitTime()">⏳ Kitna time lagta hai — line mein?</button>
+      <button class="msc-opt" onclick="showWaitTime()">⏳ Kitna time lagta hai - line mein?</button>
       <button class="msc-opt" onclick="showShyamJalInfo()">💧 Shyam Jal kaise milta hai?</button>
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.khatushyam}','_blank')">🛕 Khatu Shyam Ji ke baare mein</button>
       <button class="msc-opt" onclick="window.open('${CONFIG.pages.mahant}','_blank')">🧘 Mahant Ji ke baare mein</button>
@@ -359,7 +359,7 @@
 
       <hr class="msc-div">
       <div class="msc-warn">
-        ℹ️ Inki puri jaankari humne website par likhi hai. Kripya page zaroor dekhein —
+        ℹ️ Inki puri jaankari humne website par likhi hai. Kripya page zaroor dekhein -
         aapke sabhi sawaalon ke jawab wahan milenge.
       </div>
       <button class="msc-opt ghost" onclick="showMain()">← Wapas</button>
@@ -370,25 +370,25 @@
   window.showPatientTokenInfo = function () {
     render(`
       ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">🔖 Patient Token — Kaise Milta Hai?</div>
+      <div class="msc-greet" style="font-size:14px;">🔖 Patient Token - Kaise Milta Hai?</div>
 
       <div class="msc-info">
         <b>✅ Patient Token ke liye patient ka khud present hona zaroori hai.</b><br>
-        Family member ke jaane par token nahi milta — sirf Shyam Jal milta hai general line se.
+        Family member ke jaane par token nahi milta - sirf Shyam Jal milta hai general line se.
       </div>
 
       <div class="msc-label">📋 Step-by-Step Process</div>
-      <div class="msc-fact"><span class="msc-fact-icon">1️⃣</span><span>Manauna Dham pahunchein — Main Gate se andar jayein.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">1️⃣</span><span>Manauna Dham pahunchein - Main Gate se andar jayein.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">2️⃣</span><span>Patient Token counter par line mein lagein (mandir ground ke andar).</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">3️⃣</span><span>Token milne par Mahant Ji ke paas jayein, apni problem batayein.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">4️⃣</span><span>Mahant Ji apne haathon se Abhimantrit Shyam Jal denge aur ashirwad denge.</span></div>
 
       <div class="msc-warn">
         📱 <b>Online advance booking</b> ke liye <b>"Manauna Dham" official app</b> download karein (Play Store / App Store).<br>
-        Walk-in ke liye koi advance booking nahi hoti — seedha aakar line mein lagein.
+        Walk-in ke liye koi advance booking nahi hoti - seedha aakar line mein lagein.
       </div>
 
-      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Poori Jaankari — Patient Page Dekhein</button>
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.patient}','_blank')">📖 Poori Jaankari - Patient Page Dekhein</button>
       <button class="msc-opt ghost" onclick="showInfoMenu()">← Wapas</button>
     `);
   };
@@ -397,16 +397,16 @@
   window.showMahantTiming = function () {
     render(`
       ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">🕐 Mahant Ji — Timing & Availability</div>
+      <div class="msc-greet" style="font-size:14px;">🕐 Mahant Ji - Timing & Availability</div>
 
       <div class="msc-label">📅 Darshan Timing</div>
       <div class="msc-fact"><span class="msc-fact-icon">🙏</span><span><b>Darshan:</b> Subah 7 AM – Raat 9 PM</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">🔔</span><span><b>Aarti:</b> Subah 8 AM aur Shaam 5 PM</span></div>
 
       <div class="msc-alert">
-        ❌ <b>Mangalwar (Tuesday) & Budhwar (Wednesday)</b> — Mahant Ji nahi baithte.<br>
+        ❌ <b>Mangalwar (Tuesday) & Budhwar (Wednesday)</b> - Mahant Ji nahi baithte.<br>
         Yeh unke regular off days hain. In dino Patient Token system <b>available nahi</b> hota.<br><br>
-        ⚠️ Kabhi-kabhi <b>urgent kaam</b> ki wajah se kisi bhi din Mahant Ji unavailable ho sakte hain — yeh advance mein pata nahi chalta.
+        ⚠️ Kabhi-kabhi <b>urgent kaam</b> ki wajah se kisi bhi din Mahant Ji unavailable ho sakte hain - yeh advance mein pata nahi chalta.
       </div>
 
       <div class="msc-info">
@@ -418,7 +418,7 @@
     `);
   };
 
-  // ── WAIT TIME (manually written — not on any page) ──
+  // ── WAIT TIME (manually written - not on any page) ──
   window.showWaitTime = function () {
     render(`
       ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
@@ -426,16 +426,16 @@
 
       <div class="msc-label">🕐 Approximate Wait Times</div>
       <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token line:</b> Generally 30 min – 2 ghante lag sakte hain, rush par depend karta hai.</span></div>
-      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General Shyam Jal line:</b> Patient token line se lambi hoti hai — zyada bheed hoti hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General Shyam Jal line:</b> Patient token line se lambi hoti hai - zyada bheed hoti hai.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">✅</span><span><b>Patient Token walon ko</b> comparatively jaldi darshan milta hai.</span></div>
 
       <div class="msc-warn">
-        📅 <b>Tuesday & Wednesday avoid karein</b> — Mahant Ji nahi baithte in dino.<br>
+        📅 <b>Tuesday & Wednesday avoid karein</b> - Mahant Ji nahi baithte in dino.<br>
         Peak season (weekends, festivals) mein wait time aur badh sakta hai.
       </div>
 
       <div class="msc-blue">
-        ℹ️ Yeh jaankari ground-level anubhav par based hai — official source nahi.
+        ℹ️ Yeh jaankari ground-level anubhav par based hai - official source nahi.
         Actual time rush ke hisaab se change ho sakta hai.
       </div>
 
@@ -447,19 +447,19 @@
   window.showShyamJalInfo = function () {
     render(`
       ${breadcrumb([{label: "🛕 Free Jaankari", fn: "showInfoMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">💧 Shyam Jal — Kaise Milta Hai?</div>
+      <div class="msc-greet" style="font-size:14px;">💧 Shyam Jal - Kaise Milta Hai?</div>
 
       <div class="msc-info">
         Shyam Jal <b>sirf Manauna Dham mandir ground ke andar ek official counter</b> se milta hai.<br>
-        Bahar se koi bhi Shyam Jal genuine nahi hota — dhokha ho sakta hai.
+        Bahar se koi bhi Shyam Jal genuine nahi hota - dhokha ho sakta hai.
       </div>
 
       <div class="msc-label">📋 Do Tarike</div>
-      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko:</b> Mahant Ji apne haath se Abhimantrit Shyam Jal dete hain — yeh sabse pavitra form hai.</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">🎫</span><span><b>Patient Token waalon ko:</b> Mahant Ji apne haath se Abhimantrit Shyam Jal dete hain - yeh sabse pavitra form hai.</span></div>
       <div class="msc-fact"><span class="msc-fact-icon">💧</span><span><b>General visitors:</b> Official counter se Shyam Jal lein, phir general line mein lagein. Har bottle ₹20 ki hai.</span></div>
 
       <div class="msc-warn">
-        ⚠️ Meesho ya kisi bhi online platform se Shyam Jal mat khareedein — yeh adhikrit nahi hai.<br>
+        ⚠️ Meesho ya kisi bhi online platform se Shyam Jal mat khareedein - yeh adhikrit nahi hai.<br>
         Roz subah <b>11:55 AM se pehle</b> ek dhakkan peena chahiye (Mahant Ji ka nirdesh).
       </div>
 
@@ -468,16 +468,16 @@
     `);
   };
 
-  // ── HOTEL RULES MENU (manually written — not on any page) ──
+  // ── HOTEL RULES MENU (manually written - not on any page) ──
   window.showHotelRulesMenu = function () {
     render(`
       ${breadcrumb([])}
-      <div class="msc-greet" style="font-size:14px;">🏨 Hotel — Check-in / Rules / Timing</div>
+      <div class="msc-greet" style="font-size:14px;">🏨 Hotel - Check-in / Rules / Timing</div>
       <div class="msc-sub">Kya jaanna chahte hain?</div>
 
       <button class="msc-opt" onclick="showCheckinInfo()">🕐 Check-in / Checkout Timing</button>
       <button class="msc-opt" onclick="showEarlyCheckin()">⚡ Early Check-in Possible Hai?</button>
-      <button class="msc-opt" onclick="showAdvanceFeeInfo()">💳 Advance Fee — Refundable Hai?</button>
+      <button class="msc-opt" onclick="showAdvanceFeeInfo()">💳 Advance Fee - Refundable Hai?</button>
       <button class="msc-opt" onclick="showHotelContactInfo()">📞 Hotel ka Contact Number</button>
       <button class="msc-opt" onclick="showReceiptInfo()">📄 Booking Receipt kahan milti hai?</button>
 
@@ -497,7 +497,7 @@
       <div class="msc-fact"><span class="msc-fact-icon">🚪</span><span><b>Checkout:</b> Subah 11:00 AM se pehle</span></div>
 
       <div class="msc-info">
-        📄 Hotel pahunchne par <b>booking receipt</b> zaroor saath laayen — jo payment ke baad download karne ka option aata hai.<br><br>
+        📄 Hotel pahunchne par <b>booking receipt</b> zaroor saath laayen - jo payment ke baad download karne ka option aata hai.<br><br>
         💰 <b>Baaki payment hotel par check-in ke waqt karein</b> (advance nahi, sirf remaining amount).
       </div>
 
@@ -512,7 +512,7 @@
 
       <div class="msc-warn">
         ⚠️ Early check-in ki <b>hum guarantee nahi kar sakte</b>.<br><br>
-        Agar hotel pahunchte waqt koi room khaali hoga toh mil sakta hai — lekin yeh confirm karna possible nahi hai advance mein.<br><br>
+        Agar hotel pahunchte waqt koi room khaali hoga toh mil sakta hai - lekin yeh confirm karna possible nahi hai advance mein.<br><br>
         <b>Hotel par pahunchne ke baad hi pata chalega.</b>
       </div>
 
@@ -527,7 +527,7 @@
   window.showAdvanceFeeInfo = function () {
     render(`
       ${breadcrumb([{label: "🏨 Hotel Rules", fn: "showHotelRulesMenu()"}])}
-      <div class="msc-greet" style="font-size:14px;">💳 Advance Fee — Refund Policy</div>
+      <div class="msc-greet" style="font-size:14px;">💳 Advance Fee - Refund Policy</div>
 
       <div class="msc-alert">
         ❌ <b>Advance fee non-refundable hai.</b><br><br>
@@ -558,14 +558,14 @@
 
       <div class="msc-info">
         📄 Hotel ka contact number aapki <b>booking receipt par likha hota hai</b>.<br><br>
-        Payment complete hone ke baad receipt download karein — uspe hotel ki saari details mil jaayengi.
+        Payment complete hone ke baad receipt download karein - uspe hotel ki saari details mil jaayengi.
       </div>
 
       <div class="msc-warn">
-        ⚠️ Agar receipt nahi mili ya problem hai toh humse WhatsApp par baat karein — hum help karenge.
+        ⚠️ Agar receipt nahi mili ya problem hai toh humse WhatsApp par baat karein - hum help karenge.
       </div>
 
-      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel contact number chahiye — receipt nahi mili.\n\n_Sent via ManaunaDham_")}','_blank')">
+      <button class="msc-opt wa" onclick="window.open('https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}','_blank')">
         💬 WhatsApp par Contact Karein
       </button>
       <button class="msc-opt ghost" onclick="showHotelRulesMenu()">← Wapas</button>
@@ -588,7 +588,7 @@
       </div>
 
       <div class="msc-warn">
-        📌 Receipt saath zaroor laayen hotel check-in ke waqt — yeh identity proof hai aapki booking ka.
+        📌 Receipt saath zaroor laayen hotel check-in ke waqt - yeh identity proof hai aapki booking ka.
       </div>
 
       <div class="msc-alert">
@@ -616,10 +616,10 @@
       <div class="msc-sub">Aap kya jaanna chahte hain?</div>
 
       <button class="msc-opt green" onclick="showHowToBook('${service}')">
-        ❓ Book karna hai — kaise karein?
+        ❓ Book karna hai - kaise karein?
       </button>
       <button class="msc-opt green" onclick="showAlreadyBooked('${service}')">
-        ✅ Maine already book kar liya — mujhe kuch poochna hai
+        ✅ Maine already book kar liya - mujhe kuch poochna hai
       </button>
 
       <hr class="msc-div">
@@ -631,19 +631,19 @@
   // ── HOW TO BOOK ────────────────────────
   window.showHowToBook = function (service) {
     const labels = {
-      hotel: { emoji: "🏨", name: "Hotel Booking",  ytLink: CONFIG.youtube.hotel, ytTitle: "Hotel kaise book karein — Step by step" },
-      taxi:  { emoji: "🚕", name: "Taxi Booking",   ytLink: CONFIG.youtube.taxi,  ytTitle: "Taxi kaise book karein — Step by step" },
-      food:  { emoji: "🍽️", name: "Food Order",    ytLink: CONFIG.youtube.food,  ytTitle: "Khana kaise order karein — Step by step" },
+      hotel: { emoji: "🏨", name: "Hotel Booking",  ytLink: CONFIG.youtube.hotel, ytTitle: "Hotel kaise book karein - Step by step" },
+      taxi:  { emoji: "🚕", name: "Taxi Booking",   ytLink: CONFIG.youtube.taxi,  ytTitle: "Taxi kaise book karein - Step by step" },
+      food:  { emoji: "🍽️", name: "Food Order",    ytLink: CONFIG.youtube.food,  ytTitle: "Khana kaise order karein - Step by step" },
     };
     const s = labels[service];
     const preMsg = `Namaste 🙏\n\nMujhe ${s.name} ke baare mein kuch poochna tha.\n\n_Sent via ManaunaDham_`;
 
     render(`
       ${breadcrumb([{label: s.emoji + " " + s.name, fn: "showServiceMenu('" + service + "')"}])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} — Kaise Karein?</div>
+      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} - Kaise Karein?</div>
 
       <div class="msc-info">
-        📹 Humne ek <b>step-by-step video</b> banaya hai. Pehle yeh dekh lein —
+        📹 Humne ek <b>step-by-step video</b> banaya hai. Pehle yeh dekh lein -
         zyaadatar sawaalon ke jawab mil jaate hain!
       </div>
 
@@ -690,7 +690,7 @@
 
     render(`
       ${breadcrumb([{label: s.emoji + " " + s.name, fn: "showServiceMenu('" + service + "')"}])}
-      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} — Query</div>
+      <div class="msc-greet" style="font-size:14px;">${s.emoji} ${s.name} - Query</div>
       <div class="msc-sub">Aapki query kya hai?</div>
 
       <div class="msc-label">Query type chunein</div>
