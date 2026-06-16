@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
 <meta charset="UTF-8">
-<title>Hotel Harshdeep Aonla - Budget Hotel Near Manauna Dham | Room Booking, Photos, Rates</title>
-<meta name="description" content="Hotel Harshdeep Aonla - Best budget hotel near Manauna Dham temple. AC rooms with WiFi, geyser, parking. Double Bed-1 ₹1,599/night, Double Bed-2 ₹2,599/night. 3-4 km from Khatu Shyam temple. Book online or WhatsApp!">
-<meta name="keywords" content="hotel harshdeep aonla, hotels near manauna dham, budget hotel aonla, hotel near khatu shyam temple, accommodation manauna, bisauli bypass hotel, aonla hotels with parking">
+<title>Hotel Raj Garden Aonla - Near Manauna Dham | AC Rooms ₹1899 | Standard & Deluxe Rooms</title>
+<meta name="description" content="Hotel Raj Garden Aonla - AC rooms near Manauna Dham temple. Standard ₹1,899/night, Deluxe ₹2,299/night. WiFi, geyser, parking, in-house restaurant. 3-4 km from Khatu Shyam temple. Book online!">
+<meta name="keywords" content="hotel raj garden aonla, hotels near manauna dham, raj garden hotel aonla, budget hotel aonla, hotel near khatu shyam temple, accommodation manauna, aonla hotels with restaurant, deluxe room aonla">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://manaunadham.org.in/hotels/harshdeep">
+<link rel="canonical" href="https://crulio.com/ManaunaDham/hotels/rajgarden">
 <link rel="icon" href="https://www.crulio.com/ManaunaDham/images/web/logonobg.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -18,27 +21,31 @@
   gtag('config', 'G-1401GVEYWR');
 </script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="coupons.js"></script>
 
+  
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Hotel",
-  "name": "Hotel Harshdeep",
-  "description": "Budget hotel near Manauna Dham with clean rooms, WiFi, and parking",
+  "name": "Hotel Raj Garden",
+  "description": "AC hotel near Manauna Dham with Standard and Deluxe rooms, in-house restaurant, WiFi, and parking.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Bisauli Bypass Road, Near Naval Cold Store",
+    "streetAddress": "Temple Road, Near Manauna Dham Gate",
     "addressLocality": "Aonla",
     "addressRegion": "Uttar Pradesh",
     "postalCode": "243301",
     "addressCountry": "IN"
   },
-  "priceRange": "₹1599-₹2599"
+  "priceRange": "₹1899-₹2299"
 }
 </script>
 
 <style>
+/* ══ RESET & ROOT ══ */
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
   --maroon: #7a0000;
   --maroon-dark: #4d0000;
@@ -48,23 +55,25 @@
   --green: #1a7a3a;
   --wa-green: #25D366;
   --wa-dark: #128C7E;
-  --bg: #fff6e6;
+  --bg: #fff8f0;
   --bg2: #fffdf9;
   --white: #ffffff;
-  --text: #2a2a2a;
-  --text-muted: #666;
-  --border: #e8d5b0;
+  --text: #1e1e1e;
+  --text-muted: #6b6b6b;
+  --border: #e8d8b8;
   --border-soft: #f0e6d0;
   --success: #0a5c2a;
   --success-bg: #e6f4ec;
   --error: #c00;
   --error-bg: #fff0f0;
-  --shadow: 0 4px 24px rgba(122,0,0,0.08);
   --shadow-sm: 0 2px 12px rgba(122,0,0,0.07);
+  --shadow: 0 4px 24px rgba(122,0,0,0.10);
   --shadow-lg: 0 8px 40px rgba(122,0,0,0.15);
+  --shadow-xl: 0 16px 60px rgba(122,0,0,0.18);
   --radius: 14px;
   --radius-sm: 8px;
-  --transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+  --radius-lg: 20px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   /* Crulio parent brand */
   --crulio-navy: #1a2f5e;
   --crulio-navy-deep: #101e3e;
@@ -73,31 +82,58 @@
   --font-display: 'Playfair Display', Georgia, serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', Georgia, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+body {
+  font-family: 'DM Sans', 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* PAGE ENTRY ANIMATION */
-@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-.fade-up { animation: fadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both; }
-.fade-up-1 { animation-delay: 0.05s; }
-.fade-up-2 { animation-delay: 0.1s; }
-.fade-up-3 { animation-delay: 0.18s; }
-
-/* HEADER */
-header { background: var(--maroon); color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.25); backdrop-filter: blur(8px); }
-.topbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; }
+/* ══ HEADER ══ */
+header {
+  background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+}
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 13px 28px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
 .brand img { height: 44px; }
-.brand-text strong { font-size: 17px; display: block; }
-.brand-text span { font-size: 12px; opacity: .85; }
-nav { display: flex; gap: 20px; align-items: center; }
-nav a { color: white; text-decoration: none; font-weight: 600; font-size: 14px; padding: 6px 0; border-bottom: 2px solid transparent; transition: var(--transition); }
-nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
-.menu-btn { display: none; font-size: 24px; cursor: pointer; background: none; border: none; color: white; }
+.brand-text strong { font-size: 17px; display: block; font-family: 'Lora', serif; letter-spacing: 0.3px; }
+.brand-text span { font-size: 11.5px; opacity: .8; letter-spacing: 0.5px; }
+nav { display: flex; gap: 6px; align-items: center; }
+nav a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13.5px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+nav a:hover { background: rgba(255,255,255,0.15); color: white; }
+.menu-btn { display: none; font-size: 22px; cursor: pointer; background: none; border: none; color: white; padding: 4px; }
 .mobile-menu { display: none; flex-direction: column; background: var(--maroon-dark); }
-.mobile-menu a { padding: 12px 20px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; transition: background 0.15s; }
-.mobile-menu a:hover { background: rgba(255,255,255,0.08); }
+.mobile-menu a { padding: 13px 22px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 15px; transition: var(--transition); }
+.mobile-menu a:hover { background: rgba(255,255,255,0.07); }
+
+/* ══ TRUST BAR ══ */
+.trust-bar {
+  background: linear-gradient(90deg, #f0fdf4, #e8faf0, #f0fdf4);
+  border-bottom: 2px solid #a8d8b8;
+  color: #1a5c2a;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-bar span { display: flex; align-items: center; gap: 5px; }
 
 /* ══ OWNER NOTE BANNER ══ */
 #owner-note-banner {
@@ -140,294 +176,604 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .blocked-warning .bw-msg { line-height: 1.6; }
 .blocked-warning .bw-dates { font-size: 12px; color: #c00; margin-top: 4px; opacity: .85; }
 
-/* CTA BAR */
-.cta-bar { background: white; padding: 18px 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
-.cta-btn { background: var(--maroon); color: white; padding: 13px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); border: none; cursor: pointer; letter-spacing: 0.01em; }
-.cta-btn:hover { background: var(--maroon-dark); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(122,0,0,0.28); }
-.cta-btn:active { transform: translateY(0); }
-.cta-btn.outline { background: transparent; color: var(--maroon); border: 2px solid var(--maroon); }
-.cta-btn.outline:hover { background: var(--maroon); color: white; }
-.cta-btn.green { background: var(--green); }
-.cta-btn.green:hover { background: #145c2e; }
-.cta-btn.wa { background: var(--wa-green); }
-.cta-btn.wa:hover { background: var(--wa-dark); }
-
-/* LAYOUT */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.section { background: white; padding: 40px; margin-bottom: 28px; border-radius: var(--radius); box-shadow: var(--shadow); transition: box-shadow 0.2s; }
-.section:hover { box-shadow: var(--shadow-lg); }
-.section h2 { color: var(--maroon); border-bottom: 3px solid var(--gold); display: inline-block; padding-bottom: 6px; margin-bottom: 24px; font-size: 26px; }
-.section-sub { color: var(--text-muted); font-size: 14px; margin-top: -18px; margin-bottom: 20px; }
-
-/* TRUST BAR */
-.trust-bar {
-  background: #f0fdf4;
-  border-bottom: 2px solid #81c784;
-  color: #1a5c2a;
-  text-align: center;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center; gap: 20px;
-  flex-wrap: wrap;
+/* ══ HOTEL TITLE STRIP ══ */
+.hotel-strip {
+  background: white;
+  border-bottom: 2px solid var(--border-soft);
+  padding: 18px 30px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  box-shadow: var(--shadow-sm);
 }
-.trust-bar span { display: flex; align-items: center; gap: 5px; }
+.hotel-strip-left h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--maroon);
+  font-family: 'Lora', serif;
+  margin-bottom: 3px;
+  letter-spacing: -0.3px;
+}
+.hotel-strip-left p { font-size: 13px; color: var(--text-muted); }
+.hotel-strip-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.hs-badge {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--maroon);
+  transition: var(--transition);
+}
+.hs-badge:hover { background: #fff0e0; }
 
-/* BOOKING CHOICE BANNER */
+/* ══ PHOTO HERO ══ */
+.photo-hero { background: #1a0000; position: relative; overflow: hidden; }
+.photo-hero-grid { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 240px 200px; gap: 3px; }
+.photo-hero-grid img {
+  width: 100%; height: 100%; object-fit: cover; cursor: pointer; display: block;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+.photo-hero-grid img:hover { opacity: .88; transform: scale(1.02); }
+.photo-hero-grid img:first-child { grid-row: 1 / 3; }
+.photo-hero-cta {
+  position: absolute; bottom: 16px; right: 16px;
+  background: white; color: var(--maroon);
+  padding: 9px 20px; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  border: 2px solid var(--maroon);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.photo-hero-cta:hover { background: var(--maroon); color: white; transform: translateY(-1px); }
+.photo-count-badge {
+  position: absolute; bottom: 16px; left: 16px;
+  background: rgba(0,0,0,0.65);
+  color: white; padding: 7px 16px; border-radius: 24px;
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  backdrop-filter: blur(8px);
+}
+
+/* ══ BOOKING CHOICE BANNER ══ */
 .booking-choice-banner {
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   overflow: hidden;
-  border: 2px solid var(--border);
-  transition: var(--transition);
+  border: 1.5px solid var(--border-soft);
 }
-.booking-choice-banner:hover { box-shadow: var(--shadow-lg); }
 .bcb-header {
-  background: linear-gradient(135deg, var(--maroon), var(--maroon-dark));
-  color: white; padding: 20px 30px; text-align: center;
+  background: linear-gradient(135deg, var(--maroon) 0%, #6a0000 100%);
+  color: white; padding: 22px 32px; text-align: center;
 }
-.bcb-header h3 { font-size: 20px; margin-bottom: 4px; }
-.bcb-header p { font-size: 13px; opacity: .85; }
+.bcb-header h3 { font-size: 19px; margin-bottom: 4px; font-family: 'Lora', serif; }
+.bcb-header p { font-size: 13px; opacity: .82; }
 .bcb-options { display: grid; grid-template-columns: 1fr 1fr; }
 .bcb-option {
-  padding: 28px 24px;
+  padding: 28px 26px;
   text-align: center;
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
   display: block;
 }
-.bcb-option:first-child { border-right: 2px solid var(--border); }
-.bcb-option:hover { background: #faf5ed; }
-.bcb-icon { font-size: 36px; margin-bottom: 10px; }
-.bcb-option h4 { font-size: 16px; font-weight: 700; color: var(--maroon); margin-bottom: 6px; }
-.bcb-option p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.bcb-option:first-child { border-right: 1.5px solid var(--border-soft); }
+.bcb-option:hover { background: #fdf8f0; }
+.bcb-icon { font-size: 38px; margin-bottom: 10px; }
+.bcb-option h4 { font-size: 16px; font-weight: 700; color: var(--maroon); margin-bottom: 7px; }
+.bcb-option p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 .bcb-badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 6px 16px; border-radius: 20px;
-  font-size: 13px; font-weight: 700; color: white;
+  display: inline-block; margin-top: 14px;
+  padding: 7px 18px; border-radius: 24px;
+  font-size: 12.5px; font-weight: 700; color: white;
 }
 .bcb-badge.maroon { background: var(--maroon); }
-.bcb-badge.wa { background: #e67e00; }
+.bcb-badge.wa { background: var(--wa-dark); }
 
-/* BOOKING WIDGET */
-#booking-section { background: white; border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; margin-bottom: 28px; }
-.booking-header { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: white; padding: 30px 40px; text-align: center; }
-.booking-header h2 { font-size: 28px; margin-bottom: 6px; color: white; border: none; display: block; }
-.booking-header p { opacity: .9; font-size: 15px; }
-.booking-body { padding: 36px 40px; }
-.step-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.step-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ══ SECTION WRAPPER ══ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section {
+  background: white;
+  padding: 40px;
+  margin-bottom: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-soft);
+}
+.section h2 {
+  color: var(--maroon);
+  border-bottom: 3px solid var(--gold);
+  display: inline-block;
+  padding-bottom: 6px;
+  margin-bottom: 24px;
+  font-size: 25px;
+  font-family: 'Lora', serif;
+}
+.section-sub { color: var(--text-muted); font-size: 14px; margin-top: -18px; margin-bottom: 20px; }
 
-/* How booking works explainer */
+/* ══ BOOKING WIDGET ══ */
+#booking-section {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-soft);
+}
+.booking-header {
+  background: linear-gradient(135deg, var(--maroon) 0%, #600000 100%);
+  color: white; padding: 32px 42px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.booking-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.booking-header h2 { font-size: 26px; margin-bottom: 6px; color: white; font-family: 'Lora', serif; position: relative; }
+.booking-header p { opacity: .88; font-size: 14.5px; position: relative; }
+.booking-body { padding: 36px 42px; }
+
+.step-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.step-label::before {
+  content: attr(data-step);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--maroon); color: white;
+  border-radius: 50%; font-size: 10px; font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Booking explainer */
 .booking-explainer {
-  background: #f0fdf4;
-  border: 1.5px solid #81c784;
+  background: linear-gradient(135deg, #f0fdf4, #e8f8ee);
+  border: 1.5px solid #a8d8b8;
   border-radius: 10px;
   padding: 14px 18px;
-  margin-bottom: 24px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  margin-bottom: 26px;
+  display: flex; gap: 12px; align-items: flex-start;
 }
-.booking-explainer .be-icon { font-size: 22px; flex-shrink: 0; }
+.booking-explainer .be-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
 .booking-explainer .be-title { font-weight: 700; font-size: 14px; color: #1a5c2a; margin-bottom: 4px; }
 .booking-explainer .be-text { font-size: 13px; color: #2d5a1e; line-height: 1.7; }
 
-/* Room Cards in Booking */
+/* Room selector */
 .room-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-.room-option { border: 2px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: var(--transition); position: relative; }
-.room-option:hover { border-color: var(--maroon-light); background: #fff9f0; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(122,0,0,0.1); }
-.room-option.selected { border-color: var(--maroon); background: #fff3e0; box-shadow: 0 0 0 3px rgba(122,0,0,0.08); }
+.room-option {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  background: white;
+}
+.room-option:hover { border-color: var(--maroon-light); background: #fff9f5; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.room-option.selected {
+  border-color: var(--maroon);
+  background: linear-gradient(135deg, #fff8f0, #fff3e6);
+  box-shadow: 0 0 0 3px rgba(122,0,0,0.08), var(--shadow-sm);
+  transform: translateY(-1px);
+}
 .room-option .room-name { font-size: 16px; font-weight: 700; color: var(--maroon); margin-bottom: 3px; }
-.room-option .room-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.room-option .room-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
 .room-option .room-price { font-size: 22px; font-weight: 800; color: var(--green); }
 .room-option .room-price span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
-.room-features-mini { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-.rft { background: var(--bg); padding: 3px 8px; border-radius: 10px; font-size: 11px; color: var(--maroon); border: 1px solid var(--border); }
-.selected-badge { display: none; position: absolute; top: 10px; right: 10px; background: var(--maroon); color: white; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.room-features-mini { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.rft {
+  background: #fff3e8;
+  border: 1px solid #f0d8c0;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--maroon);
+  font-weight: 500;
+}
+.selected-badge {
+  display: none; position: absolute; top: 12px; right: 12px;
+  background: var(--maroon); color: white;
+  padding: 3px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 700;
+}
 .room-option.selected .selected-badge { display: block; }
 
 /* Form */
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 20px; }
-.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
 .form-group label { font-size: 13px; font-weight: 600; color: var(--text); }
 .form-group label .req { color: var(--error); }
-.form-group input, .form-group select { padding: 12px 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 15px; font-family: inherit; transition: var(--transition); background: white; color: var(--text); }
-.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--maroon); box-shadow: 0 0 0 3px rgba(122,0,0,0.08); }
+.form-group input, .form-group select {
+  padding: 12px 15px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: 'DM Sans', inherit;
+  transition: var(--transition);
+  background: white;
+  color: var(--text);
+  -webkit-appearance: none;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--maroon); box-shadow: 0 0 0 3px rgba(122,0,0,0.07); }
 .form-group input.err, .form-group select.err { border-color: var(--error); background: #fff8f8; }
+.form-group input::placeholder { color: #bbb; }
 
 /* Stay Summary */
-.stay-summary { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; display: none; animation: fadeUp 0.3s ease; }
-.stay-summary.show { display: block; }
+.stay-summary {
+  background: linear-gradient(135deg, var(--bg), #fff8ed);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+  display: none;
+  transition: var(--transition);
+}
+.stay-summary.show { display: block; animation: fadeSlideIn 0.3s ease; }
 @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-.s-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-soft); }
+.s-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-soft); }
 .s-row:last-child { border-bottom: none; }
 .s-row .sv { font-weight: 600; color: var(--text); }
 .s-row.s-total { border-top: 2px solid var(--border); margin-top: 8px; padding-top: 12px; font-weight: 700; font-size: 15px; color: var(--text); border-bottom: none; }
 .s-row.s-total .sv { color: var(--text); }
-.s-row.s-advance { font-weight: 800; font-size: 17px; color: var(--green); padding-top: 8px; border-bottom: none; }
-.s-row.s-advance .sv { color: var(--green); font-size: 19px; }
+.s-row.s-advance {
+  font-weight: 800; font-size: 16px;
+  color: var(--green); padding-top: 8px;
+  border-bottom: none;
+  background: linear-gradient(135deg, #e8f8ee, #f0fdf4);
+  margin: 8px -22px -4px; padding: 12px 22px 12px;
+  border-radius: 0 0 10px 10px;
+}
+.s-row.s-advance .sv { color: var(--green); font-size: 18px; }
 .s-row.s-disc { color: var(--green); }
 .s-row.s-disc .sv { color: var(--green); }
-.s-row.s-hotel { font-weight: 700; font-size: 14px; color: var(--maroon); }
+.s-row.s-hotel { font-weight: 700; color: var(--maroon); }
 .s-row.s-hotel .sv { color: var(--maroon); }
 
 /* Coupon */
 .coupon-row { display: flex; gap: 10px; margin-bottom: 8px; }
-.coupon-row input { flex: 1; padding: 12px 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+.coupon-row input {
+  flex: 1; padding: 12px 15px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px; font-family: 'DM Sans', inherit;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  transition: var(--transition);
+  font-weight: 600;
+}
 .coupon-row input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.1); }
-.coupon-btn { padding: 12px 20px; background: var(--gold); color: var(--maroon-dark); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px; transition: var(--transition); }
+.coupon-btn {
+  padding: 12px 22px;
+  background: var(--gold);
+  color: var(--maroon-dark);
+  border: none; border-radius: var(--radius-sm);
+  font-weight: 700; cursor: pointer; font-size: 14px;
+  transition: var(--transition);
+  display: flex; align-items: center; gap: 6px;
+}
 .coupon-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
-.coupon-msg { font-size: 13px; margin-bottom: 16px; padding: 8px 12px; border-radius: 6px; display: none; animation: fadeUp 0.25s ease; }
-.coupon-msg.ok { display: block; background: var(--success-bg); color: var(--success); }
-.coupon-msg.no { display: block; background: var(--error-bg); color: var(--error); }
+.coupon-msg { font-size: 13px; margin-bottom: 16px; padding: 10px 14px; border-radius: var(--radius-sm); display: none; font-weight: 500; }
+.coupon-msg.ok { display: block; background: var(--success-bg); color: var(--success); border: 1px solid #a8d8b8; }
+.coupon-msg.no { display: block; background: var(--error-bg); color: var(--error); border: 1px solid #f0b8b8; }
 
-/* Pay Button */
-.pay-btn { width: 100%; padding: 18px; background: #555; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
-.pay-btn:hover { background: #444; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-.pay-btn:active { transform: translateY(0); }
-.secure-note { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
-
-/* Divider */
+/* Pay Buttons */
+.pay-btn {
+  width: 100%; padding: 17px;
+  background: #555; color: white;
+  border: none; border-radius: 10px;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.pay-btn:hover { background: #444; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.secure-note {
+  text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
 .or-divider {
   display: flex; align-items: center; gap: 14px;
-  margin: 20px 0;
-  color: var(--text-muted); font-size: 13px; font-weight: 600;
+  margin: 20px 0; color: var(--text-muted); font-size: 13px; font-weight: 600;
 }
-.or-divider::before, .or-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
+.or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* =====================
-   WHATSAPP — FALLBACK
-   ===================== */
+/* ══ WA HELP SECTION ══ */
 #wa-booking-section {
   background: white;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
-  margin-bottom: 28px;
-  border: 2px solid #f5d6a0;
+  margin-bottom: 24px;
+  border: 1.5px solid rgba(37,211,102,0.2);
 }
 .wa-booking-header {
-  background: linear-gradient(135deg, #7a4500, #5c3200);
-  color: white; padding: 28px 40px; text-align: center;
+  background: linear-gradient(135deg, #1a6b40, #0f4f2e);
+  color: white; padding: 28px 42px; text-align: center;
+  position: relative; overflow: hidden;
 }
-.wa-booking-header h2 { font-size: 24px; margin-bottom: 6px; }
-.wa-booking-header p { opacity: .9; font-size: 14px; max-width: 540px; margin: 0 auto; line-height: 1.6; }
+.wa-booking-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.wa-booking-header h2 { font-size: 24px; margin-bottom: 6px; font-family: 'Lora', serif; position: relative; }
+.wa-booking-header p { opacity: .88; font-size: 14px; position: relative; }
+
 .wa-fallback-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);
-  color: white; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
-  margin-bottom: 12px; letter-spacing: 0.03em;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white; padding: 5px 14px; border-radius: 20px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.5px;
+  margin-bottom: 10px; position: relative;
 }
-.wa-booking-body { padding: 32px 40px; }
-.wa-fallback-notice {
-  background: #fff8e6;
-  border: 2px solid #e8a800;
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-.wa-fallback-notice .wfn-icon { font-size: 26px; flex-shrink: 0; }
-.wa-fallback-notice .wfn-title { font-weight: 700; font-size: 14px; color: #7a4500; margin-bottom: 6px; }
-.wa-fallback-notice .wfn-text { font-size: 13px; color: #5c3200; line-height: 1.7; }
-.wa-fallback-notice .wfn-text strong { color: #7a0000; }
-.wa-steps {
-  display: flex; gap: 8px; align-items: flex-start;
-  background: #fdf5e6; border-radius: 10px; padding: 14px 18px;
-  margin-bottom: 24px; border: 1px solid #e8d5b0;
-}
-.wa-steps ol { padding-left: 18px; }
-.wa-steps li { font-size: 13px; color: #5c3200; margin-bottom: 4px; line-height: 1.5; }
 
-/* WhatsApp Room Selector */
+.wa-booking-body { padding: 32px 42px; }
+.wa-steps {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: linear-gradient(135deg, #f0fdf4, #e8faf0);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 26px;
+  border: 1.5px solid rgba(37,211,102,0.2);
+}
+.wa-steps ol { padding-left: 20px; }
+.wa-steps li { font-size: 13.5px; color: #1e5c32; margin-bottom: 6px; line-height: 1.55; }
+.wa-steps li:last-child { margin-bottom: 0; }
+.wa-steps li strong { color: #0f4023; }
+
 .wa-room-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-.wa-room-option { border: 2px solid var(--border); border-radius: 12px; padding: 18px; cursor: pointer; transition: var(--transition); position: relative; }
-.wa-room-option:hover { border-color: #e8a800; background: #fffbf0; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(200,120,0,0.1); }
-.wa-room-option.selected { border-color: #e8a800; background: #fff8e6; box-shadow: 0 0 0 3px rgba(232,168,0,0.1); }
-.wa-room-option .room-name { font-size: 15px; font-weight: 700; color: #7a4500; margin-bottom: 3px; }
-.wa-room-option .room-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.wa-room-option {
+  border: 2px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  cursor: pointer; transition: var(--transition); position: relative;
+}
+.wa-room-option:hover { border-color: var(--wa-green); background: #f0fdf4; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.wa-room-option.selected {
+  border-color: var(--wa-green);
+  background: linear-gradient(135deg, #e8fdf0, #f0fdf8);
+  box-shadow: 0 0 0 3px rgba(37,211,102,0.1), var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.wa-room-option .room-name { font-size: 15px; font-weight: 700; color: #0a5c2a; margin-bottom: 3px; }
+.wa-room-option .room-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
 .wa-room-option .room-price { font-size: 20px; font-weight: 800; color: var(--green); }
 .wa-room-option .room-price span { font-size: 12px; font-weight: 400; color: var(--text-muted); }
-.wa-sel-badge { display: none; position: absolute; top: 10px; right: 10px; background: #e8a800; color: white; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.wa-sel-badge {
+  display: none; position: absolute; top: 10px; right: 10px;
+  background: var(--wa-green); color: white;
+  padding: 3px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 700;
+}
 .wa-room-option.selected .wa-sel-badge { display: block; }
+
+.wa-stay-summary {
+  border-color: rgba(37,211,102,0.3) !important;
+  background: linear-gradient(135deg, #f0fdf4, #e8faf0) !important;
+}
+.wa-advance-highlight {
+  background: linear-gradient(135deg, #1a5c2a, #0f4023);
+  color: white;
+  margin: 8px -22px -4px;
+  padding: 12px 22px;
+  border-radius: 0 0 10px 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.wa-advance-highlight .wal { font-size: 13px; font-weight: 600; opacity: .9; }
+.wa-advance-highlight .wav { font-size: 20px; font-weight: 800; color: #a8f0c0; }
+
 .wa-send-btn {
-  width: 100%; padding: 18px; background: var(--wa-green); color: white;
-  border: none; border-radius: 10px; font-size: 17px; font-weight: 700;
+  width: 100%; padding: 18px;
+  background: linear-gradient(135deg, var(--wa-green), #20b85a);
+  color: white; border: none; border-radius: 12px;
+  font-size: 17px; font-weight: 700;
   cursor: pointer; transition: var(--transition);
   display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
 }
-.wa-send-btn:hover { background: var(--wa-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
-.wa-send-btn:active { transform: translateY(0); }
-.wa-note { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+.wa-send-btn:hover {
+  background: linear-gradient(135deg, var(--wa-dark), #0a7055);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.4);
+}
+.wa-note {
+  text-align: center; font-size: 12.5px; color: var(--text-muted);
+  margin-top: 12px;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
 
-/* Gallery */
-.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 16px 0; }
-.gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: var(--transition); display: block; }
-.gallery img:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-.room-section-title { color: var(--maroon); font-size: 17px; font-weight: 700; margin: 24px 0 12px; display: flex; align-items: center; gap: 8px; }
+/* ══ GALLERY ══ */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+.gallery img {
+  width: 100%; height: 220px; object-fit: cover;
+  border-radius: 10px; cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease;
+  display: block; border: 1.5px solid var(--border-soft);
+}
+.gallery img:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
+.room-section-title {
+  color: var(--maroon); font-size: 16px; font-weight: 700;
+  margin: 24px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
 
-/* Room Cards */
+/* ══ ROOM CARDS ══ */
 .room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 20px 0; }
-.room-card { background: var(--bg); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); transition: var(--transition); }
-.room-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-.room-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s ease; }
-.room-card:hover img { transform: scale(1.04); }
-.rc-body { padding: 22px; }
-.rc-body h3 { color: var(--maroon); font-size: 20px; margin-bottom: 4px; }
-.rc-price { font-size: 26px; font-weight: 800; color: var(--green); margin: 12px 0; }
+.room-card {
+  background: white; border-radius: 14px; overflow: hidden;
+  box-shadow: var(--shadow); border: 1.5px solid var(--border-soft);
+  transition: var(--transition);
+}
+.room-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.room-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.rc-body { padding: 24px; }
+.rc-body h3 { color: var(--maroon); font-size: 20px; margin-bottom: 4px; font-family: 'Lora', serif; }
+.rc-price { font-size: 26px; font-weight: 800; color: var(--green); margin: 13px 0; }
 .rc-price small { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+.rc-price .orig { font-size: 16px; color: var(--text-muted); text-decoration: line-through; margin-left: 8px; }
+.rc-offer { font-size: 12.5px; color: var(--green); font-weight: 700; margin-top: -8px; margin-bottom: 12px; }
 .room-card ul { list-style: none; margin: 12px 0; }
-.room-card li { padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.room-card li {
+  padding: 8px 0; border-bottom: 1px solid var(--border-soft);
+  display: flex; align-items: center; gap: 10px; font-size: 14px;
+}
 .room-card li:last-child { border: none; }
-.room-card li i { color: var(--maroon); width: 16px; }
+.room-card li i { color: var(--maroon); width: 16px; text-align: center; }
 .room-card-btns { display: flex; gap: 8px; flex-direction: column; }
+.deluxe-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), #b8860b);
+  color: white; padding: 3px 13px; border-radius: 10px;
+  font-size: 11px; font-weight: 800; letter-spacing: .5px; margin-bottom: 8px;
+}
 
-/* Info */
+/* ══ INFO CARDS ══ */
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
-.info-card { background: var(--bg); padding: 18px; border-radius: 10px; border-left: 4px solid var(--maroon); transition: var(--transition); }
-.info-card:hover { background: #fff3e0; border-left-color: var(--gold); transform: translateX(2px); }
-.info-card h3 { color: var(--maroon); font-size: 15px; margin-bottom: 8px; }
+.info-card {
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--maroon);
+  transition: var(--transition);
+}
+.info-card:hover { background: #fff3e6; transform: translateX(2px); }
+.info-card h3 { color: var(--maroon); font-size: 15px; margin-bottom: 9px; font-weight: 700; }
 .info-card p { font-size: 14px; color: var(--text-muted); margin: 3px 0; }
 .info-card p strong { color: var(--text); }
 
-/* Amenities */
+/* ══ AMENITIES ══ */
 .amenity-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
-.amenity { background: var(--maroon); color: white; padding: 9px 16px; border-radius: 24px; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; transition: var(--transition); cursor: default; }
+.amenity {
+  background: var(--maroon); color: white;
+  padding: 9px 17px; border-radius: 24px;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 13px;
+  transition: var(--transition);
+}
 .amenity:hover { background: var(--maroon-dark); transform: translateY(-1px); }
+.amenity.deluxe-only {
+  background: linear-gradient(135deg, #a07800, var(--gold));
+  color: #2a1500;
+}
 
-/* Offer Box */
-.offer-box { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border: 2px solid #81c784; border-radius: 12px; padding: 20px 24px; margin-top: 20px; }
-.offer-box h3 { color: var(--green); margin-bottom: 6px; }
+/* ══ RESTAURANT ══ */
+.restaurant-section {
+  background: white; border-radius: var(--radius);
+  box-shadow: var(--shadow); margin-bottom: 24px;
+  overflow: hidden; border: 1px solid var(--border-soft);
+}
+.restaurant-header { background: linear-gradient(135deg, #2d4a1e, #1e3a12); color: white; padding: 28px 42px; }
+.restaurant-header h2 {
+  color: white; border-color: var(--gold-light);
+  font-size: 25px; display: inline-block;
+  padding-bottom: 6px; border-bottom: 3px solid var(--gold-light);
+  margin-bottom: 8px; font-family: 'Lora', serif;
+}
+.restaurant-header p { opacity: .88; font-size: 14px; }
+.restaurant-body { padding: 34px 42px; }
+.restaurant-img {
+  width: 100%; height: 280px; object-fit: cover;
+  border-radius: 12px; margin-bottom: 26px;
+  cursor: pointer; transition: transform 0.35s ease;
+  border: 1.5px solid var(--border-soft);
+}
+.restaurant-img:hover { transform: scale(1.008); }
+.restaurant-features { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.rest-feat {
+  background: #f0f8e8; border: 1px solid #c8e6b0;
+  color: #2d5a1e; padding: 8px 16px;
+  border-radius: 20px; font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  transition: var(--transition);
+}
+.rest-feat:hover { background: #e4f2d8; }
 
-/* Image Modal */
-.modal { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
-.modal.open { display: flex; animation: fadeUp 0.2s ease; }
-.modal img { max-width: 95%; max-height: 92%; object-fit: contain; border-radius: 4px; }
-.modal-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 42px; cursor: pointer; line-height: 1; transition: color 0.15s; }
-.modal-close:hover { color: var(--gold-light); }
+/* ══ OFFER BOX ══ */
+.offer-box {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border: 2px solid #a8d8a0; border-radius: 12px;
+  padding: 22px 26px; margin-top: 22px;
+}
+.offer-box h3 { color: var(--green); margin-bottom: 7px; font-family: 'Lora', serif; }
 
-/* Receipt Modal */
-.receipt-overlay { display: none; position: fixed; z-index: 10000; inset: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; padding: 20px; overflow-y: auto; backdrop-filter: blur(6px); }
-.receipt-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+/* ══ CTA BAR ══ */
+.cta-bar {
+  background: white; padding: 18px 28px;
+  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.08);
+}
+.cta-btn {
+  background: var(--maroon); color: white;
+  padding: 13px 26px; border-radius: var(--radius-sm);
+  text-decoration: none; font-weight: 700; font-size: 14.5px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: var(--transition); border: 2px solid transparent; cursor: pointer;
+}
+.cta-btn:hover { background: var(--maroon-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(122,0,0,0.3); }
+.cta-btn.outline { background: transparent; color: var(--maroon); border-color: var(--maroon); }
+.cta-btn.outline:hover { background: var(--maroon); color: white; }
+.cta-btn.green { background: var(--green); border-color: var(--green); }
+.cta-btn.green:hover { background: #145c2e; }
+.cta-btn.wa { background: var(--wa-dark); border-color: var(--wa-dark); }
+.cta-btn.wa:hover { background: #0a6050; }
+
+/* ══ IMAGE MODAL ══ */
+.modal {
+  display: none; position: fixed; z-index: 9999;
+  inset: 0; background: rgba(0,0,0,0.92);
+  justify-content: center; align-items: center;
+  backdrop-filter: blur(6px);
+}
+.modal.open { display: flex; animation: fadeIn 0.2s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.receipt-box { background: white; border-radius: 16px; width: 100%; max-width: 500px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: slideUp .3s ease; }
+.modal img { max-width: 95%; max-height: 92%; object-fit: contain; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.modal-close {
+  position: absolute; top: 18px; right: 28px;
+  color: white; font-size: 40px;
+  cursor: pointer; line-height: 1;
+  transition: var(--transition);
+  opacity: .8;
+}
+.modal-close:hover { opacity: 1; transform: scale(1.1); }
+
+/* ══ RECEIPT MODAL ══ */
+.receipt-overlay {
+  display: none; position: fixed; z-index: 10000;
+  inset: 0; background: rgba(0,0,0,0.72);
+  justify-content: center; align-items: center;
+  padding: 20px; overflow-y: auto;
+  backdrop-filter: blur(6px);
+}
+.receipt-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+.receipt-box {
+  background: white; border-radius: 18px;
+  width: 100%; max-width: 500px; overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+  animation: slideUp .3s cubic-bezier(0.4,0,0.2,1);
+}
 @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.rh { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: white; padding: 28px; text-align: center; }
-.rh-icon { width: 54px; height: 54px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 24px; }
-.rh h2 { font-size: 22px; margin-bottom: 4px; }
-.rh p { font-size: 13px; opacity: .85; }
+.rh {
+  background: linear-gradient(135deg, var(--maroon), var(--maroon-dark));
+  color: white; padding: 28px; text-align: center;
+}
+.rh-icon {
+  width: 56px; height: 56px; background: rgba(255,255,255,0.18);
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; margin: 0 auto 12px; font-size: 26px;
+}
+.rh h2 { font-size: 22px; margin-bottom: 4px; font-family: 'Lora', serif; }
+.rh p { font-size: 13px; opacity: .82; }
 .rb { padding: 24px 28px; }
 .rb-logo { text-align: center; margin-bottom: 18px; }
-.rb-logo .hn { font-size: 20px; font-weight: 800; color: var(--maroon); letter-spacing: 1px; }
+.rb-logo .hn { font-size: 20px; font-weight: 800; color: var(--maroon); letter-spacing: 1px; font-family: 'Lora', serif; }
 .rb-logo .hs { font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
 .rdiv { border: none; border-top: 2px dashed var(--border); margin: 14px 0; }
 .rr { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; font-size: 14px; }
@@ -439,7 +785,12 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .rr.rr-hotel { background: #fff8f0; margin: 0 -28px; padding: 12px 28px; }
 .rr.rr-hotel .rl { font-weight: 700; color: var(--maroon); font-size: 14px; }
 .rr.rr-hotel .rv { color: var(--maroon); font-size: 18px; font-weight: 800; }
-.rnote { background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #5a4000; margin-top: 16px; line-height: 1.7; }
+.rnote {
+  background: #fff8e1; border: 1px solid #ffe082;
+  border-radius: 8px; padding: 12px 14px;
+  font-size: 12px; color: #5a4000;
+  margin-top: 16px; line-height: 1.7;
+}
 .rnote strong { display: block; margin-bottom: 4px; color: var(--maroon); font-size: 13px; }
 .ract { display: flex; gap: 10px; padding: 4px 28px 24px; flex-wrap: wrap; }
 .ract button { flex: 1; min-width: 120px; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: var(--transition); }
@@ -449,112 +800,31 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .rbtn-close:hover { background: #f0f0f0; }
 .wa-auto-note { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 28px 16px; }
 
+/* ══ QR MODAL ══ */
+@keyframes qrSpin { to { transform: rotate(360deg); } }
+@keyframes qrProg { from { width: 20%; } to { width: 85%; } }
+
 @media print {
   body > *:not(.receipt-overlay) { display: none !important; }
   .receipt-overlay {
-    position: static !important;
-    background: transparent !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    display: block !important;
+    position: static !important; background: transparent !important;
+    padding: 0 !important; overflow: visible !important; display: block !important;
   }
-  .receipt-box {
-    width: 100% !important;
-    max-width: 480px !important;
-    margin: 0 auto !important;
-    box-shadow: none !important;
-    position: static !important;
-    border-radius: 0 !important;
-  }
+  .receipt-box { width: 100% !important; max-width: 480px !important; margin: 0 auto !important; box-shadow: none !important; position: static !important; border-radius: 0 !important; }
   .ract, .wa-auto-note, #receipt-email-msg { display: none !important; }
   div[style*="receipt-email-input"], div[style*="Save Your Receipt"] { display: none !important; }
   @page { margin: 10mm; size: A5 portrait; }
 }
 
-/* HOTEL TITLE STRIP */
-.hotel-strip {
-  background: white;
-  border-bottom: 2px solid var(--border);
-  padding: 16px 28px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
+/* ══ FOOTER ══ */
+footer {
+  background: linear-gradient(135deg, var(--maroon-dark) 0%, #3a0000 100%);
+  color: white; text-align: center; padding: 36px; margin-top: 40px;
 }
-.hotel-strip-left h1 { font-size: 22px; font-weight: 800; color: var(--maroon); font-family: Georgia, serif; margin-bottom: 3px; }
-.hotel-strip-left p { font-size: 13px; color: var(--text-muted); }
-.hotel-strip-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-.hs-badge { background: var(--bg); border: 1px solid var(--border); padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; color: var(--maroon); transition: var(--transition); }
-.hs-badge:hover { background: #fff3e0; border-color: var(--maroon); }
+footer p { margin-bottom: 6px; font-size: 14px; }
+footer p:last-child { font-size: 12px; opacity: .65; }
 
-/* PHOTO HERO */
-.photo-hero { background: #1a0000; position: relative; }
-.photo-hero-grid { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 240px 200px; gap: 3px; }
-.photo-hero-grid img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; display: block; transition: opacity .2s; }
-.photo-hero-grid img:hover { opacity: .88; }
-.photo-hero-grid img:first-child { grid-row: 1 / 3; }
-.photo-hero-cta { position: absolute; bottom: 16px; right: 16px; background: white; color: var(--maroon); padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; border: 2px solid var(--maroon); cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
-.photo-hero-cta:hover { background: var(--maroon); color: white; }
-.photo-count-badge { position: absolute; bottom: 16px; left: 16px; background: rgba(0,0,0,0.65); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px); }
-
-/* ==========================
-   RAZORPAY CONFIRM DIALOG
-   ========================== */
-.rzp-confirm-overlay {
-  display: none; position: fixed; z-index: 10001; inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center; align-items: center;
-  padding: 20px;
-  backdrop-filter: blur(4px);
-}
-.rzp-confirm-overlay.open { display: flex; }
-.rzp-confirm-box {
-  background: white; border-radius: 16px; width: 100%; max-width: 380px;
-  overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  animation: slideUp 0.28s cubic-bezier(0.4,0,0.2,1);
-}
-.rzp-confirm-header {
-  background: linear-gradient(135deg, #3a3a3a, #222);
-  color: white; padding: 24px; text-align: center;
-}
-.rzp-confirm-header .rzp-icon { font-size: 32px; margin-bottom: 8px; }
-.rzp-confirm-header h3 { font-size: 18px; margin-bottom: 4px; }
-.rzp-confirm-header p { font-size: 13px; opacity: .8; }
-.rzp-confirm-body { padding: 24px; }
-.rzp-rec-pill {
-  display: flex; align-items: center; gap: 10px;
-  background: #f0fdf4; border: 1.5px solid #81c784;
-  border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
-}
-.rzp-rec-pill .rp-icon { font-size: 22px; flex-shrink: 0; }
-.rzp-rec-pill .rp-title { font-size: 13px; font-weight: 700; color: #1a5c2a; margin-bottom: 2px; }
-.rzp-rec-pill .rp-text { font-size: 12px; color: #2d5a1e; }
-.rzp-confirm-actions { display: flex; flex-direction: column; gap: 10px; }
-.rzp-btn-qr {
-  width: 100%; padding: 14px; border: none; border-radius: 10px;
-  background: linear-gradient(135deg, #1a7a3a, #0f5c2a);
-  color: white; font-size: 15px; font-weight: 700; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: var(--transition);
-}
-.rzp-btn-qr:hover { background: linear-gradient(135deg, #145c2e, #0a4520); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(26,122,58,0.3); }
-.rzp-btn-continue {
-  width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 10px;
-  background: white; color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: var(--transition);
-}
-.rzp-btn-continue:hover { background: #f8f0e0; border-color: var(--maroon); color: var(--maroon); }
-.rzp-btn-cancel {
-  width: 100%; padding: 10px; border: none;
-  background: transparent; color: var(--text-muted); font-size: 13px; cursor: pointer;
-  transition: color 0.15s;
-}
-.rzp-btn-cancel:hover { color: var(--text); }
-
-/* QR ANIMATIONS */
-@keyframes qrSpin { to { transform: rotate(360deg); } }
-@keyframes qrProg { from { width: 20%; } to { width: 85%; } }
-
-/* AVAIL LOADING */
+/* ══ AVAILABILITY LOADING STATE ══ */
 .avail-loading {
   display: none;
   font-size: 12px; color: var(--text-muted);
@@ -571,28 +841,33 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   flex-shrink: 0;
 }
 
-@media(max-width: 768px) {
+/* ══ RESPONSIVE ══ */
+@media (max-width: 768px) {
   nav { display: none; }
   .menu-btn { display: block; }
+  .topbar { padding: 12px 16px; }
   .room-selector, .wa-room-selector { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
-  .booking-body, .wa-booking-body { padding: 24px 18px; }
-  .booking-header, .wa-booking-header { padding: 24px 18px; }
+  .booking-body, .wa-booking-body { padding: 22px 18px; }
+  .booking-header, .wa-booking-header { padding: 24px 20px; }
   .section { padding: 24px 18px; }
-  .cta-bar { flex-direction: column; padding: 16px; }
+  .cta-bar { flex-direction: column; padding: 14px 16px; }
   .cta-btn { justify-content: center; }
   .rb { padding: 20px; }
   .ract { padding: 4px 20px 20px; }
   .wa-auto-note { padding: 0 20px 12px; }
   .rr.rr-big, .rr.rr-hotel { margin: 0 -20px; padding: 12px 20px; }
   .bcb-options { grid-template-columns: 1fr; }
-  .bcb-option:first-child { border-right: none; border-bottom: 2px solid var(--border); }
+  .bcb-option:first-child { border-right: none; border-bottom: 1.5px solid var(--border-soft); }
   .room-card-btns { flex-direction: column; }
-  .trust-bar { gap: 10px; font-size: 12px; }
-  .photo-hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; }
+  .photo-hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 150px; }
   .photo-hero-grid img:first-child { grid-row: 1; }
   .hotel-strip { padding: 14px 16px; }
   .hotel-strip-left h1 { font-size: 18px; }
+  .restaurant-body, .restaurant-header { padding: 24px 18px; }
+  .trust-bar { gap: 10px; font-size: 12px; }
+  .s-row.s-advance { margin: 8px -14px -4px; padding: 12px 14px 12px; }
+  .wa-advance-highlight { margin: 8px -14px -4px; padding: 12px 14px; }
   #owner-note-banner { font-size: 12.5px; padding: 10px 16px; }
 }
 
@@ -738,9 +1013,9 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <a href="https://www.crulio.com/ManaunaDham/">Home</a>
       <a href="https://www.crulio.com/ManaunaDham/hotels">All Hotels</a>
       <a href="#booking-section">Book Online</a>
-      <a href="#wa-booking-section">Need Help?</a>
+      <a href="#wa-booking-section">Payment Help</a>
       <a href="https://www.crulio.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:5px;background:rgba(26,47,94,0.6);border:1px solid rgba(200,102,26,0.45);border-radius:16px;padding:5px 11px;color:rgba(255,255,255,0.85)!important;font-size:12px!important;font-weight:600!important;">
-        <img src="../../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:13px;width:auto;opacity:0.85;">
+        <img src=",,/../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:13px;width:auto;opacity:0.85;">
         Crulio
       </a>
     </nav>
@@ -750,7 +1025,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     <a href="https://www.crulio.com/ManaunaDham/">Home</a>
     <a href="https://www.crulio.com/ManaunaDham/hotels">All Hotels</a>
     <a href="#booking-section">Book Online</a>
-    <a href="#wa-booking-section">Need Help?</a>
+    <a href="#wa-booking-section">Payment Help</a>
     <a href="https://www.crulio.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);">🌐 Crulio Networks</a>
   </div>
 </header>
@@ -769,40 +1044,44 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 </div>
 
 <!-- HOTEL TITLE STRIP -->
-<div class="hotel-strip fade-up fade-up-1">
+<div class="hotel-strip">
   <div class="hotel-strip-left">
-    <h1>🏨 Hotel Harshdeep, Aonla</h1>
-    <p>Bisauli Bypass Road · Near Naval Cold Store · 3–4 km from Manauna Dham</p>
+    <h1>🏨 Hotel Raj Garden, Aonla</h1>
+    <p>Temple Road · Near Manauna Dham Gate · 3–4 km from Manauna Dham</p>
   </div>
   <div class="hotel-strip-badges">
     <span class="hs-badge">✓ Verified</span>
     <span class="hs-badge">❄️ Full AC</span>
+    <span class="hs-badge">🍽️ In-House Restaurant</span>
     <span class="hs-badge">🛕 3–4 km from Temple</span>
-    <span class="hs-badge"><i class="fa fa-star" style="color:#d4a017;"></i> 4.3</span>
+    <span class="hs-badge"><i class="fa fa-star" style="color:#d4a017;"></i> 4.5</span>
   </div>
 </div>
 
 <!-- PHOTO HERO -->
 <div class="photo-hero">
-  <div class="photo-hero-grid" id="photoHeroGrid">
-    <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-exterior.webp"      alt="Hotel Harshdeep Exterior"     onclick="openModal(this)" loading="eager">
-    <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-doublebed1.webp"    alt="Double Bed Room"              onclick="openModal(this)" loading="eager">
-    <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-singlebed1.webp"    alt="Single Bed Room"              onclick="openModal(this)" loading="lazy">
+  <div class="photo-hero-grid">
+    <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/exterior.webp"   alt="Hotel Raj Garden Exterior"   onclick="openModal(this)" loading="eager">
+    <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/deluxe1.jpg"     alt="Deluxe Room Raj Garden"      onclick="openModal(this)" loading="eager">
+    <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/standard1.jpeg"  alt="Standard Room Raj Garden"    onclick="openModal(this)" loading="lazy">
   </div>
-  <div class="photo-count-badge"><i class="fa fa-camera"></i> 9 Photos — click to view</div>
+  <div class="photo-count-badge"><i class="fa fa-camera"></i> 11 Photos — click to view</div>
   <button class="photo-hero-cta" onclick="document.getElementById('all-photos').scrollIntoView({behavior:'smooth'})">
     <i class="fa fa-images"></i> View All Photos
   </button>
 </div>
 
+
+
 <!-- ONLINE BOOKING WIDGET -->
-<div id="booking-section" class="fade-up fade-up-3">
+<div id="booking-section">
   <div class="booking-header">
-    <h2>💳 Book Online — Instant Confirmation</h2>
-    <p> Secure Razorpay</p>
+    <h2>💳 Book Online </h2>
+    <p> Secured by Razorpay</p>
   </div>
   <div class="booking-body">
 
+    <!-- How booking works -->
     <div class="booking-explainer">
       <span class="be-icon">🔒</span>
       <div>
@@ -811,33 +1090,35 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </div>
     </div>
 
-    <div class="step-label">Step 1 — Choose Your Room</div>
+    <!-- Step 1 -->
+    <div class="step-label" data-step="1">Choose Your Room</div>
     <div class="room-selector">
       <div class="room-option" id="room-opt-1" onclick="selectRoom(1)">
         <div class="selected-badge">✓ Selected</div>
-        <div class="room-name">🛏️ Double Bed-1 Room</div>
-        <div class="room-desc">1 Double Bed · Sleeps up to 5</div>
-        <div class="room-price">₹1,599 <span>/ night</span></div>
+        <div class="room-name">🛏️ Standard Room</div>
+        <div class="room-desc">1 Double Bed · Sleeps up to 2 adults &amp; 2 children</div>
+        <div class="room-price">₹1,899 <span>/ night</span></div>
         <div class="room-features-mini">
           <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">Extra Bed Free</span>
         </div>
       </div>
       <div class="room-option" id="room-opt-2" onclick="selectRoom(2)">
         <div class="selected-badge">✓ Selected</div>
-        <div class="room-name">🛏️🛏️ Double Bed-2 Extended</div>
-        <div class="room-desc">2 Double Beds · Sleeps up to 7</div>
-        <div class="room-price">₹2,599 <span>/ night</span></div>
+        <div class="room-name">🌿 Deluxe Room</div>
+        <div class="room-desc">1 Large Double Bed · Park View · Sleeps up to 2 adults &amp; 2 children</div>
+        <div class="room-price">₹2,299 <span>/ night</span></div>
         <div class="room-features-mini">
-          <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">Extra Bed Free</span>
+          <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">📺 TV</span><span class="rft">🌳 Park View</span><span class="rft">🏡 Balcony</span>
         </div>
       </div>
     </div>
 
-    <div class="step-label">Step 2 — Guest Details</div>
+    <!-- Step 2 -->
+    <div class="step-label" data-step="2">Enter Guest Details</div>
     <div class="form-grid">
       <div class="form-group">
         <label>Full Name <span class="req">*</span></label>
-        <input type="text" id="g-name" placeholder="e.g. Ramesh Kumar" autocomplete="name">
+        <input type="text" id="g-name" placeholder="e.g. Ramesh Sharma" autocomplete="name">
       </div>
       <div class="form-group">
         <label>Phone Number <span class="req">*</span></label>
@@ -882,6 +1163,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   <div id="hotel-notice-text" style="margin-top:6px;"></div>
 </div>
 
+    <!-- Stay Summary -->
     <div class="stay-summary" id="stay-summary">
       <div class="s-row"><span>Room Type</span><span class="sv" id="s-room">—</span></div>
       <div class="s-row"><span>Duration</span><span class="sv" id="s-nights">—</span></div>
@@ -892,9 +1174,10 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <div class="s-row s-advance"><span>💳 Advance — 15% (pay now)</span><span class="sv" id="s-advance">—</span></div>
     </div>
 
-    <div id="coupon-banner" style="margin-bottom:20px;">
+    <!-- Today's Offers Board -->
+    <div id="coupon-banner" style="margin-bottom:22px;">
       <div style="background:linear-gradient(135deg,#fff8e1,#fffde7);border:2px solid var(--gold);border-radius:14px;overflow:hidden;">
-        <div style="background:var(--maroon);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="background:var(--maroon);padding:11px 20px;display:flex;align-items:center;justify-content:space-between;">
           <div style="color:white;font-weight:700;font-size:14px;">🎁 Today's Offers — Click any to apply</div>
           <div style="color:var(--gold-light);font-size:12px;" id="banner-urgency"></div>
         </div>
@@ -902,33 +1185,37 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </div>
     </div>
 
-    <div class="step-label">Step 3 — Coupon Code (Optional)</div>
+    <!-- Step 3 -->
+    <div class="step-label" data-step="3">Coupon Code (Optional)</div>
     <div class="coupon-row">
-      <input type="text" id="coupon-input" placeholder="Enter coupon code e.g. PILGRIM50" oninput="this.value=this.value.toUpperCase()">
+      <input type="text" id="coupon-input" placeholder="Enter coupon code e.g. BABA200" oninput="this.value=this.value.toUpperCase()">
       <button class="coupon-btn" onclick="applyCoupon()"><i class="fa fa-tag"></i> Apply</button>
     </div>
     <div class="coupon-msg" id="coupon-msg"></div>
 
-    <!-- QR PAY BUTTON -->
-    <button onclick="showQRPayment()" style="width:100%;padding:18px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#1a7a3a,#0f5c2a);color:white;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;transition:all 0.22s;box-shadow:0 4px 16px rgba(26,122,58,0.25);" id="qr-pay-btn" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(26,122,58,0.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(26,122,58,0.25)'">
+    <!-- Primary: QR Pay Button -->
+    <button onclick="showQRPayment()" style="width:100%;padding:18px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#1a7a3a,#0f5c2a);color:white;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(26,122,58,0.3);transition:all 0.25s ease;" id="qr-pay-btn"
+      onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(26,122,58,0.4)'"
+      onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(26,122,58,0.3)'">
       <span style="font-size:22px;">🔥</span>
       <span style="display:flex;flex-direction:column;align-items:flex-start;gap:1px;">
         <span id="pay-btn-text" style="font-size:16px;font-weight:700;">Pay via QR Code</span>
         <span style="font-size:11px;opacity:.85;font-weight:400;">Scan with PhonePe · GPay · Paytm · Any UPI</span>
       </span>
-      <span style="margin-left:auto;background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">RECOMMENDED</span>
+      <span style="margin-left:auto;background:rgba(255,255,255,0.2);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;">RECOMMENDED</span>
     </button>
 
+    <!-- Divider -->
     <div style="display:flex;align-items:center;gap:10px;margin:14px 0;">
       <div style="flex:1;height:1px;background:var(--border);"></div>
       <span style="font-size:12px;color:var(--text-muted);font-weight:600;">or pay via Razorpay popup</span>
       <div style="flex:1;height:1px;background:var(--border);"></div>
     </div>
 
-    <!-- RAZORPAY POPUP BUTTON — triggers confirmation dialog -->
-    <button class="pay-btn" id="pay-btn" onclick="askRazorpayConfirm()" style="font-size:15px;padding:14px;">
+    <!-- Secondary: Razorpay popup -->
+    <button class="pay-btn" id="pay-btn" onclick="initiatePayment()">
       <i class="fa fa-lock" style="font-size:13px;"></i>
-      <span id="rzp-btn-label" style="font-size:14px;">Direct UPI Apps / Card / Net Banking</span>
+      <span style="font-size:14px;">Card / Net Banking / Wallet</span>
     </button>
     <div class="secure-note">
       <i class="fa fa-shield-alt" style="color:var(--green)"></i>
@@ -938,7 +1225,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     <!-- Resend Receipt Link -->
     <div style="text-align:center;margin-top:14px;">
       <button onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'})"
-        style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12.5px;font-family:inherit;padding:6px 10px;border-radius:6px;transition:all .2s;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(107,107,107,0.4);"
+        style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12.5px;font-family:'DM Sans',sans-serif;padding:6px 10px;border-radius:6px;transition:all .2s;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(107,107,107,0.4);"
         onmouseover="this.style.color='var(--maroon)';this.style.textDecorationColor='var(--maroon)'"
         onmouseout="this.style.color='var(--text-muted)';this.style.textDecorationColor='rgba(107,107,107,0.4)'">
         <i class="fa fa-envelope" style="font-size:11px;"></i>
@@ -946,66 +1233,63 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </button>
     </div>
 
-    <div class="or-divider">Facing trouble paying online?</div>
+    <div class="or-divider">Trouble paying online?</div>
     <div style="text-align:center;">
-      <button onclick="scrollToWA()" style="background:#c47500;color:white;border:none;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:var(--transition);" onmouseover="this.style.background='#a06000'" onmouseout="this.style.background='#c47500'">
-        🆘 Get Payment Help via WhatsApp ↓
+      <button onclick="scrollToWA()" style="background:var(--wa-dark);color:white;border:none;padding:13px 30px;border-radius:10px;font-size:14.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 3px 14px rgba(18,140,126,0.3);"
+        onmouseover="this.style.background='#0a6050';this.style.transform='translateY(-1px)'"
+        onmouseout="this.style.background='#128C7E';this.style.transform=''">
+        <i class="fab fa-whatsapp"></i> Get Payment Assistance via WhatsApp ↓
       </button>
     </div>
-
   </div>
 </div>
 
-<!-- WHATSAPP BOOKING — FALLBACK / ASSISTANCE -->
+<!-- WHATSAPP PAYMENT ASSISTANCE SECTION -->
 <div id="wa-booking-section">
   <div class="wa-booking-header">
     <div class="wa-fallback-badge">🆘 Payment Assistance</div>
-    <h2>Trouble Paying Online?</h2>
-    <p>If you're facing any difficulty with the online payment — wrong UPI, error screen, or just unsure — fill in your details below and our team will personally guide you to complete the booking on WhatsApp.</p>
+    <h2><i class="fab fa-whatsapp"></i> Having Trouble Paying Online?</h2>
+    <p>Our team will personally guide you through the online payment — step by step, on WhatsApp</p>
   </div>
   <div class="wa-booking-body">
-
-    <div class="wa-fallback-notice">
-      <div class="wfn-icon">⚠️</div>
-      <div>
-        <div class="wfn-title">This is a payment assistance option, not a free booking</div>
-        <div class="wfn-text">You will still need to pay the <strong>15% advance</strong> to confirm your room — our team will guide you through the payment step-by-step on WhatsApp. If you have no trouble paying, please use the <strong>online booking form above</strong> for instant confirmation.</div>
-      </div>
-    </div>
-
     <div class="wa-steps">
-      <div style="font-size:22px; margin-right:4px; flex-shrink:0;">ℹ️</div>
+      <div style="font-size:22px; margin-right:4px; flex-shrink:0;">💬</div>
       <ol>
-        <li><strong>Fill the form below</strong> with your name, phone, room type, and dates.</li>
-        <li>Click <strong>"Send Request on WhatsApp"</strong> — WhatsApp opens with your details pre-filled.</li>
-        <li>Send the message — our team will <strong>call or WhatsApp you back</strong> and guide you through payment.</li>
-        <li>Once payment is confirmed, you'll receive your booking receipt.</li>
+        <li><strong>Fill in your booking details below</strong> (name, phone, room type, dates).</li>
+        <li>Click <strong>"Request Help via WhatsApp"</strong> — our team receives your request instantly.</li>
+        <li>We <strong>call or message you back</strong> and walk you through the 15% online payment step by step.</li>
+        <li>Once payment is done, you get an instant receipt and your room is <strong>confirmed</strong>.</li>
       </ol>
     </div>
 
-    <div class="step-label">Step 1 — Choose Your Room</div>
+    <div style="background:#fff8e1;border:1.5px solid #e8c050;border-radius:10px;padding:13px 16px;margin-bottom:22px;font-size:13px;color:#5a4000;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:18px;flex-shrink:0;">⚠️</span>
+      <div><strong style="color:var(--maroon);">Please note:</strong> This WhatsApp form is for guests who face difficulty with online payment. Our team will assist you to pay the 15% advance securely online. <strong>Full payment is still made at the hotel on arrival.</strong></div>
+    </div>
+
+    <div class="step-label" data-step="1">Choose Your Room</div>
     <div class="wa-room-selector">
       <div class="wa-room-option" id="wa-room-opt-1" onclick="selectWARoom(1)">
         <div class="wa-sel-badge">✓ Selected</div>
-        <div class="room-name">🛏️ Double Bed-1 Room</div>
-        <div class="room-desc">1 Double Bed · Sleeps up to 5</div>
-        <div class="room-price">₹1,599 <span>/ night</span></div>
-        <div class="room-features-mini" style="margin-top:6px;">
+        <div class="room-name">🛏️ Standard Room</div>
+        <div class="room-desc">1 Double Bed · Sleeps up to 4</div>
+        <div class="room-price">₹1,899 <span>/ night</span></div>
+        <div class="room-features-mini" style="margin-top:7px;">
           <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">Extra Bed Free</span>
         </div>
       </div>
       <div class="wa-room-option" id="wa-room-opt-2" onclick="selectWARoom(2)">
         <div class="wa-sel-badge">✓ Selected</div>
-        <div class="room-name">🛏️🛏️ Double Bed-2 Extended</div>
-        <div class="room-desc">2 Double Beds · Sleeps up to 7</div>
-        <div class="room-price">₹2,599 <span>/ night</span></div>
-        <div class="room-features-mini" style="margin-top:6px;">
-          <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">Extra Bed Free</span>
+        <div class="room-name">🌿 Deluxe Room</div>
+        <div class="room-desc">1 Large Double Bed · Park View · Sleeps up to 5</div>
+        <div class="room-price">₹2,299 <span>/ night</span></div>
+        <div class="room-features-mini" style="margin-top:7px;">
+          <span class="rft">WiFi</span><span class="rft">Geyser</span><span class="rft">❄️ AC</span><span class="rft">📺 TV</span><span class="rft">🌳 Park View</span>
         </div>
       </div>
     </div>
 
-    <div class="step-label">Step 2 — Your Details</div>
+    <div class="step-label" data-step="2">Your Details</div>
     <div class="form-grid">
       <div class="form-group">
         <label>Full Name <span class="req">*</span></label>
@@ -1032,9 +1316,11 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
           <option value="3">3 guests</option>
           <option value="4">4 guests</option>
           <option value="5">5 guests</option>
-          <option value="6">6 guests</option>
-          <option value="7">7 guests</option>
         </select>
+      </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>What issue are you facing? (optional)</label>
+        <input type="text" id="wa-issue" placeholder="e.g. UPI not working, card declined, QR not loading…">
       </div>
     </div>
 
@@ -1048,25 +1334,24 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </div>
     </div>
 
-    <div class="stay-summary" id="wa-stay-summary" style="border-color: #e8a800; background:#fffbf0;">
+    <div class="stay-summary wa-stay-summary" id="wa-stay-summary">
       <div class="s-row"><span>Room Type</span><span class="sv" id="ws-room">—</span></div>
       <div class="s-row"><span>Duration</span><span class="sv" id="ws-nights">—</span></div>
       <div class="s-row s-total" style="border-bottom:none;"><span>Total Room Price</span><span class="sv" id="ws-total">—</span></div>
-      <div style="background:linear-gradient(135deg,#7a4500,#5c3200);color:white;margin:8px -20px -4px;padding:12px 20px;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:13px;font-weight:600;opacity:.9;">💳 15% Advance to Pay Online</span>
-        <span style="font-size:20px;font-weight:800;color:#ffd08a;" id="ws-advance">—</span>
+      <div class="wa-advance-highlight">
+        <span class="wal">💳 15% Advance to Pay Online</span>
+        <span class="wav" id="ws-advance">—</span>
       </div>
     </div>
 
     <button class="wa-send-btn" onclick="sendWhatsAppBooking()">
       <i class="fab fa-whatsapp"></i>
-      <span>Send Payment Help Request on WhatsApp</span>
+      <span>Request Payment Help via WhatsApp</span>
     </button>
     <div class="wa-note">
       <i class="fab fa-whatsapp" style="color:var(--wa-green);font-size:14px;"></i>
-      Opens WhatsApp — our team will call or message you back · Hotel: +91 78178 03342
+      Our team will guide you to complete the online payment · +91 78178 03342
     </div>
-
   </div>
 </div>
 
@@ -1075,102 +1360,150 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   <a class="cta-btn outline" onclick="showPaymentHelp()" style="cursor:pointer;">
     <i class="fa fa-exclamation-circle"></i> Payment Issue?
   </a>
-  <a class="cta-btn outline" href="https://maps.app.goo.gl/bF7V8LSARG6mNSy97" target="_blank">
+  <a class="cta-btn outline" href="https://maps.app.goo.gl/qz5gVGK9HoBXYKnw5" target="_blank">
     <i class="fa fa-map-marker-alt"></i> Get Directions
   </a>
 </div>
 
 <div class="container" style="padding-top:32px;">
 
+  <!-- ALL PHOTOS -->
   <div class="section" id="all-photos">
     <h2>All Hotel Photos</h2>
     <p class="section-sub">Click any image to enlarge</p>
+
     <div class="room-section-title">🏨 Exterior &amp; Location</div>
     <div class="gallery">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-exterior.webp" alt="Hotel Harshdeep Exterior" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-road1.webp" alt="Road View" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-road2.webp" alt="Location" onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/exterior.webp"   alt="Hotel Raj Garden Exterior"    onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/exterior2.webp"  alt="Hotel Raj Garden Entrance"    onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/gallery.jpg"     alt="Hotel Raj Garden View"        onclick="openModal(this)">
     </div>
-    <div class="room-section-title">🛏️ Double Bed-1 Room</div>
+
+    <div class="room-section-title">🛏️ Standard Room</div>
     <div class="gallery">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-singlebed1.webp" alt="Room" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-singlebed2.webp" alt="Room View 2" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-singlebed-toilet.webp" alt="Bathroom" onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/standard1.jpeg"  alt="Standard Room"                onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/standard2.jpeg"  alt="Standard Room View 2"         onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/standard3.jpeg"  alt="Standard Room View 3"         onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/washroom.webp"   alt="Bathroom"                     onclick="openModal(this)">
     </div>
-    <div class="room-section-title">🛏️🛏️ Double Bed-2 Extended Room</div>
+
+    <div class="room-section-title">🌿 Deluxe Room — with Park View &amp; Balcony</div>
     <div class="gallery">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-doublebed1.webp" alt="Double Room" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-doublebed2.webp" alt="Double Room View 2" onclick="openModal(this)">
-      <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-doublebed-toilet.webp" alt="Double Bathroom" onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/deluxe1.jpg"     alt="Deluxe Room"                  onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/deluxe2.jpg"     alt="Deluxe Room View 2"           onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/balcony.jpg"     alt="Balcony / Terrace View"       onclick="openModal(this)">
+    </div>
+
+    <div class="room-section-title">🍽️ In-House Restaurant</div>
+    <div class="gallery">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/resteraunt.webp" alt="Raj Garden Restaurant"        onclick="openModal(this)">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/gallery2.webp"   alt="Hotel Gallery"                onclick="openModal(this)">
     </div>
   </div>
 
+  <!-- ROOM TYPES & PRICING -->
   <div class="section">
     <h2>Room Types &amp; Pricing</h2>
-    <p class="section-sub">All rooms include AC, Free WiFi, Geyser &amp; Attached Bathroom</p>
+    <p class="section-sub">All rooms include AC, Free WiFi, Geyser &amp; Attached Bathroom · Extra Bed Free</p>
     <div class="room-grid">
+
+      <!-- Standard Room -->
       <div class="room-card">
-        <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-singlebed1.webp" alt="Double Bed-1 Room" onclick="openModal(this)">
+        <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/standard1.jpeg" alt="Standard Room" onclick="openModal(this)">
         <div class="rc-body">
-          <h3>Double Bed-1 Room</h3>
-          <p style="color:var(--text-muted);font-size:13px;">Perfect for small families &amp; couples</p>
-          <p class="rc-price">₹1,599 <small>/night</small></p>
+          <h3>Standard Room</h3>
+          <p style="color:var(--text-muted);font-size:13px;">Perfect for families &amp; small groups</p>
+          <p class="rc-price">₹1,699 <small>/night</small> <span class="orig">₹1,899</span></p>
+          <p class="rc-offer">🏷️ Save ₹200 with coupon BABA200</p>
           <ul>
             <li><i class="fa fa-bed"></i> 1 Double Bed in room</li>
             <li><i class="fa fa-plus"></i> 1 Extra Bed — Free of Cost</li>
-            <li><i class="fa fa-users"></i> Sleeps up to 5 comfortably</li>
+            <li><i class="fa fa-users"></i> Sleeps up to 4 comfortably</li>
             <li><i class="fa fa-snowflake"></i> Air Conditioning</li>
             <li><i class="fa fa-shower"></i> Attached Bathroom with Geyser</li>
             <li><i class="fa fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa fa-parking"></i> Free Parking</li>
           </ul>
           <div class="room-card-btns">
             <button class="cta-btn green" style="width:100%;justify-content:center;font-size:14px;" onclick="selectRoom(1);scrollToBooking()">
               <i class="fa fa-calendar-check"></i> Book Online — 15% advance
             </button>
-            <button class="cta-btn" style="width:100%;justify-content:center;font-size:14px;background:#c47500;" onclick="selectWARoom(1);scrollToWA()">
-              🆘 Need Help Paying?
+            <button class="cta-btn wa" style="width:100%;justify-content:center;font-size:14px;" onclick="selectWARoom(1);scrollToWA()">
+              <i class="fab fa-whatsapp"></i> Need Help? Get Assisted Booking
             </button>
           </div>
         </div>
       </div>
+
+      <!-- Deluxe Room -->
       <div class="room-card">
-        <img src="https://www.crulio.com/ManaunaDham/images/hotels/harshdeep/harshdeep-doublebed1.webp" alt="Double Bed-2 Room" onclick="openModal(this)">
+        <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/deluxe1.jpg" alt="Deluxe Room" onclick="openModal(this)">
         <div class="rc-body">
-          <h3>Double Bed-2 Extended</h3>
-          <p style="color:var(--text-muted);font-size:13px;">Ideal for large families &amp; groups</p>
-          <p class="rc-price">₹2,599 <small>/night</small></p>
+          <span class="deluxe-badge">✨ DELUXE</span>
+          <h3>Deluxe Room</h3>
+          <p style="color:var(--text-muted);font-size:13px;">Premium room with park view &amp; balcony access</p>
+          <p class="rc-price">₹2,099 <small>/night</small> <span class="orig">₹2,299</span></p>
+          <p class="rc-offer">🏷️ Save ₹200 with coupon BABA200</p>
           <ul>
-            <li><i class="fa fa-bed"></i> 2 Double Beds in room</li>
+            <li><i class="fa fa-bed"></i> 1 Large Double Bed</li>
             <li><i class="fa fa-plus"></i> 1 Extra Bed — Free of Cost</li>
-            <li><i class="fa fa-users"></i> Sleeps up to 7 comfortably</li>
+            <li><i class="fa fa-users"></i> Sleeps up to 5 comfortably</li>
             <li><i class="fa fa-snowflake"></i> Air Conditioning</li>
             <li><i class="fa fa-shower"></i> Attached Bathroom with Geyser</li>
             <li><i class="fa fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa fa-tv" style="color:#a07800;"></i> <strong style="color:#a07800;">Television (TV)</strong> — Deluxe only</li>
+            <li><i class="fa fa-tree" style="color:#1a7a3a;"></i> <strong style="color:#1a7a3a;">Park View &amp; Balcony</strong> — Deluxe only</li>
           </ul>
           <div class="room-card-btns">
             <button class="cta-btn green" style="width:100%;justify-content:center;font-size:14px;" onclick="selectRoom(2);scrollToBooking()">
               <i class="fa fa-calendar-check"></i> Book Online — 15% advance
             </button>
-            <button class="cta-btn" style="width:100%;justify-content:center;font-size:14px;background:#c47500;" onclick="selectWARoom(2);scrollToWA()">
-              🆘 Need Help Paying?
+            <button class="cta-btn wa" style="width:100%;justify-content:center;font-size:14px;" onclick="selectWARoom(2);scrollToWA()">
+              <i class="fab fa-whatsapp"></i> Need Help? Get Assisted Booking
             </button>
           </div>
         </div>
       </div>
     </div>
     <div class="offer-box">
-      <h3><i class="fa fa-gift"></i> Special Offer — Extra Bed FREE!</h3>
-      <p style="font-size:14px;margin-top:6px;">Up to 5 guests in Double Bed-1 (₹1,599/night) or up to 7 in Double Bed-2 (₹2,599/night). Use coupon HARSHDEEP100 to save ₹100. Pay only 15% advance online, rest at hotel.</p>
+      <h3><i class="fa fa-gift"></i> Special Offer — Save ₹200 on Every Room!</h3>
+      <p style="font-size:14px;margin-top:6px;">Use coupon <strong>BABA200</strong> or <strong>MANAUNA200</strong> to save ₹200. Standard from ₹1,699 &amp; Deluxe from ₹2,099 per night. Pay only 15% advance online, rest at hotel on arrival.</p>
     </div>
   </div>
 
+  <!-- RESTAURANT SECTION -->
+  <div class="restaurant-section">
+    <div class="restaurant-header">
+      <h2><i class="fa fa-utensils"></i> Raj Garden Restaurant</h2>
+      <p>In-house dining — fresh food served right at the hotel</p>
+    </div>
+    <div class="restaurant-body">
+      <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/resteraunt.webp" alt="Raj Garden Restaurant" class="restaurant-img" onclick="openModal(this)">
+      <p style="font-size:15px;line-height:1.9;color:var(--text);margin-bottom:16px;">
+        Hotel Raj Garden features its own in-house restaurant, so you can enjoy a hearty meal without stepping out. Whether it's a morning breakfast before darshan or a relaxing dinner after a long day, fresh home-style Indian food is ready for you.
+      </p>
+      <div class="restaurant-features">
+        <span class="rest-feat"><i class="fa fa-leaf"></i> Vegetarian Menu</span>
+        <span class="rest-feat"><i class="fa fa-sun"></i> Breakfast Available</span>
+        <span class="rest-feat"><i class="fa fa-moon"></i> Dinner Available</span>
+        <span class="rest-feat"><i class="fa fa-home"></i> In-House — No Need to Go Out</span>
+        <span class="rest-feat"><i class="fa fa-fire-alt"></i> Fresh Indian Meals</span>
+        <span class="rest-feat"><i class="fa fa-coffee"></i> Tea &amp; Snacks</span>
+      </div>
+      <div style="background:#fff8e1;border-left:4px solid var(--gold);padding:14px 18px;border-radius:8px;font-size:14px;color:#4a3200;margin-top:18px;">
+        <strong>📌 Note:</strong> Restaurant timings and menu are subject to availability. Please check with hotel staff at check-in.
+      </div>
+    </div>
+  </div>
+
+  <!-- HOTEL INFO -->
   <div class="section">
     <h2>Hotel Information</h2>
     <div class="info-grid">
       <div class="info-card">
         <h3><i class="fa fa-map-marker-alt"></i> Location</h3>
-        <p><strong>Bisauli Bypass Road</strong></p>
-        <p>Near Naval Cold Store, Aonla</p>
+        <p><strong>Temple Road</strong></p>
+        <p>Near Manauna Dham Gate, Aonla</p>
         <p>Bareilly — 243301, U.P.</p>
         <p style="margin-top:6px;font-size:12px;color:var(--maroon);">3–4 km from Manauna Dham</p>
       </div>
@@ -1182,8 +1515,9 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </div>
       <div class="info-card">
         <h3><i class="fa fa-rupee-sign"></i> Pricing</h3>
-        <p><strong>Double Bed-1:</strong> ₹1,599 / night</p>
-        <p><strong>Double Bed-2:</strong> ₹2,599 / night</p>
+        <p><strong>Standard Room:</strong> ₹1,899 / night</p>
+        <p><strong>Deluxe Room:</strong> ₹2,299 / night</p>
+        <p><strong>After Coupon:</strong> From ₹1,699 / night</p>
         <p><strong>Advance (online):</strong> 15% of room price</p>
         <p style="margin-top:6px;font-size:12px;">Remaining 85% paid at hotel on arrival</p>
       </div>
@@ -1196,8 +1530,10 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     </div>
   </div>
 
+  <!-- AMENITIES -->
   <div class="section">
     <h2>Amenities &amp; Facilities</h2>
+    <div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:10px;letter-spacing:1px;text-transform:uppercase;">All Rooms</div>
     <div class="amenity-grid">
       <span class="amenity"><i class="fa fa-wifi"></i> Free WiFi</span>
       <span class="amenity"><i class="fa fa-parking"></i> Free Parking</span>
@@ -1207,18 +1543,26 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <span class="amenity"><i class="fa fa-broom"></i> Daily Housekeeping</span>
       <span class="amenity"><i class="fa fa-toilet"></i> Attached Bathrooms</span>
       <span class="amenity"><i class="fa fa-shield-alt"></i> 24/7 Security</span>
+      <span class="amenity"><i class="fa fa-utensils"></i> In-House Restaurant</span>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:#a07800;margin:20px 0 10px;letter-spacing:1px;text-transform:uppercase;">✨ Deluxe Room Exclusive</div>
+    <div class="amenity-grid">
+      <span class="amenity deluxe-only"><i class="fa fa-tv"></i> Television (TV)</span>
+      <span class="amenity deluxe-only"><i class="fa fa-tree"></i> Park View</span>
+      <span class="amenity deluxe-only"><i class="fa fa-door-open"></i> Balcony / Terrace Access</span>
     </div>
   </div>
 
+  <!-- NEARBY -->
   <div class="section">
     <h2>Location &amp; Nearby Places</h2>
-    <div style="background:var(--bg);padding:20px;border-radius:10px;margin-bottom:20px;">
-      <ul style="list-style:none;line-height:2.3;font-size:15px;">
+    <div style="background:var(--bg);padding:22px;border-radius:12px;margin-bottom:22px;border:1.5px solid var(--border-soft);">
+      <ul style="list-style:none;line-height:2.4;font-size:15px;">
         <li>🛕 <strong>Manauna Dham (Khatu Shyam Temple)</strong> — 3–4 km · 10–15 min</li>
-        <li>🏪 <strong>Naval Cold Store</strong> — 100 m (right next to hotel)</li>
-        <li>🏥 <strong>Aonla Civil Hospital</strong> — 1.5 km</li>
-        <li>🚉 <strong>Aonla Railway Station</strong> — 3 km</li>
-        <li>🍽️ <strong>Food Plaza Restaurant</strong> — 2 km</li>
+        <li>🍽️ <strong>Raj Garden Restaurant</strong> — On premises (in-house)</li>
+        <li>🏥 <strong>Aonla Civil Hospital</strong> — 2 km</li>
+        <li>🚉 <strong>Aonla Railway Station</strong> — 3.5 km</li>
+        <li>🏙️ <strong>Bareilly City</strong> — 40 km · ~1 hour</li>
       </ul>
     </div>
     <div class="info-grid">
@@ -1228,7 +1572,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </div>
       <div class="info-card">
         <h3><i class="fa fa-train"></i> From Aonla Station</h3>
-        <p>3 km · ~10 min by auto</p>
+        <p>3.5 km · ~10 min by auto</p>
       </div>
       <div class="info-card">
         <h3><i class="fa fa-road"></i> From Delhi</h3>
@@ -1237,33 +1581,35 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     </div>
   </div>
 
+  <!-- ABOUT -->
   <div class="section">
-    <h2>About Hotel Harshdeep</h2>
+    <h2>About Hotel Raj Garden</h2>
     <p style="font-size:16px;line-height:1.9;color:var(--text);margin-bottom:12px;">
-      Hotel Harshdeep is a clean, budget-friendly hotel on Bisauli Bypass Road, Aonla — just 3–4 km from Manauna Dham (Manona Dham) temple. Perfect for families and devotees visiting Shri Khatu Shyam Ji.
+      Hotel Raj Garden is located on Temple Road, just 3–4 km from Manauna Dham (Manona Dham) — making it one of the closest hotels to Khatu Shyam Ji temple in Aonla. Whether you are visiting for darshan, a festival, or an extended stay, Raj Garden is your ideal pilgrim base.
     </p>
     <p style="font-size:16px;line-height:1.9;color:var(--text);">
-      High cleanliness standards, warm hospitality, and honest rates make Hotel Harshdeep your home away from home near the temple.
+      Deluxe rooms offer a beautiful park view with balcony access — perfect for a peaceful morning before heading to the temple. The in-house restaurant means you never have to worry about finding food.
     </p>
-    <div class="amenity-grid" style="margin-top:20px;">
+    <div class="amenity-grid" style="margin-top:22px;">
       <span class="amenity"><i class="fa fa-wifi"></i> Free WiFi</span>
       <span class="amenity"><i class="fa fa-parking"></i> Free Parking</span>
       <span class="amenity"><i class="fa fa-shower"></i> Geyser</span>
-      <span class="amenity"><i class="fa fa-bed"></i> Extra Bed Free</span>
-      <span class="amenity"><i class="fa fa-broom"></i> Daily Cleaning</span>
+      <span class="amenity"><i class="fa fa-utensils"></i> Restaurant</span>
+      <span class="amenity deluxe-only"><i class="fa fa-tree"></i> Park View (Deluxe)</span>
     </div>
   </div>
 
-  <div class="section" style="background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:white;text-align:center;">
+  <!-- BOTTOM CTA -->
+  <div class="section" style="background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:white;text-align:center;border:none;">
     <h2 style="color:white;border-color:var(--gold);">Ready to Book Your Room?</h2>
-    <p style="font-size:16px;opacity:.9;margin-bottom:8px;">Pay just 15% advance to confirm. Rest at hotel.</p>
-    <p style="font-size:14px;opacity:.8;margin-bottom:20px;">Use coupon HARSHDEEP100 for ₹100 off the room price.</p>
+    <p style="font-size:16px;opacity:.9;margin-bottom:8px;">Pay just 15% advance to confirm. Rest at hotel on arrival.</p>
+    <p style="font-size:14px;opacity:.8;margin-bottom:22px;">Use coupon <strong>BABA200</strong> for ₹200 off the room price.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <button class="cta-btn" style="background:var(--gold);color:var(--maroon-dark);font-size:15px;" onclick="scrollToBooking()">
-        <i class="fa fa-calendar-check"></i> Book Online — 15% advance
+      <button class="cta-btn" style="background:var(--gold);color:var(--maroon-dark);font-size:15px;border-color:var(--gold);" onclick="scrollToBooking()">
+        <i class="fa fa-calendar-check"></i> Book Online — 15% Advance
       </button>
-      <button class="cta-btn" style="background:#c47500;font-size:15px;" onclick="scrollToWA()">
-        🆘 Need Help Paying?
+      <button class="cta-btn wa" style="font-size:15px;" onclick="scrollToWA()">
+        <i class="fab fa-whatsapp"></i> Payment Trouble? Get Help
       </button>
     </div>
   </div>
@@ -1286,7 +1632,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     </div>
     <div class="rb">
       <div class="rb-logo">
-        <div class="hn">HOTEL HARSHDEEP</div>
+        <div class="hn">HOTEL RAJ GARDEN</div>
         <div class="hs">Advance Booking Receipt</div>
       </div>
       <hr class="rdiv">
@@ -1320,7 +1666,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <!-- MANAGER CONTACT NOTE -->
       <div class="rnote" style="margin-top:10px; background:#fff3f3; border-color:#f5c0c0;">
         <strong style="color:var(--maroon);">📞 Manager Contact</strong>
-        <strong style="font-size:14px;">9412149567</strong> &nbsp;·&nbsp; <em>Call only if absolutely necessary</em><br>
+        <strong style="font-size:14px;">8445713300</strong> &nbsp;·&nbsp; <em>Call only if absolutely necessary</em><br>
         <span style="font-size:11px; color:#666;">For directions &amp; other hotel information, please check the hotel page carefully before calling.</span>
       </div>
 
@@ -1339,8 +1685,8 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">📲 Send Receipt by Email</div>
 
-      <!-- Quick-resend button — shown when guestEmail is known -->
-      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;">
+      <!-- Quick-resend buttons — shown when guestEmail is known -->
+      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;display:none;">
         <button id="resend-self-btn" onclick="resendToSelf()"
           style="width:100%;padding:9px 14px;background:#f0fdf4;border:1.5px solid #81c784;border-radius:8px;font-size:13px;font-weight:700;color:#1a5c2a;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:6px;"
           onmouseover="this.style.background='#e0f5e8'" onmouseout="this.style.background='#f0fdf4'">
@@ -1353,7 +1699,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;" id="receipt-email-other-label">Or send to a different email:</div>
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
         <input type="email" id="receipt-email-input" placeholder="Enter email address" autocomplete="email"
-          style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:var(--transition);"
+          style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',inherit;transition:var(--transition);"
           onfocus="this.style.borderColor='var(--maroon)'" onblur="this.style.borderColor='var(--border)'">
         <button onclick="sendReceiptEmail()" id="send-email-btn"
           style="padding:10px 16px;background:var(--maroon);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:var(--transition);"
@@ -1382,7 +1728,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       </button>
       <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
     </div>
-    <!-- Confirm-close strip -->
+    <!-- Confirm-close strip — shown when receipt hasn't been saved, or as confirmation when it has -->
     <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
       ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
       <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
@@ -1395,35 +1741,6 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   </div>
 </div>
 
-<!-- RAZORPAY CONFIRM DIALOG -->
-<div class="rzp-confirm-overlay" id="rzpConfirmOverlay">
-  <div class="rzp-confirm-box">
-    <div class="rzp-confirm-header">
-      <div class="rzp-icon">💡</div>
-      <h3>Smoother Payment Available</h3>
-      <p>QR Code scan works better than the Razorpay popup on most devices</p>
-    </div>
-    <div class="rzp-confirm-body">
-      <div class="rzp-rec-pill">
-        <div class="rp-icon">✅</div>
-        <div>
-          <div class="rp-title">QR Code is recommended</div>
-          <div class="rp-text">Open PhonePe, GPay, or Paytm → Scan QR → Done in seconds. No popups, no redirects.</div>
-        </div>
-      </div>
-      <div class="rzp-confirm-actions">
-        <button class="rzp-btn-qr" onclick="closeRzpConfirm(); showQRPayment();">
-          🔲 Pay via QR Code (Recommended)
-        </button>
-        <button class="rzp-btn-continue" onclick="closeRzpConfirm(); initiatePayment();">
-          <i class="fa fa-lock" style="font-size:12px;"></i> Yes, continue with Razorpay popup
-        </button>
-        <button class="rzp-btn-cancel" onclick="closeRzpConfirm()">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- QR MODAL -->
 <div id="qr-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.78);z-index:9999;justify-content:center;align-items:center;padding:16px;backdrop-filter:blur(6px);">
   <div style="background:white;border-radius:18px;width:100%;max-width:360px;box-shadow:0 24px 70px rgba(0,0,0,0.45);display:flex;flex-direction:column;max-height:92vh;overflow-y:auto;">
@@ -1431,7 +1748,7 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     <!-- Header -->
     <div style="background:linear-gradient(135deg,#7a0000,#4d0000);color:white;padding:22px 26px;text-align:center;position:sticky;top:0;z-index:1;border-radius:18px 18px 0 0;">
       <div style="font-size:11.5px;opacity:.75;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;" id="qr-modal-state-label">Generating QR code</div>
-      <div style="font-size:14px;font-weight:600;margin-bottom:2px;">Hotel Harshdeep</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:2px;">Hotel Raj Garden</div>
       <div style="font-size:30px;font-weight:800;color:#f0c040;" id="qr-modal-amount">—</div>
       <div style="font-size:11px;opacity:.72;margin-top:2px;">15% advance · Room booking</div>
     </div>
@@ -1539,6 +1856,14 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   </div>
 </section>
 
+<footer class="site-footer">
+  <p>© 2026 Crulio.com/ManaunaDham</p>
+  <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
+    <img src="../../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:30px;width:30px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 6px rgba(200,102,26,0.6));">
+    <img src="../../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
+  </a>
+</footer>
+
 <!-- RESEND RECEIPT SECTION -->
 <section id="resend-section" style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
   <div style="max-width:480px;margin:0 auto;">
@@ -1547,6 +1872,8 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
       <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">Enter your <strong style="color:#5a0000;">phone number</strong> and/or <strong style="color:#5a0000;">receipt number</strong> — we'll find and resend your booking instantly.</p>
     </div>
+
+
 
     <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
 
@@ -1570,9 +1897,9 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
       <!-- Invoice number -->
       <div style="margin-bottom:16px;">
         <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
-          🧾 Receipt / Invoice Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(e.g. HH0828042)</span>
+          🧾 Receipt / Invoice Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(e.g. RG0828042)</span>
         </label>
-        <input type="text" id="resend-invoice-input" placeholder="e.g. HH0828042"
+        <input type="text" id="resend-invoice-input" placeholder="e.g. RG0828042"
           style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;text-transform:uppercase;"
           onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'"
           oninput="this.value=this.value.toUpperCase()">
@@ -1599,13 +1926,6 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
   </div>
 </section>
 
-<footer class="site-footer">
-  <p>© 2026 Crulio.com/ManaunaDham</p>
-  <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
-    <img src="../../../images/logos/NOBGLOGO.png" alt="Crulio" style="height:30px;width:30px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 6px rgba(200,102,26,0.6));">
-    <img src="../../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
-  </a>
-</footer>
 
 <script>
 // ══════════════════════════════════════
@@ -1614,65 +1934,43 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 let RAZORPAY_KEY = null;
 const WA_NUMBER  = '917817803342';
 const isMobile   = /Android|iPhone|iPad/i.test(navigator.userAgent);
-const HOTEL_KEY  = 'harshdeep';
 
-const API_ENDPOINT      = 'https://harshdeep-api.vercel.app/api/create-order';
-const QR_API_ENDPOINT   = 'https://harshdeep-api.vercel.app/api/create-qr';
-const CHECK_API         = 'https://harshdeep-api.vercel.app/api/check-payment';
-const BLOCKED_DATES_API = 'https://harshdeep-api.vercel.app/api/blocked-dates?hotel=harshdeep';
-
-const FALLBACK_CONFIG = {
-  harshdeep: {
-    urgencyMessage: '🕐 Valid today only!',
-    COUPONS: {
-      'HARSHDEEP100': { type: 'flat',    value: 100, label: '₹100 off', description: 'Special booking discount' },
-      'PILGRIM50':    { type: 'flat',    value: 50,  label: '₹50 off',  description: 'Pilgrim special offer'    },
-      'BABA100':      { type: 'flat',    value: 100, label: '₹100 off', description: 'Shyam Baba blessing deal' },
-      'WELCOME5':     { type: 'percent', value: 5,   label: '5% off',   description: 'First time booker offer'  },
-    }
-  }
-};
-
-const _config     = (typeof COUPON_CONFIG !== 'undefined' ? COUPON_CONFIG : FALLBACK_CONFIG)[HOTEL_KEY];
-const COUPONS     = _config.COUPONS;
-const URGENCY_MSG = _config.urgencyMessage;
+const API_ENDPOINT        = 'https://harshdeep-api.vercel.app/api/create-order';
+const QR_API_ENDPOINT     = 'https://harshdeep-api.vercel.app/api/create-qr';
+const CHECK_API           = 'https://harshdeep-api.vercel.app/api/check-payment';
+const BLOCKED_DATES_API   = 'https://harshdeep-api.vercel.app/api/blocked-dates?hotel=raj-garden';
 
 const ROOMS = {
-  1: { name: 'Double Bed-1 Room',     price: 1599 },
-  2: { name: 'Double Bed-2 Extended', price: 2599 },
+  1: { name: 'Standard Room', price: 1899 },
+  2: { name: 'Deluxe Room',   price: 2299 },
 };
 
-// ── PROPERTY CONFIG ──────────────────────────────────────────────────────────
-const PROPERTY = {
-  id:                  'harshdeep',
-  name:                'Hotel Harshdeep',
-  type:                'hotel',
-  storageKey:          'crulio_booking_harshdeep',
-  sendReceiptEndpoint: 'https://harshdeep-api.vercel.app/api/send-guest-receipt',
+const COUPONS = {
+  'BABA200':    { type: 'flat',    value: 200, label: '₹200 off', description: 'Shyam Baba blessing deal'  },
+  'PILGRIM100': { type: 'flat',    value: 100, label: '₹100 off', description: 'Pilgrim special offer'     },
+  'PERCENT5':   { type: 'percent', value: 5,   label: '5% off',   description: 'Special 5% discount'       },
+  'MANAUNA200': { type: 'flat',    value: 200, label: '₹200 off', description: 'Manauna Dham special deal' },
 };
-
-const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const URGENCY_MSG = '🕐 Valid today only!';
 
 let selRoom = null, nights = 0, baseTotal = 0, discAmt = 0, finalTotal = 0, advAmt = 0, activeCoupon = null;
 let waSelRoom = null, waNights = 0;
+let invNum = parseInt(localStorage.getItem('rg_inv') || '200');
 let lastBooking = null;
 
 // ══════════════════════════════════════
-// BLOCKED DATES
+// BLOCKED DATES — fetched from admin API
 // ══════════════════════════════════════
-let blockedDates    = [];
 let blockedDatesSet = new Set();
 
-async function loadBlockedDates() {
+async function fetchBlockedDates() {
   try {
     const res  = await fetch(BLOCKED_DATES_API);
-    if (!res.ok) throw new Error('API not reachable');
     const data = await res.json();
 
-    blockedDates    = data.dates || [];
-    blockedDatesSet = new Set(blockedDates);
+    blockedDatesSet = new Set(data.dates || []);
 
-    // Show owner note banner if set
+    // Show owner note banner if the hotel has set one
     const note = (data.note || '').trim();
     if (note) {
       document.getElementById('owner-note-text').textContent = note;
@@ -1680,21 +1978,16 @@ async function loadBlockedDates() {
     } else {
       document.getElementById('owner-note-banner').classList.remove('show');
     }
-
-    // Show hotel notice box if set
-    const noteBox  = document.getElementById('hotel-notice-box');
-    const noteText = document.getElementById('hotel-notice-text');
-    if (note) {
-      noteText.textContent = note;
-      noteBox.style.display = 'block';
-    }
-
-  } catch (err) {
-    console.warn('Could not load availability data:', err);
+  } catch (e) {
+    // Silently fail — hotel page still works, just without block info
+    console.warn('Could not load availability data:', e);
   }
 }
 
-/** Returns blocked YYYY-MM-DD strings in [checkin, checkout) range */
+/**
+ * Returns an array of blocked date strings (YYYY-MM-DD) that fall
+ * within [checkin, checkout) — i.e. the nights being booked.
+ */
 function getBlockedDatesInRange(ci, co) {
   const blocked = [];
   let d = new Date(ci + 'T00:00:00');
@@ -1707,46 +2000,20 @@ function getBlockedDatesInRange(ci, co) {
   return blocked;
 }
 
-/** Formats YYYY-MM-DD → "12 May" */
+/** Formats a YYYY-MM-DD string as "12 May" */
 function fmtShort(str) {
   return new Date(str + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
 }
 
-// ══════════════════════════════════════
-// DATE VALIDATION
-// ══════════════════════════════════════
-function attachDateValidation() {
-  const inputs = ['g-checkin', 'g-checkout', 'wa-checkin', 'wa-checkout'];
-  inputs.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('change', () => {
-      if (blockedDatesSet.has(el.value)) {
-        alert('❌ This date is not available. Please choose a different date.');
-        el.value = '';
-        // Reset relevant nights state and hide stay summary
-        if (id === 'g-checkin' || id === 'g-checkout') {
-          nights = 0;
-          document.getElementById('stay-summary').classList.remove('show');
-          document.getElementById('blocked-warning-online').classList.remove('show');
-        }
-        if (id === 'wa-checkin' || id === 'wa-checkout') {
-          waNights = 0;
-          document.getElementById('wa-stay-summary').classList.remove('show');
-          document.getElementById('blocked-warning-wa').classList.remove('show');
-        }
-      }
-    });
-  });
-}
-
-// ══════════════════════════════════════
-// QR STATE MACHINE
-// ══════════════════════════════════════
+// QR state
 let qrPollingInterval = null;
 let qrTimerInterval   = null;
 let qrActiveId        = null;
 let paymentDetected   = false;
+
+// ══════════════════════════════════════
+// QR PAYMENT
+// ══════════════════════════════════════
 
 function setQRState(state) {
   ['loading','ready','checking','success'].forEach(s => {
@@ -1761,26 +2028,22 @@ function setQRState(state) {
   document.getElementById('qr-modal-state-label').textContent = labels[state] || '';
 }
 
-// ══════════════════════════════════════
-// QR PAYMENT
-// ══════════════════════════════════════
 async function showQRPayment() {
-  // Block if date directly in blockedDates array (quick check)
-  const ciVal = document.getElementById('g-checkin')?.value;
-  const coVal = document.getElementById('g-checkout')?.value;
-  if (blockedDatesSet.has(ciVal) || blockedDatesSet.has(coVal)) {
-    alert('❌ Selected dates are blocked. Please choose different dates.');
-    return;
-  }
-
+  if (
+  blockedDates.includes(document.getElementById('g-checkin')?.value) ||
+  blockedDates.includes(document.getElementById('g-checkout')?.value)
+) {
+  alert("❌ Selected dates are blocked");
+  return;
+}
   paymentDetected = false;
   if (!selRoom || nights <= 0) { alert('Please fill in booking details first.'); return; }
   if (!document.getElementById('g-name').value.trim() || !document.getElementById('g-phone').value.trim()) {
     alert('Please enter your name and phone number first.'); return;
   }
-
-  const ci = ciVal;
-  const co = coVal;
+  // Block if any dates in range are blocked
+  const ci = document.getElementById('g-checkin').value;
+  const co = document.getElementById('g-checkout').value;
   const bDates = getBlockedDatesInRange(ci, co);
   if (bDates.length > 0) {
     alert('Sorry — ' + bDates.map(fmtShort).join(', ') + ' ' + (bDates.length === 1 ? 'is' : 'are') + ' fully booked. Please choose different dates.');
@@ -1791,30 +2054,30 @@ async function showQRPayment() {
   document.getElementById('qr-modal').style.display = 'flex';
   setQRState('loading');
 
-  const invStr = 'HH' + Date.now().toString().slice(-7);
+  const invStr = 'RG' + Date.now().toString().slice(-7);
   const notes = {
-    hotel_name:      'Hotel Harshdeep',
-    hotel_id:        'harshdeep',
-    guest_name:      document.getElementById('g-name').value.trim(),
-    guest_phone:     document.getElementById('g-phone').value.trim(),
-    guest_email:     document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
-    room_type:       ROOMS[selRoom].name,
-    checkin:         ci,
-    checkout:        co,
-    nights:          String(nights),
-    room_rate:       String(ROOMS[selRoom].price),
-    room_price:      String(finalTotal),
-    platform_fee:    String(advAmt),
-    coupon_used:     activeCoupon || 'None',
-    coupon_discount: String(discAmt),
-    invoice_no:      invStr,
+    hotel_name:   'Hotel Raj Garden',
+    hotel_id:     'raj-garden',
+    guest_name:   document.getElementById('g-name').value.trim(),
+    guest_phone:  document.getElementById('g-phone').value.trim(),
+    guest_email:  document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
+    room_type:    ROOMS[selRoom].name,
+    checkin:      ci,
+    checkout:     co,
+    nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
+    room_price:   String(finalTotal),
+    platform_fee: String(advAmt),
+    coupon_used:  activeCoupon || 'None',
+    coupon_discount: String(discAmt),   
+    invoice_no:   invStr,
   };
 
   try {
     const resp = await fetch(QR_API_ENDPOINT, {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ amount: advAmt * 100, notes })
+      body: JSON.stringify({ amount: advAmt * 100, notes })
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || 'QR creation failed');
@@ -1824,14 +2087,14 @@ async function showQRPayment() {
     setQRState('ready');
     startQRTimer(600);
 
-    // Save pending QR so receipt survives browser close
+    // ── Save pending QR session so receipt survives browser close ──
     try {
-      localStorage.setItem('hh_pending_qr', JSON.stringify({
-        qrId:     data.qr_id,
-        imageUrl: data.image_url,
-        notes:    notes,
-        savedAt:  Date.now(),
-        roomRate: ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
+      localStorage.setItem('rg_pending_qr', JSON.stringify({
+        qrId:      data.qr_id,
+        imageUrl:  data.image_url,          // ← NEW: needed to re-show QR on reload
+        notes:     notes,
+        savedAt:   Date.now(),
+        roomRate:  ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
       }));
     } catch(e) {}
 
@@ -1869,7 +2132,7 @@ function startPolling(qrId) {
       const res  = await fetch(CHECK_API + '?qr_id=' + qrId);
       const data = await res.json();
       if (data.paid) onQRPaymentSuccess(data);
-    } catch (e) { /* keep polling */ }
+    } catch (e) { /* network hiccup — keep polling */ }
   }, 3000);
 }
 
@@ -1895,8 +2158,8 @@ function onQRPaymentSuccess(data) {
   clearInterval(qrPollingInterval);
   clearInterval(qrTimerInterval);
 
-  // Clear pending QR session
-  try { localStorage.removeItem('hh_pending_qr'); } catch(e) {}
+  // Clear the pending QR session — no longer needed
+  try { localStorage.removeItem('rg_pending_qr'); } catch(e) {}
 
   setQRState('success');
   setTimeout(() => {
@@ -1904,7 +2167,7 @@ function onQRPaymentSuccess(data) {
     const n = data.notes || {};
     const guestEmail = n.guest_email || '';
     showReceipt({
-      invStr:          n.invoice_no   || ('HH' + Date.now()),
+      invStr:          n.invoice_no  || ('RG' + Date.now()),
       name:            n.guest_name,
       phone:           n.guest_phone,
       ci:              n.checkin,
@@ -1932,95 +2195,9 @@ function cancelQR() {
 }
 
 // ══════════════════════════════════════
-// PENDING QR RESUME (browser-close recovery)
-// ══════════════════════════════════════
-async function resumePendingQRIfAny() {
-  let pending;
-  try {
-    const raw = localStorage.getItem('hh_pending_qr');
-    if (!raw) return;
-    pending = JSON.parse(raw);
-  } catch(e) { return; }
-
-  // Hard-expire after 24h
-  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
-    localStorage.removeItem('hh_pending_qr');
-    return;
-  }
-
-  try {
-    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
-    const data = await res.json();
-
-    if (data.paid) {
-      // PAID: clear QR session, show receipt immediately
-      localStorage.removeItem('hh_pending_qr');
-      const n = pending.notes || {};
-      const guestEmail = n.guest_email || '';
-      const receiptData = {
-        invStr:           n.invoice_no  || ('HH' + Date.now()),
-        name:             n.guest_name,
-        phone:            n.guest_phone,
-        ci:               n.checkin,
-        co:               n.checkout,
-        nights:           parseInt(n.nights),
-        baseTotal:        parseInt(n.room_price),
-        discAmt:          parseInt(n.coupon_discount) || 0,
-        finalTotal:       parseInt(n.room_price),
-        advAmt:           parseInt(n.platform_fee),
-        payId:            data.payment_id || 'Verified',
-        roomName:         n.room_type,
-        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
-        guestEmail:       guestEmail,
-        emailAlreadySent: !!guestEmail,
-      };
-      saveBookingToStorage(receiptData);
-      showReceipt(receiptData);
-
-    } else {
-      // NOT YET PAID: re-open QR modal
-      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
-      if (qrExpired) { localStorage.removeItem('hh_pending_qr'); return; }
-
-      const n = pending.notes || {};
-      const amt = parseInt(n.platform_fee) || 0;
-      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
-      document.getElementById('qr-modal').style.display = 'flex';
-      if (pending.imageUrl) {
-        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
-        setQRState('ready');
-      } else {
-        setQRState('loading');
-      }
-      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
-      startQRTimer(Math.max(600 - elapsedSec, 30));
-      qrActiveId = pending.qrId;
-      paymentDetected = false;
-      setTimeout(() => startPolling(pending.qrId), 1500);
-    }
-
-  } catch(e) {
-    // Network error — still re-show QR if image stored and not expired
-    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
-    if (!qrExpired && pending.imageUrl) {
-      const n = pending.notes || {};
-      const amt = parseInt(n.platform_fee) || 0;
-      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
-      document.getElementById('qr-modal').style.display = 'flex';
-      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
-      setQRState('ready');
-      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
-      startQRTimer(Math.max(600 - elapsedSec, 30));
-      qrActiveId = pending.qrId;
-      paymentDetected = false;
-      setTimeout(() => startPolling(pending.qrId), 3000);
-    }
-  }
-}
-
-// ══════════════════════════════════════
 // ONLINE BOOKING
 // ══════════════════════════════════════
+
 function selectRoom(n) {
   selRoom = n;
   document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
@@ -2043,9 +2220,9 @@ function calcStay() {
   nights = Math.round((new Date(co) - new Date(ci)) / 86400000);
   if (nights <= 0) { nights = 0; return; }
 
-  // Check for blocked dates in range
+  // ── Check for blocked dates in the selected range ──
   const bDates = getBlockedDatesInRange(ci, co);
-  const warningEl    = document.getElementById('blocked-warning-online');
+  const warningEl   = document.getElementById('blocked-warning-online');
   const warningDates = document.getElementById('blocked-warning-dates-online');
   if (bDates.length > 0) {
     warningDates.textContent = 'Blocked: ' + bDates.map(fmtShort).join(', ');
@@ -2085,7 +2262,6 @@ function recalc() {
   document.getElementById('s-remain').textContent  = '₹' + (finalTotal - advAmt).toLocaleString();
 
   document.getElementById('pay-btn-text').textContent = 'Pay ₹' + advAmt.toLocaleString() + ' via QR Code';
-  document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking (₹' + advAmt.toLocaleString() + ')';
 }
 
 function applyCoupon() {
@@ -2122,6 +2298,7 @@ function validate() {
     document.getElementById('g-phone').classList.add('err');
     alert('Please enter a valid 10-digit phone number.'); ok = false;
   }
+  // ── Block payment if any date in range is blocked ──
   if (ok) {
     const ci = document.getElementById('g-checkin').value;
     const co = document.getElementById('g-checkout').value;
@@ -2134,16 +2311,14 @@ function validate() {
   return ok;
 }
 
-/* ---- Razorpay Confirm Dialog ---- */
-function askRazorpayConfirm() {
-  if (!validate()) return;
-  document.getElementById('rzpConfirmOverlay').classList.add('open');
-}
-function closeRzpConfirm() {
-  document.getElementById('rzpConfirmOverlay').classList.remove('open');
-}
-
 async function initiatePayment() {
+  if (
+  blockedDates.includes(document.getElementById('g-checkin')?.value) ||
+  blockedDates.includes(document.getElementById('g-checkout')?.value)
+) {
+  alert("❌ Selected dates are blocked");
+  return;
+}
   if (!validate()) return;
 
   if (isMobile) {
@@ -2156,65 +2331,66 @@ async function initiatePayment() {
   const ci    = document.getElementById('g-checkin').value;
   const co    = document.getElementById('g-checkout').value;
 
-  let invStr = 'HH' + Date.now().toString().slice(-7);
+  invNum++;
+  let invStr = 'RG' + Date.now().toString().slice(-7);
 
   const btn = document.getElementById('pay-btn');
   btn.disabled = true;
-  document.getElementById('rzp-btn-label').textContent = 'Creating order...';
+  btn.querySelector('span').textContent = 'Creating order...';
 
   const notes = {
-    hotel_name:      'Hotel Harshdeep',
-    hotel_id:        'harshdeep',
-    invoice_no:      invStr,
-    room_type:       ROOMS[selRoom].name,
-    checkin:         ci,
-    checkout:        co,
-    nights:          String(nights),
-    room_rate:       String(ROOMS[selRoom].price),
-    room_price:      String(finalTotal),
-    platform_fee:    String(advAmt),
-    coupon_used:     activeCoupon || 'None',
-    coupon_discount: String(discAmt),
-    guest_name:      name,
-    guest_phone:     phone,
-    guest_email:     document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
+    hotel_name:   'Hotel Raj Garden',
+    hotel_id:     'raj-garden',
+    invoice_no:   invStr,
+    room_type:    ROOMS[selRoom].name,
+    checkin:      ci,
+    checkout:     co,
+    nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
+    room_price:   String(finalTotal),
+    platform_fee: String(advAmt),
+    coupon_used:  activeCoupon || 'None',
+    coupon_discount: String(discAmt),   
+    guest_name:   name,
+    guest_phone:  phone,
+    guest_email:  document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
   };
 
   let orderId;
   try {
     const resp = await fetch(API_ENDPOINT, {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ amount: advAmt * 100, notes }),
+      body: JSON.stringify({ amount: advAmt * 100, notes }),
     });
     if (!resp.ok) { const err = await resp.json(); throw new Error(err.error || 'Server error'); }
     const data = await resp.json();
     orderId      = data.orderId;
     RAZORPAY_KEY = data.keyId;
-    invStr = 'HH' + orderId.replace('order_', '').slice(-8).toUpperCase();
+    invStr = 'RG' + orderId.replace('order_', '').slice(-8).toUpperCase();
   } catch (err) {
     alert('Could not initiate payment: ' + err.message + '\nPlease try again or get help via WhatsApp below.');
     btn.disabled = false;
-    document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking (₹' + advAmt.toLocaleString() + ')';
+    btn.querySelector('span').textContent = 'Card / Net Banking / Wallet';
     return;
   }
 
   btn.disabled = false;
-  document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking (₹' + advAmt.toLocaleString() + ')';
+  btn.querySelector('span').textContent = 'Card / Net Banking / Wallet';
 
   const options = {
-    key:      RAZORPAY_KEY,
+    key: RAZORPAY_KEY,
     order_id: orderId,
-    amount:   advAmt * 100,
+    amount: advAmt * 100,
     currency: 'INR',
-    name:     'Hotel Harshdeep',
+    name: 'Hotel Raj Garden',
     description: 'Room booking · ' + ROOMS[selRoom].name + ' · ' + fmtDate(ci) + ' – ' + fmtDate(co),
-    image:    'https://www.crulio.com/ManaunaDham/images/web/logonobg.png',
-    prefill:  { name: name, contact: '+91' + phone },
-    notes:    notes,
-    theme:    { color: '#7a0000' },
-    modal:    { backdropclose: false },
-    handler:  function(resp) {
+    image: 'https://www.crulio.com/ManaunaDham/images/web/logonobg.png',
+    prefill: { name: name, contact: '+91' + phone },
+    notes: notes,
+    theme: { color: '#7a0000' },
+    modal: { backdropclose: false },
+    handler: function(resp) {
       showReceipt({ invStr, name, phone, ci, co, nights, baseTotal, discAmt, finalTotal, advAmt, payId: resp.razorpay_payment_id, roomName: ROOMS[selRoom].name, roomRate: ROOMS[selRoom].price });
     }
   };
@@ -2224,59 +2400,78 @@ async function initiatePayment() {
   rzp.open();
 }
 
-// ══════════════════════════════════════
-// RECEIPT
-// ══════════════════════════════════════
-let receiptSavedByUser = false;
+// ── PROPERTY CONFIG (one object per property — swap for other hotels/taxi) ──
+const PROPERTY = {
+  id:       'raj-garden',
+  name:     'Hotel Raj Garden',
+  type:     'hotel',                        // 'hotel' | 'taxi'
+  storageKey: 'crulio_booking_raj_garden',  // unique per property
+  sendReceiptEndpoint: 'https://harshdeep-api.vercel.app/api/send-guest-receipt',
+};
 
+// ── SHOW RECEIPT ──────────────────────────────────────────────────────────────
 function showReceipt(d) {
   receiptSavedByUser = false;
-  // Honour existing pdfDownloaded flag
+  // If this booking was already in storage with pdfDownloaded=true, honour it
   try {
     const stored = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}');
-    if (stored.pdfDownloaded && stored.invStr === d.invStr) receiptSavedByUser = true;
+    if (stored.pdfDownloaded && stored.invStr === d.invStr) {
+      receiptSavedByUser = true;
+    }
   } catch(e) {}
 
   const reminder = document.getElementById('receipt-save-reminder');
   if (reminder) reminder.style.display = 'none';
   const pdfBadge = document.getElementById('receipt-pdf-saved-badge');
   if (pdfBadge) pdfBadge.style.display = receiptSavedByUser ? 'block' : 'none';
-
+  // Normalise: always carry roomName + roomRate in the data object itself
+  // so it works whether selRoom is set or not (e.g. QR flow after tab switch)
   if (!d.roomName) d.roomName = selRoom ? ROOMS[selRoom].name  : (d.room_type || '—');
   if (!d.roomRate) d.roomRate = selRoom ? ROOMS[selRoom].price : Math.round(d.finalTotal / (d.nights || 1));
 
   lastBooking = d;
 
-  // Email UI setup
+  // ── Email UI setup ────────────────────────────────────────────────────────
   const emailInput    = document.getElementById('receipt-email-input');
   const formEmail     = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
   const knownEmail    = d.guestEmail || formEmail;
 
+  // Reset email section state
   const autoBanner    = document.getElementById('receipt-email-auto-banner');
   const quickRow      = document.getElementById('receipt-email-quick-row');
   const otherLabel    = document.getElementById('receipt-email-other-label');
+  const resendSelfBtn = document.getElementById('resend-self-btn');
   const resendSelfLbl = document.getElementById('resend-self-label');
   const emailMsgEl    = document.getElementById('receipt-email-msg');
   const sendBtn       = document.getElementById('send-email-btn');
 
-  if (emailMsgEl) { emailMsgEl.style.display = 'none'; emailMsgEl.textContent = ''; }
-  if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
-  if (emailInput) emailInput.value = '';
+  if (emailMsgEl)    { emailMsgEl.style.display = 'none'; emailMsgEl.textContent = ''; }
+  if (sendBtn)       { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  if (emailInput)    emailInput.value = '';
 
   if (knownEmail && d.emailAlreadySent) {
+    // Auto-sent banner
     if (autoBanner) autoBanner.style.display = 'block';
     const addrEl = document.getElementById('receipt-email-auto-address');
     if (addrEl) addrEl.textContent = knownEmail;
+
+    // "Resend to my email" quick button
     if (quickRow) quickRow.style.display = 'block';
     if (resendSelfLbl) resendSelfLbl.textContent = knownEmail;
+
+    // Other email label updated
     if (otherLabel) otherLabel.textContent = 'Or send to a different email:';
     if (emailInput) emailInput.placeholder = 'Enter another email address';
+
   } else if (knownEmail) {
+    // Email known but not yet auto-sent — pre-fill the input
     if (autoBanner) autoBanner.style.display = 'none';
     if (quickRow)   quickRow.style.display = 'none';
     if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
     if (emailInput) { emailInput.value = knownEmail; emailInput.placeholder = 'Enter email address'; }
+
   } else {
+    // No email known at all
     if (autoBanner) autoBanner.style.display = 'none';
     if (quickRow)   quickRow.style.display = 'none';
     if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
@@ -2304,11 +2499,13 @@ function showReceipt(d) {
   document.getElementById('r-remain').textContent  = '₹' + (d.finalTotal - d.advAmt).toLocaleString('en-IN');
   document.getElementById('r-pid').textContent     = d.payId;
 
+  // Save to localStorage immediately
   saveBookingToStorage(d);
+
   document.getElementById('receiptOverlay').classList.add('open');
 }
 
-// ── BUILD RECEIPT TEXT ────────────────────────────────────────────────────────
+// ── BUILD RECEIPT TEXT (single source of truth — WA copy = PDF = email) ──────
 function buildReceiptMsg(d) {
   const discLine = d.discAmt > 0
     ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString('en-IN')
@@ -2343,7 +2540,7 @@ function buildReceiptMsg(d) {
   );
 }
 
-// ── COPY RECEIPT TEXT ─────────────────────────────────────────────────────────
+// ── COPY RECEIPT TEXT TO CLIPBOARD ───────────────────────────────────────────
 function copyReceiptText(btn) {
   if (!lastBooking) return;
   const text = buildReceiptMsg(lastBooking);
@@ -2353,6 +2550,7 @@ function copyReceiptText(btn) {
     btn.style.background = 'var(--green)';
     setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
   }).catch(() => {
+    // Fallback for older browsers / iOS
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -2365,13 +2563,6 @@ function copyReceiptText(btn) {
     btn.style.background = 'var(--green)';
     setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
   });
-}
-
-// ── SEND RECEIPT TO WHATSAPP ──────────────────────────────────────────────────
-function sendReceiptWhatsApp() {
-  if (!lastBooking) return;
-  const text = buildReceiptMsg(lastBooking);
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 }
 
 // ── RESEND TO ORIGINAL EMAIL (one-tap) ───────────────────────────────────────
@@ -2416,10 +2607,11 @@ async function resendToSelf() {
   }
 }
 
-// ── SEND RECEIPT TO ANY EMAIL ─────────────────────────────────────────────────
+// ── SEND RECEIPT TO EMAIL ─────────────────────────────────────────────────────
 async function sendReceiptEmail() {
   if (!lastBooking) return;
   const emailInput = document.getElementById('receipt-email-input');
+  const msgEl      = document.getElementById('receipt-email-msg');
   const btn        = document.getElementById('send-email-btn');
   const email      = emailInput.value.trim();
 
@@ -2475,7 +2667,15 @@ function showEmailMsg(text, type) {
   el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
 }
 
-// ── RESEND BY INVOICE / PHONE ─────────────────────────────────────────────────
+// ── WHATSAPP DEEP LINK — send receipt text to WhatsApp ────────────────────────
+function sendReceiptWhatsApp() {
+  if (!lastBooking) return;
+  const text = buildReceiptMsg(lastBooking);
+  const encoded = encodeURIComponent(text);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
+}
+
+// ── RESEND RECEIPT BY PHONE / INVOICE / BOTH ─────────────────────────────────
 async function resendReceiptByInvoice() {
   const invoiceInput = document.getElementById('resend-invoice-input');
   const phoneInput   = document.getElementById('resend-phone-input');
@@ -2487,12 +2687,15 @@ async function resendReceiptByInvoice() {
   const phone   = (phoneInput.value   || '').trim().replace(/\D/g, '');
   const email   = (emailInput.value   || '').trim();
 
+  // ── Validate: at least one identifier ──
   if (!invoice && !phone) {
     showResendMsg('Please enter your phone number and/or invoice/receipt number.', 'error'); return;
   }
+  // ── Validate phone if given ──
   if (phone && !/^\d{10}$/.test(phone)) {
     showResendMsg('Please enter a valid 10-digit phone number.', 'error'); return;
   }
+  // ── Validate email ──
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     showResendMsg('Please enter a valid email address to receive the receipt.', 'error'); return;
   }
@@ -2501,20 +2704,22 @@ async function resendReceiptByInvoice() {
   btnText.textContent = '⏳ Looking up booking…';
 
   try {
+    // Build lookup URL based on what the guest provided
     let lookupUrl = 'https://harshdeep-api.vercel.app/api/resend-lookup?';
-    if (phone)            lookupUrl += 'phone='   + encodeURIComponent(phone);
+    if (phone)   lookupUrl += 'phone='   + encodeURIComponent(phone);
     if (phone && invoice) lookupUrl += '&';
-    if (invoice)          lookupUrl += 'invoice=' + encodeURIComponent(invoice);
+    if (invoice) lookupUrl += 'invoice=' + encodeURIComponent(invoice);
 
     const lookupResp = await fetch(lookupUrl);
     const lookupData = await lookupResp.json();
 
     if (!lookupResp.ok || !lookupData.found) {
+      // Give contextual error messages
       let msg = '❌ No booking found. ';
       if (phone && invoice) {
         msg += 'Please make sure both your phone number and receipt number are correct.';
       } else if (invoice) {
-        msg += 'Please double-check the receipt number (e.g. HH0828042).';
+        msg += 'Please double-check the receipt number (e.g. RG0828042).';
       } else {
         msg += 'No booking was found for this phone number. Try adding the receipt number too.';
       }
@@ -2525,10 +2730,11 @@ async function resendReceiptByInvoice() {
       return;
     }
 
-    const b      = lookupData.booking;
-    const isTaxi = !!b.pickupLocation;
+    const b       = lookupData.booking;
+    const isTaxi  = !!b.pickupLocation;
     btnText.textContent = '📨 Sending receipt…';
 
+    // Build the email payload
     const payload = isTaxi ? {
       propertyType:  'taxi',
       propertyName:  b.hotelName || PROPERTY.name,
@@ -2572,6 +2778,7 @@ async function resendReceiptByInvoice() {
     });
     if (!sendResp.ok) throw new Error('Send failed');
 
+    // Success — show booking summary + confirmation
     const guestLabel = b.guestName ? ' for ' + b.guestName : '';
     const dateLabel  = b.checkin   ? ' (check-in ' + fmtDate(b.checkin) + ')' : '';
     showResendMsg(
@@ -2598,18 +2805,21 @@ function showResendMsg(text, type) {
 }
 
 // ── LOCALSTORAGE: SAVE & RESTORE ──────────────────────────────────────────────
+const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
 function saveBookingToStorage(d) {
   try {
+    // Preserve existing pdfDownloaded flag if already set
     let existing = {};
     try { existing = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}'); } catch(e) {}
     const record = {
       ...d,
-      savedAt:       Date.now(),
-      propertyId:    PROPERTY.id,
+      savedAt:      Date.now(),
+      propertyId:   PROPERTY.id,
       pdfDownloaded: existing.pdfDownloaded || false,
     };
     localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
-  } catch (e) {}
+  } catch (e) { /* storage full or private mode — fail silently */ }
 }
 
 function loadBookingFromStorage() {
@@ -2636,6 +2846,92 @@ function dismissReturningBanner() {
   document.getElementById('returning-guest-banner').style.display = 'none';
 }
 
+// ── PENDING QR RESUME — re-shows QR or receipt seamlessly on tab reload ────────
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('rg_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
+
+  // Hard-expire after 24h
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem('rg_pending_qr');
+    return;
+  }
+
+  // Check if payment has gone through
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
+
+    if (data.paid) {
+      // ── PAID: clear QR session, show receipt immediately ──────────────────
+      localStorage.removeItem('rg_pending_qr');
+      const n = pending.notes || {};
+      const guestEmail = n.guest_email || '';
+      const receiptData = {
+        invStr:           n.invoice_no  || ('RG' + Date.now()),
+        name:             n.guest_name,
+        phone:            n.guest_phone,
+        ci:               n.checkin,
+        co:               n.checkout,
+        nights:           parseInt(n.nights),
+        baseTotal:        parseInt(n.room_price),
+        discAmt:          parseInt(n.coupon_discount) || 0,
+        finalTotal:       parseInt(n.room_price),
+        advAmt:           parseInt(n.platform_fee),
+        payId:            data.payment_id || 'Verified',
+        roomName:         n.room_type,
+        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+        guestEmail:       guestEmail,
+        emailAlreadySent: !!guestEmail,
+      };
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
+
+    } else {
+      // ── NOT YET PAID: re-open the QR modal with the same QR image ─────────
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000; // 10 min scanning window
+      if (qrExpired) { localStorage.removeItem('rg_pending_qr'); return; }
+
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      if (pending.imageUrl) {
+        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+        setQRState('ready');
+      } else {
+        setQRState('loading');
+      }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
+    }
+
+  } catch(e) {
+    // Network error — still re-show QR if image is stored and it hasn't expired
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
+    }
+  }
+}
+
 function checkForReturningGuest() {
   const d = loadBookingFromStorage();
   if (!d) return;
@@ -2653,9 +2949,12 @@ function checkForReturningGuest() {
   banner.style.display = 'block';
 }
 
-// ── SAFE CLOSE ────────────────────────────────────────────────────────────────
+// ── SAFE CLOSE — warns user to save PDF first ────────────────────────────────
+let receiptSavedByUser = false;
+
 function savePDFAndMark() {
   receiptSavedByUser = true;
+  // Mark in storage that the PDF has been downloaded
   try {
     const raw = localStorage.getItem(PROPERTY.storageKey);
     if (raw) {
@@ -2664,6 +2963,7 @@ function savePDFAndMark() {
       localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
     }
   } catch(e) {}
+  // Hide the reminder if it was showing
   const reminder = document.getElementById('receipt-save-reminder');
   if (reminder) reminder.style.display = 'none';
   window.print();
@@ -2671,10 +2971,14 @@ function savePDFAndMark() {
 
 function closeReceiptSafe() {
   if (!receiptSavedByUser) {
+    // Show the warning strip instead of closing
     const reminder = document.getElementById('receipt-save-reminder');
-    if (reminder) { reminder.style.display = 'block'; reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    if (reminder) reminder.style.display = 'block';
+    // Scroll to it so user sees it on mobile
+    reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return;
   }
+  // Already saved — clear storage and close
   try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
   closeReceipt();
 }
@@ -2689,19 +2993,20 @@ function confirmCloseReceipt() {
 
 function closeReceipt() {
   document.getElementById('receiptOverlay').classList.remove('open');
-  // Reset email UI
+  // Reset email send UI
   const emailInput = document.getElementById('receipt-email-input');
   const emailMsg   = document.getElementById('receipt-email-msg');
   const sendBtn    = document.getElementById('send-email-btn');
   if (emailInput) emailInput.value = '';
   if (emailMsg)   { emailMsg.style.display = 'none'; emailMsg.textContent = ''; }
   if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  // Reset new email UI
   const autoBanner = document.getElementById('receipt-email-auto-banner');
   const quickRow   = document.getElementById('receipt-email-quick-row');
   const selfBtn    = document.getElementById('resend-self-btn');
   if (autoBanner) autoBanner.style.display = 'none';
   if (quickRow)   quickRow.style.display = 'none';
-  if (selfBtn)    { selfBtn.disabled = false; }
+  if (selfBtn)    { selfBtn.textContent = '<i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>'; selfBtn.disabled = false; }
   // Reset form
   ['g-name','g-phone','g-checkin','g-checkout','g-email','coupon-input'].forEach(id => {
     const el = document.getElementById(id);
@@ -2713,12 +3018,12 @@ function closeReceipt() {
   document.getElementById('blocked-warning-online').classList.remove('show');
   document.getElementById('coupon-msg').className = 'coupon-msg';
   document.getElementById('pay-btn-text').textContent = 'Pay via QR Code';
-  document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking';
 }
 
 // ══════════════════════════════════════
-// WHATSAPP ASSISTANCE
+// WHATSAPP PAYMENT ASSISTANCE
 // ══════════════════════════════════════
+
 function selectWARoom(n) {
   waSelRoom = n;
   document.querySelectorAll('.wa-room-option').forEach(el => el.classList.remove('selected'));
@@ -2741,7 +3046,7 @@ function calcWAStay() {
   waNights = Math.round((new Date(co) - new Date(ci)) / 86400000);
   if (waNights <= 0) { waNights = 0; return; }
 
-  // Check for blocked dates in WA range
+  // ── Check for blocked dates in the WA range ──
   const bDates = getBlockedDatesInRange(ci, co);
   const warningEl    = document.getElementById('blocked-warning-wa');
   const warningDates = document.getElementById('blocked-warning-dates-wa');
@@ -2776,6 +3081,7 @@ function validateWA() {
     document.getElementById('wa-phone').classList.add('err');
     alert('Please enter a valid 10-digit phone number.'); ok = false;
   }
+  // ── Warn (but don't fully block) WA requests on blocked dates ──
   if (ok) {
     const ci = document.getElementById('wa-checkin').value;
     const co = document.getElementById('wa-checkout').value;
@@ -2799,20 +3105,24 @@ function sendWhatsAppBooking() {
   if (ci && co) waNights = Math.round((new Date(co) - new Date(ci)) / 86400000);
   if (!validateWA()) return;
 
-  const name   = document.getElementById('wa-name').value.trim();
-  const phone  = document.getElementById('wa-phone').value.trim();
-  const guests = document.getElementById('wa-guests').value;
-  const total  = waSelRoom ? ROOMS[waSelRoom].price * waNights : 0;
+  const name    = document.getElementById('wa-name').value.trim();
+  const phone   = document.getElementById('wa-phone').value.trim();
+  const guests  = document.getElementById('wa-guests').value;
+  const issue   = document.getElementById('wa-issue') ? document.getElementById('wa-issue').value.trim() : '';
+  const total   = waSelRoom ? ROOMS[waSelRoom].price * waNights : 0;
   const advance = Math.round(total * 0.15);
 
+  // Note if any dates are blocked so the hotel team sees it in WA
   const bDates = getBlockedDatesInRange(ci, co);
   const blockedLine = bDates.length > 0
     ? '\n⚠️ *Note:* ' + bDates.map(fmtShort).join(', ') + ' marked blocked — guest is requesting help anyway.'
     : '';
+
   const guestsLine = guests ? '\n👥 *Guests:* ' + guests : '';
+  const issueLine  = issue  ? '\n⚠️ *Issue faced:* ' + issue : '';
 
   const msg =
-`🆘 *Payment Help Request — Hotel Harshdeep, Aonla*
+`🆘 *Payment Assistance Request — Hotel Raj Garden*
 
 I need help completing my online payment for a room booking.
 
@@ -2823,7 +3133,7 @@ I need help completing my online payment for a room booking.
 📅 *Check-out:* ${fmtDate(co)}
 🌙 *Nights:* ${waNights}${guestsLine}
 💰 *Total Room Price:* ₹${total.toLocaleString()}
-💳 *15% Advance to Pay:* ₹${advance.toLocaleString()}${blockedLine}
+💳 *15% Advance to Pay:* ₹${advance.toLocaleString()}${issueLine}${blockedLine}
 
 Please guide me to complete the online payment. 🙏
 _Sent via Crulio.com/ManaunaDham_`;
@@ -2867,7 +3177,7 @@ function initCouponBanner() {
     card.style.cssText = 'background:white;border:2px dashed var(--gold);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s;';
     card.innerHTML =
       '<div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">' + c.description + '</div>' +
-      '<div style="font-size:16px;font-weight:800;color:var(--maroon);letter-spacing:1px;margin-bottom:6px;">' + code + '</div>' +
+      '<div style="font-size:16px;font-weight:800;color:var(--maroon);letter-spacing:1px;margin-bottom:6px;font-family:\'DM Sans\',sans-serif;">' + code + '</div>' +
       '<div style="background:var(--maroon);color:white;text-align:center;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;">' + c.label + ' ✂️</div>';
     card.onmouseenter = () => { card.style.background = '#fff3e0'; card.style.transform = 'translateY(-1px)'; };
     card.onmouseleave = () => { card.style.background = 'white'; card.style.transform = ''; };
@@ -2886,24 +3196,80 @@ function claimCoupon(code) {
   document.getElementById('stay-summary').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// ══════════════════════════════════════
-// INIT
-// ══════════════════════════════════════
-window.addEventListener('DOMContentLoaded', async () => {
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', () => {
   const today = new Date().toISOString().split('T')[0];
   ['g-checkin', 'g-checkout', 'wa-checkin', 'wa-checkout'].forEach(id => {
     document.getElementById(id).min = today;
   });
   initCouponBanner();
   document.getElementById('wa-checkout').addEventListener('change', calcWAStay);
-
   checkForReturningGuest();
-  resumePendingQRIfAny();
+  resumePendingQRIfAny();   // ← new: check if a QR payment was done while browser was closed
+
+  // ▼ Fetch blocked dates + owner note from admin API
+  fetchBlockedDates();
+});
+  // ===== BLOCKED DATES FIX =====
+let blockedDates = [];
+
+// Load from backend
+async function loadBlockedDates() {
+  try {
+    const res = await fetch('https://harshdeep-api.vercel.app/api/blocked-dates?hotel=raj-garden');
+
+    if (!res.ok) throw new Error("API not reachable");
+
+    const data = await res.json();
+
+    blockedDates = data.dates || [];
+
+    // 🔹 SHOW NOTICE
+    const noteBox = document.getElementById("hotel-notice-box");
+    const noteText = document.getElementById("hotel-notice-text");
+
+    if (data.note && data.note.trim() !== "") {
+      noteText.innerText = data.note;
+      noteBox.style.display = "block";
+    }
+
+    console.log("✅ Blocked dates loaded:", blockedDates);
+
+  } catch (err) {
+    console.error("❌ Error loading blocked dates", err);
+  }
+}
+
+// Attach validation to YOUR inputs
+function attachDateValidation() {
+  const waCheckin = document.getElementById('wa-checkin');
+  const gCheckin  = document.getElementById('g-checkin');
+  const gCheckout = document.getElementById('g-checkout');
+
+  function blockIfNeeded(input) {
+    if (!input) return;
+
+    input.addEventListener('change', () => {
+      if (blockedDates.includes(input.value)) {
+        alert("❌ This date is not available");
+        input.value = "";
+      }
+    });
+  }
+
+  blockIfNeeded(waCheckin);
+  blockIfNeeded(gCheckin);
+  blockIfNeeded(gCheckout);
+}
+
+// Run on page load
+window.addEventListener('DOMContentLoaded', async () => {
   await loadBlockedDates();
   attachDateValidation();
 });
 </script>
+  <script src="../../assets/manauna-support-chat.js"></script>
 
-<script src="../../assets/manauna-support-chat.js"></script>
+
 </body>
 </html>
