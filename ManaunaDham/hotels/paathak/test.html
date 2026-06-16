@@ -2111,6 +2111,18 @@ hotel_name:   'Paathak Complex',
     document.getElementById('qr-img').src = data.image_url + '?size=600';
     setQRState('ready');
     startQRTimer(600);
+
+    // Save pending QR session so receipt survives browser close
+    try {
+      localStorage.setItem('pc_pending_qr', JSON.stringify({
+        qrId:     data.qr_id,
+        imageUrl: data.image_url,
+        notes:    notes,
+        savedAt:  Date.now(),
+        roomRate: ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
+      }));
+    } catch(e) {}
+
     setTimeout(() => startPolling(data.qr_id), 3000);
   } catch (err) {
     document.getElementById('qr-modal').style.display = 'none';
@@ -2161,24 +2173,31 @@ function onQRPaymentSuccess(data) {
   paymentDetected = true;
   clearInterval(qrPollingInterval);
   clearInterval(qrTimerInterval);
+
+  // Clear the pending QR session — no longer needed
+  try { localStorage.removeItem('pc_pending_qr'); } catch(e) {}
+
   setQRState('success');
   setTimeout(() => {
     document.getElementById('qr-modal').style.display = 'none';
-    const qGuestEmail = (data.notes && data.notes.guest_email) || '';
+    const n = data.notes || {};
+    const guestEmail = n.guest_email || '';
     showReceipt({
-      invStr:     data.notes.invoice_no || ('PC' + Date.now()),
-      name:       data.notes.guest_name,
-      phone:      data.notes.guest_phone,
-      ci:         data.notes.checkin,
-      co:         data.notes.checkout,
-      nights:     parseInt(data.notes.nights),
-      baseTotal:  parseInt(data.notes.room_price),
-      discAmt:    0,
-      finalTotal: parseInt(data.notes.room_price),
-      advAmt:     parseInt(data.notes.platform_fee),
-      payId:      data.payment_id,
-      guestEmail: qGuestEmail,
-      emailAlreadySent: !!qGuestEmail,
+      invStr:           n.invoice_no  || ('PC' + Date.now()),
+      name:             n.guest_name,
+      phone:            n.guest_phone,
+      ci:               n.checkin,
+      co:               n.checkout,
+      nights:           parseInt(n.nights),
+      baseTotal:        parseInt(n.room_price),
+      discAmt:          parseInt(n.coupon_discount) || 0,
+      finalTotal:       parseInt(n.room_price),
+      advAmt:           parseInt(n.platform_fee),
+      payId:            data.payment_id,
+      roomName:         n.room_type,
+      roomRate:         parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      guestEmail:       guestEmail,
+      emailAlreadySent: !!guestEmail,
     });
   }, 1800);
 }
@@ -2885,6 +2904,91 @@ function dismissReturningBanner() {
   document.getElementById('returning-guest-banner').style.display = 'none';
 }
 
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('pc_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
+
+  // Hard-expire after 24h
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem('pc_pending_qr');
+    return;
+  }
+
+  // Check if payment has gone through
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
+
+    if (data.paid) {
+      // PAID: clear QR session, show receipt immediately
+      localStorage.removeItem('pc_pending_qr');
+      const n = pending.notes || {};
+      const guestEmail = n.guest_email || '';
+      const receiptData = {
+        invStr:           n.invoice_no  || ('PC' + Date.now()),
+        name:             n.guest_name,
+        phone:            n.guest_phone,
+        ci:               n.checkin,
+        co:               n.checkout,
+        nights:           parseInt(n.nights),
+        baseTotal:        parseInt(n.room_price),
+        discAmt:          parseInt(n.coupon_discount) || 0,
+        finalTotal:       parseInt(n.room_price),
+        advAmt:           parseInt(n.platform_fee),
+        payId:            data.payment_id || 'Verified',
+        roomName:         n.room_type,
+        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+        guestEmail:       guestEmail,
+        emailAlreadySent: !!guestEmail,
+      };
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
+
+    } else {
+      // NOT YET PAID: re-open the QR modal with the same QR image
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000; // 10 min scanning window
+      if (qrExpired) { localStorage.removeItem('pc_pending_qr'); return; }
+
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      if (pending.imageUrl) {
+        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+        setQRState('ready');
+      } else {
+        setQRState('loading');
+      }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
+    }
+
+  } catch(e) {
+    // Network error — still re-show QR if image is stored and it hasn't expired
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
+    }
+  }
+}
+
 function checkForReturningGuest() {
   const d = loadBookingFromStorage();
   if (!d) return;
@@ -3170,6 +3274,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('wa-checkout').addEventListener('change', calcWAStay);
 
   initCouponBanner();
+  checkForReturningGuest();
+  resumePendingQRIfAny();  // check if a QR payment was done while browser was closed
 
   await loadBlockedDates();
   attachDateValidation();
