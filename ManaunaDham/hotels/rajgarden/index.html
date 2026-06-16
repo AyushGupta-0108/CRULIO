@@ -6,7 +6,7 @@
 <meta name="description" content="Hotel Raj Garden Aonla - AC rooms near Manauna Dham temple. Standard ₹1,899/night, Deluxe ₹2,299/night. WiFi, geyser, parking, in-house restaurant. 3-4 km from Khatu Shyam temple. Book online!">
 <meta name="keywords" content="hotel raj garden aonla, hotels near manauna dham, raj garden hotel aonla, budget hotel aonla, hotel near khatu shyam temple, accommodation manauna, aonla hotels with restaurant, deluxe room aonla">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://manaunadham.org.in/hotels/rajgarden">
+<link rel="canonical" href="https://crulio.com/ManaunaDham/hotels/rajgarden">
 <link rel="icon" href="https://www.crulio.com/ManaunaDham/images/web/logonobg.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -798,16 +798,6 @@ nav a:hover { background: rgba(255,255,255,0.15); color: white; }
 .rbtn-print:hover { background: var(--maroon-dark); }
 .rbtn-close { background: white; color: var(--text); border: 2px solid var(--border); }
 .rbtn-close:hover { background: #f0f0f0; }
-.ract-wa { display: flex; flex-direction: column; gap: 8px; padding: 0 28px 20px; }
-.ract-wa-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 2px; }
-.rbtn-wa-customer {
-  width: 100%; padding: 12px; border-radius: 8px;
-  background: var(--wa-green); color: white;
-  border: none; font-weight: 700; font-size: 14px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: var(--transition);
-}
-.rbtn-wa-customer:hover { background: var(--wa-dark); }
 .wa-auto-note { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 28px 16px; }
 
 /* ══ QR MODAL ══ */
@@ -821,7 +811,8 @@ nav a:hover { background: rgba(255,255,255,0.15); color: white; }
     padding: 0 !important; overflow: visible !important; display: block !important;
   }
   .receipt-box { width: 100% !important; max-width: 480px !important; margin: 0 auto !important; box-shadow: none !important; position: static !important; border-radius: 0 !important; }
-  .ract, .ract-wa, .wa-auto-note { display: none !important; }
+  .ract, .wa-auto-note, #receipt-email-msg { display: none !important; }
+  div[style*="receipt-email-input"], div[style*="Save Your Receipt"] { display: none !important; }
   @page { margin: 10mm; size: A5 portrait; }
 }
 
@@ -864,7 +855,6 @@ footer p:last-child { font-size: 12px; opacity: .65; }
   .cta-btn { justify-content: center; }
   .rb { padding: 20px; }
   .ract { padding: 4px 20px 20px; }
-  .ract-wa { padding: 0 20px 16px; }
   .wa-auto-note { padding: 0 20px 12px; }
   .rr.rr-big, .rr.rr-hotel { margin: 0 -20px; padding: 12px 20px; }
   .bcb-options { grid-template-columns: 1fr; }
@@ -1046,6 +1036,13 @@ footer p:last-child { font-size: 12px; opacity: .65; }
   <span id="owner-note-text"></span>
 </div>
 
+<!-- ▼ RETURNING GUEST BANNER — shown if recent booking found in localStorage ▼ -->
+<div id="returning-guest-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border-bottom:2.5px solid #81c784;padding:12px 20px;text-align:center;">
+  <span style="font-size:14px;font-weight:700;color:#1a5c2a;">✅ Welcome back! Your recent booking receipt is ready.</span>
+  <button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>
+  <button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>
+</div>
+
 <!-- HOTEL TITLE STRIP -->
 <div class="hotel-strip">
   <div class="hotel-strip-left">
@@ -1135,6 +1132,10 @@ footer p:last-child { font-size: 12px; opacity: .65; }
         <label>Check-out Date <span class="req">*</span></label>
         <input type="date" id="g-checkout" onchange="calcStay()">
       </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Email Address <span style="color:var(--text-muted);font-weight:400;">(optional — for instant receipt)</span></label>
+        <input type="email" id="g-email" placeholder="e.g. ramesh@gmail.com" autocomplete="email">
+      </div>
     </div>
 
     <!-- ▼ BLOCKED DATE WARNING — online booking -->
@@ -1219,6 +1220,17 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     <div class="secure-note">
       <i class="fa fa-shield-alt" style="color:var(--green)"></i>
       Powered by Razorpay · 100% Secure · UPI, Cards, Net Banking, Wallets
+    </div>
+
+    <!-- Resend Receipt Link -->
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'})"
+        style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12.5px;font-family:'DM Sans',sans-serif;padding:6px 10px;border-radius:6px;transition:all .2s;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(107,107,107,0.4);"
+        onmouseover="this.style.color='var(--maroon)';this.style.textDecorationColor='var(--maroon)'"
+        onmouseout="this.style.color='var(--text-muted)';this.style.textDecorationColor='rgba(107,107,107,0.4)'">
+        <i class="fa fa-envelope" style="font-size:11px;"></i>
+        Didn't receive your receipt?
+      </button>
     </div>
 
     <div class="or-divider">Trouble paying online?</div>
@@ -1636,6 +1648,7 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       <hr class="rdiv">
       <div class="rr"><span class="rl">Room Rate</span><span class="rv" id="r-rate">—</span></div>
       <div class="rr" id="r-disc-row" style="display:none;"><span class="rl" style="color:var(--green);">Coupon Discount</span><span class="rv" style="color:var(--green);" id="r-disc">—</span></div>
+      <div class="rr"><span class="rl">Total Room Price</span><span class="rv" id="r-total">—</span></div>
       <div class="rr rr-big"><span class="rl">Platform Fee Paid ✓</span><span class="rv" id="r-advance">—</span></div>
       <div class="rr rr-hotel"><span class="rl">Remaining at Hotel</span><span class="rv" id="r-remain">—</span></div>
       <div class="rr"><span class="rl">Payment ID</span><span class="rv" id="r-pid" style="font-size:11px;word-break:break-all;">—</span></div>
@@ -1647,7 +1660,7 @@ footer p:last-child { font-size: 12px; opacity: .65; }
         15% advance paid is <strong>non-refundable</strong>.<br>
         Remaining 85% to be paid <strong>at the hotel on arrival</strong>.<br>
         Show this receipt at check-in for your confirmed booking.<br>
-        ManaunaDham.org.in is an independent booking platform.
+        ManaunaDham is part of the Crulio.com network.
       </div>
 
       <!-- MANAGER CONTACT NOTE -->
@@ -1658,16 +1671,72 @@ footer p:last-child { font-size: 12px; opacity: .65; }
       </div>
 
     </div>
-    <div class="ract-wa">
-      <div class="ract-wa-label">📲 Save Your Receipt</div>
-      <button class="rbtn-wa-customer" onclick="shareReceiptToCustomer()">
-        <i class="fab fa-whatsapp"></i> Send Receipt to My WhatsApp
+    <div class="wa-auto-note">Hotel has been notified of your confirmed booking. 🏨✅</div>
+
+    <!-- Email section -->
+    <div style="padding:0 28px 14px;">
+      <!-- Auto-sent confirmation banner — shown only when email was auto-sent at payment time -->
+      <div id="receipt-email-auto-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border:1.5px solid #81c784;border-radius:10px;padding:11px 14px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;color:#1a5c2a;margin-bottom:2px;">✅ Receipt emailed automatically</div>
+        <div style="font-size:12.5px;color:#2d6a3a;line-height:1.5;">
+          A booking receipt was sent to <strong id="receipt-email-auto-address" style="color:#1a5c2a;">—</strong> when your payment was confirmed.
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">📲 Send Receipt by Email</div>
+
+      <!-- Quick-resend buttons — shown when guestEmail is known -->
+      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;display:none;">
+        <button id="resend-self-btn" onclick="resendToSelf()"
+          style="width:100%;padding:9px 14px;background:#f0fdf4;border:1.5px solid #81c784;border-radius:8px;font-size:13px;font-weight:700;color:#1a5c2a;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:6px;"
+          onmouseover="this.style.background='#e0f5e8'" onmouseout="this.style.background='#f0fdf4'">
+          <i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>
+          Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>
+        </button>
+      </div>
+
+      <!-- Send to a different / any email -->
+      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;" id="receipt-email-other-label">Or send to a different email:</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+        <input type="email" id="receipt-email-input" placeholder="Enter email address" autocomplete="email"
+          style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',inherit;transition:var(--transition);"
+          onfocus="this.style.borderColor='var(--maroon)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="sendReceiptEmail()" id="send-email-btn"
+          style="padding:10px 16px;background:var(--maroon);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:var(--transition);"
+          onmouseover="this.style.background='var(--maroon-dark)'" onmouseout="this.style.background='var(--maroon)'">
+          ✉️ Send
+        </button>
+      </div>
+      <div id="receipt-email-msg" style="font-size:12.5px;display:none;padding:8px 12px;border-radius:6px;margin-bottom:4px;"></div>
+    </div>
+
+    <!-- WhatsApp deep link -->
+    <div style="padding:0 28px 12px;">
+      <button onclick="sendReceiptWhatsApp()" id="wa-receipt-btn"
+        style="width:100%;padding:12px;background:#25D366;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--transition);"
+        onmouseover="this.style.background='#1da851'" onmouseout="this.style.background='#25D366'">
+        <i class="fab fa-whatsapp" style="font-size:16px;"></i> Send to WhatsApp
       </button>
     </div>
-    <div class="wa-auto-note">Hotel has been notified of your confirmed booking. 🏨✅</div>
+
     <div class="ract">
-      <button class="rbtn-print" onclick="window.print()"><i class="fa fa-print"></i> Print / Save PDF</button>
-      <button class="rbtn-close" onclick="closeReceipt()">Close</button>
+      <button class="rbtn-print" onclick="copyReceiptText(this)" style="flex:1;min-width:100px;">
+        <i class="fa fa-copy"></i> <span>Copy Text</span>
+      </button>
+      <button class="rbtn-print" onclick="savePDFAndMark()" style="flex:1;min-width:100px;background:#444;">
+        <i class="fa fa-download"></i> <span>Save PDF</span>
+      </button>
+      <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
+    </div>
+    <!-- Confirm-close strip — shown when receipt hasn't been saved, or as confirmation when it has -->
+    <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
+      ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
+      <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
+        ✓ I've saved it — Close
+      </button>
+    </div>
+    <div id="receipt-pdf-saved-badge" style="display:none;background:#e6f4ec;border-top:2px solid #81c784;padding:10px 20px;text-align:center;font-size:13px;color:#1a5c2a;font-weight:600;">
+      ✅ PDF already saved — you're all set!
     </div>
   </div>
 </div>
@@ -1794,6 +1863,41 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     <img src="../../../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
   </a>
 </footer>
+
+<!-- RESEND RECEIPT SECTION -->
+<section id="resend-section" style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:28px;margin-bottom:8px;">📧</div>
+      <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
+      <p style="margin:0;font-size:13px;color:#888;line-height:1.5;">Enter your invoice number and email below — we'll resend it instantly.</p>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Invoice Number</label>
+        <input type="text" id="resend-invoice-input" placeholder="e.g. RG0828042"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Email Address</label>
+        <input type="email" id="resend-email-input" placeholder="your@email.com"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <button id="resend-btn" onclick="resendReceiptByInvoice()"
+        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;"
+        onmouseover="this.style.background='#4d0000'" onmouseout="this.style.background='#7a0000'">
+        Resend Receipt
+      </button>
+      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;"></div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:#aaa;margin-top:14px;">
+      Still having trouble? WhatsApp us at <a href="https://wa.me/917817803342" target="_blank" style="color:#7a0000;">+91 7817803342</a>
+    </p>
+  </div>
+</section>
+
 
 <script>
 // ══════════════════════════════════════
@@ -1928,10 +2032,12 @@ async function showQRPayment() {
     hotel_id:     'raj-garden',
     guest_name:   document.getElementById('g-name').value.trim(),
     guest_phone:  document.getElementById('g-phone').value.trim(),
+    guest_email:  document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
     room_type:    ROOMS[selRoom].name,
     checkin:      ci,
     checkout:     co,
     nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
     room_price:   String(finalTotal),
     platform_fee: String(advAmt),
     coupon_used:  activeCoupon || 'None',
@@ -1952,6 +2058,18 @@ async function showQRPayment() {
     document.getElementById('qr-img').src = data.image_url + '?size=600';
     setQRState('ready');
     startQRTimer(600);
+
+    // ── Save pending QR session so receipt survives browser close ──
+    try {
+      localStorage.setItem('rg_pending_qr', JSON.stringify({
+        qrId:      data.qr_id,
+        imageUrl:  data.image_url,          // ← NEW: needed to re-show QR on reload
+        notes:     notes,
+        savedAt:   Date.now(),
+        roomRate:  ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
+      }));
+    } catch(e) {}
+
     setTimeout(() => startPolling(data.qr_id), 3000);
 
   } catch (err) {
@@ -2011,21 +2129,31 @@ function onQRPaymentSuccess(data) {
   paymentDetected = true;
   clearInterval(qrPollingInterval);
   clearInterval(qrTimerInterval);
+
+  // Clear the pending QR session — no longer needed
+  try { localStorage.removeItem('rg_pending_qr'); } catch(e) {}
+
   setQRState('success');
   setTimeout(() => {
     document.getElementById('qr-modal').style.display = 'none';
+    const n = data.notes || {};
+    const guestEmail = n.guest_email || '';
     showReceipt({
-      invStr:     data.notes.invoice_no  || ('RG' + Date.now()),
-      name:       data.notes.guest_name,
-      phone:      data.notes.guest_phone,
-      ci:         data.notes.checkin,
-      co:         data.notes.checkout,
-      nights:     parseInt(data.notes.nights),
-      baseTotal:  parseInt(data.notes.room_price),
-      discAmt:    0,
-      finalTotal: parseInt(data.notes.room_price),
-      advAmt:     parseInt(data.notes.platform_fee),
-      payId:      data.payment_id,
+      invStr:          n.invoice_no  || ('RG' + Date.now()),
+      name:            n.guest_name,
+      phone:           n.guest_phone,
+      ci:              n.checkin,
+      co:              n.checkout,
+      nights:          parseInt(n.nights),
+      baseTotal:       parseInt(n.room_price),
+      discAmt:         parseInt(n.coupon_discount) || 0,
+      finalTotal:      parseInt(n.room_price),
+      advAmt:          parseInt(n.platform_fee),
+      payId:           data.payment_id,
+      roomName:        n.room_type,
+      roomRate:        parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      guestEmail:      guestEmail,
+      emailAlreadySent: !!guestEmail,
     });
   }, 1800);
 }
@@ -2190,12 +2318,14 @@ async function initiatePayment() {
     checkin:      ci,
     checkout:     co,
     nights:       String(nights),
+    room_rate:    String(ROOMS[selRoom].price),
     room_price:   String(finalTotal),
     platform_fee: String(advAmt),
     coupon_used:  activeCoupon || 'None',
     coupon_discount: String(discAmt),   
     guest_name:   name,
     guest_phone:  phone,
+    guest_email:  document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
   };
 
   let orderId;
@@ -2233,7 +2363,7 @@ async function initiatePayment() {
     theme: { color: '#7a0000' },
     modal: { backdropclose: false },
     handler: function(resp) {
-      showReceipt({ invStr, name, phone, ci, co, nights, baseTotal, discAmt, finalTotal, advAmt, payId: resp.razorpay_payment_id });
+      showReceipt({ invStr, name, phone, ci, co, nights, baseTotal, discAmt, finalTotal, advAmt, payId: resp.razorpay_payment_id, roomName: ROOMS[selRoom].name, roomRate: ROOMS[selRoom].price });
     }
   };
 
@@ -2242,66 +2372,588 @@ async function initiatePayment() {
   rzp.open();
 }
 
+// ── PROPERTY CONFIG (one object per property — swap for other hotels/taxi) ──
+const PROPERTY = {
+  id:       'raj-garden',
+  name:     'Hotel Raj Garden',
+  type:     'hotel',                        // 'hotel' | 'taxi'
+  storageKey: 'crulio_booking_raj_garden',  // unique per property
+  sendReceiptEndpoint: 'https://harshdeep-api.vercel.app/api/send-guest-receipt',
+};
+
+// ── SHOW RECEIPT ──────────────────────────────────────────────────────────────
 function showReceipt(d) {
+  receiptSavedByUser = false;
+  // If this booking was already in storage with pdfDownloaded=true, honour it
+  try {
+    const stored = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}');
+    if (stored.pdfDownloaded && stored.invStr === d.invStr) {
+      receiptSavedByUser = true;
+    }
+  } catch(e) {}
+
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  const pdfBadge = document.getElementById('receipt-pdf-saved-badge');
+  if (pdfBadge) pdfBadge.style.display = receiptSavedByUser ? 'block' : 'none';
+  // Normalise: always carry roomName + roomRate in the data object itself
+  // so it works whether selRoom is set or not (e.g. QR flow after tab switch)
+  if (!d.roomName) d.roomName = selRoom ? ROOMS[selRoom].name  : (d.room_type || '—');
+  if (!d.roomRate) d.roomRate = selRoom ? ROOMS[selRoom].price : Math.round(d.finalTotal / (d.nights || 1));
+
   lastBooking = d;
+
+  // ── Email UI setup ────────────────────────────────────────────────────────
+  const emailInput    = document.getElementById('receipt-email-input');
+  const formEmail     = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
+  const knownEmail    = d.guestEmail || formEmail;
+
+  // Reset email section state
+  const autoBanner    = document.getElementById('receipt-email-auto-banner');
+  const quickRow      = document.getElementById('receipt-email-quick-row');
+  const otherLabel    = document.getElementById('receipt-email-other-label');
+  const resendSelfBtn = document.getElementById('resend-self-btn');
+  const resendSelfLbl = document.getElementById('resend-self-label');
+  const emailMsgEl    = document.getElementById('receipt-email-msg');
+  const sendBtn       = document.getElementById('send-email-btn');
+
+  if (emailMsgEl)    { emailMsgEl.style.display = 'none'; emailMsgEl.textContent = ''; }
+  if (sendBtn)       { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  if (emailInput)    emailInput.value = '';
+
+  if (knownEmail && d.emailAlreadySent) {
+    // Auto-sent banner
+    if (autoBanner) autoBanner.style.display = 'block';
+    const addrEl = document.getElementById('receipt-email-auto-address');
+    if (addrEl) addrEl.textContent = knownEmail;
+
+    // "Resend to my email" quick button
+    if (quickRow) quickRow.style.display = 'block';
+    if (resendSelfLbl) resendSelfLbl.textContent = knownEmail;
+
+    // Other email label updated
+    if (otherLabel) otherLabel.textContent = 'Or send to a different email:';
+    if (emailInput) emailInput.placeholder = 'Enter another email address';
+
+  } else if (knownEmail) {
+    // Email known but not yet auto-sent — pre-fill the input
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) { emailInput.value = knownEmail; emailInput.placeholder = 'Enter email address'; }
+
+  } else {
+    // No email known at all
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) emailInput.placeholder = 'Enter email address';
+  }
+
   document.getElementById('r-inv').textContent    = '#' + d.invStr;
   document.getElementById('r-date').textContent   = new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
   document.getElementById('r-name').textContent   = d.name;
   document.getElementById('r-phone').textContent  = '+91 ' + d.phone;
   document.getElementById('r-ci').textContent     = fmtDate(d.ci);
   document.getElementById('r-co').textContent     = fmtDate(d.co);
-  document.getElementById('r-room').textContent   = ROOMS[selRoom].name;
+  document.getElementById('r-room').textContent   = d.roomName;
   document.getElementById('r-nights').textContent = d.nights + ' night' + (d.nights > 1 ? 's' : '');
-  document.getElementById('r-rate').textContent   = '₹' + ROOMS[selRoom].price.toLocaleString() + ' × ' + d.nights;
+  document.getElementById('r-rate').textContent   = '₹' + d.roomRate.toLocaleString('en-IN') + ' × ' + d.nights;
 
   const dr = document.getElementById('r-disc-row');
   if (d.discAmt > 0) {
     dr.style.display = 'flex';
-    document.getElementById('r-disc').textContent = '−₹' + d.discAmt.toLocaleString();
+    document.getElementById('r-disc').textContent = '−₹' + d.discAmt.toLocaleString('en-IN');
   } else { dr.style.display = 'none'; }
 
-  document.getElementById('r-advance').textContent = '₹' + d.advAmt.toLocaleString();
-  document.getElementById('r-remain').textContent  = '₹' + (d.finalTotal - d.advAmt).toLocaleString();
+  document.getElementById('r-total').textContent   = '₹' + d.finalTotal.toLocaleString('en-IN');
+  document.getElementById('r-advance').textContent = '₹' + d.advAmt.toLocaleString('en-IN');
+  document.getElementById('r-remain').textContent  = '₹' + (d.finalTotal - d.advAmt).toLocaleString('en-IN');
   document.getElementById('r-pid').textContent     = d.payId;
+
+  // Save to localStorage immediately
+  saveBookingToStorage(d);
 
   document.getElementById('receiptOverlay').classList.add('open');
 }
 
-function buildReceiptMsg(d, forHotel) {
-  const discLine = d.discAmt > 0 ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString() : '';
-  const header = forHotel
-    ? '🏨 *NEW BOOKING — Hotel Raj Garden*\n✅ 15% Advance Paid: ₹' + d.advAmt.toLocaleString()
-    : '🧾 *Your Booking Receipt — Hotel Raj Garden*';
-  return header + '\n\n━━━━━━━━━━━━━━━━━━━━\n' +
+// ── BUILD RECEIPT TEXT (single source of truth — WA copy = PDF = email) ──────
+function buildReceiptMsg(d) {
+  const discLine = d.discAmt > 0
+    ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString('en-IN')
+    : '';
+  const roomName = d.roomName || '—';
+  const roomRate = d.roomRate || 0;
+  const bookDate = new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
+
+  return (
+    '🧾 *Booking Receipt — ' + PROPERTY.name + '*\n\n' +
+    '━━━━━━━━━━━━━━━━━━━━\n' +
     '📋 *Invoice:* #' + d.invStr + '\n' +
-    '📅 *Date:* ' + new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) + '\n' +
+    '📅 *Date:* ' + bookDate + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
     '👤 *Guest:* ' + d.name + '\n' +
     '📱 *Phone:* +91 ' + d.phone + '\n' +
-    '🛏️ *Room:* ' + ROOMS[selRoom].name + '\n' +
+    '🛏️ *Room:* ' + roomName + '\n' +
     '📅 *Check-in:* ' + fmtDate(d.ci) + '\n' +
     '📅 *Check-out:* ' + fmtDate(d.co) + '\n' +
     '🌙 *Nights:* ' + d.nights + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
-    '💵 *Room Rate:* ₹' + ROOMS[selRoom].price.toLocaleString() + ' × ' + d.nights + discLine + '\n' +
-    '✅ *Paid Now (15% advance):* ₹' + d.advAmt.toLocaleString() + '\n' +
-    '🏦 *Remaining at Hotel:* ₹' + (d.finalTotal - d.advAmt).toLocaleString() + '\n' +
+    '💵 *Room Rate:* ₹' + roomRate.toLocaleString('en-IN') + ' × ' + d.nights +
+    discLine + '\n' +
+    '🏷️ *Total Room Price:* ₹' + d.finalTotal.toLocaleString('en-IN') + '\n' +
+    '✅ *Advance Paid (15%):* ₹' + d.advAmt.toLocaleString('en-IN') + '\n' +
+    '🏦 *Remaining at Hotel:* ₹' + (d.finalTotal - d.advAmt).toLocaleString('en-IN') + '\n' +
     '🆔 *Payment ID:* ' + d.payId + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
-    (forHotel
-      ? '🔔 ₹' + d.advAmt.toLocaleString() + ' paid online. Collect ₹' + (d.finalTotal - d.advAmt).toLocaleString() + ' at check-in.\n_Via ManaunaDham.org.in_'
-      : '⚠️ Show this at check-in.\nCheck-in after 1 PM · Check-out before 11 AM\n_ManaunaDham.org.in_');
+    '⚠️ Show this at check-in.\n' +
+    'Check-in after 1 PM · Check-out before 11 AM\n' +
+    '_' + PROPERTY.name + ' via Crulio.com/ManaunaDham_'
+  );
 }
 
-function shareReceiptToCustomer() {
+// ── COPY RECEIPT TEXT TO CLIPBOARD ───────────────────────────────────────────
+function copyReceiptText(btn) {
   if (!lastBooking) return;
-  const msg = buildReceiptMsg(lastBooking, false);
-  window.open('https://wa.me/91' + lastBooking.phone + '?text=' + encodeURIComponent(msg), '_blank');
+  const text = buildReceiptMsg(lastBooking);
+  navigator.clipboard.writeText(text).then(() => {
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  }).catch(() => {
+    // Fallback for older browsers / iOS
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  });
+}
+
+// ── RESEND TO ORIGINAL EMAIL (one-tap) ───────────────────────────────────────
+async function resendToSelf() {
+  if (!lastBooking) return;
+  const email = lastBooking.guestEmail || '';
+  if (!email) return;
+
+  const btn = document.getElementById('resend-self-btn');
+  if (btn) { btn.textContent = '⏳ Sending…'; btn.disabled = true; }
+
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      roomName:     lastBooking.roomName,
+      roomRate:     lastBooking.roomRate,
+      ci:           lastBooking.ci,
+      co:           lastBooking.co,
+      nights:       lastBooking.nights,
+      discAmt:      lastBooking.discAmt,
+      finalTotal:   lastBooking.finalTotal,
+      advAmt:       lastBooking.advAmt,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt resent to ' + email + '! Check your inbox.', 'ok');
+    if (btn) { btn.textContent = '✓ Sent to ' + email; }
+  } catch (err) {
+    showEmailMsg('❌ Could not resend. Please use the email field below.', 'error');
+    if (btn) { btn.textContent = '↩ Resend to ' + email; btn.disabled = false; }
+  }
+}
+
+// ── SEND RECEIPT TO EMAIL ─────────────────────────────────────────────────────
+async function sendReceiptEmail() {
+  if (!lastBooking) return;
+  const emailInput = document.getElementById('receipt-email-input');
+  const msgEl      = document.getElementById('receipt-email-msg');
+  const btn        = document.getElementById('send-email-btn');
+  const email      = emailInput.value.trim();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showEmailMsg('Please enter a valid email address.', 'error');
+    emailInput.focus();
+    return;
+  }
+
+  btn.textContent = '⏳ Sending…';
+  btn.disabled = true;
+
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      roomName:     lastBooking.roomName,
+      roomRate:     lastBooking.roomRate,
+      ci:           lastBooking.ci,
+      co:           lastBooking.co,
+      nights:       lastBooking.nights,
+      discAmt:      lastBooking.discAmt,
+      finalTotal:   lastBooking.finalTotal,
+      advAmt:       lastBooking.advAmt,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt sent! Check your inbox (also check spam).', 'ok');
+    btn.textContent = '✓ Sent';
+  } catch (err) {
+    showEmailMsg('❌ Could not send. Please copy the text instead.', 'error');
+    btn.textContent = '✉️ Send';
+    btn.disabled = false;
+  }
+}
+
+function showEmailMsg(text, type) {
+  const el = document.getElementById('receipt-email-msg');
+  el.textContent = text;
+  el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+// ── WHATSAPP DEEP LINK — send receipt text to WhatsApp ────────────────────────
+function sendReceiptWhatsApp() {
+  if (!lastBooking) return;
+  const text = buildReceiptMsg(lastBooking);
+  const encoded = encodeURIComponent(text);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
+}
+
+// ── RESEND RECEIPT BY INVOICE NUMBER ─────────────────────────────────────────
+async function resendReceiptByInvoice() {
+  const invoiceInput = document.getElementById('resend-invoice-input');
+  const emailInput   = document.getElementById('resend-email-input');
+  const btn          = document.getElementById('resend-btn');
+
+  const invoice = invoiceInput.value.trim().toUpperCase();
+  const email   = emailInput.value.trim();
+
+  if (!invoice) {
+    showResendMsg('Please enter your invoice number.', 'error'); return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showResendMsg('Please enter a valid email address.', 'error'); return;
+  }
+
+  btn.textContent = '⏳ Looking up…';
+  btn.disabled = true;
+
+  try {
+    // 1. Look up booking by invoice number (public endpoint — no secret needed)
+    const lookupResp = await fetch(
+      `https://harshdeep-api.vercel.app/api/resend-lookup?invoice=${encodeURIComponent(invoice)}`
+    );
+    const lookupData = await lookupResp.json();
+
+    if (!lookupResp.ok || !lookupData.found) {
+      showResendMsg('❌ Invoice not found. Please double-check the number or contact us on WhatsApp.', 'error');
+      btn.textContent = 'Resend Receipt';
+      btn.disabled = false;
+      return;
+    }
+
+    const b = lookupData.booking;
+    const isTaxi = !!b.pickupLocation;
+
+    // 2. Send receipt email using existing send-guest-receipt endpoint
+    const payload = isTaxi ? {
+      propertyType:  'taxi',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    'taxi-service',
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      carType:       b.roomType,
+      passengers:    b.passengers,
+      pickupLabel:   b.pickupLocation,
+      dropLocation:  b.dropLocation,
+      totalFare:     b.roomPrice,
+      discAmt:       b.couponDiscount,
+      advancePaid:   b.advancePaid,
+      platformFee:   b.platformFees,
+      payId:         b.paymentId,
+    } : {
+      propertyType:  'hotel',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    PROPERTY.id,
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      roomName:      b.roomType,
+      roomRate:      String(Math.round((b.roomPrice || 0) / (b.nights || 1))),
+      ci:            b.checkin,
+      co:            b.checkout,
+      nights:        b.nights,
+      discAmt:       b.couponDiscount,
+      finalTotal:    b.roomPrice,
+      advAmt:        b.advancePaid,
+      payId:         b.paymentId,
+    };
+
+    const sendResp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!sendResp.ok) throw new Error('Send failed');
+
+    showResendMsg('✅ Receipt sent! Check your inbox (and spam folder just in case).', 'ok');
+    btn.textContent = '✓ Sent';
+
+  } catch (err) {
+    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp.', 'error');
+    btn.textContent = 'Resend Receipt';
+    btn.disabled = false;
+  }
+}
+
+function showResendMsg(text, type) {
+  const el = document.getElementById('resend-msg');
+  el.textContent = text;
+  el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+// ── LOCALSTORAGE: SAVE & RESTORE ──────────────────────────────────────────────
+const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+function saveBookingToStorage(d) {
+  try {
+    // Preserve existing pdfDownloaded flag if already set
+    let existing = {};
+    try { existing = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}'); } catch(e) {}
+    const record = {
+      ...d,
+      savedAt:      Date.now(),
+      propertyId:   PROPERTY.id,
+      pdfDownloaded: existing.pdfDownloaded || false,
+    };
+    localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+  } catch (e) { /* storage full or private mode — fail silently */ }
+}
+
+function loadBookingFromStorage() {
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (!raw) return null;
+    const record = JSON.parse(raw);
+    if (!record.savedAt || (Date.now() - record.savedAt) > STORAGE_TTL_MS) {
+      localStorage.removeItem(PROPERTY.storageKey);
+      return null;
+    }
+    return record;
+  } catch (e) { return null; }
+}
+
+function restoreReceiptFromStorage() {
+  const d = loadBookingFromStorage();
+  if (!d) { alert('Receipt has expired. Please contact the hotel.'); return; }
+  document.getElementById('returning-guest-banner').style.display = 'none';
+  showReceipt(d);
+}
+
+function dismissReturningBanner() {
+  document.getElementById('returning-guest-banner').style.display = 'none';
+}
+
+// ── PENDING QR RESUME — re-shows QR or receipt seamlessly on tab reload ────────
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('rg_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
+
+  // Hard-expire after 24h
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem('rg_pending_qr');
+    return;
+  }
+
+  // Check if payment has gone through
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
+
+    if (data.paid) {
+      // ── PAID: clear QR session, show receipt immediately ──────────────────
+      localStorage.removeItem('rg_pending_qr');
+      const n = pending.notes || {};
+      const guestEmail = n.guest_email || '';
+      const receiptData = {
+        invStr:           n.invoice_no  || ('RG' + Date.now()),
+        name:             n.guest_name,
+        phone:            n.guest_phone,
+        ci:               n.checkin,
+        co:               n.checkout,
+        nights:           parseInt(n.nights),
+        baseTotal:        parseInt(n.room_price),
+        discAmt:          parseInt(n.coupon_discount) || 0,
+        finalTotal:       parseInt(n.room_price),
+        advAmt:           parseInt(n.platform_fee),
+        payId:            data.payment_id || 'Verified',
+        roomName:         n.room_type,
+        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+        guestEmail:       guestEmail,
+        emailAlreadySent: !!guestEmail,
+      };
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
+
+    } else {
+      // ── NOT YET PAID: re-open the QR modal with the same QR image ─────────
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000; // 10 min scanning window
+      if (qrExpired) { localStorage.removeItem('rg_pending_qr'); return; }
+
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      if (pending.imageUrl) {
+        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+        setQRState('ready');
+      } else {
+        setQRState('loading');
+      }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
+    }
+
+  } catch(e) {
+    // Network error — still re-show QR if image is stored and it hasn't expired
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
+    }
+  }
+}
+
+function checkForReturningGuest() {
+  const d = loadBookingFromStorage();
+  if (!d) return;
+
+  const banner = document.getElementById('returning-guest-banner');
+  const pdfNote = d.pdfDownloaded
+    ? '<span style="color:#1a5c2a;font-size:13px;margin-left:10px;">✅ PDF saved</span>'
+    : '<span style="color:#c47000;font-size:13px;margin-left:10px;">⚠️ PDF not yet saved</span>';
+
+  banner.innerHTML =
+    '<span style="font-size:14px;font-weight:700;color:#1a5c2a;">🏨 Welcome back! Your booking receipt is ready.' + pdfNote + '</span>' +
+    '<button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>' +
+    '<button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>';
+
+  banner.style.display = 'block';
+}
+
+// ── SAFE CLOSE — warns user to save PDF first ────────────────────────────────
+let receiptSavedByUser = false;
+
+function savePDFAndMark() {
+  receiptSavedByUser = true;
+  // Mark in storage that the PDF has been downloaded
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (raw) {
+      const record = JSON.parse(raw);
+      record.pdfDownloaded = true;
+      localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+    }
+  } catch(e) {}
+  // Hide the reminder if it was showing
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  window.print();
+}
+
+function closeReceiptSafe() {
+  if (!receiptSavedByUser) {
+    // Show the warning strip instead of closing
+    const reminder = document.getElementById('receipt-save-reminder');
+    if (reminder) reminder.style.display = 'block';
+    // Scroll to it so user sees it on mobile
+    reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  // Already saved — clear storage and close
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  closeReceipt();
+}
+
+function confirmCloseReceipt() {
+  receiptSavedByUser = true;
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  closeReceipt();
 }
 
 function closeReceipt() {
   document.getElementById('receiptOverlay').classList.remove('open');
-  ['g-name','g-phone','g-checkin','g-checkout','coupon-input'].forEach(id => document.getElementById(id).value = '');
+  // Reset email send UI
+  const emailInput = document.getElementById('receipt-email-input');
+  const emailMsg   = document.getElementById('receipt-email-msg');
+  const sendBtn    = document.getElementById('send-email-btn');
+  if (emailInput) emailInput.value = '';
+  if (emailMsg)   { emailMsg.style.display = 'none'; emailMsg.textContent = ''; }
+  if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  // Reset new email UI
+  const autoBanner = document.getElementById('receipt-email-auto-banner');
+  const quickRow   = document.getElementById('receipt-email-quick-row');
+  const selfBtn    = document.getElementById('resend-self-btn');
+  if (autoBanner) autoBanner.style.display = 'none';
+  if (quickRow)   quickRow.style.display = 'none';
+  if (selfBtn)    { selfBtn.textContent = '<i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>'; selfBtn.disabled = false; }
+  // Reset form
+  ['g-name','g-phone','g-checkin','g-checkout','g-email','coupon-input'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
   selRoom = null; nights = 0; finalTotal = 0; discAmt = 0; activeCoupon = null; lastBooking = null;
   document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
   document.getElementById('stay-summary').classList.remove('show');
@@ -2426,7 +3078,7 @@ I need help completing my online payment for a room booking.
 💳 *15% Advance to Pay:* ₹${advance.toLocaleString()}${issueLine}${blockedLine}
 
 Please guide me to complete the online payment. 🙏
-_Sent via ManaunaDham.org.in_`;
+_Sent via Crulio.com/ManaunaDham_`;
 
   window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
 }
@@ -2494,6 +3146,8 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   initCouponBanner();
   document.getElementById('wa-checkout').addEventListener('change', calcWAStay);
+  checkForReturningGuest();
+  resumePendingQRIfAny();   // ← new: check if a QR payment was done while browser was closed
 
   // ▼ Fetch blocked dates + owner note from admin API
   fetchBlockedDates();
@@ -2557,5 +3211,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 </script>
   <script src="../../assets/manauna-support-chat.js"></script>
+
+
 </body>
 </html>
