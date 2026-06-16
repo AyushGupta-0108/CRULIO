@@ -1870,27 +1870,63 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     <div style="text-align:center;margin-bottom:20px;">
       <div style="font-size:28px;margin-bottom:8px;">📧</div>
       <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
-      <p style="margin:0;font-size:13px;color:#888;line-height:1.5;">Enter your invoice number and email below — we'll resend it instantly.</p>
+      <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">Enter your <strong style="color:#5a0000;">phone number</strong> and/or <strong style="color:#5a0000;">receipt number</strong> — we'll find and resend your booking instantly.</p>
     </div>
+
+    <!-- How it works hint -->
+    <div style="background:#fff8e1;border:1px solid #e8c870;border-radius:10px;padding:12px 15px;margin-bottom:16px;font-size:12.5px;color:#5a4000;line-height:1.7;">
+      <strong style="color:#7a0000;">How it works:</strong><br>
+      📱 <strong>Phone only</strong> — we find your latest booking automatically.<br>
+      🧾 <strong>Receipt no. only</strong> — we look it up directly.<br>
+      📱🧾 <strong>Both</strong> — we verify and send the exact matching booking.
+    </div>
+
     <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
+
+      <!-- Phone number -->
       <div style="margin-bottom:12px;">
-        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Invoice Number</label>
-        <input type="text" id="resend-invoice-input" placeholder="e.g. RG0828042"
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          📱 Phone Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(used at booking)</span>
+        </label>
+        <input type="tel" id="resend-phone-input" placeholder="10-digit mobile number" maxlength="10"
           style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
           onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
       </div>
+
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px;">
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+        <span style="font-size:11px;color:#b0a090;font-weight:600;">AND / OR</span>
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+      </div>
+
+      <!-- Invoice number -->
       <div style="margin-bottom:16px;">
-        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">Email Address</label>
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          🧾 Receipt / Invoice Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(e.g. RG0828042)</span>
+        </label>
+        <input type="text" id="resend-invoice-input" placeholder="e.g. RG0828042"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;text-transform:uppercase;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'"
+          oninput="this.value=this.value.toUpperCase()">
+      </div>
+
+      <!-- Email -->
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          ✉️ Email Address <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(where to send the receipt)</span>
+        </label>
         <input type="email" id="resend-email-input" placeholder="your@email.com"
           style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
           onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
       </div>
+
       <button id="resend-btn" onclick="resendReceiptByInvoice()"
-        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;"
+        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;"
         onmouseover="this.style.background='#4d0000'" onmouseout="this.style.background='#7a0000'">
-        Resend Receipt
+        <i class="fa fa-paper-plane"></i> <span id="resend-btn-text">Find &amp; Resend Receipt</span>
       </button>
-      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;"></div>
+      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;line-height:1.6;"></div>
     </div>
     <p style="text-align:center;font-size:12px;color:#aaa;margin-top:14px;">
       Still having trouble? WhatsApp us at <a href="https://wa.me/917817803342" target="_blank" style="color:#7a0000;">+91 7817803342</a>
@@ -2647,43 +2683,66 @@ function sendReceiptWhatsApp() {
   window.open('https://wa.me/?text=' + encoded, '_blank');
 }
 
-// ── RESEND RECEIPT BY INVOICE NUMBER ─────────────────────────────────────────
+// ── RESEND RECEIPT BY PHONE / INVOICE / BOTH ─────────────────────────────────
 async function resendReceiptByInvoice() {
   const invoiceInput = document.getElementById('resend-invoice-input');
+  const phoneInput   = document.getElementById('resend-phone-input');
   const emailInput   = document.getElementById('resend-email-input');
   const btn          = document.getElementById('resend-btn');
+  const btnText      = document.getElementById('resend-btn-text');
 
-  const invoice = invoiceInput.value.trim().toUpperCase();
-  const email   = emailInput.value.trim();
+  const invoice = (invoiceInput.value || '').trim().toUpperCase();
+  const phone   = (phoneInput.value   || '').trim().replace(/\D/g, '');
+  const email   = (emailInput.value   || '').trim();
 
-  if (!invoice) {
-    showResendMsg('Please enter your invoice number.', 'error'); return;
+  // ── Validate: at least one identifier ──
+  if (!invoice && !phone) {
+    showResendMsg('Please enter your phone number and/or invoice/receipt number.', 'error'); return;
   }
+  // ── Validate phone if given ──
+  if (phone && !/^\d{10}$/.test(phone)) {
+    showResendMsg('Please enter a valid 10-digit phone number.', 'error'); return;
+  }
+  // ── Validate email ──
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showResendMsg('Please enter a valid email address.', 'error'); return;
+    showResendMsg('Please enter a valid email address to receive the receipt.', 'error'); return;
   }
 
-  btn.textContent = '⏳ Looking up…';
   btn.disabled = true;
+  btnText.textContent = '⏳ Looking up booking…';
 
   try {
-    // 1. Look up booking by invoice number (public endpoint — no secret needed)
-    const lookupResp = await fetch(
-      `https://harshdeep-api.vercel.app/api/resend-lookup?invoice=${encodeURIComponent(invoice)}`
-    );
+    // Build lookup URL based on what the guest provided
+    let lookupUrl = 'https://harshdeep-api.vercel.app/api/resend-lookup?';
+    if (phone)   lookupUrl += 'phone='   + encodeURIComponent(phone);
+    if (phone && invoice) lookupUrl += '&';
+    if (invoice) lookupUrl += 'invoice=' + encodeURIComponent(invoice);
+
+    const lookupResp = await fetch(lookupUrl);
     const lookupData = await lookupResp.json();
 
     if (!lookupResp.ok || !lookupData.found) {
-      showResendMsg('❌ Invoice not found. Please double-check the number or contact us on WhatsApp.', 'error');
-      btn.textContent = 'Resend Receipt';
+      // Give contextual error messages
+      let msg = '❌ No booking found. ';
+      if (phone && invoice) {
+        msg += 'Please make sure both your phone number and receipt number are correct.';
+      } else if (invoice) {
+        msg += 'Please double-check the receipt number (e.g. RG0828042).';
+      } else {
+        msg += 'No booking was found for this phone number. Try adding the receipt number too.';
+      }
+      msg += ' Need help? WhatsApp us at +91 7817803342.';
+      showResendMsg(msg, 'error');
       btn.disabled = false;
+      btnText.textContent = 'Find & Resend Receipt';
       return;
     }
 
-    const b = lookupData.booking;
-    const isTaxi = !!b.pickupLocation;
+    const b       = lookupData.booking;
+    const isTaxi  = !!b.pickupLocation;
+    btnText.textContent = '📨 Sending receipt…';
 
-    // 2. Send receipt email using existing send-guest-receipt endpoint
+    // Build the email payload
     const payload = isTaxi ? {
       propertyType:  'taxi',
       propertyName:  b.hotelName || PROPERTY.name,
@@ -2727,19 +2786,26 @@ async function resendReceiptByInvoice() {
     });
     if (!sendResp.ok) throw new Error('Send failed');
 
-    showResendMsg('✅ Receipt sent! Check your inbox (and spam folder just in case).', 'ok');
-    btn.textContent = '✓ Sent';
+    // Success — show booking summary + confirmation
+    const guestLabel = b.guestName ? ' for ' + b.guestName : '';
+    const dateLabel  = b.checkin   ? ' (check-in ' + fmtDate(b.checkin) + ')' : '';
+    showResendMsg(
+      '✅ Receipt sent! Booking' + guestLabel + ' · Invoice ' + b.invoiceNo + dateLabel +
+      '.\nPlease check your inbox (and spam/junk folder just in case).',
+      'ok'
+    );
+    btnText.textContent = '✓ Receipt Sent';
 
   } catch (err) {
-    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp.', 'error');
-    btn.textContent = 'Resend Receipt';
+    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp at +91 7817803342.', 'error');
     btn.disabled = false;
+    btnText.textContent = 'Find & Resend Receipt';
   }
 }
 
 function showResendMsg(text, type) {
   const el = document.getElementById('resend-msg');
-  el.textContent = text;
+  el.innerHTML = text.replace(/\n/g, '<br>');
   el.style.display = 'block';
   el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
   el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
