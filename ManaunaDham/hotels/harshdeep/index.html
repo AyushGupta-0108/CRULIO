@@ -10,7 +10,7 @@
 <link rel="icon" href="https://www.crulio.com/ManaunaDham/images/web/logonobg.png" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -49,17 +49,21 @@
   --wa-green: #25D366;
   --wa-dark: #128C7E;
   --bg: #fff6e6;
+  --bg2: #fffdf9;
   --white: #ffffff;
   --text: #2a2a2a;
   --text-muted: #666;
   --border: #e8d5b0;
+  --border-soft: #f0e6d0;
   --success: #0a5c2a;
   --success-bg: #e6f4ec;
   --error: #c00;
   --error-bg: #fff0f0;
   --shadow: 0 4px 24px rgba(122,0,0,0.08);
+  --shadow-sm: 0 2px 12px rgba(122,0,0,0.07);
   --shadow-lg: 0 8px 40px rgba(122,0,0,0.15);
   --radius: 14px;
+  --radius-sm: 8px;
   --transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
   /* Crulio parent brand */
   --crulio-navy: #1a2f5e;
@@ -94,6 +98,47 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .mobile-menu { display: none; flex-direction: column; background: var(--maroon-dark); }
 .mobile-menu a { padding: 12px 20px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; transition: background 0.15s; }
 .mobile-menu a:hover { background: rgba(255,255,255,0.08); }
+
+/* ══ OWNER NOTE BANNER ══ */
+#owner-note-banner {
+  display: none;
+  background: linear-gradient(90deg, #fff8e1, #fffde7, #fff8e1);
+  border-bottom: 2.5px solid var(--gold);
+  color: #5a3c00;
+  padding: 11px 24px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(212,160,23,0.15);
+}
+#owner-note-banner.show { display: flex; animation: noteSlideIn .35s ease; }
+@keyframes noteSlideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.onb-icon { font-size: 17px; flex-shrink: 0; }
+#owner-note-text { line-height: 1.5; }
+
+/* ══ BLOCKED DATE WARNING ══ */
+.blocked-warning {
+  background: #fff0f0;
+  border: 1.5px solid #e08080;
+  border-radius: 10px;
+  padding: 13px 17px;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  color: #8a0000;
+  font-weight: 600;
+  display: none;
+  align-items: flex-start;
+  gap: 10px;
+  animation: fadeSlideIn .3s ease;
+}
+.blocked-warning.show { display: flex; }
+.blocked-warning i { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.blocked-warning .bw-msg { line-height: 1.6; }
+.blocked-warning .bw-dates { font-size: 12px; color: #c00; margin-top: 4px; opacity: .85; }
 
 /* CTA BAR */
 .cta-bar { background: white; padding: 18px 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
@@ -218,11 +263,13 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 /* Stay Summary */
 .stay-summary { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; display: none; animation: fadeUp 0.3s ease; }
 .stay-summary.show { display: block; }
-.s-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--text-muted); }
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.s-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border-soft); }
+.s-row:last-child { border-bottom: none; }
 .s-row .sv { font-weight: 600; color: var(--text); }
-.s-row.s-total { border-top: 2px solid var(--border); margin-top: 8px; padding-top: 12px; font-weight: 700; font-size: 15px; color: var(--text); }
+.s-row.s-total { border-top: 2px solid var(--border); margin-top: 8px; padding-top: 12px; font-weight: 700; font-size: 15px; color: var(--text); border-bottom: none; }
 .s-row.s-total .sv { color: var(--text); }
-.s-row.s-advance { font-weight: 800; font-size: 17px; color: var(--green); padding-top: 8px; }
+.s-row.s-advance { font-weight: 800; font-size: 17px; color: var(--green); padding-top: 8px; border-bottom: none; }
 .s-row.s-advance .sv { color: var(--green); font-size: 19px; }
 .s-row.s-disc { color: var(--green); }
 .s-row.s-disc .sv { color: var(--green); }
@@ -240,8 +287,8 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .coupon-msg.no { display: block; background: var(--error-bg); color: var(--error); }
 
 /* Pay Button */
-.pay-btn { width: 100%; padding: 18px; background: var(--maroon); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
-.pay-btn:hover { background: var(--maroon-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(122,0,0,0.3); }
+.pay-btn { width: 100%; padding: 18px; background: #555; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+.pay-btn:hover { background: #444; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
 .pay-btn:active { transform: translateY(0); }
 .secure-note { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
@@ -369,8 +416,9 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .modal-close:hover { color: var(--gold-light); }
 
 /* Receipt Modal */
-.receipt-overlay { display: none; position: fixed; z-index: 10000; inset: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
-.receipt-overlay.open { display: flex; }
+.receipt-overlay { display: none; position: fixed; z-index: 10000; inset: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; padding: 20px; overflow-y: auto; backdrop-filter: blur(6px); }
+.receipt-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .receipt-box { background: white; border-radius: 16px; width: 100%; max-width: 500px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: slideUp .3s ease; }
 @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .rh { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: white; padding: 28px; text-align: center; }
@@ -399,16 +447,6 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .rbtn-print:hover { background: var(--maroon-dark); }
 .rbtn-close { background: white; color: var(--text); border: 2px solid var(--border); }
 .rbtn-close:hover { background: #f0f0f0; }
-.ract-wa { display: flex; flex-direction: column; gap: 8px; padding: 0 28px 20px; }
-.ract-wa-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 2px; }
-.rbtn-wa-customer {
-  width: 100%; padding: 12px; border-radius: 8px;
-  background: #25D366; color: white; border: none;
-  font-weight: 700; font-size: 14px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: all .2s;
-}
-.rbtn-wa-customer:hover { background: #128C7E; }
 .wa-auto-note { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 28px 16px; }
 
 @media print {
@@ -428,13 +466,10 @@ nav a:hover { border-color: var(--gold-light); color: var(--gold-light); }
     position: static !important;
     border-radius: 0 !important;
   }
-  .ract, .ract-wa, .wa-auto-note { display: none !important; }
+  .ract, .wa-auto-note, #receipt-email-msg { display: none !important; }
+  div[style*="receipt-email-input"], div[style*="Save Your Receipt"] { display: none !important; }
   @page { margin: 10mm; size: A5 portrait; }
 }
-
-footer { background: var(--maroon-dark); color: white; text-align: center; padding: 30px; margin-top: 40px; }
-footer p { margin-bottom: 6px; font-size: 14px; }
-footer p:last-child { font-size: 12px; opacity: .7; }
 
 /* HOTEL TITLE STRIP */
 .hotel-strip {
@@ -515,6 +550,27 @@ footer p:last-child { font-size: 12px; opacity: .7; }
 }
 .rzp-btn-cancel:hover { color: var(--text); }
 
+/* QR ANIMATIONS */
+@keyframes qrSpin { to { transform: rotate(360deg); } }
+@keyframes qrProg { from { width: 20%; } to { width: 85%; } }
+
+/* AVAIL LOADING */
+.avail-loading {
+  display: none;
+  font-size: 12px; color: var(--text-muted);
+  align-items: center; gap: 6px;
+  margin-top: 6px;
+}
+.avail-loading.show { display: flex; }
+.avail-spinner {
+  width: 12px; height: 12px;
+  border: 2px solid #e0d0d0;
+  border-top-color: var(--maroon);
+  border-radius: 50%;
+  animation: qrSpin .7s linear infinite;
+  flex-shrink: 0;
+}
+
 @media(max-width: 768px) {
   nav { display: none; }
   .menu-btn { display: block; }
@@ -527,7 +583,6 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   .cta-btn { justify-content: center; }
   .rb { padding: 20px; }
   .ract { padding: 4px 20px 20px; }
-  .ract-wa { padding: 0 20px 16px; }
   .wa-auto-note { padding: 0 20px 12px; }
   .rr.rr-big, .rr.rr-hotel { margin: 0 -20px; padding: 12px 20px; }
   .bcb-options { grid-template-columns: 1fr; }
@@ -538,6 +593,7 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   .photo-hero-grid img:first-child { grid-row: 1; }
   .hotel-strip { padding: 14px 16px; }
   .hotel-strip-left h1 { font-size: 18px; }
+  #owner-note-banner { font-size: 12.5px; padding: 10px 16px; }
 }
 
 /* ── CRULIO NETWORK BAR ── */
@@ -699,7 +755,18 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   </div>
 </header>
 
+<!-- ▼▼▼ OWNER NOTE BANNER — shown only when hotel sets a notice ▼▼▼ -->
+<div id="owner-note-banner">
+  <span class="onb-icon">📌</span>
+  <span id="owner-note-text"></span>
+</div>
 
+<!-- ▼ RETURNING GUEST BANNER — shown if recent booking found in localStorage ▼ -->
+<div id="returning-guest-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border-bottom:2.5px solid #81c784;padding:12px 20px;text-align:center;">
+  <span style="font-size:14px;font-weight:700;color:#1a5c2a;">✅ Welcome back! Your recent booking receipt is ready.</span>
+  <button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>
+  <button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>
+</div>
 
 <!-- HOTEL TITLE STRIP -->
 <div class="hotel-strip fade-up fade-up-1">
@@ -728,8 +795,6 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   </button>
 </div>
 
-
-
 <!-- ONLINE BOOKING WIDGET -->
 <div id="booking-section" class="fade-up fade-up-3">
   <div class="booking-header">
@@ -742,7 +807,7 @@ footer p:last-child { font-size: 12px; opacity: .7; }
       <span class="be-icon">🔒</span>
       <div>
         <div class="be-title">How booking works</div>
-        <div class="be-text">Pay <strong>15% advance</strong> now to confirm your room. The remaining 85% is paid at the hotel on arrival. </div>
+        <div class="be-text">Pay <strong>15% advance</strong> now to confirm your room. The remaining 85% is paid at the hotel on arrival.</div>
       </div>
     </div>
 
@@ -786,7 +851,36 @@ footer p:last-child { font-size: 12px; opacity: .7; }
         <label>Check-out Date <span class="req">*</span></label>
         <input type="date" id="g-checkout" onchange="calcStay()">
       </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Email Address <span style="color:var(--text-muted);font-weight:400;">(optional — for instant receipt)</span></label>
+        <input type="email" id="g-email" placeholder="e.g. ramesh@gmail.com" autocomplete="email">
+      </div>
     </div>
+
+    <!-- ▼ BLOCKED DATE WARNING — online booking -->
+    <div class="blocked-warning" id="blocked-warning-online">
+      <i class="fa fa-ban"></i>
+      <div class="bw-msg">
+        <strong>These dates are fully booked.</strong>
+        <div class="bw-dates" id="blocked-warning-dates-online"></div>
+        Please choose different dates to proceed.
+      </div>
+    </div>
+
+    <div id="hotel-notice-box" style="
+  display:none;
+  background: linear-gradient(135deg, #fff8e1, #fffde7);
+  border: 2px solid #d4a017;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  color: #5a3c00;
+  font-weight: 600;
+">
+  <strong style="color:#7a0000;">📢 Notice from HOTEL:</strong>
+  <div id="hotel-notice-text" style="margin-top:6px;"></div>
+</div>
 
     <div class="stay-summary" id="stay-summary">
       <div class="s-row"><span>Room Type</span><span class="sv" id="s-room">—</span></div>
@@ -794,8 +888,8 @@ footer p:last-child { font-size: 12px; opacity: .7; }
       <div class="s-row"><span>Room Rate</span><span class="sv" id="s-rate">—</span></div>
       <div class="s-row s-disc" id="s-disc-row" style="display:none;"><span>Coupon Discount</span><span class="sv" id="s-disc">—</span></div>
       <div class="s-row s-total"><span>Room Price (pay at hotel)</span><span class="sv" id="s-total">—</span></div>
+      <div class="s-row s-hotel" style="border-bottom:none;"><span>🏨 Remaining at Hotel</span><span class="sv" id="s-remain">—</span></div>
       <div class="s-row s-advance"><span>💳 Advance — 15% (pay now)</span><span class="sv" id="s-advance">—</span></div>
-      <div class="s-row s-hotel"><span>🏨 Remaining at Hotel</span><span class="sv" id="s-remain">—</span></div>
     </div>
 
     <div id="coupon-banner" style="margin-bottom:20px;">
@@ -832,13 +926,24 @@ footer p:last-child { font-size: 12px; opacity: .7; }
     </div>
 
     <!-- RAZORPAY POPUP BUTTON — triggers confirmation dialog -->
-    <button class="pay-btn" id="pay-btn" onclick="askRazorpayConfirm()" style="background:#555;font-size:15px;padding:14px;">
+    <button class="pay-btn" id="pay-btn" onclick="askRazorpayConfirm()" style="font-size:15px;padding:14px;">
       <i class="fa fa-lock" style="font-size:13px;"></i>
       <span id="rzp-btn-label" style="font-size:14px;">Direct UPI Apps / Card / Net Banking</span>
     </button>
     <div class="secure-note">
       <i class="fa fa-shield-alt" style="color:var(--green)"></i>
       Powered by Razorpay · 100% Secure · UPI, Cards, Net Banking, Wallets
+    </div>
+
+    <!-- Resend Receipt Link -->
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="document.getElementById('resend-section').scrollIntoView({behavior:'smooth'})"
+        style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12.5px;font-family:inherit;padding:6px 10px;border-radius:6px;transition:all .2s;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(107,107,107,0.4);"
+        onmouseover="this.style.color='var(--maroon)';this.style.textDecorationColor='var(--maroon)'"
+        onmouseout="this.style.color='var(--text-muted)';this.style.textDecorationColor='rgba(107,107,107,0.4)'">
+        <i class="fa fa-envelope" style="font-size:11px;"></i>
+        Didn't receive your receipt?
+      </button>
     </div>
 
     <div class="or-divider">Facing trouble paying online?</div>
@@ -933,11 +1038,24 @@ footer p:last-child { font-size: 12px; opacity: .7; }
       </div>
     </div>
 
+    <!-- ▼ BLOCKED DATE WARNING — WA section -->
+    <div class="blocked-warning" id="blocked-warning-wa">
+      <i class="fa fa-ban"></i>
+      <div class="bw-msg">
+        <strong>These dates are fully booked.</strong>
+        <div class="bw-dates" id="blocked-warning-dates-wa"></div>
+        Please choose different dates to request assistance.
+      </div>
+    </div>
+
     <div class="stay-summary" id="wa-stay-summary" style="border-color: #e8a800; background:#fffbf0;">
       <div class="s-row"><span>Room Type</span><span class="sv" id="ws-room">—</span></div>
       <div class="s-row"><span>Duration</span><span class="sv" id="ws-nights">—</span></div>
-      <div class="s-row s-total"><span>Approx. Total (pay at hotel)</span><span class="sv" id="ws-total">—</span></div>
-      <div class="s-row" style="font-size:13px; color:#7a4500;"><span>📞 Our team will guide your payment via WhatsApp</span><span class="sv">✓</span></div>
+      <div class="s-row s-total" style="border-bottom:none;"><span>Total Room Price</span><span class="sv" id="ws-total">—</span></div>
+      <div style="background:linear-gradient(135deg,#7a4500,#5c3200);color:white;margin:8px -20px -4px;padding:12px 20px;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:600;opacity:.9;">💳 15% Advance to Pay Online</span>
+        <span style="font-size:20px;font-weight:800;color:#ffd08a;" id="ws-advance">—</span>
+      </div>
     </div>
 
     <button class="wa-send-btn" onclick="sendWhatsAppBooking()">
@@ -1184,35 +1302,95 @@ footer p:last-child { font-size: 12px; opacity: .7; }
       <hr class="rdiv">
       <div class="rr"><span class="rl">Room Rate</span><span class="rv" id="r-rate">—</span></div>
       <div class="rr" id="r-disc-row" style="display:none;"><span class="rl" style="color:var(--green);">Coupon Discount</span><span class="rv" style="color:var(--green);" id="r-disc">—</span></div>
+      <div class="rr"><span class="rl">Total Room Price</span><span class="rv" id="r-total">—</span></div>
       <div class="rr rr-big"><span class="rl">Platform Fee Paid ✓</span><span class="rv" id="r-advance">—</span></div>
       <div class="rr rr-hotel"><span class="rl">Remaining at Hotel</span><span class="rv" id="r-remain">—</span></div>
       <div class="rr"><span class="rl">Payment ID</span><span class="rv" id="r-pid" style="font-size:11px;word-break:break-all;">—</span></div>
+
+      <!-- IMPORTANT INFO NOTE -->
       <div class="rnote">
         <strong>⚠️ Important Information</strong>
         Check-in: After 1:00 PM &nbsp;·&nbsp; Check-out: Before 11:00 AM<br>
         15% advance paid is <strong>non-refundable</strong>.<br>
         Remaining 85% to be paid <strong>at the hotel on arrival</strong>.<br>
-        Show this receipt at check-in for your confirmed booking.
+        Show this receipt at check-in for your confirmed booking.<br>
+        ManaunaDham is part of the Crulio.com network.
       </div>
-           <!-- MANAGER CONTACT NOTE -->
+
+      <!-- MANAGER CONTACT NOTE -->
       <div class="rnote" style="margin-top:10px; background:#fff3f3; border-color:#f5c0c0;">
         <strong style="color:var(--maroon);">📞 Manager Contact</strong>
         <strong style="font-size:14px;">9412149567</strong> &nbsp;·&nbsp; <em>Call only if absolutely necessary</em><br>
         <span style="font-size:11px; color:#666;">For directions &amp; other hotel information, please check the hotel page carefully before calling.</span>
       </div>
+
     </div>
-    <div class="ract-wa">
-      <div class="ract-wa-label">📲 Save Your Receipt</div>
-      <button class="rbtn-wa-customer" onclick="shareReceiptToCustomer()">
-        <i class="fab fa-whatsapp"></i> Send Receipt to My WhatsApp
+    <div class="wa-auto-note">Hotel has been notified of your confirmed booking. 🏨✅</div>
+
+    <!-- Email section -->
+    <div style="padding:0 28px 14px;">
+      <!-- Auto-sent confirmation banner — shown only when email was auto-sent at payment time -->
+      <div id="receipt-email-auto-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border:1.5px solid #81c784;border-radius:10px;padding:11px 14px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;color:#1a5c2a;margin-bottom:2px;">✅ Receipt emailed automatically</div>
+        <div style="font-size:12.5px;color:#2d6a3a;line-height:1.5;">
+          A booking receipt was sent to <strong id="receipt-email-auto-address" style="color:#1a5c2a;">—</strong> when your payment was confirmed.
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">📲 Send Receipt by Email</div>
+
+      <!-- Quick-resend button — shown when guestEmail is known -->
+      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;">
+        <button id="resend-self-btn" onclick="resendToSelf()"
+          style="width:100%;padding:9px 14px;background:#f0fdf4;border:1.5px solid #81c784;border-radius:8px;font-size:13px;font-weight:700;color:#1a5c2a;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:6px;"
+          onmouseover="this.style.background='#e0f5e8'" onmouseout="this.style.background='#f0fdf4'">
+          <i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>
+          Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>
+        </button>
+      </div>
+
+      <!-- Send to a different / any email -->
+      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;" id="receipt-email-other-label">Or send to a different email:</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+        <input type="email" id="receipt-email-input" placeholder="Enter email address" autocomplete="email"
+          style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:var(--transition);"
+          onfocus="this.style.borderColor='var(--maroon)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="sendReceiptEmail()" id="send-email-btn"
+          style="padding:10px 16px;background:var(--maroon);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:var(--transition);"
+          onmouseover="this.style.background='var(--maroon-dark)'" onmouseout="this.style.background='var(--maroon)'">
+          ✉️ Send
+        </button>
+      </div>
+      <div id="receipt-email-msg" style="font-size:12.5px;display:none;padding:8px 12px;border-radius:6px;margin-bottom:4px;"></div>
+    </div>
+
+    <!-- WhatsApp deep link -->
+    <div style="padding:0 28px 12px;">
+      <button onclick="sendReceiptWhatsApp()" id="wa-receipt-btn"
+        style="width:100%;padding:12px;background:#25D366;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--transition);"
+        onmouseover="this.style.background='#1da851'" onmouseout="this.style.background='#25D366'">
+        <i class="fab fa-whatsapp" style="font-size:16px;"></i> Send to WhatsApp
       </button>
     </div>
-    <div class="wa-auto-note">
-      Hotel has been notified of your confirmed booking. 🏨✅
-    </div>
+
     <div class="ract">
-      <button class="rbtn-print" onclick="window.print()"><i class="fa fa-print"></i> Print / Save PDF</button>
-      <button class="rbtn-close" onclick="closeReceipt()">Close</button>
+      <button class="rbtn-print" onclick="copyReceiptText(this)" style="flex:1;min-width:100px;">
+        <i class="fa fa-copy"></i> <span>Copy Text</span>
+      </button>
+      <button class="rbtn-print" onclick="savePDFAndMark()" style="flex:1;min-width:100px;background:#444;">
+        <i class="fa fa-download"></i> <span>Save PDF</span>
+      </button>
+      <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
+    </div>
+    <!-- Confirm-close strip -->
+    <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
+      ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
+      <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
+        ✓ I've saved it — Close
+      </button>
+    </div>
+    <div id="receipt-pdf-saved-badge" style="display:none;background:#e6f4ec;border-top:2px solid #81c784;padding:10px 20px;text-align:center;font-size:13px;color:#1a5c2a;font-weight:600;">
+      ✅ PDF already saved — you're all set!
     </div>
   </div>
 </div>
@@ -1246,7 +1424,78 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   </div>
 </div>
 
-<footer class="site-footer" style="display:none;"></footer>
+<!-- QR MODAL -->
+<div id="qr-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.78);z-index:9999;justify-content:center;align-items:center;padding:16px;backdrop-filter:blur(6px);">
+  <div style="background:white;border-radius:18px;width:100%;max-width:360px;box-shadow:0 24px 70px rgba(0,0,0,0.45);display:flex;flex-direction:column;max-height:92vh;overflow-y:auto;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#7a0000,#4d0000);color:white;padding:22px 26px;text-align:center;position:sticky;top:0;z-index:1;border-radius:18px 18px 0 0;">
+      <div style="font-size:11.5px;opacity:.75;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;" id="qr-modal-state-label">Generating QR code</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:2px;">Hotel Harshdeep</div>
+      <div style="font-size:30px;font-weight:800;color:#f0c040;" id="qr-modal-amount">—</div>
+      <div style="font-size:11px;opacity:.72;margin-top:2px;">15% advance · Room booking</div>
+    </div>
+
+    <!-- State: Loading -->
+    <div id="qr-state-loading" style="padding:42px 26px;text-align:center;">
+      <div style="width:38px;height:38px;border:3px solid #e0c0c0;border-top-color:#7a0000;border-radius:50%;animation:qrSpin .8s linear infinite;margin:0 auto 16px;"></div>
+      <div style="font-size:14px;color:#666;">Creating your payment QR...</div>
+      <div style="height:3px;background:#f0e8d8;border-radius:2px;overflow:hidden;margin-top:16px;">
+        <div style="height:100%;background:#7a0000;border-radius:2px;animation:qrProg 1.4s ease-in-out infinite alternate;"></div>
+      </div>
+    </div>
+
+    <!-- State: QR Ready -->
+    <div id="qr-state-ready" style="display:none;padding:22px 26px;">
+      <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+          <span>Open PhonePe, GPay, Paytm, or any UPI app</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+          <span>Scan this QR and complete the payment</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+          <span>Return here — your receipt appears automatically</span>
+        </div>
+      </div>
+      <div style="background:#f8f4ee;border-radius:12px;padding:14px;text-align:center;margin-bottom:12px;border:1.5px solid #e8d5b0;">
+        <div style="width:100%;border-radius:8px;border:6px solid white;background:white;">
+          <img id="qr-img" style="width:100%;display:block;border-radius:4px;">
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#888;margin-top:10px;">
+          <span>Expires in</span>
+          <span id="qr-timer" style="background:#fff8e1;border:1px solid #e8c50a;color:#7a5c00;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;">10:00</span>
+        </div>
+        <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px;">
+          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:3px 10px;font-size:10px;color:#666;font-weight:600;">GPay</span>
+          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:3px 10px;font-size:10px;color:#666;font-weight:600;">PhonePe</span>
+          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:3px 10px;font-size:10px;color:#666;font-weight:600;">Paytm</span>
+          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:3px 10px;font-size:10px;color:#666;font-weight:600;">BHIM</span>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:#888;text-align:center;margin-bottom:10px;">Page checks automatically once payment is done</div>
+      <button onclick="manualCheckPayment()" style="width:100%;padding:12px;background:#f0fdf4;border:1.5px solid #81c784;color:#1a5c2a;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all .2s;" onmouseover="this.style.background='#e0f8ec'" onmouseout="this.style.background='#f0fdf4'">✅ I've paid — check now</button>
+      <button onclick="cancelQR()" style="width:100%;padding:10px;background:transparent;border:1px solid #ddd;color:#888;border-radius:8px;font-size:13px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">Cancel</button>
+    </div>
+
+    <!-- State: Checking -->
+    <div id="qr-state-checking" style="display:none;padding:38px 26px;text-align:center;">
+      <div style="width:38px;height:38px;border:3px solid #e0c0c0;border-top-color:#7a0000;border-radius:50%;animation:qrSpin .8s linear infinite;margin:0 auto 16px;"></div>
+      <div style="font-size:15px;color:#333;font-weight:600;margin-bottom:6px;">Checking payment...</div>
+      <div style="font-size:13px;color:#888;">This takes a few seconds</div>
+    </div>
+
+    <!-- State: Success -->
+    <div id="qr-state-success" style="display:none;padding:38px 26px;text-align:center;">
+      <div style="width:58px;height:58px;border-radius:50%;background:#e6f4ec;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;box-shadow:0 4px 16px rgba(26,122,58,0.2);">✅</div>
+      <div style="font-size:18px;font-weight:700;color:#1a5c2a;margin-bottom:6px;">Payment confirmed!</div>
+      <div style="font-size:13px;color:#888;">Generating your receipt...</div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════ CRULIO NETWORK SECTION ═══════ -->
 <section class="crulio-network-section">
@@ -1290,6 +1539,66 @@ footer p:last-child { font-size: 12px; opacity: .7; }
   </div>
 </section>
 
+<!-- RESEND RECEIPT SECTION -->
+<section id="resend-section" style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:28px;margin-bottom:8px;">📧</div>
+      <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
+      <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">Enter your <strong style="color:#5a0000;">phone number</strong> and/or <strong style="color:#5a0000;">receipt number</strong> — we'll find and resend your booking instantly.</p>
+    </div>
+
+    <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
+
+      <!-- Phone number -->
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          📱 Phone Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(used at booking)</span>
+        </label>
+        <input type="tel" id="resend-phone-input" placeholder="10-digit mobile number" maxlength="10"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px;">
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+        <span style="font-size:11px;color:#b0a090;font-weight:600;">AND / OR</span>
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+      </div>
+
+      <!-- Invoice number -->
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          🧾 Receipt / Invoice Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(e.g. HH0828042)</span>
+        </label>
+        <input type="text" id="resend-invoice-input" placeholder="e.g. HH0828042"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;text-transform:uppercase;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'"
+          oninput="this.value=this.value.toUpperCase()">
+      </div>
+
+      <!-- Email -->
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          ✉️ Email Address <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(where to send the receipt)</span>
+        </label>
+        <input type="email" id="resend-email-input" placeholder="your@email.com"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+
+      <button id="resend-btn" onclick="resendReceiptByInvoice()"
+        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;"
+        onmouseover="this.style.background='#4d0000'" onmouseout="this.style.background='#7a0000'">
+        <i class="fa fa-paper-plane"></i> <span id="resend-btn-text">Find &amp; Resend Receipt</span>
+      </button>
+      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;line-height:1.6;"></div>
+    </div>
+
+  </div>
+</section>
+
 <footer class="site-footer">
   <p>© 2026 Crulio.com/ManaunaDham</p>
   <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
@@ -1299,53 +1608,213 @@ footer p:last-child { font-size: 12px; opacity: .7; }
 </footer>
 
 <script>
+// ══════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════
+let RAZORPAY_KEY = null;
+const WA_NUMBER  = '917817803342';
+const isMobile   = /Android|iPhone|iPad/i.test(navigator.userAgent);
+const HOTEL_KEY  = 'harshdeep';
+
+const API_ENDPOINT      = 'https://harshdeep-api.vercel.app/api/create-order';
+const QR_API_ENDPOINT   = 'https://harshdeep-api.vercel.app/api/create-qr';
+const CHECK_API         = 'https://harshdeep-api.vercel.app/api/check-payment';
+const BLOCKED_DATES_API = 'https://harshdeep-api.vercel.app/api/blocked-dates?hotel=harshdeep';
+
+const FALLBACK_CONFIG = {
+  harshdeep: {
+    urgencyMessage: '🕐 Valid today only!',
+    COUPONS: {
+      'HARSHDEEP100': { type: 'flat',    value: 100, label: '₹100 off', description: 'Special booking discount' },
+      'PILGRIM50':    { type: 'flat',    value: 50,  label: '₹50 off',  description: 'Pilgrim special offer'    },
+      'BABA100':      { type: 'flat',    value: 100, label: '₹100 off', description: 'Shyam Baba blessing deal' },
+      'WELCOME5':     { type: 'percent', value: 5,   label: '5% off',   description: 'First time booker offer'  },
+    }
+  }
+};
+
+const _config     = (typeof COUPON_CONFIG !== 'undefined' ? COUPON_CONFIG : FALLBACK_CONFIG)[HOTEL_KEY];
+const COUPONS     = _config.COUPONS;
+const URGENCY_MSG = _config.urgencyMessage;
+
+const ROOMS = {
+  1: { name: 'Double Bed-1 Room',     price: 1599 },
+  2: { name: 'Double Bed-2 Extended', price: 2599 },
+};
+
+// ── PROPERTY CONFIG ──────────────────────────────────────────────────────────
+const PROPERTY = {
+  id:                  'harshdeep',
+  name:                'Hotel Harshdeep',
+  type:                'hotel',
+  storageKey:          'crulio_booking_harshdeep',
+  sendReceiptEndpoint: 'https://harshdeep-api.vercel.app/api/send-guest-receipt',
+};
+
+const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+let selRoom = null, nights = 0, baseTotal = 0, discAmt = 0, finalTotal = 0, advAmt = 0, activeCoupon = null;
+let waSelRoom = null, waNights = 0;
+let lastBooking = null;
+
+// ══════════════════════════════════════
+// BLOCKED DATES
+// ══════════════════════════════════════
+let blockedDates    = [];
+let blockedDatesSet = new Set();
+
+async function loadBlockedDates() {
+  try {
+    const res  = await fetch(BLOCKED_DATES_API);
+    if (!res.ok) throw new Error('API not reachable');
+    const data = await res.json();
+
+    blockedDates    = data.dates || [];
+    blockedDatesSet = new Set(blockedDates);
+
+    // Show owner note banner if set
+    const note = (data.note || '').trim();
+    if (note) {
+      document.getElementById('owner-note-text').textContent = note;
+      document.getElementById('owner-note-banner').classList.add('show');
+    } else {
+      document.getElementById('owner-note-banner').classList.remove('show');
+    }
+
+    // Show hotel notice box if set
+    const noteBox  = document.getElementById('hotel-notice-box');
+    const noteText = document.getElementById('hotel-notice-text');
+    if (note) {
+      noteText.textContent = note;
+      noteBox.style.display = 'block';
+    }
+
+  } catch (err) {
+    console.warn('Could not load availability data:', err);
+  }
+}
+
+/** Returns blocked YYYY-MM-DD strings in [checkin, checkout) range */
+function getBlockedDatesInRange(ci, co) {
+  const blocked = [];
+  let d = new Date(ci + 'T00:00:00');
+  const end = new Date(co + 'T00:00:00');
+  while (d < end) {
+    const str = d.toISOString().split('T')[0];
+    if (blockedDatesSet.has(str)) blocked.push(str);
+    d.setDate(d.getDate() + 1);
+  }
+  return blocked;
+}
+
+/** Formats YYYY-MM-DD → "12 May" */
+function fmtShort(str) {
+  return new Date(str + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+}
+
+// ══════════════════════════════════════
+// DATE VALIDATION
+// ══════════════════════════════════════
+function attachDateValidation() {
+  const inputs = ['g-checkin', 'g-checkout', 'wa-checkin', 'wa-checkout'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('change', () => {
+      if (blockedDatesSet.has(el.value)) {
+        alert('❌ This date is not available. Please choose a different date.');
+        el.value = '';
+        // Reset relevant nights state and hide stay summary
+        if (id === 'g-checkin' || id === 'g-checkout') {
+          nights = 0;
+          document.getElementById('stay-summary').classList.remove('show');
+          document.getElementById('blocked-warning-online').classList.remove('show');
+        }
+        if (id === 'wa-checkin' || id === 'wa-checkout') {
+          waNights = 0;
+          document.getElementById('wa-stay-summary').classList.remove('show');
+          document.getElementById('blocked-warning-wa').classList.remove('show');
+        }
+      }
+    });
+  });
+}
+
+// ══════════════════════════════════════
+// QR STATE MACHINE
+// ══════════════════════════════════════
 let qrPollingInterval = null;
 let qrTimerInterval   = null;
 let qrActiveId        = null;
 let paymentDetected   = false;
-const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
 function setQRState(state) {
   ['loading','ready','checking','success'].forEach(s => {
     document.getElementById('qr-state-' + s).style.display = s === state ? 'block' : 'none';
   });
-  const labels = { loading: 'Generating QR code', ready: 'Scan & Pay', checking: 'Verifying payment', success: 'Payment received' };
+  const labels = {
+    loading:  'Generating QR code',
+    ready:    'Scan & Pay',
+    checking: 'Verifying payment',
+    success:  'Payment received'
+  };
   document.getElementById('qr-modal-state-label').textContent = labels[state] || '';
 }
 
+// ══════════════════════════════════════
+// QR PAYMENT
+// ══════════════════════════════════════
 async function showQRPayment() {
+  // Block if date directly in blockedDates array (quick check)
+  const ciVal = document.getElementById('g-checkin')?.value;
+  const coVal = document.getElementById('g-checkout')?.value;
+  if (blockedDatesSet.has(ciVal) || blockedDatesSet.has(coVal)) {
+    alert('❌ Selected dates are blocked. Please choose different dates.');
+    return;
+  }
+
   paymentDetected = false;
   if (!selRoom || nights <= 0) { alert('Please fill in booking details first.'); return; }
   if (!document.getElementById('g-name').value.trim() || !document.getElementById('g-phone').value.trim()) {
     alert('Please enter your name and phone number first.'); return;
   }
 
+  const ci = ciVal;
+  const co = coVal;
+  const bDates = getBlockedDatesInRange(ci, co);
+  if (bDates.length > 0) {
+    alert('Sorry — ' + bDates.map(fmtShort).join(', ') + ' ' + (bDates.length === 1 ? 'is' : 'are') + ' fully booked. Please choose different dates.');
+    return;
+  }
+
   document.getElementById('qr-modal-amount').textContent = '₹' + advAmt.toLocaleString('en-IN');
   document.getElementById('qr-modal').style.display = 'flex';
   setQRState('loading');
 
-  const invStr = 'HD' + Date.now().toString().slice(-7);
+  const invStr = 'HH' + Date.now().toString().slice(-7);
+  const notes = {
+    hotel_name:      'Hotel Harshdeep',
+    hotel_id:        'harshdeep',
+    guest_name:      document.getElementById('g-name').value.trim(),
+    guest_phone:     document.getElementById('g-phone').value.trim(),
+    guest_email:     document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
+    room_type:       ROOMS[selRoom].name,
+    checkin:         ci,
+    checkout:        co,
+    nights:          String(nights),
+    room_rate:       String(ROOMS[selRoom].price),
+    room_price:      String(finalTotal),
+    platform_fee:    String(advAmt),
+    coupon_used:     activeCoupon || 'None',
+    coupon_discount: String(discAmt),
+    invoice_no:      invStr,
+  };
+
   try {
-    const resp = await fetch('https://harshdeep-api.vercel.app/api/create-qr', {
-      method: 'POST',
+    const resp = await fetch(QR_API_ENDPOINT, {
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amount: advAmt * 100,
-        notes: {
-          hotel_name:   'Hotel Harshdeep',
-          guest_name:   document.getElementById('g-name').value.trim(),
-          guest_phone:  document.getElementById('g-phone').value.trim(),
-          room_type:    ROOMS[selRoom].name,
-          checkin:      document.getElementById('g-checkin').value,
-          checkout:     document.getElementById('g-checkout').value,
-          nights:       String(nights),
-          room_price:   String(finalTotal),
-          platform_fee: String(advAmt),
-          coupon_used:  activeCoupon || 'None',
-          coupon_discount: String(discAmt),   
-          invoice_no:   invStr,
-        }
-      })
+      body:    JSON.stringify({ amount: advAmt * 100, notes })
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || 'QR creation failed');
@@ -1354,6 +1823,18 @@ async function showQRPayment() {
     document.getElementById('qr-img').src = data.image_url + '?size=600';
     setQRState('ready');
     startQRTimer(600);
+
+    // Save pending QR so receipt survives browser close
+    try {
+      localStorage.setItem('hh_pending_qr', JSON.stringify({
+        qrId:     data.qr_id,
+        imageUrl: data.image_url,
+        notes:    notes,
+        savedAt:  Date.now(),
+        roomRate: ROOMS[selRoom] ? ROOMS[selRoom].price : 0,
+      }));
+    } catch(e) {}
+
     setTimeout(() => startPolling(data.qr_id), 3000);
 
   } catch (err) {
@@ -1371,7 +1852,11 @@ function startQRTimer(seconds) {
     const m = Math.floor(remaining / 60);
     const s = remaining % 60;
     if (el) el.textContent = m + ':' + String(s).padStart(2, '0');
-    if (remaining <= 60 && el) el.style.background = '#fff0f0', el.style.borderColor = '#e88', el.style.color = '#900';
+    if (remaining <= 60 && el) {
+      el.style.background = '#fff0f0';
+      el.style.borderColor = '#e88';
+      el.style.color = '#900';
+    }
     if (remaining <= 0) { clearInterval(qrTimerInterval); if (el) el.textContent = 'Expired'; }
   }, 1000);
 }
@@ -1381,7 +1866,7 @@ function startPolling(qrId) {
   qrPollingInterval = setInterval(async () => {
     if (paymentDetected) return;
     try {
-      const res  = await fetch('https://harshdeep-api.vercel.app/api/check-payment?qr_id=' + qrId);
+      const res  = await fetch(CHECK_API + '?qr_id=' + qrId);
       const data = await res.json();
       if (data.paid) onQRPaymentSuccess(data);
     } catch (e) { /* keep polling */ }
@@ -1393,7 +1878,7 @@ async function manualCheckPayment() {
   clearInterval(qrPollingInterval);
   setQRState('checking');
   try {
-    const res  = await fetch('https://harshdeep-api.vercel.app/api/check-payment?qr_id=' + qrActiveId);
+    const res  = await fetch(CHECK_API + '?qr_id=' + qrActiveId);
     const data = await res.json();
     if (data.paid) { onQRPaymentSuccess(data); return; }
     setQRState('ready');
@@ -1409,21 +1894,31 @@ function onQRPaymentSuccess(data) {
   paymentDetected = true;
   clearInterval(qrPollingInterval);
   clearInterval(qrTimerInterval);
+
+  // Clear pending QR session
+  try { localStorage.removeItem('hh_pending_qr'); } catch(e) {}
+
   setQRState('success');
   setTimeout(() => {
     document.getElementById('qr-modal').style.display = 'none';
+    const n = data.notes || {};
+    const guestEmail = n.guest_email || '';
     showReceipt({
-      invStr:     data.notes.invoice_no  || ('HD' + Date.now()),
-      name:       data.notes.guest_name,
-      phone:      data.notes.guest_phone,
-      ci:         data.notes.checkin,
-      co:         data.notes.checkout,
-      nights:     parseInt(data.notes.nights),
-      baseTotal:  parseInt(data.notes.room_price),
-      discAmt:    0,
-      finalTotal: parseInt(data.notes.room_price),
-      advAmt:     parseInt(data.notes.platform_fee),
-      payId:      data.payment_id,
+      invStr:          n.invoice_no   || ('HH' + Date.now()),
+      name:            n.guest_name,
+      phone:           n.guest_phone,
+      ci:              n.checkin,
+      co:              n.checkout,
+      nights:          parseInt(n.nights),
+      baseTotal:       parseInt(n.room_price),
+      discAmt:         parseInt(n.coupon_discount) || 0,
+      finalTotal:      parseInt(n.room_price),
+      advAmt:          parseInt(n.platform_fee),
+      payId:           data.payment_id,
+      roomName:        n.room_type,
+      roomRate:        parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+      guestEmail:      guestEmail,
+      emailAlreadySent: !!guestEmail,
     });
   }, 1800);
 }
@@ -1436,51 +1931,96 @@ function cancelQR() {
   document.getElementById('qr-modal').style.display = 'none';
 }
 
-function closeQR() {
-  clearInterval(qrPollingInterval);
-  clearInterval(qrTimerInterval);
-  document.getElementById('qr-modal').style.display = 'none';
-}
+// ══════════════════════════════════════
+// PENDING QR RESUME (browser-close recovery)
+// ══════════════════════════════════════
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('hh_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
 
-/* ---- Razorpay Confirm Dialog ---- */
-function askRazorpayConfirm() {
-  if (!validate()) return;
-  document.getElementById('rzpConfirmOverlay').classList.add('open');
-}
-function closeRzpConfirm() {
-  document.getElementById('rzpConfirmOverlay').classList.remove('open');
-}
+  // Hard-expire after 24h
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem('hh_pending_qr');
+    return;
+  }
 
-let RAZORPAY_KEY = null;
-const WA_NUMBER  = '917817803342';
-const HOTEL_KEY = 'harshdeep';
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
 
-const FALLBACK_CONFIG = {
-  harshdeep: {
-    urgencyMessage: '🕐 Valid today only!',
-    COUPONS: {
-      'HARSHDEEP100': { type: 'flat',    value: 100, label: '₹100 off', description: 'Special booking discount' },
-      'PILGRIM50':    { type: 'flat',    value: 50,  label: '₹50 off',  description: 'Pilgrim special offer'    },
-      'BABA100':      { type: 'flat',    value: 100, label: '₹100 off', description: 'Shyam Baba blessing deal' },
-      'WELCOME5':     { type: 'percent', value: 5,   label: '5% off',   description: 'First time booker offer'  },
+    if (data.paid) {
+      // PAID: clear QR session, show receipt immediately
+      localStorage.removeItem('hh_pending_qr');
+      const n = pending.notes || {};
+      const guestEmail = n.guest_email || '';
+      const receiptData = {
+        invStr:           n.invoice_no  || ('HH' + Date.now()),
+        name:             n.guest_name,
+        phone:            n.guest_phone,
+        ci:               n.checkin,
+        co:               n.checkout,
+        nights:           parseInt(n.nights),
+        baseTotal:        parseInt(n.room_price),
+        discAmt:          parseInt(n.coupon_discount) || 0,
+        finalTotal:       parseInt(n.room_price),
+        advAmt:           parseInt(n.platform_fee),
+        payId:            data.payment_id || 'Verified',
+        roomName:         n.room_type,
+        roomRate:         pending.roomRate || parseInt(n.room_rate) || Math.round((parseInt(n.room_price) + (parseInt(n.coupon_discount) || 0)) / (parseInt(n.nights) || 1)),
+        guestEmail:       guestEmail,
+        emailAlreadySent: !!guestEmail,
+      };
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
+
+    } else {
+      // NOT YET PAID: re-open QR modal
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+      if (qrExpired) { localStorage.removeItem('hh_pending_qr'); return; }
+
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      if (pending.imageUrl) {
+        document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+        setQRState('ready');
+      } else {
+        setQRState('loading');
+      }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
+    }
+
+  } catch(e) {
+    // Network error — still re-show QR if image stored and not expired
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      const amt = parseInt(n.platform_fee) || 0;
+      document.getElementById('qr-modal-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+      document.getElementById('qr-modal').style.display = 'flex';
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId;
+      paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
     }
   }
-};
+}
 
-const _config   = (typeof COUPON_CONFIG !== 'undefined' ? COUPON_CONFIG : FALLBACK_CONFIG)[HOTEL_KEY];
-const COUPONS   = _config.COUPONS;
-const URGENCY_MSG = _config.urgencyMessage;
-
-const ROOMS = {
-  1: { name: 'Double Bed-1 Room',     price: 1599 },
-  2: { name: 'Double Bed-2 Extended', price: 2599 },
-};
-
-let selRoom = null, nights = 0, baseTotal = 0, discAmt = 0, finalTotal = 0, advAmt = 0, activeCoupon = null;
-let invNum = parseInt(localStorage.getItem('hd_inv') || '100');
-let waSelRoom = null, waNights = 0;
-let lastBooking = null;
-
+// ══════════════════════════════════════
+// ONLINE BOOKING
+// ══════════════════════════════════════
 function selectRoom(n) {
   selRoom = n;
   document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
@@ -1502,6 +2042,18 @@ function calcStay() {
   if (!ci || !co) return;
   nights = Math.round((new Date(co) - new Date(ci)) / 86400000);
   if (nights <= 0) { nights = 0; return; }
+
+  // Check for blocked dates in range
+  const bDates = getBlockedDatesInRange(ci, co);
+  const warningEl    = document.getElementById('blocked-warning-online');
+  const warningDates = document.getElementById('blocked-warning-dates-online');
+  if (bDates.length > 0) {
+    warningDates.textContent = 'Blocked: ' + bDates.map(fmtShort).join(', ');
+    warningEl.classList.add('show');
+  } else {
+    warningEl.classList.remove('show');
+  }
+
   recalc();
 }
 
@@ -1570,56 +2122,78 @@ function validate() {
     document.getElementById('g-phone').classList.add('err');
     alert('Please enter a valid 10-digit phone number.'); ok = false;
   }
+  if (ok) {
+    const ci = document.getElementById('g-checkin').value;
+    const co = document.getElementById('g-checkout').value;
+    const bDates = getBlockedDatesInRange(ci, co);
+    if (bDates.length > 0) {
+      alert('Sorry — ' + bDates.map(fmtShort).join(', ') + ' ' + (bDates.length === 1 ? 'is' : 'are') + ' fully booked.\n\nPlease choose different dates to proceed with your booking.');
+      ok = false;
+    }
+  }
   return ok;
+}
+
+/* ---- Razorpay Confirm Dialog ---- */
+function askRazorpayConfirm() {
+  if (!validate()) return;
+  document.getElementById('rzpConfirmOverlay').classList.add('open');
+}
+function closeRzpConfirm() {
+  document.getElementById('rzpConfirmOverlay').classList.remove('open');
 }
 
 async function initiatePayment() {
   if (!validate()) return;
+
+  if (isMobile) {
+    const continueWithCard = confirm('📱 For a smoother experience on mobile, we recommend using the QR code option instead.\n\nDo you still want to continue with Card / Net Banking?');
+    if (!continueWithCard) return;
+  }
 
   const name  = document.getElementById('g-name').value.trim();
   const phone = document.getElementById('g-phone').value.trim();
   const ci    = document.getElementById('g-checkin').value;
   const co    = document.getElementById('g-checkout').value;
 
-  invNum++;
-  let invStr = 'HD' + Date.now().toString().slice(-7);
+  let invStr = 'HH' + Date.now().toString().slice(-7);
 
   const btn = document.getElementById('pay-btn');
   btn.disabled = true;
   document.getElementById('rzp-btn-label').textContent = 'Creating order...';
 
   const notes = {
-    hotel_name:   'Hotel Harshdeep',
-    invoice_no:   invStr,
-    room_type:    ROOMS[selRoom].name,
-    checkin:      ci,
-    checkout:     co,
-    nights:       String(nights),
-    room_price:   String(finalTotal),
-    platform_fee: String(advAmt),
-    coupon_used:  activeCoupon || 'None',
-    coupon_discount: String(discAmt),   
-    guest_name:   name,
-    guest_phone:  phone,
+    hotel_name:      'Hotel Harshdeep',
+    hotel_id:        'harshdeep',
+    invoice_no:      invStr,
+    room_type:       ROOMS[selRoom].name,
+    checkin:         ci,
+    checkout:        co,
+    nights:          String(nights),
+    room_rate:       String(ROOMS[selRoom].price),
+    room_price:      String(finalTotal),
+    platform_fee:    String(advAmt),
+    coupon_used:     activeCoupon || 'None',
+    coupon_discount: String(discAmt),
+    guest_name:      name,
+    guest_phone:     phone,
+    guest_email:     document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '',
   };
 
   let orderId;
   try {
-    const resp = await fetch('https://harshdeep-api.vercel.app/api/create-order', {
-      method: 'POST',
+    const resp = await fetch(API_ENDPOINT, {
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: advAmt * 100, notes }),
+      body:    JSON.stringify({ amount: advAmt * 100, notes }),
     });
-    if (!resp.ok) {
-      const err = await resp.json();
-      throw new Error(err.error || 'Server error');
-    }
+    if (!resp.ok) { const err = await resp.json(); throw new Error(err.error || 'Server error'); }
     const data = await resp.json();
     orderId      = data.orderId;
     RAZORPAY_KEY = data.keyId;
-    invStr = 'HD' + orderId.replace('order_', '').slice(-8).toUpperCase();
+    invStr = 'HH' + orderId.replace('order_', '').slice(-8).toUpperCase();
   } catch (err) {
-    alert('Could not initiate payment: ' + err.message + '\nPlease try again.');
+    alert('Could not initiate payment: ' + err.message + '\nPlease try again or get help via WhatsApp below.');
     btn.disabled = false;
     document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking (₹' + advAmt.toLocaleString() + ')';
     return;
@@ -1629,94 +2203,522 @@ async function initiatePayment() {
   document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking (₹' + advAmt.toLocaleString() + ')';
 
   const options = {
-    key: RAZORPAY_KEY,
+    key:      RAZORPAY_KEY,
     order_id: orderId,
-    amount: advAmt * 100,
+    amount:   advAmt * 100,
     currency: 'INR',
-    name: 'Hotel Harshdeep',
+    name:     'Hotel Harshdeep',
     description: 'Room booking · ' + ROOMS[selRoom].name + ' · ' + fmtDate(ci) + ' – ' + fmtDate(co),
-    image: 'https://www.crulio.com/ManaunaDham/images/web/logonobg.png',
-    prefill: { name: name, contact: '+91' + phone },
-    notes: notes,
-    theme: { color: '#7a0000' },
-    modal: { backdropclose: false },
-    handler: function(resp) {
-      showReceipt({ invStr, name, phone, ci, co, nights, baseTotal, discAmt, finalTotal, advAmt, payId: resp.razorpay_payment_id });
+    image:    'https://www.crulio.com/ManaunaDham/images/web/logonobg.png',
+    prefill:  { name: name, contact: '+91' + phone },
+    notes:    notes,
+    theme:    { color: '#7a0000' },
+    modal:    { backdropclose: false },
+    handler:  function(resp) {
+      showReceipt({ invStr, name, phone, ci, co, nights, baseTotal, discAmt, finalTotal, advAmt, payId: resp.razorpay_payment_id, roomName: ROOMS[selRoom].name, roomRate: ROOMS[selRoom].price });
     }
   };
 
   const rzp = new Razorpay(options);
-  rzp.on('payment.failed', function(r) {
-    alert('Payment failed: ' + r.error.description + '\nPlease try again.');
-  });
+  rzp.on('payment.failed', function(r) { alert('Payment failed: ' + r.error.description + '\nPlease try again or get help via WhatsApp below.'); });
   rzp.open();
 }
 
+// ══════════════════════════════════════
+// RECEIPT
+// ══════════════════════════════════════
+let receiptSavedByUser = false;
+
 function showReceipt(d) {
+  receiptSavedByUser = false;
+  // Honour existing pdfDownloaded flag
+  try {
+    const stored = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}');
+    if (stored.pdfDownloaded && stored.invStr === d.invStr) receiptSavedByUser = true;
+  } catch(e) {}
+
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  const pdfBadge = document.getElementById('receipt-pdf-saved-badge');
+  if (pdfBadge) pdfBadge.style.display = receiptSavedByUser ? 'block' : 'none';
+
+  if (!d.roomName) d.roomName = selRoom ? ROOMS[selRoom].name  : (d.room_type || '—');
+  if (!d.roomRate) d.roomRate = selRoom ? ROOMS[selRoom].price : Math.round(d.finalTotal / (d.nights || 1));
+
   lastBooking = d;
+
+  // Email UI setup
+  const emailInput    = document.getElementById('receipt-email-input');
+  const formEmail     = document.getElementById('g-email') ? document.getElementById('g-email').value.trim() : '';
+  const knownEmail    = d.guestEmail || formEmail;
+
+  const autoBanner    = document.getElementById('receipt-email-auto-banner');
+  const quickRow      = document.getElementById('receipt-email-quick-row');
+  const otherLabel    = document.getElementById('receipt-email-other-label');
+  const resendSelfLbl = document.getElementById('resend-self-label');
+  const emailMsgEl    = document.getElementById('receipt-email-msg');
+  const sendBtn       = document.getElementById('send-email-btn');
+
+  if (emailMsgEl) { emailMsgEl.style.display = 'none'; emailMsgEl.textContent = ''; }
+  if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  if (emailInput) emailInput.value = '';
+
+  if (knownEmail && d.emailAlreadySent) {
+    if (autoBanner) autoBanner.style.display = 'block';
+    const addrEl = document.getElementById('receipt-email-auto-address');
+    if (addrEl) addrEl.textContent = knownEmail;
+    if (quickRow) quickRow.style.display = 'block';
+    if (resendSelfLbl) resendSelfLbl.textContent = knownEmail;
+    if (otherLabel) otherLabel.textContent = 'Or send to a different email:';
+    if (emailInput) emailInput.placeholder = 'Enter another email address';
+  } else if (knownEmail) {
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) { emailInput.value = knownEmail; emailInput.placeholder = 'Enter email address'; }
+  } else {
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+    if (emailInput) emailInput.placeholder = 'Enter email address';
+  }
+
   document.getElementById('r-inv').textContent    = '#' + d.invStr;
   document.getElementById('r-date').textContent   = new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
   document.getElementById('r-name').textContent   = d.name;
   document.getElementById('r-phone').textContent  = '+91 ' + d.phone;
   document.getElementById('r-ci').textContent     = fmtDate(d.ci);
   document.getElementById('r-co').textContent     = fmtDate(d.co);
-  document.getElementById('r-room').textContent   = ROOMS[selRoom].name;
+  document.getElementById('r-room').textContent   = d.roomName;
   document.getElementById('r-nights').textContent = d.nights + ' night' + (d.nights > 1 ? 's' : '');
-  document.getElementById('r-rate').textContent   = '₹' + ROOMS[selRoom].price.toLocaleString() + ' × ' + d.nights;
+  document.getElementById('r-rate').textContent   = '₹' + d.roomRate.toLocaleString('en-IN') + ' × ' + d.nights;
 
   const dr = document.getElementById('r-disc-row');
   if (d.discAmt > 0) {
     dr.style.display = 'flex';
-    document.getElementById('r-disc').textContent = '−₹' + d.discAmt.toLocaleString();
+    document.getElementById('r-disc').textContent = '−₹' + d.discAmt.toLocaleString('en-IN');
   } else { dr.style.display = 'none'; }
 
-  document.getElementById('r-advance').textContent = '₹' + d.advAmt.toLocaleString();
-  document.getElementById('r-remain').textContent  = '₹' + (d.finalTotal - d.advAmt).toLocaleString();
+  document.getElementById('r-total').textContent   = '₹' + d.finalTotal.toLocaleString('en-IN');
+  document.getElementById('r-advance').textContent = '₹' + d.advAmt.toLocaleString('en-IN');
+  document.getElementById('r-remain').textContent  = '₹' + (d.finalTotal - d.advAmt).toLocaleString('en-IN');
   document.getElementById('r-pid').textContent     = d.payId;
 
+  saveBookingToStorage(d);
   document.getElementById('receiptOverlay').classList.add('open');
 }
 
-function buildReceiptMsg(d, forHotel) {
-  const discLine = d.discAmt > 0 ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString() : '';
-  const header = forHotel
-    ? '🏨 *NEW BOOKING — Hotel Harshdeep*\n✅ 15% Advance Paid: ₹' + d.advAmt.toLocaleString()
-    : '🧾 *Your Booking Receipt — Hotel Harshdeep*';
-  return header + '\n\n━━━━━━━━━━━━━━━━━━━━\n📋 *Invoice:* #' + d.invStr +
-    '\n📅 *Date:* ' + new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) +
-    '\n━━━━━━━━━━━━━━━━━━━━\n👤 *Guest:* ' + d.name +
-    '\n📱 *Phone:* +91 ' + d.phone +
-    '\n🛏️ *Room:* ' + ROOMS[selRoom].name +
-    '\n📅 *Check-in:* ' + fmtDate(d.ci) +
-    '\n📅 *Check-out:* ' + fmtDate(d.co) +
-    '\n🌙 *Nights:* ' + d.nights +
-    '\n━━━━━━━━━━━━━━━━━━━━\n💵 *Room Rate:* ₹' + ROOMS[selRoom].price.toLocaleString() + ' × ' + d.nights + discLine +
-    '\n✅ *Paid Now (15% advance):* ₹' + d.advAmt.toLocaleString() +
-    '\n🏦 *Remaining at Hotel:* ₹' + (d.finalTotal - d.advAmt).toLocaleString() +
-    '\n🆔 *Payment ID:* ' + d.payId +
-    '\n━━━━━━━━━━━━━━━━━━━━\n' +
-    (forHotel
-      ? '🔔 ₹' + d.advAmt.toLocaleString() + ' paid online. Collect ₹' + (d.finalTotal - d.advAmt).toLocaleString() + ' at check-in.\n_Via ManaunaDham.org.in_'
-      : '⚠️ Show this at check-in.\nCheck-in after 1 PM · Check-out before 11 AM\n_ManaunaDham.org.in_');
+// ── BUILD RECEIPT TEXT ────────────────────────────────────────────────────────
+function buildReceiptMsg(d) {
+  const discLine = d.discAmt > 0
+    ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString('en-IN')
+    : '';
+  const roomName = d.roomName || '—';
+  const roomRate = d.roomRate || 0;
+  const bookDate = new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
+
+  return (
+    '🧾 *Booking Receipt — ' + PROPERTY.name + '*\n\n' +
+    '━━━━━━━━━━━━━━━━━━━━\n' +
+    '📋 *Invoice:* #' + d.invStr + '\n' +
+    '📅 *Date:* ' + bookDate + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━\n' +
+    '👤 *Guest:* ' + d.name + '\n' +
+    '📱 *Phone:* +91 ' + d.phone + '\n' +
+    '🛏️ *Room:* ' + roomName + '\n' +
+    '📅 *Check-in:* ' + fmtDate(d.ci) + '\n' +
+    '📅 *Check-out:* ' + fmtDate(d.co) + '\n' +
+    '🌙 *Nights:* ' + d.nights + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━\n' +
+    '💵 *Room Rate:* ₹' + roomRate.toLocaleString('en-IN') + ' × ' + d.nights +
+    discLine + '\n' +
+    '🏷️ *Total Room Price:* ₹' + d.finalTotal.toLocaleString('en-IN') + '\n' +
+    '✅ *Advance Paid (15%):* ₹' + d.advAmt.toLocaleString('en-IN') + '\n' +
+    '🏦 *Remaining at Hotel:* ₹' + (d.finalTotal - d.advAmt).toLocaleString('en-IN') + '\n' +
+    '🆔 *Payment ID:* ' + d.payId + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━\n' +
+    '⚠️ Show this at check-in.\n' +
+    'Check-in after 1 PM · Check-out before 11 AM\n' +
+    '_' + PROPERTY.name + ' via Crulio.com/ManaunaDham_'
+  );
 }
 
-function shareReceiptToCustomer() {
+// ── COPY RECEIPT TEXT ─────────────────────────────────────────────────────────
+function copyReceiptText(btn) {
   if (!lastBooking) return;
-  const msg = buildReceiptMsg(lastBooking, false);
-  window.open('https://wa.me/91' + lastBooking.phone + '?text=' + encodeURIComponent(msg), '_blank');
+  const text = buildReceiptMsg(lastBooking);
+  navigator.clipboard.writeText(text).then(() => {
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  });
+}
+
+// ── SEND RECEIPT TO WHATSAPP ──────────────────────────────────────────────────
+function sendReceiptWhatsApp() {
+  if (!lastBooking) return;
+  const text = buildReceiptMsg(lastBooking);
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+// ── RESEND TO ORIGINAL EMAIL (one-tap) ───────────────────────────────────────
+async function resendToSelf() {
+  if (!lastBooking) return;
+  const email = lastBooking.guestEmail || '';
+  if (!email) return;
+
+  const btn = document.getElementById('resend-self-btn');
+  if (btn) { btn.textContent = '⏳ Sending…'; btn.disabled = true; }
+
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      roomName:     lastBooking.roomName,
+      roomRate:     lastBooking.roomRate,
+      ci:           lastBooking.ci,
+      co:           lastBooking.co,
+      nights:       lastBooking.nights,
+      discAmt:      lastBooking.discAmt,
+      finalTotal:   lastBooking.finalTotal,
+      advAmt:       lastBooking.advAmt,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt resent to ' + email + '! Check your inbox.', 'ok');
+    if (btn) { btn.textContent = '✓ Sent to ' + email; }
+  } catch (err) {
+    showEmailMsg('❌ Could not resend. Please use the email field below.', 'error');
+    if (btn) { btn.textContent = '↩ Resend to ' + email; btn.disabled = false; }
+  }
+}
+
+// ── SEND RECEIPT TO ANY EMAIL ─────────────────────────────────────────────────
+async function sendReceiptEmail() {
+  if (!lastBooking) return;
+  const emailInput = document.getElementById('receipt-email-input');
+  const btn        = document.getElementById('send-email-btn');
+  const email      = emailInput.value.trim();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showEmailMsg('Please enter a valid email address.', 'error');
+    emailInput.focus();
+    return;
+  }
+
+  btn.textContent = '⏳ Sending…';
+  btn.disabled = true;
+
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      roomName:     lastBooking.roomName,
+      roomRate:     lastBooking.roomRate,
+      ci:           lastBooking.ci,
+      co:           lastBooking.co,
+      nights:       lastBooking.nights,
+      discAmt:      lastBooking.discAmt,
+      finalTotal:   lastBooking.finalTotal,
+      advAmt:       lastBooking.advAmt,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt sent! Check your inbox (also check spam).', 'ok');
+    btn.textContent = '✓ Sent';
+  } catch (err) {
+    showEmailMsg('❌ Could not send. Please copy the text instead.', 'error');
+    btn.textContent = '✉️ Send';
+    btn.disabled = false;
+  }
+}
+
+function showEmailMsg(text, type) {
+  const el = document.getElementById('receipt-email-msg');
+  el.textContent = text;
+  el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+// ── RESEND BY INVOICE / PHONE ─────────────────────────────────────────────────
+async function resendReceiptByInvoice() {
+  const invoiceInput = document.getElementById('resend-invoice-input');
+  const phoneInput   = document.getElementById('resend-phone-input');
+  const emailInput   = document.getElementById('resend-email-input');
+  const btn          = document.getElementById('resend-btn');
+  const btnText      = document.getElementById('resend-btn-text');
+
+  const invoice = (invoiceInput.value || '').trim().toUpperCase();
+  const phone   = (phoneInput.value   || '').trim().replace(/\D/g, '');
+  const email   = (emailInput.value   || '').trim();
+
+  if (!invoice && !phone) {
+    showResendMsg('Please enter your phone number and/or invoice/receipt number.', 'error'); return;
+  }
+  if (phone && !/^\d{10}$/.test(phone)) {
+    showResendMsg('Please enter a valid 10-digit phone number.', 'error'); return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showResendMsg('Please enter a valid email address to receive the receipt.', 'error'); return;
+  }
+
+  btn.disabled = true;
+  btnText.textContent = '⏳ Looking up booking…';
+
+  try {
+    let lookupUrl = 'https://harshdeep-api.vercel.app/api/resend-lookup?';
+    if (phone)            lookupUrl += 'phone='   + encodeURIComponent(phone);
+    if (phone && invoice) lookupUrl += '&';
+    if (invoice)          lookupUrl += 'invoice=' + encodeURIComponent(invoice);
+
+    const lookupResp = await fetch(lookupUrl);
+    const lookupData = await lookupResp.json();
+
+    if (!lookupResp.ok || !lookupData.found) {
+      let msg = '❌ No booking found. ';
+      if (phone && invoice) {
+        msg += 'Please make sure both your phone number and receipt number are correct.';
+      } else if (invoice) {
+        msg += 'Please double-check the receipt number (e.g. HH0828042).';
+      } else {
+        msg += 'No booking was found for this phone number. Try adding the receipt number too.';
+      }
+      msg += ' Need help? WhatsApp us at +91 7817803342.';
+      showResendMsg(msg, 'error');
+      btn.disabled = false;
+      btnText.textContent = 'Find & Resend Receipt';
+      return;
+    }
+
+    const b      = lookupData.booking;
+    const isTaxi = !!b.pickupLocation;
+    btnText.textContent = '📨 Sending receipt…';
+
+    const payload = isTaxi ? {
+      propertyType:  'taxi',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    'taxi-service',
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      carType:       b.roomType,
+      passengers:    b.passengers,
+      pickupLabel:   b.pickupLocation,
+      dropLocation:  b.dropLocation,
+      totalFare:     b.roomPrice,
+      discAmt:       b.couponDiscount,
+      advancePaid:   b.advancePaid,
+      platformFee:   b.platformFees,
+      payId:         b.paymentId,
+    } : {
+      propertyType:  'hotel',
+      propertyName:  b.hotelName || PROPERTY.name,
+      propertyId:    PROPERTY.id,
+      guestEmail:    email,
+      invStr:        b.invoiceNo,
+      name:          b.guestName,
+      phone:         b.guestPhone,
+      roomName:      b.roomType,
+      roomRate:      String(Math.round((b.roomPrice || 0) / (b.nights || 1))),
+      ci:            b.checkin,
+      co:            b.checkout,
+      nights:        b.nights,
+      discAmt:       b.couponDiscount,
+      finalTotal:    b.roomPrice,
+      advAmt:        b.advancePaid,
+      payId:         b.paymentId,
+    };
+
+    const sendResp = await fetch(PROPERTY.sendReceiptEndpoint, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!sendResp.ok) throw new Error('Send failed');
+
+    const guestLabel = b.guestName ? ' for ' + b.guestName : '';
+    const dateLabel  = b.checkin   ? ' (check-in ' + fmtDate(b.checkin) + ')' : '';
+    showResendMsg(
+      '✅ Receipt sent! Booking' + guestLabel + ' · Invoice ' + b.invoiceNo + dateLabel +
+      '.\nPlease check your inbox (and spam/junk folder just in case).',
+      'ok'
+    );
+    btnText.textContent = '✓ Receipt Sent';
+
+  } catch (err) {
+    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp at +91 7817803342.', 'error');
+    btn.disabled = false;
+    btnText.textContent = 'Find & Resend Receipt';
+  }
+}
+
+function showResendMsg(text, type) {
+  const el = document.getElementById('resend-msg');
+  el.innerHTML = text.replace(/\n/g, '<br>');
+  el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+// ── LOCALSTORAGE: SAVE & RESTORE ──────────────────────────────────────────────
+function saveBookingToStorage(d) {
+  try {
+    let existing = {};
+    try { existing = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}'); } catch(e) {}
+    const record = {
+      ...d,
+      savedAt:       Date.now(),
+      propertyId:    PROPERTY.id,
+      pdfDownloaded: existing.pdfDownloaded || false,
+    };
+    localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+  } catch (e) {}
+}
+
+function loadBookingFromStorage() {
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (!raw) return null;
+    const record = JSON.parse(raw);
+    if (!record.savedAt || (Date.now() - record.savedAt) > STORAGE_TTL_MS) {
+      localStorage.removeItem(PROPERTY.storageKey);
+      return null;
+    }
+    return record;
+  } catch (e) { return null; }
+}
+
+function restoreReceiptFromStorage() {
+  const d = loadBookingFromStorage();
+  if (!d) { alert('Receipt has expired. Please contact the hotel.'); return; }
+  document.getElementById('returning-guest-banner').style.display = 'none';
+  showReceipt(d);
+}
+
+function dismissReturningBanner() {
+  document.getElementById('returning-guest-banner').style.display = 'none';
+}
+
+function checkForReturningGuest() {
+  const d = loadBookingFromStorage();
+  if (!d) return;
+
+  const banner = document.getElementById('returning-guest-banner');
+  const pdfNote = d.pdfDownloaded
+    ? '<span style="color:#1a5c2a;font-size:13px;margin-left:10px;">✅ PDF saved</span>'
+    : '<span style="color:#c47000;font-size:13px;margin-left:10px;">⚠️ PDF not yet saved</span>';
+
+  banner.innerHTML =
+    '<span style="font-size:14px;font-weight:700;color:#1a5c2a;">🏨 Welcome back! Your booking receipt is ready.' + pdfNote + '</span>' +
+    '<button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>' +
+    '<button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>';
+
+  banner.style.display = 'block';
+}
+
+// ── SAFE CLOSE ────────────────────────────────────────────────────────────────
+function savePDFAndMark() {
+  receiptSavedByUser = true;
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (raw) {
+      const record = JSON.parse(raw);
+      record.pdfDownloaded = true;
+      localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+    }
+  } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  window.print();
+}
+
+function closeReceiptSafe() {
+  if (!receiptSavedByUser) {
+    const reminder = document.getElementById('receipt-save-reminder');
+    if (reminder) { reminder.style.display = 'block'; reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    return;
+  }
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  closeReceipt();
+}
+
+function confirmCloseReceipt() {
+  receiptSavedByUser = true;
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  closeReceipt();
 }
 
 function closeReceipt() {
   document.getElementById('receiptOverlay').classList.remove('open');
-  ['g-name','g-phone','g-checkin','g-checkout','coupon-input'].forEach(id => document.getElementById(id).value = '');
-  selRoom = null; nights = 0; finalTotal = 0; discAmt = 0; activeCoupon = null;
-  lastBooking = null;
+  // Reset email UI
+  const emailInput = document.getElementById('receipt-email-input');
+  const emailMsg   = document.getElementById('receipt-email-msg');
+  const sendBtn    = document.getElementById('send-email-btn');
+  if (emailInput) emailInput.value = '';
+  if (emailMsg)   { emailMsg.style.display = 'none'; emailMsg.textContent = ''; }
+  if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  const autoBanner = document.getElementById('receipt-email-auto-banner');
+  const quickRow   = document.getElementById('receipt-email-quick-row');
+  const selfBtn    = document.getElementById('resend-self-btn');
+  if (autoBanner) autoBanner.style.display = 'none';
+  if (quickRow)   quickRow.style.display = 'none';
+  if (selfBtn)    { selfBtn.disabled = false; }
+  // Reset form
+  ['g-name','g-phone','g-checkin','g-checkout','g-email','coupon-input'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  selRoom = null; nights = 0; finalTotal = 0; discAmt = 0; activeCoupon = null; lastBooking = null;
   document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
   document.getElementById('stay-summary').classList.remove('show');
+  document.getElementById('blocked-warning-online').classList.remove('show');
   document.getElementById('coupon-msg').className = 'coupon-msg';
+  document.getElementById('pay-btn-text').textContent = 'Pay via QR Code';
   document.getElementById('rzp-btn-label').textContent = 'Direct UPI Apps / Card / Net Banking';
 }
 
+// ══════════════════════════════════════
+// WHATSAPP ASSISTANCE
+// ══════════════════════════════════════
 function selectWARoom(n) {
   waSelRoom = n;
   document.querySelectorAll('.wa-room-option').forEach(el => el.classList.remove('selected'));
@@ -1738,12 +2740,26 @@ function calcWAStay() {
   if (!ci || !co || !waSelRoom) return;
   waNights = Math.round((new Date(co) - new Date(ci)) / 86400000);
   if (waNights <= 0) { waNights = 0; return; }
-  const total = ROOMS[waSelRoom].price * waNights;
+
+  // Check for blocked dates in WA range
+  const bDates = getBlockedDatesInRange(ci, co);
+  const warningEl    = document.getElementById('blocked-warning-wa');
+  const warningDates = document.getElementById('blocked-warning-dates-wa');
+  if (bDates.length > 0) {
+    warningDates.textContent = 'Blocked: ' + bDates.map(fmtShort).join(', ');
+    warningEl.classList.add('show');
+  } else {
+    warningEl.classList.remove('show');
+  }
+
+  const total   = ROOMS[waSelRoom].price * waNights;
+  const advance = Math.round(total * 0.15);
   const summary = document.getElementById('wa-stay-summary');
   summary.classList.add('show');
-  document.getElementById('ws-room').textContent   = ROOMS[waSelRoom].name;
-  document.getElementById('ws-nights').textContent = waNights + ' night' + (waNights > 1 ? 's' : '');
-  document.getElementById('ws-total').textContent  = '₹' + total.toLocaleString();
+  document.getElementById('ws-room').textContent    = ROOMS[waSelRoom].name;
+  document.getElementById('ws-nights').textContent  = waNights + ' night' + (waNights > 1 ? 's' : '');
+  document.getElementById('ws-total').textContent   = '₹' + total.toLocaleString();
+  document.getElementById('ws-advance').textContent = '₹' + advance.toLocaleString();
 }
 
 function validateWA() {
@@ -1760,6 +2776,20 @@ function validateWA() {
     document.getElementById('wa-phone').classList.add('err');
     alert('Please enter a valid 10-digit phone number.'); ok = false;
   }
+  if (ok) {
+    const ci = document.getElementById('wa-checkin').value;
+    const co = document.getElementById('wa-checkout').value;
+    const bDates = getBlockedDatesInRange(ci, co);
+    if (bDates.length > 0) {
+      const proceed = confirm(
+        '⚠️ Heads up — ' + bDates.map(fmtShort).join(', ') + ' ' +
+        (bDates.length === 1 ? 'is' : 'are') + ' marked as fully booked.\n\n' +
+        'You can still send a WhatsApp request and our team will check if any rooms are available.\n\n' +
+        'Tap OK to continue, or Cancel to choose different dates.'
+      );
+      if (!proceed) ok = false;
+    }
+  }
   return ok;
 }
 
@@ -1773,20 +2803,37 @@ function sendWhatsAppBooking() {
   const phone  = document.getElementById('wa-phone').value.trim();
   const guests = document.getElementById('wa-guests').value;
   const total  = waSelRoom ? ROOMS[waSelRoom].price * waNights : 0;
+  const advance = Math.round(total * 0.15);
+
+  const bDates = getBlockedDatesInRange(ci, co);
+  const blockedLine = bDates.length > 0
+    ? '\n⚠️ *Note:* ' + bDates.map(fmtShort).join(', ') + ' marked blocked — guest is requesting help anyway.'
+    : '';
   const guestsLine = guests ? '\n👥 *Guests:* ' + guests : '';
 
-  const msg = '🆘 *Payment Help Request — Hotel Harshdeep, Aonla*\n\n👤 *Name:* ' + name +
-    '\n📱 *Phone:* +91 ' + phone +
-    '\n🛏️ *Room:* ' + ROOMS[waSelRoom].name +
-    '\n📅 *Check-in:* ' + fmtDate(ci) +
-    '\n📅 *Check-out:* ' + fmtDate(co) +
-    '\n🌙 *Nights:* ' + waNights + guestsLine +
-    '\n💰 *Approx. Total:* ₹' + total.toLocaleString() +
-    '\n\nI need help completing my online payment. Please guide me. 🙏\n_Sent via ManaunaDham.org.in_';
+  const msg =
+`🆘 *Payment Help Request — Hotel Harshdeep, Aonla*
+
+I need help completing my online payment for a room booking.
+
+👤 *Name:* ${name}
+📱 *Phone:* +91 ${phone}
+🛏️ *Room:* ${ROOMS[waSelRoom].name}
+📅 *Check-in:* ${fmtDate(ci)}
+📅 *Check-out:* ${fmtDate(co)}
+🌙 *Nights:* ${waNights}${guestsLine}
+💰 *Total Room Price:* ₹${total.toLocaleString()}
+💳 *15% Advance to Pay:* ₹${advance.toLocaleString()}${blockedLine}
+
+Please guide me to complete the online payment. 🙏
+_Sent via Crulio.com/ManaunaDham_`;
 
   window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
+// ══════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════
 function fmtDate(str) {
   if (!str) return '—';
   return new Date(str + 'T00:00:00').toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
@@ -1807,9 +2854,10 @@ function toggleMenu() {
   m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
 }
 function showPaymentHelp() {
-  alert('If your payment was deducted but booking failed:\n\n1. Note your UPI/bank transaction ID\n2. Take a screenshot of the deduction\n3. Razorpay automatically refunds within 5-7 business days\n\nFor faster help, WhatsApp us at:\n +91 7817803342\n\nMention your name, phone, and transaction ID.');
+  alert('If your payment was deducted but booking failed:\n\n1. Note your UPI/bank transaction ID\n2. Take a screenshot of the deduction\n3. Razorpay automatically refunds within 5–7 business days\n\nFor faster help, scroll down to the WhatsApp Assistance section and send us your details. We\'ll resolve it immediately.\n\nWhatsApp: +91 7817803342');
 }
 
+// ── OFFERS BOARD ──
 function initCouponBanner() {
   const grid = document.getElementById('offers-grid');
   if (!grid) return;
@@ -1821,8 +2869,8 @@ function initCouponBanner() {
       '<div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">' + c.description + '</div>' +
       '<div style="font-size:16px;font-weight:800;color:var(--maroon);letter-spacing:1px;margin-bottom:6px;">' + code + '</div>' +
       '<div style="background:var(--maroon);color:white;text-align:center;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;">' + c.label + ' ✂️</div>';
-    card.onmouseenter = () => card.style.background = '#fff3e0';
-    card.onmouseleave = () => card.style.background = 'white';
+    card.onmouseenter = () => { card.style.background = '#fff3e0'; card.style.transform = 'translateY(-1px)'; };
+    card.onmouseleave = () => { card.style.background = 'white'; card.style.transform = ''; };
     card.onclick = () => claimCoupon(code);
     grid.appendChild(card);
   });
@@ -1833,99 +2881,29 @@ function claimCoupon(code) {
   applyCoupon();
   const inp = document.getElementById('coupon-input');
   inp.style.borderColor = 'var(--gold)';
-  setTimeout(() => inp.style.borderColor = '', 1600);
+  inp.style.boxShadow = '0 0 0 3px rgba(212,160,23,0.1)';
+  setTimeout(() => { inp.style.borderColor = ''; inp.style.boxShadow = ''; }, 1800);
   document.getElementById('stay-summary').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+window.addEventListener('DOMContentLoaded', async () => {
   const today = new Date().toISOString().split('T')[0];
   ['g-checkin', 'g-checkout', 'wa-checkin', 'wa-checkout'].forEach(id => {
     document.getElementById(id).min = today;
   });
   initCouponBanner();
   document.getElementById('wa-checkout').addEventListener('change', calcWAStay);
+
+  checkForReturningGuest();
+  resumePendingQRIfAny();
+  await loadBlockedDates();
+  attachDateValidation();
 });
 </script>
 
-<!-- QR MODAL -->
-<div id="qr-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9999;justify-content:center;align-items:center;padding:16px;">
-  <div style="background:white;border-radius:16px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,0.4);display:flex;flex-direction:column;max-height:92vh;overflow-y:auto;">
-
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#7a0000,#4d0000);color:white;padding:20px 24px;text-align:center;position:sticky;top:0;z-index:1;border-radius:16px 16px 0 0;">
-      <div style="font-size:12px;opacity:.75;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;" id="qr-modal-state-label">Generating QR code</div>
-      <div style="font-size:14px;font-weight:600;margin-bottom:2px;">Hotel Harshdeep</div>
-      <div style="font-size:28px;font-weight:700;color:#f0c040;" id="qr-modal-amount">—</div>
-      <div style="font-size:11px;opacity:.75;margin-top:2px;">15% advance · Room booking</div>
-    </div>
-
-    <!-- State: Loading -->
-    <div id="qr-state-loading" style="padding:40px 24px;text-align:center;">
-      <div style="width:36px;height:36px;border:3px solid #e0c0c0;border-top-color:#7a0000;border-radius:50%;animation:qrSpin .8s linear infinite;margin:0 auto 14px;"></div>
-      <div style="font-size:14px;color:#666;">Creating your payment QR...</div>
-      <div style="height:3px;background:#f0e8d8;border-radius:2px;overflow:hidden;margin-top:16px;">
-        <div style="height:100%;background:#7a0000;border-radius:2px;animation:qrProg 1.4s ease-in-out infinite alternate;"></div>
-      </div>
-    </div>
-
-    <!-- State: QR Ready -->
-    <div id="qr-state-ready" style="display:none;padding:20px 24px;">
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-          <span>Open PhonePe, GPay, Paytm, or any UPI app</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-          <span>Scan this QR and complete the payment</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#7a0000;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
-          <span>Return here — your receipt appears automatically</span>
-        </div>
-      </div>
-      <div style="background:#f8f4ee;border-radius:10px;padding:14px;text-align:center;margin-bottom:12px;border:1px solid #e8d5b0;">
-        <div style="width:100%;border-radius:8px;border:6px solid white;background:white;">
-          <img id="qr-img" style="width:100%;display:block;">
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#888;margin-top:8px;">
-          <span>Expires in</span>
-          <span id="qr-timer" style="background:#fff8e1;border:1px solid #e8c50a;color:#7a5c00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">10:00</span>
-        </div>
-        <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
-          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:2px 8px;font-size:10px;color:#666;font-weight:600;">GPay</span>
-          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:2px 8px;font-size:10px;color:#666;font-weight:600;">PhonePe</span>
-          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:2px 8px;font-size:10px;color:#666;font-weight:600;">Paytm</span>
-          <span style="background:white;border:1px solid #e0d0b0;border-radius:4px;padding:2px 8px;font-size:10px;color:#666;font-weight:600;">BHIM</span>
-        </div>
-      </div>
-      <div style="font-size:11px;color:#888;text-align:center;margin-bottom:8px;">Page checks automatically once payment is done</div>
-      <button onclick="manualCheckPayment()" style="width:100%;padding:11px;background:#f0fdf4;border:1.5px solid #81c784;color:#1a5c2a;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all 0.2s;" onmouseover="this.style.background='#dcf5e7'" onmouseout="this.style.background='#f0fdf4'">✅ I've paid — check now</button>
-      <button onclick="cancelQR()" style="width:100%;padding:10px;background:transparent;border:1px solid #ddd;color:#888;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#bbb';this.style.color='#555'" onmouseout="this.style.borderColor='#ddd';this.style.color='#888'">Cancel</button>
-    </div>
-
-    <!-- State: Checking -->
-    <div id="qr-state-checking" style="display:none;padding:36px 24px;text-align:center;">
-      <div style="width:36px;height:36px;border:3px solid #e0c0c0;border-top-color:#7a0000;border-radius:50%;animation:qrSpin .8s linear infinite;margin:0 auto 14px;"></div>
-      <div style="font-size:15px;color:#333;font-weight:600;margin-bottom:6px;">Checking payment...</div>
-      <div style="font-size:13px;color:#888;">This takes a few seconds</div>
-    </div>
-
-    <!-- State: Success -->
-    <div id="qr-state-success" style="display:none;padding:36px 24px;text-align:center;">
-      <div style="width:56px;height:56px;border-radius:50%;background:#e6f4ec;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:26px;">✅</div>
-      <div style="font-size:17px;font-weight:700;color:#1a5c2a;margin-bottom:6px;">Payment confirmed!</div>
-      <div style="font-size:13px;color:#888;">Generating your receipt...</div>
-    </div>
-
-  </div>
-</div>
-
-<style>
-  @keyframes qrSpin { to { transform: rotate(360deg); } }
-  @keyframes qrProg { from { width: 20%; } to { width: 85%; } }
-</style>
-
-    <script src="../../assets/manauna-support-chat.js"></script>
+<script src="../../assets/manauna-support-chat.js"></script>
 </body>
 </html>
