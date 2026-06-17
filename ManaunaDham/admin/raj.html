@@ -503,7 +503,7 @@ main { max-width: 900px; margin: 0 auto; padding: 16px 12px 120px; }
 .search-input:focus { outline: none; border-color: var(--maroon); }
 .filter-select { padding: 9px 10px; border: 2px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: white; cursor: pointer; }
 .bookings-table-wrap { background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow-x: auto; margin-bottom: 24px; -webkit-overflow-scrolling: touch; }
-table.bookings-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 620px; }
+table.bookings-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 720px; }
 table.bookings-table thead tr { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: white; }
 table.bookings-table th { padding: 10px 12px; text-align: left; font-weight: 700; font-size: 11px; letter-spacing: .4px; white-space: nowrap; }
 table.bookings-table td { padding: 10px 12px; border-bottom: 1px solid #f0e8d8; vertical-align: middle; }
@@ -765,6 +765,10 @@ body.owner-mode .edit-btn.owner-only { display: flex; }
         <div class="edit-field">
           <label>Guest Phone</label>
           <input type="tel" id="edit-phone" placeholder="9876543210" maxlength="10">
+        </div>
+        <div class="edit-field">
+          <label>Guest Email</label>
+          <input type="email" id="edit-email" placeholder="guest@email.com">
         </div>
         <div class="edit-field">
           <label>Room Type</label>
@@ -1103,6 +1107,7 @@ body.owner-mode .edit-btn.owner-only { display: flex; }
       <div class="me-field"><label>Invoice No. *</label><input type="text" id="me-invoice" placeholder="e.g. RG-001"></div>
       <div class="me-field"><label>Guest Name *</label><input type="text" id="me-name" placeholder="e.g. Ramesh Sharma"></div>
       <div class="me-field"><label>Guest Phone</label><input type="tel" id="me-phone" placeholder="9876543210" maxlength="10"></div>
+      <div class="me-field"><label>Guest Email</label><input type="email" id="me-email" placeholder="e.g. ramesh@gmail.com"></div>
       <div class="me-field"><label>Room Type *</label>
         <select id="me-room">
           <option value="">— Select —</option>
@@ -1137,7 +1142,7 @@ body.owner-mode .edit-btn.owner-only { display: flex; }
       <h4><i class="fa fa-file-csv" style="color:var(--green);margin-right:5px;"></i> Bulk Import via paste</h4>
       <p>Paste one or more bookings from your confirmation format. Separate multiple with a blank line.</p>
       <textarea class="bulk-textarea" id="bulk-csv-input"
-        placeholder="Invoice No.&#9;#RG0201&#10;Guest Name&#9;Umesh Sujan&#10;Phone&#9;+91 7041148586&#10;Room Type&#9;Standard Room&#10;Check-in&#9;02 Apr 2026&#10;Check-out&#9;05 Apr 2026&#10;Room Price&#9;&#8377;5,497&#10;Coupon Used&#9;BABA200&#10;Advance Paid (15%)&#9;&#8377;825&#10;Razorpay Payment ID&#9;pay_XXXX"
+        placeholder="Invoice No.&#9;#RG0201&#10;Guest Name&#9;Umesh Sujan&#10;Phone&#9;+91 7041148586&#10;Email&#9;umesh@gmail.com&#10;Room Type&#9;Standard Room&#10;Check-in&#9;02 Apr 2026&#10;Check-out&#9;05 Apr 2026&#10;Room Price&#9;&#8377;5,497&#10;Coupon Used&#9;BABA200&#10;Advance Paid (15%)&#9;&#8377;825&#10;Razorpay Payment ID&#9;pay_XXXX"
         oninput="previewBulk()"></textarea>
       <div class="bulk-preview" id="bulk-preview"></div>
       <div style="margin-top:10px;display:flex;gap:8px;">
@@ -1735,7 +1740,7 @@ function getFilteredBookings() {
     .filter(b => {
       if (cutoff && b.timestamp < cutoff) return false;
       if (!q) return true;
-      return [b.guestName, b.guestPhone, b.invoiceNo, b.roomType].some(v => (v||'').toLowerCase().includes(q));
+      return [b.guestName, b.guestPhone, b.guestEmail, b.invoiceNo, b.roomType].some(v => (v||'').toLowerCase().includes(q));
     })
     .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 }
@@ -1763,6 +1768,7 @@ function renderBookingsTable() {
       <td style="color:var(--maroon);font-weight:700;">#${b.invoiceNo||'—'}${newBadge}${src}</td>
       <td>${date}</td>
       <td><strong>${b.guestName||'—'}</strong><br><span style="font-size:11px;color:var(--text-muted);">+91 ${b.guestPhone||'—'}</span></td>
+      <td style="font-size:11.5px;${b.guestEmail ? '' : 'color:var(--text-muted);'}">${b.guestEmail||'—'}</td>
       <td>${b.roomType||'—'}</td>
       <td style="font-size:12px;">${fmtDate(b.checkin)} → ${fmtDate(b.checkout)}<br><span style="color:var(--text-muted);">${b.nights||'—'} night(s)</span></td>
       <td>₹${(b.roomPrice||0).toLocaleString('en-IN')}</td>
@@ -1780,7 +1786,7 @@ function renderBookingsTable() {
     <table class="bookings-table">
       <thead><tr>
         <th>#</th><th>Invoice</th><th>Booked On</th><th>Guest</th>
-        <th>Room</th><th>Dates</th><th>Room Price</th>
+        <th>Email</th><th>Room</th><th>Dates</th><th>Room Price</th>
         <th>Hotel Income</th><th>Coupon</th><th>Actions</th>
       </tr></thead>
       <tbody>${rows}</tbody>
@@ -1826,6 +1832,7 @@ function openEditModal(invoiceNo) {
   document.getElementById('edit-invoice').value    = b.invoiceNo  || '';
   document.getElementById('edit-name').value       = b.guestName  || '';
   document.getElementById('edit-phone').value      = b.guestPhone || '';
+  document.getElementById('edit-email').value      = b.guestEmail || '';
   document.getElementById('edit-room').value       = b.roomType   || 'Deluxe AC Room';
   document.getElementById('edit-checkin').value    = b.checkin    || '';
   document.getElementById('edit-checkout').value   = b.checkout   || '';
@@ -1851,6 +1858,7 @@ async function submitEditBooking() {
   const updates  = {
     guestName:   document.getElementById('edit-name').value.trim(),
     guestPhone:  document.getElementById('edit-phone').value.trim(),
+    guestEmail:  document.getElementById('edit-email').value.trim(),
     roomType:    document.getElementById('edit-room').value,
     checkin, checkout, nights,
     roomPrice:   parseInt(document.getElementById('edit-roomprice').value) || 0,
@@ -1922,14 +1930,14 @@ function toggleManualEntry() {
   if (!open) document.getElementById('me-bookingdate').value = new Date().toISOString().split('T')[0];
 }
 function clearManualForm() {
-  ['me-invoice','me-name','me-phone','me-checkin','me-checkout','me-roomprice','me-advance','me-coupon','me-payid']
+  ['me-invoice','me-name','me-phone','me-email','me-checkin','me-checkout','me-roomprice','me-advance','me-coupon','me-payid']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value=''; });
   document.getElementById('me-room').value        = '';
   document.getElementById('me-source').value      = 'manual';
   document.getElementById('me-bookingdate').value = new Date().toISOString().split('T')[0];
 }
 
-function buildManualBooking(invoiceNo, guestName, guestPhone, roomType, checkin, checkout,
+function buildManualBooking(invoiceNo, guestName, guestPhone, guestEmail, roomType, checkin, checkout,
                              roomPrice, advancePaid, coupon, bookingDate, paymentId, source) {
   const nights = Math.max(1, Math.round((new Date(checkout) - new Date(checkin)) / 86400000));
   return {
@@ -1937,6 +1945,7 @@ function buildManualBooking(invoiceNo, guestName, guestPhone, roomType, checkin,
     paymentId: paymentId  || '',
     guestName: guestName  || 'Unknown Guest',
     guestPhone: guestPhone || '',
+    guestEmail: guestEmail || '',
     hotelName: 'Hotel Raj Garden',
     roomType:  roomType   || 'N/A',
     checkin, checkout, nights,
@@ -1964,6 +1973,7 @@ async function submitManualBooking() {
     document.getElementById('me-invoice').value.trim(),
     document.getElementById('me-name').value.trim(),
     document.getElementById('me-phone').value.trim(),
+    document.getElementById('me-email').value.trim(),
     document.getElementById('me-room').value,
     document.getElementById('me-checkin').value,
     document.getElementById('me-checkout').value,
@@ -1989,6 +1999,7 @@ function parseBulkCSV(raw) {
     const guestName   = get([/Guest\s*Name\s*[:\t]\s*([^\n]+)/i]);
     const rawPhone    = get([/Phone\s*[:\t]\s*([^\n]+)/i]);
     const guestPhone  = rawPhone.replace(/^\+91\s*/, '').replace(/\D/g,'').slice(-10);
+    const guestEmail  = get([/E-?mail\s*(?:Address)?\s*[:\t]\s*([^\n]+)/i]);
     const roomType    = get([/Room\s*Type\s*[:\t]\s*([^\n]+)/i]);
     const checkinRaw  = get([/Check-?in\s*[:\t]\s*([^\n]+)/i]);
     const checkoutRaw = get([/Check-?out\s*[:\t]\s*([^\n]+)/i]);
@@ -2013,7 +2024,7 @@ function parseBulkCSV(raw) {
     const checkin  = parseDate(checkinRaw);
     const checkout = parseDate(checkoutRaw);
     if (!checkin || !checkout || !roomPrice) return null;
-    return buildManualBooking(invoiceNo, guestName, guestPhone, roomType, checkin, checkout,
+    return buildManualBooking(invoiceNo, guestName, guestPhone, guestEmail, roomType, checkin, checkout,
       roomPrice, advancePaid, coupon, '', paymentId, 'bulk-import');
   }).filter(Boolean);
 }
