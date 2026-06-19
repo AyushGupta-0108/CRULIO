@@ -317,20 +317,15 @@
 
   /* ── TESTIMONIALS ── */
   .testimonials-bg { background: var(--cream); }
-  .testi-track-wrap { overflow: hidden; position: relative; }
-  .testi-track-wrap::before, .testi-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
-  .testi-track-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
-  .testi-track-wrap::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
-  .testi-track { display: flex; gap: 20px; width: max-content; animation: testi-marquee 32s linear infinite; }
-  .testi-track:hover { animation-play-state: paused; }
-  @keyframes testi-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .testi-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; flex-shrink: 0; width: 340px; }
+  .testi-featured-wrap { display: flex; justify-content: center; }
+  .testi-featured { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 40px 48px; max-width: 620px; text-align: center; box-shadow: 0 8px 32px rgba(20,30,50,0.06); }
+  .testi-featured-text { font-size: 16px; color: var(--navy); line-height: 1.85; font-weight: 300; font-style: italic; }
   .testi-stars { color: #f6b30e; font-size: 13px; margin-bottom: 11px; letter-spacing: 2px; }
-  .testi-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 16px; }
   .testi-author { display: flex; align-items: center; gap: 11px; }
   .testi-av { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; }
   .testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
   .testi-loc { font-size: 11px; color: var(--text-muted); }
+  @media (max-width: 600px) { .testi-featured { padding: 28px 24px; } }
 
   /* ── PARTNER ── */
   .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -844,61 +839,16 @@
 <section class="testimonials-bg">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="eyebrow">Pilgrim Stories</div>
-      <h2 class="section-title">What Devotees Say</h2>
+      <div class="eyebrow">Verified Feedback</div>
+      <h2 class="section-title">What Guests Say About Booking With Us</h2>
     </div>
-    <div class="testi-track-wrap reveal">
-      <div class="testi-track">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
-          <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"The darshan timings were accurate - unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
-          <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Booked the full bundle - train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
-          <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Never expected such smooth service at a dham. Auto was waiting at the station, hotel was clean and close to the temple. Highly recommend Crulio to every pilgrim."</p>
-          <div class="testi-author"><div class="testi-av">SK</div><div><div class="testi-name">Sunita Kumari</div><div class="testi-loc">Kanpur, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"We came as a family of 8 and Crulio arranged everything - stay, food, transport. Zero stress. The WhatsApp support team was with us at every step. Jai Shyam!"</p>
-          <div class="testi-author"><div class="testi-av">MG</div><div><div class="testi-name">Mahesh Gupta</div><div class="testi-loc">Agra, UP</div></div></div>
-        </div>
-        <!-- Duplicate set for seamless loop -->
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Came from Lucknow for darshan. Found hotel through Crulio, booked auto from station, ordered food to the room. Everything exactly as described. Will always use this!"</p>
-          <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Ramesh Sharma</div><div class="testi-loc">Lucknow, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"The darshan timings were accurate - unlike every other website we checked. WhatsApp support answered at 11 PM when we had a problem with our booking. Incredible service."</p>
-          <div class="testi-author"><div class="testi-av">PG</div><div><div class="testi-name">Priya Gupta</div><div class="testi-loc">Delhi, NCR</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Booked the full bundle - train info, auto from Aonla, hotel, and food. Huge discount compared to booking separately. This is genuinely a blessing for out-of-town pilgrims."</p>
-          <div class="testi-author"><div class="testi-av">AV</div><div><div class="testi-name">Ashok Verma</div><div class="testi-loc">Bareilly, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Never expected such smooth service at a dham. Auto was waiting at the station, hotel was clean and close to the temple. Highly recommend Crulio to every pilgrim."</p>
-          <div class="testi-author"><div class="testi-av">SK</div><div><div class="testi-name">Sunita Kumari</div><div class="testi-loc">Kanpur, UP</div></div></div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"We came as a family of 8 and Crulio arranged everything - stay, food, transport. Zero stress. The WhatsApp support team was with us at every step. Jai Shyam!"</p>
-          <div class="testi-author"><div class="testi-av">MG</div><div><div class="testi-name">Mahesh Gupta</div><div class="testi-loc">Agra, UP</div></div></div>
+    <div class="testi-featured-wrap reveal">
+      <div class="testi-featured">
+        <div class="testi-stars" style="font-size:18px;margin-bottom:16px;">★★★★★</div>
+        <p class="testi-featured-text">"I had a wonderful stay at the hotel. The rooms were comfortable, the staff was courteous, and the facilities were well maintained. The online booking website was user-friendly and made the reservation process simple and hassle-free. Highly recommended."</p>
+        <div class="testi-author" style="justify-content:center;margin-top:18px;">
+          <div class="testi-av">GM</div>
+          <div><div class="testi-name">Ganesh Mandal</div><div class="testi-loc">Manauna Dham booking</div></div>
         </div>
       </div>
     </div>
