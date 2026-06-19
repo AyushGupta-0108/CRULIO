@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Manauna Dham Cab Booking | Taxi Service | 7-Seater & 5-Seater | Crulio Networks</title>
-<meta name="description" content="Book a cab to Manauna Dham from Bareilly, U.P. or Delhi. 5-seater and 7-seater options. Pay only 15% now. Instant booking — WhatsApp confirmation. A Crulio Networks platform.">
-<meta name="keywords" content="Manauna Dham cab, taxi to Manauna Dham, 7 seater cab Aonla, transport Manauna Dham, Bareilly cab Manauna, pilgrim taxi Aonla, Delhi cab Manauna Dham">
+<title>Manauna Dham Cab Booking | From ₹2,999 | Taxi Service | 7-Seater & 5-Seater | Crulio Networks</title>
+<meta name="description" content="Book a cab to Manauna Dham from Bareilly from ₹2,999 (return) or Delhi Airport from ₹3,099. 5-seater and 7-seater options. Pay only 10% now. Instant booking — WhatsApp confirmation. A Crulio Networks platform.">
+<meta name="keywords" content="Manauna Dham cab, taxi to Manauna Dham, 7 seater cab Aonla, transport Manauna Dham, Bareilly cab Manauna, pilgrim taxi Aonla, Delhi cab Manauna Dham, cab from Delhi to Manauna Dham 3099, Bareilly to Manauna Dham taxi 2999">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Manauna Dham Cab Booking | From Bareilly & Delhi | Crulio Networks">
-<meta property="og:description" content="Comfortable cab to Manauna Dham. Pickup from Bareilly, anywhere in U.P., or Delhi Airport. Pay only 15% now. Instant WhatsApp confirmation. A Crulio Networks platform.">
+<meta property="og:title" content="Manauna Dham Cab Booking | From ₹2,999 | Bareilly & Delhi | Crulio Networks">
+<meta property="og:description" content="Comfortable cab to Manauna Dham from ₹2,999 (Bareilly return) or ₹3,099 (Delhi Airport). Pay only 10% now. Instant WhatsApp confirmation. A Crulio Networks platform.">
 <meta property="og:url" content="https://crulio.com/ManaunaDham/transport">
 <meta property="og:image" content="https://crulio.com/ManaunaDham/images/web/logonobg.webp">
 <meta name="twitter:card" content="summary_large_image">
@@ -19,6 +19,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- Google Maps API — replace YOUR_MAPS_API_KEY with your key -->
+<script>
+  window.GMAPS_KEY = 'AIzaSyBHjqbz3Cprm_VWgTGjuvS7_G8Y7p5h16I';
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -522,7 +526,84 @@ footer p:last-child{font-size:12px;opacity:.65;}
 .footer-crulio-credit img{height:14px;width:auto;opacity:0.85;}
 .footer-crulio-credit span{font-size:11px;color:rgba(255,255,255,0.6);font-weight:500;}
 
-/* Print */
+/* Map search autocomplete */
+.ac-item{padding:11px 14px;cursor:pointer;font-size:13.5px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;gap:10px;transition:background .15s;}
+.ac-item:hover,.ac-item.hovered{background:#fff8f0;}
+.ac-item:last-child{border-bottom:none;}
+.ac-icon{width:28px;height:28px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:var(--maroon);}
+.ac-main{font-weight:600;color:var(--text);line-height:1.3;}
+.ac-sub{font-size:11.5px;color:var(--text-muted);line-height:1.3;}
+/* Search input group needs to be relative for dropdown */
+#stage-1 .form-group{position:relative;}
+/* Map custom marker */
+.map-pin-label{background:var(--maroon);color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
+/* Quick pick button */
+/* ── Popular Location Cards ── */
+.popular-locs-wrap { margin-bottom: 16px; }
+.popular-locs-label {
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.popular-locs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+@media (max-width: 420px) { .popular-locs-grid { grid-template-columns: 1fr 1fr; gap: 7px; } }
+.pop-loc-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 11px;
+  padding: 11px 12px 10px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', inherit;
+  transition: var(--transition);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.pop-loc-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--maroon), var(--gold));
+  opacity: 0; transition: opacity .2s;
+}
+.pop-loc-card:hover { border-color: var(--maroon); background: #fff8f0; box-shadow: var(--shadow-sm); }
+.pop-loc-card:hover::before { opacity: 1; }
+.pop-loc-card.selected {
+  border-color: var(--maroon); background: linear-gradient(135deg,#fff3e6,#fff8f0);
+  box-shadow: 0 0 0 2px var(--maroon);
+}
+.pop-loc-card.selected::before { opacity: 1; }
+.pop-loc-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.pop-loc-card:hover .pop-loc-icon,
+.pop-loc-card.selected .pop-loc-icon {
+  background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+}
+.pop-loc-body { flex: 1; min-width: 0; }
+.pop-loc-name { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.25; margin-bottom: 2px; }
+.pop-loc-card.selected .pop-loc-name { color: var(--maroon); }
+.pop-loc-dist { font-size: 11px; color: var(--text-muted); }
+.pop-loc-check {
+  position: absolute; top: 7px; right: 8px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--maroon); color: white;
+  font-size: 10px; font-weight: 700;
+  display: none; align-items: center; justify-content: center;
+}
+.pop-loc-card.selected .pop-loc-check { display: flex; }
+/* Keep old qp-btn in case referenced elsewhere */
+.qp-btn{display:none;}
+
 @media print{body>*:not(.receipt-overlay){display:none!important}.receipt-overlay{position:static!important;background:transparent!important;padding:0!important;overflow:visible!important;display:block!important}.receipt-box{width:100%!important;max-width:480px!important;margin:0 auto!important;box-shadow:none!important;border-radius:0!important}.ract,.ract-wa{display:none!important}@page{margin:10mm;size:A5 portrait}}
 
 /* Responsive */
@@ -561,53 +642,19 @@ footer p:last-child{font-size:12px;opacity:.65;}
 @media(max-width:380px){
   .crulio-bar-text{display:none;}
 }
-
-.address-row{
-    display:flex;
-    gap:8px;
-}
-
-.address-row input{
-    flex:1;
-}
-
-.address-row button{
-    width:50px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-size:18px;
-}
-
-.address-suggestions{
-    background:#fff;
-    border:1px solid #ddd;
-    border-radius:10px;
-    max-height:220px;
-    overflow-y:auto;
-    margin-top:5px;
-}
-
-.address-item{
-    padding:10px;
-    cursor:pointer;
-}
-
-.address-item:hover{
-    background:#f5f5f5;
-}
 </style>
 </head>
 <body>
+
+<!-- Returning guest banner — shown on reload if a saved booking exists -->
+<div id="returning-guest-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border-bottom:2.5px solid #81c784;padding:12px 20px;text-align:center;"></div>
 
 <!-- ══ CRULIO NETWORK BAR ══ -->
 <div class="crulio-network-bar">
   <div class="crulio-network-bar-inner">
     <a href="https://www.crulio.com" class="crulio-bar-left" target="_blank" rel="noopener">
       <img src="../../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" class="crulio-bar-logo">
-      <span class="crulio-bar-text">Part of <strong>Crulio Networks</strong></span>
+      <span class="crulio-bar-text">Powered by <strong>Crulio Networks</strong></span>
     </a>
     <div class="crulio-bar-right">
       <a href="https://www.crulio.com" class="crulio-bar-link" target="_blank" rel="noopener">crulio.com</a>
@@ -626,11 +673,8 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <img src="../images/web/logonobg.webp" alt="Manauna Dham" class="brand-logo" loading="eager">
       <div class="brand-text">
         <strong>Manauna Dham</strong>
-        <span>Pilgrim Services</span>
-        <div class="brand-crulio-badge">
-          <img src="../../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks">
-          <span>Crulio Networks</span>
-        </div>
+        <span>Taxi Service</span>
+      
       </div>
     </a>
     <nav>
@@ -666,15 +710,11 @@ footer p:last-child{font-size:12px;opacity:.65;}
 
 <!-- ══ TOP DISCOUNT BANNER ══ -->
 <div class="top-discount-banner" onclick="document.getElementById('booking-wizard').scrollIntoView({behavior:'smooth',block:'start'})">
-  <span class="tdb-tag">&#128275; UNLOCKED</span>
-  <span>Upto <strong>&#8377;200 discount</strong> unlocked — See prices &amp; apply in the booking form below</span>
+  <span class="tdb-tag">&#128275; UNLOCKED</span> 
+  <span>Upto <strong>&#8377;200 discount</strong></span>
   <span class="tdb-arrow">&#8595;</span>
 </div>
 
-<!-- ══ DISCLAIMER ══ -->
-<div class="disclaimer">
-  <strong>Crulio.com/ManaunaDham</strong> is an independent pilgrim services platform by Crulio Networks. Not affiliated with temple management.
-</div>
 
 <!-- ══ DRIVER NOTE BANNER ══ -->
 <div id="driver-note-banner">
@@ -682,33 +722,18 @@ footer p:last-child{font-size:12px;opacity:.65;}
   <span id="driver-note-text"></span>
 </div>
 
-<!-- ══ TRUST BAR ══ -->
-<div class="trust-bar">
-  <span>&#128663; Verified Driver</span>
-  <span>&#128274; Pay only 15% now</span>
-  <span>&#128181; 85% of fare paid to driver</span>
-  <span>&#9889; WhatsApp confirmation</span>
-  <span>&#127981; Crulio Networks</span>
-</div>
+
 
 <!-- ══ HERO ══ -->
 <div class="hero">
-  <a href="https://www.crulio.com" class="hero-crulio-badge" target="_blank" rel="noopener">
-    <img src="../../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" style="height:16px;width:auto;filter:brightness(1.5) saturate(1.4);">
-    <span>India's Destinations Super Platform</span>
-  </a>
-  <div class="hero-tag">&#128663; Cab Service to Manauna Dham</div>
+
   <h1>Manauna Dham<br>Cab Booking Service</h1>
-  <p>Comfortable cab from Bareilly, anywhere in U.P., or Delhi — straight to Manauna Dham. 5-seater &amp; 7-seater available. Pay just 15% now to confirm your ride.</p>
   <div class="hero-badges">
     <span class="hero-badge">&#128205; Pickup from Your Location</span>
     <span class="hero-badge">&#128663; Bareilly &bull; U.P. &bull; Delhi</span>
-    <span class="hero-badge">&#128179; 15% Advance Only</span>
-    <span class="hero-badge">&#8617;&#65039; Return Trip = Bigger Discount</span>
+    <span class="hero-badge">&#8617;&#65039;  Big Discounts</span>
   </div>
-  <div style="background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);border-radius:12px;padding:12px 20px;margin-bottom:24px;font-size:13.5px;color:rgba(255,255,255,0.92);max-width:520px;margin-left:auto;margin-right:auto;position:relative;">
-    <strong style="color:#f0c040;">&#128161; How to see prices:</strong> Fill in the booking form below step by step — your exact fare with all discounts will show automatically before you pay.
-  </div>
+
   <button onclick="document.getElementById('booking-wizard').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--maroon-dark);padding:14px 30px;border-radius:50px;border:none;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(212,160,23,0.4);transition:all .25s;font-family:'DM Sans',inherit;">
     <i class="fa fa-calendar-check"></i> Check Prices &amp; Book
   </button>
@@ -718,18 +743,18 @@ footer p:last-child{font-size:12px;opacity:.65;}
 <section class="taxi-gallery-section">
   <div class="taxi-gallery-inner">
     <div class="taxi-gallery-header">
-      <h2>&#128663; Our Cab Fleet</h2>
-      <p>Comfortable, clean, and verified vehicles for your Manauna Dham yatra</p>
+      <h2>&#128663;One of our Cabs</h2>
+  
       <div class="taxi-gallery-underline"></div>
     </div>
     <div class="taxi-photos-grid">
       <div class="taxi-photo-card">
         <img src="../images/taxi/Taxi.JPG" alt="Manauna Dham Cab — 7 Seater" loading="lazy">
-        <div class="taxi-photo-label">&#128663; 7-Seater &bull; Air Conditioned &bull; Spacious</div>
+  
       </div>
       <div class="taxi-photo-card">
         <img src="../images/taxi/Taxi2.JPG" alt="Manauna Dham Cab — Pilgrim Transport" loading="lazy">
-        <div class="taxi-photo-label">&#128204; Verified Driver &bull; Pilgrim-Friendly</div>
+        
       </div>
     </div>
     <div class="taxi-trust-badges">
@@ -737,38 +762,64 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <span class="taxi-trust-badge"><i class="fa fa-snowflake"></i> AC Cab</span>
       <span class="taxi-trust-badge"><i class="fa fa-users"></i> Upto 7 Passengers</span>
       <span class="taxi-trust-badge"><i class="fa fa-clock"></i> On-time Pickup</span>
-      <span class="taxi-trust-badge"><i class="fab fa-whatsapp" style="color:#25D366"></i> WhatsApp Updates</span>
     </div>
   </div>
 </section>
 
-<!-- ══ PRICE STRIP ══ -->
-<div class="price-strip">
-  <div class="price-pill">
-    <div class="route">Bareilly One Way</div>
-    <div class="amount">from &#8377;1,599</div>
-    <div class="type">5 or 7-Seater</div>
+<!-- ══ PRICE TABLE — internal reference only, hidden from users ══ -->
+<div style="display:none;background:white;border-bottom:3px solid var(--gold);">
+  <div style="background:linear-gradient(135deg,var(--maroon-dark),var(--maroon));padding:16px 24px;display:flex;align-items:center;gap:12px;">
+    <span style="font-size:20px;">📋</span>
+    <div>
+      <div style="font-family:'Lora',serif;font-size:17px;color:white;margin-bottom:2px;">Base Fare Rates — Per KM</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.65);">Distance-based pricing · Toll charges added on top · Final fare shown in booking form</div>
+    </div>
   </div>
-  <div class="price-pill">
-    <div class="route">Bareilly Return</div>
-    <div class="amount">from &#8377;3,198</div>
-    <div class="type">Bigger discount on return &#8617;&#65039;</div>
+  <div style="overflow-x:auto;padding:0 16px 16px;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:420px;">
+      <thead>
+        <tr style="background:var(--bg);">
+          <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--border);">Distance Slab</th>
+          <th style="padding:10px 14px;text-align:center;color:var(--maroon);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--border);">🚗 5-Seater ₹/km</th>
+          <th style="padding:10px 14px;text-align:center;color:var(--maroon);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--border);">🚐 7-Seater ₹/km</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff8f0;">
+          <td style="padding:10px 14px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border-soft);">0 – 55 km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹47.0 / km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹54.0 / km</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border-soft);">55 – 100 km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹39.5 / km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹45.1 / km</td>
+        </tr>
+        <tr style="background:#fff8f0;">
+          <td style="padding:10px 14px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border-soft);">100 – 150 km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹32.0 / km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹36.1 / km</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border-soft);">150 – 230 km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹23.5 / km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);border-bottom:1px solid var(--border-soft);">₹26.0 / km</td>
+        </tr>
+        <tr style="background:#fff8f0;">
+          <td style="padding:10px 14px;font-weight:600;color:var(--text);">230 – 300 km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);">₹21.0 / km</td>
+          <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--maroon);">₹23.25 / km</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="price-pill">
-    <div class="route">Delhi Airport</div>
-    <div class="amount">from &#8377;4,799</div>
-    <div class="type">One Way &bull; 7-Seater</div>
-  </div>
-  <div class="price-pill">
-    <div class="route">Pay Now</div>
-    <div class="amount">15%</div>
-    <div class="type">15% advance only</div>
+  <div style="background:#fff8e1;border-top:1px solid #f0e0b0;padding:10px 20px;font-size:12.5px;color:#5a3c00;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <i class="fa fa-circle-info" style="color:var(--gold);flex-shrink:0;"></i>
+    <span>Rates are per km for the total trip distance. <strong>Toll charges are added separately</strong> (₹3.125/km, applies after 50 km) based on your actual route. Select your pickup location in the booking form below to see the exact fare.</span>
   </div>
 </div>
-<div style="background:#fff8e1;border-bottom:2px solid #e8c050;padding:10px 20px;text-align:center;font-size:13px;font-weight:600;color:#5a3c00;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;" onclick="document.getElementById('booking-wizard').scrollIntoView({behavior:'smooth',block:'start'})">
-  <span>&#128071; Exact fare + all discounts shown in the <strong>booking form below</strong> — fill your details to see your price</span>
-  <span style="background:var(--maroon);color:white;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;">Check Price &#8595;</span>
-</div>
+
+
 
 <div class="container" style="padding-top:0;padding-bottom:40px;">
 
@@ -776,7 +827,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
 <div id="booking-wizard">
   <div class="wizard-header">
     <h2>&#128663; Check Exact Price — Step by Step</h2>
-    <p>Fill in details below &middot; Pay 15% now to confirm &middot; We'll contact you on WhatsApp</p>
+    <p>Driver contact number will be shared after payment on receipt &middot; We'll contact you on WhatsApp</p>
     <div class="wizard-crulio-line">
       <img src="../../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks">
       <span>A Crulio Networks Platform — Crulio.com/ManaunaDham</span>
@@ -797,163 +848,112 @@ footer p:last-child{font-size:12px;opacity:.65;}
 
   <div class="stages-wrap">
 
-    <!-- STAGE 1: PICKUP -->
+    <!-- STAGE 1: PICKUP — Maps-based location picker -->
     <div class="stage active" id="stage-1">
       <div class="stage-title" data-n="1">Where should the driver pick you up from?</div>
-      <div class="opt-grid cols-3" style="margin-bottom:14px;">
-        <div class="opt-card" id="loc-bareilly" onclick="selectCity('bareilly')">
-          <div class="sel-badge">&#10003;</div>
-          <div class="opt-icon">&#127961;&#65039;</div>
-          <div class="opt-title">Bareilly</div>
-          <div class="opt-sub">Station, Airport, or anywhere in Bareilly city</div>
-        </div>
-        <div class="opt-card" id="loc-up" onclick="selectCity('up')">
-          <div class="sel-badge">&#10003;</div>
-          <div class="opt-icon">&#128205;</div>
-          <div class="opt-title">Other U.P. City</div>
-          <div class="opt-sub">Anywhere in Uttar Pradesh (outside Bareilly)</div>
-        </div>
-        <div class="opt-card" id="loc-delhi" onclick="selectCity('delhi')">
-          <div class="sel-badge">&#10003;</div>
-          <div class="opt-icon">&#127963;&#65039;</div>
-          <div class="opt-title">Delhi / NCR</div>
-          <div class="opt-sub">Delhi Airport, Noida, Gurgaon, etc.</div>
+
+      <!-- Search Box -->
+      <div class="form-group" style="margin-bottom:10px;">
+        <label>Search your pickup location <span class="req">*</span></label>
+        <div style="position:relative;">
+          <i class="fa fa-magnifying-glass" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#aaa;font-size:14px;pointer-events:none;z-index:1;"></i>
+          <input type="text" id="pickup-search" placeholder="Type city…" autocomplete="off"
+            style="padding-left:40px;width:100%;"
+            oninput="handleSearchInput(this.value)"
+            onfocus="if(this.value.length>1)showSuggestions()"
+            onkeydown="handleSearchKey(event)">
+          <!-- Autocomplete dropdown — inside position:relative so it anchors correctly -->
+          <div id="autocomplete-list" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:9999;background:white;border:2px solid var(--border);border-top:none;border-radius:0 0 10px 10px;box-shadow:0 8px 24px rgba(0,0,0,0.18);max-height:280px;overflow-y:auto;"></div>
         </div>
       </div>
 
-      <!-- Bareilly sub-options -->
-      <div id="bareilly-sub" style="display:none;animation:stageIn .3s ease;">
-        <div class="stage-title" data-n="&#8594;" style="margin-top:8px;">Select your exact pickup point in Bareilly</div>
-        <div class="opt-grid cols-3">
-          <div class="opt-card" id="sub-station" onclick="selectPickup('station')">
-            <div class="sel-badge">&#10003;</div>
-            <div class="opt-icon">&#128649;</div>
-            <div class="opt-title">Bareilly Railway Station</div>
-            <div class="opt-sub">Bareilly Junction</div>
-            <div class="opt-price">Starting from &#8377;1,599</div>
-          </div>
-          <div class="opt-card" id="sub-airport" onclick="selectPickup('airport')">
-            <div class="sel-badge">&#10003;</div>
-            <div class="opt-icon">&#9992;&#65039;</div>
-            <div class="opt-title">Bareilly Airport</div>
-            <div class="opt-sub">Bareilly Civil Airport (~51 km)</div>
-            <div class="opt-price">Starting from &#8377;1,599</div>
-          </div>
-          <div class="opt-card" id="sub-city" onclick="selectPickup('city')">
-            <div class="sel-badge">&#10003;</div>
-            <div class="opt-icon">&#128204;</div>
-            <div class="opt-title">Anywhere in Bareilly</div>
-            <div class="opt-sub">Hotel, home, market — within city limits</div>
-            <div class="opt-price">Starting from &#8377;1,599</div>
-          </div>
-        </div>
-
-        <!--
-        <div class="form-group" id="city-address-group" style="display:none;margin-top:12px;">
-          <label>Your exact address in Bareilly <span class="req">*</span></label>
-          <input type="text" id="city-address" placeholder="e.g. Hotel Grand, Civil Lines, Bareilly">
-        </div>
-        -->
-
-<div class="form-group" id="city-address-group" style="display:none;margin-top:12px;">
-    <label>Your exact address in Bareilly <span class="req">*</span></label>
-
-    <div class="address-row">
-        <input
-            type="text"
-            id="city-address"
-            placeholder="Search your exact address">
-
-        <button type="button" id="gps-cp">
-            <i class="fa-solid fa-location-crosshairs"></i>
+      <!-- Quick action buttons -->
+      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+        <button onclick="useMyLocation()" id="gps-btn" style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#1a7a3a,#0f5c2a);color:white;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'DM Sans',inherit;flex-shrink:0;">
+          <i class="fa fa-location-crosshairs"></i> Use My Current Location
         </button>
-    </div>
-
-    <div id="cp-suggestions" class="address-suggestions"></div>
-</div>
-        
       </div>
 
-      <!-- Other UP sub-option -->
-      <div id="up-sub" style="display:none;animation:stageIn .3s ease;">
-        <div class="stage-title" data-n="&#8594;" style="margin-top:8px;">Enter your exact address</div>
-        <div class="alert-box warn show" style="margin-bottom:14px;">
-          <i class="fa fa-triangle-exclamation"></i>
-          <div>Our driver can pick up from other U.P. cities but the price will be calculated and confirmed on WhatsApp after booking. You will be redirected to WhatsApp at the end.</div>
+      <!-- Popular Locations — always-visible tap-to-select cards -->
+      <div class="popular-locs-wrap">
+        <div class="popular-locs-label"><i class="fa fa-star" style="color:var(--gold);"></i> Popular Pickup Points</div>
+        <div class="popular-locs-grid" id="popular-locs-grid">
+          <!-- Rendered by renderPopularCards() on page load -->
         </div>
-        
-        <!--
-        <div class="form-group">
-          <label>Your exact address (city, area, landmark) <span class="req">*</span></label>
-          <input type="text" id="up-address" placeholder="e.g. Near Moradabad Junction, Moradabad, U.P.">
-        </div>
-        -->
-<div class="form-group">
-    <label>Your exact address (city, area, landmark) <span class="req">*</span></label>
-
-    <div class="address-row">
-        <input
-            type="text"
-            id="up-address"
-            placeholder="Search your exact address">
-
-        <button type="button" id="gps-up">
-            <i class="fa-solid fa-location-crosshairs"></i>
-        </button>
-    </div>
-
-    <div id="up-suggestions" class="address-suggestions"></div>
-</div>
-        
       </div>
 
-      <!-- Delhi sub-options -->
-      <div id="delhi-sub" style="display:none;animation:stageIn .3s ease;">
-        <div class="stage-title" data-n="&#8594;" style="margin-top:8px;">Select your pickup point in Delhi / NCR</div>
-        <div class="opt-grid cols-2">
-          <div class="opt-card" id="sub-delhi-airport" onclick="selectPickup('delhi-airport')">
-            <div class="sel-badge">&#10003;</div>
-            <div class="opt-icon">&#9992;&#65039;</div>
-            <div class="opt-title">Delhi Airport (IGI)</div>
-            <div class="opt-sub">Terminal 1, 2 or 3 — Indira Gandhi International</div>
-            <div class="opt-price">from &#8377;4,799 one-way</div>
+      <!-- GPS status -->
+      <div id="gps-status" style="display:none;background:#e8f4fc;border:1.5px solid #90c8e8;border-radius:10px;padding:12px 16px;font-size:13px;color:#0a3a5c;font-weight:600;margin-bottom:12px;display:none;align-items:center;gap:10px;">
+        <div class="avail-spinner" style="border-color:#b0d8f0;border-top-color:#0a3a5c;"></div>
+        <span id="gps-status-text">Getting your location…</span>
+      </div>
+
+      <!-- Selected location card -->
+      <div id="selected-location-card" style="display:none;background:linear-gradient(135deg,#fff8f0,#fff3e6);border:2px solid var(--maroon);border-radius:12px;padding:16px 18px;margin-bottom:14px;animation:stageIn .3s ease;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:36px;height:36px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fa fa-location-dot" style="color:white;font-size:16px;"></i>
           </div>
-          <div class="opt-card" id="sub-delhi-other" onclick="selectPickup('delhi-other')">
-            <div class="sel-badge">&#10003;</div>
-            <div class="opt-icon">&#128205;</div>
-            <div class="opt-title">Other Delhi / NCR</div>
-            <div class="opt-sub">Delhi, Noida, Gurgaon, Faridabad, etc.</div>
-            <div style="margin-top:8px;"><span style="background:#fff3e0;color:#c06000;border:1px solid #f0c060;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;">Price quoted on WhatsApp</span></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Selected Pickup</div>
+            <div id="sel-loc-name" style="font-size:15px;font-weight:700;color:var(--maroon);line-height:1.3;margin-bottom:2px;"></div>
+            <div id="sel-loc-addr" style="font-size:12px;color:var(--text-muted);line-height:1.4;"></div>
+          </div>
+          <button onclick="clearLocation()" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:18px;padding:4px;flex-shrink:0;" title="Clear">✕</button>
+        </div>
+        <div id="distance-calc-row" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid rgba(122,0,0,0.1);">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <div id="dist-loading" style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#888;">
+              <div class="avail-spinner"></div> Calculating distance &amp; toll…
+            </div>
+            <div id="dist-result" style="display:none;width:100%;">
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <div style="background:white;border:1px solid var(--border-soft);border-radius:8px;padding:8px 14px;font-size:13px;">
+                  <span style="color:var(--text-muted);">Distance</span>
+                  <strong id="dist-km" style="display:block;font-size:16px;color:var(--maroon);">—</strong>
+                </div>
+                <div style="background:white;border:1px solid var(--border-soft);border-radius:8px;padding:8px 14px;font-size:13px;">
+                  <span style="color:var(--text-muted);">Drive Time</span>
+                  <strong id="dist-time" style="display:block;font-size:16px;color:var(--maroon);">—</strong>
+                </div>
+                <div style="background:white;border:1px solid #c8e0f0;border-radius:8px;padding:8px 14px;font-size:13px;">
+                  <span style="color:var(--text-muted);">Est. Toll</span>
+                  <strong id="dist-toll" style="display:block;font-size:16px;color:#0a5c7a;">—</strong>
+                </div>
+                <div style="background:linear-gradient(135deg,#fff8f0,#fff3e6);border:1.5px solid var(--maroon);border-radius:8px;padding:8px 14px;font-size:13px;">
+                  <span style="color:var(--text-muted);">Base Fare (5-Seater)</span>
+                  <strong id="dist-fare-5" style="display:block;font-size:16px;color:var(--maroon);">—</strong>
+                </div>
+                <div style="background:linear-gradient(135deg,#fff8f0,#fff3e6);border:1.5px solid var(--maroon);border-radius:8px;padding:8px 14px;font-size:13px;">
+                  <span style="color:var(--text-muted);">Base Fare (7-Seater)</span>
+                  <strong id="dist-fare-7" style="display:block;font-size:16px;color:var(--maroon);">—</strong>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11.5px;color:var(--text-muted);background:rgba(0,0,0,0.03);border-radius:6px;padding:6px 10px;">
+                ℹ️ <strong>Total fare = Base Fare + Toll.</strong> Exact amount shown at checkout after you select car type &amp; trip.
+              </div>
+            </div>
+            <div id="unserviceable-notice" style="display:none;width:100%;align-items:flex-start;gap:10px;background:#fff3f0;border:1.5px solid var(--error);border-radius:10px;padding:13px 16px;">
+              <i class="fa fa-triangle-exclamation" style="color:var(--error);font-size:16px;margin-top:2px;flex-shrink:0;"></i>
+              <div>
+                <div style="font-size:13.5px;font-weight:700;color:#a30000;margin-bottom:3px;">Pickup not serviceable</div>
+                <div id="unserviceable-reason" style="font-size:12.5px;color:#7a1a1a;line-height:1.5;"></div>
+                <div style="font-size:12px;color:#7a1a1a;margin-top:5px;">This location isn't available right now. Please pick a different location within Uttar Pradesh or Delhi NCR.</div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!--
-        <div class="form-group" id="delhi-other-address-group" style="display:none;margin-top:12px;">
-          <label>Your exact address in Delhi / NCR <span class="req">*</span></label>
-          <input type="text" id="delhi-other-address" placeholder="e.g. Connaught Place, New Delhi">
+      <!-- Map Container -->
+      <div style="position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);margin-bottom:16px;">
+        <div id="pickup-map" style="height:280px;background:#f0e8d8;"></div>
+        <div id="map-loading" style="position:absolute;inset:0;background:#f0e8d8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#888;">
+          <div class="avail-spinner" style="width:20px;height:20px;border-width:2.5px;"></div>
+          <span>Loading map…</span>
         </div>
-        -->
-
-<div class="form-group" id="delhi-other-address-group">
-    <label>Your exact address in Delhi / NCR <span class="req">*</span></label>
-
-    <div class="address-row">
-        <input
-            type="text"
-            id="delhi-other-address"
-            placeholder="Search your exact address">
-
-        <button type="button" id="gps-dl">
-            <i class="fa-solid fa-location-crosshairs"></i>
-        </button>
-    </div>
-
-    <div id="dl-suggestions" class="address-suggestions"></div>
-</div>
-        
-        <div class="alert-box info" id="delhi-other-notice" style="display:none;">
-          <i class="fa fa-circle-info"></i>
-          <div>For custom Delhi/NCR pickup, our driver will confirm the exact price on WhatsApp. You'll be redirected to WhatsApp at the end.</div>
+        <div style="position:absolute;bottom:8px;right:8px;background:white;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;color:#666;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+          <i class="fa fa-hand-pointer" style="margin-right:4px;"></i>Tap map to pick location
         </div>
       </div>
 
@@ -1002,15 +1002,13 @@ footer p:last-child{font-size:12px;opacity:.65;}
           <div class="sel-badge">&#10003;</div>
           <div class="opt-icon">&#128663;</div>
           <div class="opt-title">5-Seater</div>
-          <div class="opt-sub">Sedan / Hatchback — up to 5 passengers. Great for small groups.</div>
-          <div class="opt-price">Best value for small groups</div>
+       
         </div>
         <div class="opt-card" id="car-7" onclick="selectCar(7)">
           <div class="sel-badge">&#10003;</div>
           <div class="opt-icon">&#128652;</div>
           <div class="opt-title">7-Seater</div>
-          <div class="opt-sub">Spacious SUV/MUV — up to 7 passengers with luggage. Perfect for families.</div>
-          <div class="opt-price">Most popular choice</div>
+
         </div>
       </div>
       <div class="nav-btns">
@@ -1049,16 +1047,80 @@ footer p:last-child{font-size:12px;opacity:.65;}
             <div class="sel-badge">&#10003;</div>
             <div class="opt-icon">&#128205;</div>
             <div class="opt-title">Different Location</div>
-            <div class="opt-sub">Drop somewhere else — WhatsApp for price</div>
+            <div class="opt-sub">Drop somewhere else — fare calculated automatically</div>
           </div>
         </div>
-        <div class="form-group" id="diff-drop-group" style="display:none;margin-top:12px;">
-          <label>Drop-off address <span class="req">*</span></label>
-          <input type="text" id="diff-drop-addr" placeholder="e.g. Pilibhit Bus Stand, Pilibhit, U.P.">
-        </div>
-        <div class="alert-box info" id="diff-drop-notice" style="display:none;margin-top:12px;">
-          <i class="fa fa-circle-info"></i>
-          <div>For a different drop location, we'll confirm the price on WhatsApp. Proceed and we'll send the quote before payment.</div>
+        <div id="diff-drop-group" style="display:none;margin-top:16px;animation:stageIn .25s ease;">
+          <div style="font-size:12px;font-weight:700;color:var(--maroon);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+            <i class="fa fa-location-dot"></i> Search your drop-off location
+          </div>
+
+          <!-- Search box -->
+          <div class="form-group" style="margin-bottom:10px;">
+            <div style="position:relative;">
+              <i class="fa fa-magnifying-glass" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#aaa;font-size:14px;pointer-events:none;z-index:1;"></i>
+              <input type="text" id="diff-drop-addr"
+                placeholder="Type city, area, landmark, station…"
+                autocomplete="off"
+                style="padding-left:40px;width:100%;"
+                oninput="handleDropSearchInput(this.value)"
+                onfocus="if(this.value.length>1)showDropSuggestions()"
+                onkeydown="handleDropSearchKey(event)">
+              <div id="drop-autocomplete-list" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:9999;background:white;border:2px solid var(--border);border-top:none;border-radius:0 0 10px 10px;box-shadow:0 8px 24px rgba(0,0,0,0.18);max-height:260px;overflow-y:auto;"></div>
+            </div>
+          </div>
+
+          <!-- Selected drop location card -->
+          <div id="drop-selected-card" style="display:none;background:linear-gradient(135deg,#f0f8ff,#e8f4fc);border:2px solid #2563a8;border-radius:12px;padding:14px 16px;margin-bottom:12px;animation:stageIn .3s ease;">
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:34px;height:34px;background:#2563a8;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa fa-location-dot" style="color:white;font-size:15px;"></i>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:11px;font-weight:700;color:#5a7a9a;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Selected Drop-off</div>
+                <div id="drop-sel-name" style="font-size:15px;font-weight:700;color:#1a3a6a;line-height:1.3;margin-bottom:2px;"></div>
+                <div id="drop-sel-addr" style="font-size:12px;color:var(--text-muted);line-height:1.4;"></div>
+              </div>
+              <button onclick="clearDropLocation()" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:18px;padding:4px;flex-shrink:0;" title="Clear">✕</button>
+            </div>
+            <!-- Distance result row -->
+            <div id="drop-dist-row" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(37,99,168,0.15);">
+              <div id="drop-dist-loading" style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#888;">
+                <div class="avail-spinner"></div> Calculating return leg distance &amp; toll…
+              </div>
+              <div id="drop-dist-result" style="display:none;">
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                  <div style="background:white;border:1px solid var(--border-soft);border-radius:8px;padding:7px 12px;font-size:13px;">
+                    <span style="color:var(--text-muted);">Return Distance</span>
+                    <strong id="drop-dist-km" style="display:block;font-size:15px;color:#2563a8;">—</strong>
+                  </div>
+                  <div style="background:white;border:1px solid var(--border-soft);border-radius:8px;padding:7px 12px;font-size:13px;">
+                    <span style="color:var(--text-muted);">Drive Time</span>
+                    <strong id="drop-dist-time" style="display:block;font-size:15px;color:#2563a8;">—</strong>
+                  </div>
+                  <div style="background:white;border:1px solid #c8e0f0;border-radius:8px;padding:7px 12px;font-size:13px;">
+                    <span style="color:var(--text-muted);"> Return Toll</span>
+                    <strong id="drop-dist-toll" style="display:block;font-size:15px;color:#0a5c7a;">—</strong>
+                  </div>
+                </div>
+                <div style="margin-top:7px;font-size:11.5px;color:var(--text-muted);background:rgba(0,0,0,0.03);border-radius:6px;padding:5px 9px;">
+                  ℹ️ Return leg fare will be added to total at checkout.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Drop map -->
+          <div style="position:relative;border-radius:12px;overflow:hidden;border:2px solid var(--border);margin-bottom:14px;">
+            <div id="drop-map" style="height:240px;background:#e8f0f8;"></div>
+            <div id="drop-map-loading" style="position:absolute;inset:0;background:#e8f0f8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#888;">
+              <div class="avail-spinner" style="width:20px;height:20px;border-width:2.5px;border-color:#b0c8e0;border-top-color:#2563a8;"></div>
+              <span>Loading map…</span>
+            </div>
+            <div style="position:absolute;bottom:8px;right:8px;background:white;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;color:#666;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <i class="fa fa-hand-pointer" style="margin-right:4px;"></i>Tap map to pick location
+            </div>
+          </div>
         </div>
         <div id="return-datetime-group" style="display:none;margin-top:18px;animation:stageIn .3s ease;">
           <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
@@ -1165,7 +1227,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
         </div>
 
         <div class="coupon-row">
-          <input type="text" id="coupon-input" placeholder="e.g. MANONA100 or BABA5" oninput="this.value=this.value.toUpperCase()">
+          <input type="text" id="coupon-input" placeholder="e.g. MANONA100" oninput="this.value=this.value.toUpperCase()">
           <button class="coupon-btn" onclick="applyCoupon()"><i class="fa fa-tag"></i> Apply</button>
         </div>
         <div class="coupon-msg" id="coupon-msg"></div>
@@ -1174,13 +1236,14 @@ footer p:last-child{font-size:12px;opacity:.65;}
           <div class="ps-row"><span>Pickup</span><span class="sv" id="ps-pickup">&#8212;</span></div>
           <div class="ps-row"><span>Car Type</span><span class="sv" id="ps-cartype">&#8212;</span></div>
           <div class="ps-row"><span>Trip Type</span><span class="sv" id="ps-trip">&#8212;</span></div>
-          <div class="ps-row"><span>Base Fare</span><span class="sv" id="ps-base">&#8212;</span></div>
-          <div class="ps-row ps-disc" id="ps-disc-row" style="display:none;"><span>Coupon Discount</span><span class="sv" id="ps-disc">&#8212;</span></div>
+          <!-- Dynamic breakdown rows injected here by JS -->
+          <div id="ps-breakdown"></div>
+          <div class="ps-row ps-disc" id="ps-disc-row" style="display:none;"><span>&#127991; Special Discount</span><span class="sv" id="ps-disc">&#8212;</span></div>
           <div class="ps-row ps-total"><span>Total Fare</span><span class="sv" id="ps-total">&#8212;</span></div>
           <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:14px;color:var(--text-muted);border-bottom:1px solid var(--border-soft);">
-            <span>Driver collects at pickup (85%)</span><span class="sv" id="ps-remain" style="font-weight:600;color:var(--text);">&#8212;</span>
+            <span>Driver collects at pickup (90%)</span><span class="sv" id="ps-remain" style="font-weight:600;color:var(--text);">&#8212;</span>
           </div>
-          <div class="ps-row ps-advance"><span>&#128274; Advance — 15% (pay now)</span><span class="sv" id="ps-advance">&#8212;</span></div>
+          <div class="ps-row ps-advance"><span>&#128274; Advance — 10% (pay now)</span><span class="sv" id="ps-advance">&#8212;</span></div>
           <div class="ps-row ps-platform"><span>&#127991;&#65039; Platform Fee — 5% (pay now)</span><span class="sv" id="ps-platform">&#8212;</span></div>
           <div class="ps-row ps-total-now"><span>&#128179; Total Pay Now</span><span class="sv" id="ps-total-now">&#8212;</span></div>
         </div>
@@ -1227,7 +1290,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <ul>
         <li><span>Distance</span><b>43 km</b></li>
         <li><span>Drive Time</span><b>~1 hr 15 min</b></li>
-        <li><span>One Way from</span><b>&#8377;1,599</b></li>
+        <li><span>One Way from</span><b>&#8377;1,548</b></li>
       </ul>
     </div>
     <div class="info-card">
@@ -1235,15 +1298,15 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <ul>
         <li><span>Distance</span><b>51 km</b></li>
         <li><span>Drive Time</span><b>~1 hr 25 min</b></li>
-        <li><span>One Way from</span><b>&#8377;1,599</b></li>
+        <li><span>One Way from</span><b>&#8377;1,492</b></li>
       </ul>
     </div>
     <div class="info-card">
       <h3><i class="fa fa-plane-departure" style="color:var(--gold);margin-right:6px;"></i> From Delhi Airport (IGI)</h3>
       <ul>
-        <li><span>Distance</span><b>~250 km</b></li>
+        <li><span>Distance</span><b>~268 km</b></li>
         <li><span>Drive Time</span><b>~4.5 – 5 hrs</b></li>
-        <li><span>One Way from</span><b>&#8377;4,799</b></li>
+        <li><span>One Way from</span><b>&#8377;4,047</b></li>
       </ul>
     </div>
     <div class="info-card">
@@ -1270,12 +1333,12 @@ footer p:last-child{font-size:12px;opacity:.65;}
     </div>
     <div style="flex:1;min-width:180px;background:var(--bg);border-radius:10px;padding:14px 16px;border-left:4px solid var(--gold);">
       <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Bareilly Return Trip</div>
-      <div style="font-size:22px;font-weight:800;color:var(--maroon);">from &#8377;3,198</div>
+      <div style="font-size:22px;font-weight:800;color:var(--maroon);">from &#8377;2,999</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Same pickup/drop location</div>
     </div>
     <div style="flex:1;min-width:180px;background:var(--bg);border-radius:10px;padding:14px 16px;border-left:4px solid var(--green);">
       <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Delhi Airport &#8594; Dham</div>
-      <div style="font-size:22px;font-weight:800;color:var(--maroon);">from &#8377;4,799</div>
+      <div style="font-size:22px;font-weight:800;color:var(--maroon);">from &#8377;3,099</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">One Way &middot; 7-Seater</div>
     </div>
   </div>
@@ -1305,7 +1368,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
     </details>
     <details style="border-bottom:1px solid var(--border-soft);">
       <summary style="padding:16px 24px;font-weight:600;font-size:14px;cursor:pointer;color:var(--maroon);list-style:none;">How much do I pay online to confirm the cab?</summary>
-      <div style="padding:0 24px 16px;font-size:14px;color:var(--text-muted);line-height:1.7;">Only <strong>15% of the total fare</strong> online. The remaining <strong>85%</strong> is paid directly to the driver at pickup.</div>
+      <div style="padding:0 24px 16px;font-size:14px;color:var(--text-muted);line-height:1.7;">Only <strong>10% of the total fare</strong> online (plus a small platform fee). The remaining <strong>90%</strong> is paid directly to the driver at pickup.</div>
     </details>
     <details style="border-bottom:1px solid var(--border-soft);">
       <summary style="padding:16px 24px;font-weight:600;font-size:14px;cursor:pointer;color:var(--maroon);list-style:none;">Is a 5-seater cab available?</summary>
@@ -1339,7 +1402,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
     <div class="rh">
       <div class="rh-icon">&#9989;</div>
       <h2>Cab Confirmed!</h2>
-      <p>Booking payment received &middot; Remaining 85% paid to driver</p>
+      <p>Booking payment received &middot; Remaining 90% paid to driver</p>
     </div>
     <div class="rb">
       <div class="rb-logo">
@@ -1360,15 +1423,15 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <hr class="rdiv">
       <div class="rr"><span class="rl">Total Fare</span><span class="rv" id="r-total">&#8212;</span></div>
       <div class="rr" id="r-disc-row" style="display:none;"><span class="rl" style="color:var(--green);">Coupon Discount</span><span class="rv" style="color:var(--green);" id="r-disc">&#8212;</span></div>
-      <div class="rr"><span class="rl">Driver collects at pickup (85%)</span><span class="rv" id="r-remain">&#8212;</span></div>
-      <div class="rr rr-big"><span class="rl">Advance Paid (15%) &#10003;</span><span class="rv" id="r-advance">&#8212;</span></div>
+      <div class="rr"><span class="rl">Driver collects at pickup (90%)</span><span class="rv" id="r-remain">&#8212;</span></div>
+      <div class="rr rr-big"><span class="rl">Advance Paid (10%) &#10003;</span><span class="rv" id="r-advance">&#8212;</span></div>
       <div class="rr rr-platform"><span class="rl">&#127991;&#65039; Platform Fee (5%) &#10003;</span><span class="rv" id="r-platform">&#8212;</span></div>
       <div class="rr rr-total-now"><span class="rl">&#128179; Total Paid Now &#10003;</span><span class="rv" id="r-total-paid-now">&#8212;</span></div>
       <div class="rr"><span class="rl">Payment ID</span><span class="rv" id="r-pid" style="font-size:11px;word-break:break-all;">&#8212;</span></div>
       <div class="rnote">
         <strong>&#9888;&#65039; Important</strong>
         Show this receipt to the driver at pickup.<br>
-        Pay driver 85% of fare directly at pickup.<br>
+        Pay driver 90% of fare directly at pickup.<br>
         Driver will WhatsApp/call you to confirm pickup time.<br>
         <strong>Driver Helpline: +91 8909208453</strong><br><br>
         <span style="color:#c00;font-weight:700;">&#128683; Booking advance and platform fee are non-refundable.</span>
@@ -1380,9 +1443,59 @@ footer p:last-child{font-size:12px;opacity:.65;}
         <i class="fab fa-whatsapp"></i> Send Receipt to My WhatsApp
       </button>
     </div>
+
+    <!-- Email receipt section -->
+    <div style="padding:0 28px 12px;">
+      <div id="receipt-email-auto-banner" style="display:none;background:linear-gradient(135deg,#e6f4ec,#f0fdf6);border:1.5px solid #81c784;border-radius:10px;padding:11px 14px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;color:#1a5c2a;margin-bottom:2px;">✅ Receipt emailed automatically</div>
+        <div style="font-size:12.5px;color:#2d6a3a;line-height:1.5;">
+          A booking receipt was sent to <strong id="receipt-email-auto-address" style="color:#1a5c2a;">—</strong> when your payment was confirmed.
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">📧 Send Receipt by Email</div>
+
+      <div id="receipt-email-quick-row" style="display:none;margin-bottom:10px;">
+        <button id="resend-self-btn" onclick="resendToSelf()"
+          style="width:100%;padding:9px 14px;background:#f0fdf4;border:1.5px solid #81c784;border-radius:8px;font-size:13px;font-weight:700;color:#1a5c2a;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:6px;"
+          onmouseover="this.style.background='#e0f5e8'" onmouseout="this.style.background='#f0fdf4'">
+          <i class="fa fa-redo" style="font-size:11px;margin-right:6px;"></i>
+          Resend to <span id="resend-self-label" style="font-weight:800;">my email</span>
+        </button>
+      </div>
+
+      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:6px;" id="receipt-email-other-label">Or send to a different email:</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+        <input type="email" id="receipt-email-input" placeholder="Enter email address" autocomplete="email"
+          style="flex:1;padding:10px 13px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',inherit;transition:var(--transition);"
+          onfocus="this.style.borderColor='var(--maroon)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="sendReceiptEmail()" id="send-email-btn"
+          style="padding:10px 16px;background:var(--maroon);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:var(--transition);"
+          onmouseover="this.style.background='var(--maroon-dark)'" onmouseout="this.style.background='var(--maroon)'">
+          ✉️ Send
+        </button>
+      </div>
+      <div id="receipt-email-msg" style="font-size:12.5px;display:none;padding:8px 12px;border-radius:6px;margin-bottom:4px;"></div>
+    </div>
+
     <div class="ract">
-      <button class="rbtn-print" onclick="window.print()"><i class="fa fa-print"></i> Print / Save PDF</button>
-      <button class="rbtn-close" onclick="closeReceipt()">Close</button>
+      <button class="rbtn-print" onclick="copyReceiptText(this)" style="flex:1;min-width:100px;">
+        <i class="fa fa-copy"></i> <span>Copy Text</span>
+      </button>
+      <button class="rbtn-print" onclick="savePDFAndMark()" style="flex:1;min-width:100px;background:#444;">
+        <i class="fa fa-download"></i> <span>Save PDF</span>
+      </button>
+      <button class="rbtn-close" onclick="closeReceiptSafe()">Close</button>
+    </div>
+
+    <div id="receipt-save-reminder" style="display:none;background:#fff8e1;border-top:2px solid #ffe082;padding:12px 20px;text-align:center;font-size:13px;color:#5a4000;">
+      ⚠️ Please <strong>Save PDF</strong> or <strong>Copy Text</strong> before closing — this receipt won't be available after.<br>
+      <button onclick="confirmCloseReceipt()" style="margin-top:10px;background:#7a0000;color:white;border:none;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">
+        ✓ I've saved it — Close
+      </button>
+    </div>
+    <div id="receipt-pdf-saved-badge" style="display:none;background:#e6f4ec;border-top:2px solid #81c784;padding:10px 20px;text-align:center;font-size:13px;color:#1a5c2a;font-weight:600;">
+      ✅ PDF already saved — you're all set!
     </div>
   </div>
 </div>
@@ -1394,7 +1507,7 @@ footer p:last-child{font-size:12px;opacity:.65;}
       <div style="font-size:11.5px;opacity:.75;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;" id="qr-state-label">Generating QR code</div>
       <div style="font-size:14px;font-weight:600;margin-bottom:2px;">Manauna Dham Cab</div>
       <div style="font-size:30px;font-weight:800;color:#f0c040;" id="qr-amount">&#8212;</div>
-      <div style="font-size:11px;opacity:.72;margin-top:2px;">15% advance + 5% platform fee &middot; Cab booking</div>
+      <div style="font-size:11px;opacity:.72;margin-top:2px;">10% advance + 5% platform fee &middot; Cab booking</div>
     </div>
     <div id="qr-loading" style="padding:42px 26px;text-align:center;">
       <div style="width:38px;height:38px;border:3px solid #e0c0c0;border-top-color:#7a0000;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;"></div>
@@ -1483,9 +1596,56 @@ footer p:last-child{font-size:12px;opacity:.65;}
 </section>
 
 <!-- ══ FOOTER ══ -->
+<section id="resend-section" style="background:#f9f5ef;border-top:2px solid #e8d8c0;padding:40px 16px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:28px;margin-bottom:8px;">📧</div>
+      <h3 style="margin:0 0 6px;font-size:18px;color:#3a0000;font-family:'Playfair Display',Georgia,serif;">Didn't receive your receipt?</h3>
+      <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">Enter your <strong style="color:#5a0000;">phone number</strong> and/or <strong style="color:#5a0000;">receipt number</strong> — we'll find and resend your cab booking instantly.</p>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);border:1px solid #ede0cc;">
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          📱 Phone Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(used at booking)</span>
+        </label>
+        <input type="tel" id="resend-phone-input" placeholder="10-digit mobile number" maxlength="10"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px;">
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+        <span style="font-size:11px;color:#b0a090;font-weight:600;">AND / OR</span>
+        <div style="flex:1;height:1px;background:#e8d8c0;"></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          🧾 Receipt / Invoice Number <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(e.g. CAB0828042)</span>
+        </label>
+        <input type="text" id="resend-invoice-input" placeholder="e.g. CAB0828042"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;text-transform:uppercase;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'"
+          oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;display:block;margin-bottom:6px;">
+          ✉️ Email Address <span style="font-weight:400;color:#b0a090;text-transform:none;letter-spacing:0;">(where to send the receipt)</span>
+        </label>
+        <input type="email" id="resend-email-input" placeholder="your@email.com"
+          style="width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #e0d0b8;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#7a0000'" onblur="this.style.borderColor='#e0d0b8'">
+      </div>
+      <button id="resend-btn" onclick="resendReceiptByInvoice()"
+        style="width:100%;padding:13px;background:#7a0000;color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;"
+        onmouseover="this.style.background='#4d0000'" onmouseout="this.style.background='#7a0000'">
+        <i class="fa fa-paper-plane"></i> <span id="resend-btn-text">Find &amp; Resend Receipt</span>
+      </button>
+      <div id="resend-msg" style="font-size:13px;display:none;padding:10px 13px;border-radius:7px;margin-top:10px;line-height:1.6;"></div>
+    </div>
+  </div>
+</section>
+
 <footer style="text-align:center;">
-  <p>&copy; 2026 Crulio.com/ManaunaDham &mdash; Independent Pilgrim Services Platform</p>
-  <p>Crulio.com/ManaunaDham is a privately operated platform by Crulio Networks. Not affiliated with any temple or religious authority.</p>
+  <p>&copy; 2026 Crulio.com/ManaunaDham &mdash; Destinations Services Platform</p>
   <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit">
     <img src="../../images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" style="height:14px;width:auto;opacity:0.85;">
     <span>A Crulio Networks Platform</span>
@@ -1500,24 +1660,48 @@ const QR_API_ENDPOINT   = 'https://harshdeep-api.vercel.app/api/create-qr';
 const CHECK_API         = 'https://harshdeep-api.vercel.app/api/check-payment';
 const BLOCKED_DATES_API = 'https://harshdeep-api.vercel.app/api/blocked-dates?hotel=taxi-service';
 
+const PROPERTY = {
+  id:                  'taxi-service',
+  name:                'Manauna Dham Cab',
+  type:                'taxi',
+  storageKey:          'crulio_booking_taxi',
+  sendReceiptEndpoint: 'https://harshdeep-api.vercel.app/api/send-guest-receipt',
+};
+
+const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+// Manauna Dham drop-off coordinates (Manauna village, Aonla, Bareilly)
+const MANAUNA_DHAM_LAT  = 28.2792;
+const MANAUNA_DHAM_LNG  = 79.1328;
+const MANAUNA_DHAM_ADDR = 'Manauna Dham, Aonla, Bareilly, Uttar Pradesh';
+
 let RAZORPAY_KEY = null;
 let blockedDatesSet = new Set();
 let lastBooking = null;
 
 // Booking state
-let selCity   = null;
-let selPickup = null;
+let selPickup = null;   // will be set to pickup label string
+let selPickupLat = null;
+let selPickupLng = null;
+let selPickupName = '';
+let selPickupAddr = '';
+let selPickupState = null;   // state name from Nominatim, used for service-area check
+let pickupUnserviceable = false; // true if outside Delhi-NCR/UP or beyond 300km
 let selCar    = null;   // 5 or 7
 let selTrip   = null;
 let selDrop   = null;
 let activeCoupon = null;
 let basePrice = 0;
+let tollAmt   = 0;
 let discAmt   = 0;
 let finalPrice = 0;
 let advanceAmt = 0;
 let platformFees = 0;
 let totalPayNow  = 0;
 let needsWAOnly  = false;
+let computedDistKm = 0;
+let returnDistKm = 0;   // distance for return leg (diff-drop)
+let returnTollAmt = 0;  // toll for return leg
 
 // QR state
 let qrActiveId        = null;
@@ -1525,378 +1709,65 @@ let qrPollingInterval = null;
 let qrTimerInterval   = null;
 let paymentDetected   = false;
 
-// pick cords
-let pickupCoords = null;
-let tripDistanceKm = 0;
-
 const COUPONS = {
-  'MANONA100': { value:100, type:'flat',    label:'₹100 off', tripType:'oneway', description:'One-way Manauna special' },
-  'BABA5':     { value:5,   type:'percent', label:'5% off',   tripType:'oneway', description:'Shyam Baba 5% off (one-way)' },
-  'MANONA200': { value:200, type:'flat',    label:'₹200 off', tripType:'return', description:'Return trip special' },
-  'BABA4':     { value:4,   type:'percent', label:'4% off',   tripType:'return', description:'Return trip 4% off' },
+  'MANONA100': { value:100, type:'flat', label:'₹100 off', tripType:'oneway', description:'One-way Manauna special' },
+  'MANONA200': { value:200, type:'flat', label:'₹200 off', tripType:'return', description:'Return trip special' },
 };
 
-// ═════════ PRICING ENGINE ═════════
-// Base pricing by pickup + days-ahead (unified "starting from ₹1599" for Bareilly)
-const PRICE_TABLE_7 = {
-  station:         { 0:2200, 3:2100, 7:2000, 14:1900, 15:1799 },
-  airport:         { 0:2300, 3:2200, 7:2100, 14:2000, 15:1899 },
-  city:            { 0:1950, 3:1850, 7:1750, 14:1650, 15:1599 },
-  'delhi-airport': { 0:5499, 3:5299, 7:5099, 14:4999, 15:4799 },
-};
-const PRICE_TABLE_5 = {
-  station:         { 0:2000, 3:1900, 7:1800, 14:1700, 15:1599 },
-  airport:         { 0:2100, 3:2000, 7:1900, 14:1800, 15:1699 },
-  city:            { 0:1800, 3:1700, 7:1600, 14:1599, 15:1599 },
-  'delhi-airport': { 0:4999, 3:4799, 7:4699, 14:4599, 15:4499 },
-};
-
-const MANAUNA_DHAM = {
-    lat:28.1227,
-    lon:79.3578
-};
-
-const DELHI_AIRPORT_RETURN_7 = 9500;
-const DELHI_AIRPORT_RETURN_5 = 8500;
-
-
-  
-// get distamce
-async function calculateDistance(){
-
-    if(!pickupCoords) return;
-
-    const route = await fetch(
-        `https://router.project-osrm.org/route/v1/driving/` +
-        `${pickupCoords.lon},${pickupCoords.lat};` +
-        `${MANAUNA_DHAM.lon},${MANAUNA_DHAM.lat}` +
-        `?overview=false`
-    );
-
-    const data = await route.json();
-
-    if(!data.routes || !data.routes.length){
-        return;
-    }
-
-    tripDistanceKm =
-        data.routes[0].distance / 1000;
-
-    updatePriceSummary();
-}
-  
-function getRate(distance, seats){
-
-    if(seats == 5){
-
-        if(distance <= 50) return 36;
-        if(distance <= 100) return 29.2;
-        if(distance <= 150) return 22.3;
-        if(distance <= 200) return 15.5;
-        if(distance <= 250) return 13.9;
-        if(distance <= 300) return 12.3;
-
-        return 12.3;
-    }
-
-    if(seats == 7){
-
-        if(distance <= 50) return 43;
-        if(distance <= 100) return 34.7;
-        if(distance <= 150) return 26.3;
-        if(distance <= 200) return 18;
-        if(distance <= 250) return 16.15;
-        if(distance <= 300) return 14.3;
-
-        return 14.3;
-    }
-
-    return 0;
-}
-  
-  
-
-//bareilly
-document
-.getElementById("city-address")
-.addEventListener("input",(e)=>{
-
-    searchAddressCP(e.target.value);
-
-});
-  
-// up
-document
-.getElementById("up-address")
-.addEventListener("input",(e)=>{
-
-    searchAddress(e.target.value);
-
-});
-
-// up
-document
-.getElementById("delhi-other-address")
-.addEventListener("input",(e)=>{
-
-    searchAddressDL(e.target.value);
-
-});
-  
-
-
-//bareilly
-document.getElementById("gps-cp").onclick=()=>{
-
-    navigator.geolocation.getCurrentPosition(
-
-        async(pos)=>{
-
-            const lat=pos.coords.latitude;
-            const lon=pos.coords.longitude;
-
-            pickupCoords={lat,lon};
-
-            const res=await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-            );
-
-            const data=await res.json();
-
-            document.getElementById("city-address").value=
-                data.display_name;
-
-        },
-
-        ()=>{
-
-            alert("Location permission denied");
-
-        },
-
-        {
-            enableHighAccuracy:true
-        }
-
-    );
-
-};
-  
-
-//up
-document.getElementById("gps-up").onclick=()=>{
-
-    navigator.geolocation.getCurrentPosition(
-
-        async(pos)=>{
-
-            const lat=pos.coords.latitude;
-            const lon=pos.coords.longitude;
-
-            pickupCoords={lat,lon};
-
-            const res=await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-            );
-
-            const data=await res.json();
-
-            document.getElementById("up-address").value=
-                data.display_name;
-
-        },
-
-        ()=>{
-
-            alert("Location permission denied");
-
-        },
-
-        {
-            enableHighAccuracy:true
-        }
-
-    );
-
-};
-
-
-//DL
-document.getElementById("gps-dl").onclick=()=>{
-
-    navigator.geolocation.getCurrentPosition(
-
-        async(pos)=>{
-
-            const lat=pos.coords.latitude;
-            const lon=pos.coords.longitude;
-
-            pickupCoords={lat,lon};
-
-            const res=await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-            );
-
-            const data=await res.json();
-
-            document.getElementById("delhi-other-address").value=
-                data.display_name;
-
-        },
-
-        ()=>{
-
-            alert("Location permission denied");
-
-        },
-
-        {
-            enableHighAccuracy:true
-        }
-
-    );
-
-};
-  
-
-
-//bareilly
-async function searchAddressCP(query){
-
-    if(query.length < 3){
-        document.getElementById("cp-suggestions").innerHTML="";
-        return;
-    }
-
-    const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
-    );
-
-    const data = await res.json();
-
-    const box = document.getElementById("cp-suggestions");
-
-    box.innerHTML="";
-
-    data.slice(0,5).forEach(place=>{
-
-        const div=document.createElement("div");
-
-        div.className="address-item";
-
-        div.innerText=place.display_name;
-
-        div.onclick=()=>{
-
-            document.getElementById("city-address").value=
-                place.display_name;
-
-            pickupCoords={
-                lat:place.lat,
-                lon:place.lon
-            };
-
-            box.innerHTML="";
-        };
-
-        box.appendChild(div);
-
-    });
-
-}
-  
-
-//up
-async function searchAddress(query){
-
-    if(query.length < 3){
-        document.getElementById("up-suggestions").innerHTML="";
-        return;
-    }
-
-    const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
-    );
-
-    const data = await res.json();
-
-    const box = document.getElementById("up-suggestions");
-
-    box.innerHTML="";
-
-    data.slice(0,5).forEach(place=>{
-
-        const div=document.createElement("div");
-
-        div.className="address-item";
-
-        div.innerText=place.display_name;
-
-        div.onclick=()=>{
-
-            document.getElementById("up-address").value=
-                place.display_name;
-
-            pickupCoords={
-                lat:place.lat,
-                lon:place.lon
-            };
-
-            box.innerHTML="";
-        };
-
-        box.appendChild(div);
-
-    });
-
+// ═════════ DISTANCE-BASED PRICING ENGINE ═════════
+// Flat-slab rates per km (one rate applies to the WHOLE trip distance)
+// Service area: Uttar Pradesh + Delhi NCR (Delhi/Haryana), up to 300 km. Beyond that — not serviceable.
+const SERVICE_MAX_KM = 300;
+const RATE_SLABS_5 = [
+  { upTo: 55,  rate: 47.0  },
+  { upTo: 100, rate: 39.5  },
+  { upTo: 150, rate: 32.0  },
+  { upTo: 230, rate: 23.5  },
+  { upTo: 300, rate: 21.0  },
+];
+const RATE_SLABS_7 = [
+  { upTo: 55,  rate: 54.0  },
+  { upTo: 100, rate: 45.1  },
+  { upTo: 150, rate: 36.1  },
+  { upTo: 230, rate: 26.0  },
+  { upTo: 300, rate: 23.25 },
+];
+
+// Flat-slab pricing: find which slab the total km falls into, apply that rate to ALL km.
+// Real fare = actual cost to customer. Displayed fare = real x 1.10 so coupon restores original price.
+const MARKUP_FACTOR = 1.10; // 10% markup shown before discount
+
+function calcDistanceFare(km, carSeats) {
+  // Returns REAL fare (actual amount we collect after coupon)
+  const slabs = carSeats === 5 ? RATE_SLABS_5 : RATE_SLABS_7;
+  let rate = slabs[slabs.length - 1].rate;
+  for (const slab of slabs) {
+    if (km <= slab.upTo) { rate = slab.rate; break; }
+  }
+  return Math.round(km * rate);
 }
 
-
-//up
-async function searchAddressDL(query){
-
-    if(query.length < 3){
-        document.getElementById("dl-suggestions").innerHTML="";
-        return;
-    }
-
-    const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
-    );
-
-    const data = await res.json();
-
-    const box = document.getElementById("dl-suggestions");
-
-    box.innerHTML="";
-
-    data.slice(0,5).forEach(place=>{
-
-        const div=document.createElement("div");
-
-        div.className="address-item";
-
-        div.innerText=place.display_name;
-
-        div.onclick=()=>{
-
-            document.getElementById("delhi-other-address").value=
-                place.display_name;
-
-            pickupCoords={
-                lat:place.lat,
-                lon:place.lon
-            };
-
-            box.innerHTML="";
-        };
-
-        box.appendChild(div);
-
-    });
-
+function calcDisplayFare(km, carSeats) {
+  // Returns INFLATED fare shown to customer (before coupon discount)
+  return Math.round(calcDistanceFare(km, carSeats) * MARKUP_FACTOR);
 }
-  
+
+// Toll: free for first 50 km. Beyond 50 km, toll applies to the FULL trip distance at ₹3.125/km
+// (e.g. 53 km → 53 × 3.125, not just the 3 km over the threshold)
+function estimateToll(km) {
+  if (km <= 50) return 0;
+  return Math.round(km * 3.125);
+}
+
+// ═════════ SERVICE AREA CHECK — UP + Delhi NCR, up to 300 km ═════════
+// Nominatim "state" values we accept as serviceable (case-insensitive substring match)
+const SERVICEABLE_STATES = ['uttar pradesh', 'delhi', 'nct of delhi', 'haryana'];
+
+function isStateServiceable(stateName) {
+  if (!stateName) return true; // unknown state (e.g. GPS straight-line fallback, popular locations) — let km check decide
+  const s = stateName.toLowerCase();
+  return SERVICEABLE_STATES.some(allowed => s.includes(allowed));
+}
 
 function getDaysUntil(dateStr) {
   if (!dateStr) return 999;
@@ -1905,152 +1776,576 @@ function getDaysUntil(dateStr) {
   return Math.max(0, Math.ceil((pickup - now) / 86400000));
 }
 
-function getBasePrice(pickupKey, dateStr, carSeats) {
-  const table = carSeats === 5 ? PRICE_TABLE_5 : PRICE_TABLE_7;
-  const t = table[pickupKey];
-  if (!t) return 0;
-  const days = getDaysUntil(dateStr);
-  if      (days < 3)  return t[0];
-  else if (days < 7)  return t[3];
-  else if (days < 14) return t[7];
-  else if (days < 15) return t[14];
-  else                return t[15];
-}
-
-function computePrices2() {
-  let pickupKey = selPickup;
-  if (selPickup === 'up-custom') pickupKey = 'city';
-  const dateStr = document.getElementById('pickup-date').value;
-  const seats   = selCar || 7;
-  const oneWay  = getBasePrice(pickupKey, dateStr, seats);
+function computePrices() {
+  const km    = computedDistKm || 0;
+  const seats = selCar || 7;
+  const oneToll = tollAmt || estimateToll(km);
+  // Display fare = inflated (real × 1.10). Real fare = what customer actually pays after discount.
+  const oneDisplayFare = calcDisplayFare(km, seats);
+  const oneRealFare    = calcDistanceFare(km, seats);
+  // Auto-discount = the markup amount (restores real price)
+  const oneAutoDisc    = oneDisplayFare - oneRealFare;
 
   if (selTrip === 'return' && selDrop === 'same') {
-    if (selPickup === 'delhi-airport') {
-      basePrice = seats === 5 ? DELHI_AIRPORT_RETURN_5 : DELHI_AIRPORT_RETURN_7;
-    } else {
-      basePrice = oneWay * 2;
-    }
+    basePrice  = (oneDisplayFare + oneToll) * 2;
+    discAmt    = oneAutoDisc * 2;
+  } else if (selTrip === 'return' && selDrop === 'diff') {
+    const retKm          = returnDistKm || 0;
+    const retToll        = returnTollAmt || estimateToll(retKm);
+    const retDisplayFare = calcDisplayFare(retKm, seats);
+    const retRealFare    = calcDistanceFare(retKm, seats);
+    const retAutoDisc    = retDisplayFare - retRealFare;
+    basePrice  = (oneDisplayFare + oneToll) + (retDisplayFare + retToll);
+    discAmt    = oneAutoDisc + retAutoDisc;
   } else {
-    basePrice = oneWay;
+    basePrice = oneDisplayFare + oneToll;
+    discAmt   = oneAutoDisc;
   }
 
-  discAmt = 0;
+  // Additional coupon on top of auto-discount
   if (activeCoupon && COUPONS[activeCoupon]) {
     const c = COUPONS[activeCoupon];
     if (c.tripType === selTrip) {
-      discAmt = c.type === 'flat' ? c.value : Math.round(basePrice * c.value / 100);
+      const extra = c.type === 'flat' ? c.value : Math.round(basePrice * c.value / 100);
+      discAmt += extra;
     } else { activeCoupon = null; }
   }
 
   finalPrice   = Math.max(basePrice - discAmt, 0);
-  advanceAmt   = Math.round(finalPrice * 0.15);
+  advanceAmt   = Math.round(finalPrice * 0.10);
   platformFees = Math.round(finalPrice * 0.05);
   totalPayNow  = advanceAmt + platformFees;
 }
 
-async function computePrices() {
+// ═════════ GOOGLE MAPS INTEGRATION ═════════
+let map = null;
+let marker = null;
+let markerDest = null;
+let autocompleteService = null;
+let geocoder = null;
+let distanceService = null;
+let mapsLoaded = false;
+let pendingInitMap = false;
 
-    if(!pickupCoords){
-        basePrice = 0;
-        return;
+const POPULAR_LOCATIONS = [
+  { name:'Bareilly Junction',  addr:'Bareilly Railway Station, Bareilly, UP', lat:28.3491, lng:79.4161, icon:'🚂', state:'Uttar Pradesh' },
+  { name:'Bareilly Airport',   addr:'Bareilly Civil Airport, Bareilly, UP',   lat:28.4222, lng:79.4512, icon:'✈️', state:'Uttar Pradesh' },
+  { name:'Moradabad Junction', addr:'Moradabad Railway Station, Moradabad, UP',lat:28.8386, lng:78.7733, icon:'🚂', state:'Uttar Pradesh' },
+  { name:'Delhi IGI Airport',  addr:'Indira Gandhi Intl Airport, New Delhi',   lat:28.5562, lng:77.0999, icon:'✈️', state:'Delhi' },
+  { name:'Shahjahanpur City',  addr:'Shahjahanpur, Uttar Pradesh',             lat:27.8825, lng:79.9089, icon:'📍', state:'Uttar Pradesh' },
+  { name:'Pilibhit City',      addr:'Pilibhit, Uttar Pradesh',                 lat:28.6312, lng:79.8003, icon:'📍', state:'Uttar Pradesh' },
+  { name:'Lucknow City',       addr:'Lucknow, Uttar Pradesh',                  lat:26.8467, lng:80.9462, icon:'📍', state:'Uttar Pradesh' },
+  { name:'Noida Sector 18',    addr:'Noida Sector 18, Uttar Pradesh',          lat:28.5706, lng:77.3210, icon:'📍', state:'Uttar Pradesh' },
+];
+
+function initMapsAPI() {
+  if (mapsLoaded) return;
+  const key = window.GMAPS_KEY;
+  if (!key || key === 'YOUR_MAPS_API_KEY') {
+    initMapFallback();
+    return;
+  }
+  // Make callback global before injecting script
+  window.onMapsReady = onMapsReady;
+  const s = document.createElement('script');
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=' + key + '&libraries=places&callback=onMapsReady&loading=async';
+  s.onerror = function() {
+    console.warn('Maps API failed to load — check API key and enabled APIs');
+    initMapFallback();
+  };
+  document.head.appendChild(s);
+}
+
+function onMapsReady() {
+  mapsLoaded = true;
+  autocompleteService = new google.maps.places.AutocompleteService();
+  geocoder = new google.maps.Geocoder();
+  distanceService = new google.maps.DistanceMatrixService();
+  initMapFull();
+}
+
+function initMapFull() {
+  const mapEl = document.getElementById('pickup-map');
+  document.getElementById('map-loading').style.display = 'none';
+  map = new google.maps.Map(mapEl, {
+    center: { lat: 28.28, lng: 79.13 },
+    zoom: 9,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    styles: [
+      { featureType:'poi', elementType:'labels', stylers:[{visibility:'off'}] }
+    ]
+  });
+  // Drop marker for Manauna Dham destination
+  markerDest = new google.maps.Marker({
+    position: { lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG },
+    map,
+    title: 'Manauna Dham (Drop)',
+    icon: {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24s16-14 16-24C32 7.163 24.837 0 16 0z" fill="#1a7a3a"/><circle cx="16" cy="16" r="8" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#1a7a3a" font-size="10" font-weight="bold">D</text></svg>'),
+      scaledSize: new google.maps.Size(28, 35),
+      anchor: new google.maps.Point(14, 35)
     }
+  });
+  new google.maps.InfoWindow({ content: '<div style="font-size:12px;font-weight:700;color:#1a7a3a;">📍 Manauna Dham<br><span style="font-weight:400;color:#666;">Drop / Destination</span></div>' }).open(map, markerDest);
 
-    const seats = selCar || 7;
+  // Click on map to set pickup
+  map.addListener('click', (e) => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+    reverseGeocode(lat, lng);
+  });
+}
 
-    const route = await fetch(
-        `https://router.project-osrm.org/route/v1/driving/` +
-        `${pickupCoords.lon},${pickupCoords.lat};` +
-        `${MANAUNA_DHAM.lon},${MANAUNA_DHAM.lat}` +
-        `?overview=false`
-    );
+function initMapFallback() {
+  // No API key — show static message with search-only mode
+  const mapEl = document.getElementById('pickup-map');
+  const loadEl = document.getElementById('map-loading');
+  loadEl.innerHTML = '<div style="text-align:center;padding:20px;"><div style="font-size:28px;margin-bottom:8px;">🗺️</div><div style="font-size:13px;color:#888;line-height:1.5;">Map requires a Google Maps API key.<br>Use the search box or GPS button above to set your location.</div></div>';
+}
 
-    const data = await route.json();
+function placePickupMarker(lat, lng, name, addr, fromPopular, state) {
+  selPickupLat = lat;
+  selPickupLng = lng;
+  selPickupName = name;
+  selPickupAddr = addr;
+  selPickup = name; // used as label
+  selPickupState = state || null;
 
-    if(!data.routes || !data.routes.length){
-        basePrice = 0;
-        return;
+  // If not called from a popular card click, deselect all cards
+  if (!fromPopular) {
+    document.querySelectorAll('.pop-loc-card').forEach(c => c.classList.remove('selected'));
+    // Re-highlight if name matches a popular location
+    const match = POPULAR_LOCATIONS.find(l => l.name === name);
+    if (match) {
+      const card = document.getElementById('ploc-' + name.replace(/\s+/g, '-'));
+      if (card) card.classList.add('selected');
     }
+  }
 
-    tripDistanceKm =
-        data.routes[0].distance / 1000;
+  // Update marker on map
+  if (map) {
+    if (marker) marker.setMap(null);
+    marker = new google.maps.Marker({
+      position: { lat, lng },
+      map,
+      title: name,
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24s16-14 16-24C32 7.163 24.837 0 16 0z" fill="#7a0000"/><circle cx="16" cy="16" r="8" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#7a0000" font-size="10" font-weight="bold">P</text></svg>'),
+        scaledSize: new google.maps.Size(28, 35),
+        anchor: new google.maps.Point(14, 35)
+      }
+    });
+    // Pan and fit both markers
+    const bounds = new google.maps.LatLngBounds();
+    bounds.extend({ lat, lng });
+    bounds.extend({ lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG });
+    map.fitBounds(bounds, { top:40, bottom:40, left:40, right:40 });
+  }
 
-    const rate = getRate(
-        tripDistanceKm,
-        seats
-    );
+  // Show selected card
+  document.getElementById('sel-loc-name').textContent = name;
+  document.getElementById('sel-loc-addr').textContent = addr;
+  document.getElementById('selected-location-card').style.display = 'block';
+  document.getElementById('distance-calc-row').style.display = 'block';
+  document.getElementById('dist-loading').style.display = 'flex';
+  document.getElementById('dist-result').style.display = 'none';
+  document.getElementById('pickup-search').value = name;
 
-    basePrice = Math.round(
-        tripDistanceKm * rate
-    );
+  // Calculate distance & toll
+  if (mapsLoaded && distanceService) {
+    calcRouteDistance(lat, lng);
+  } else {
+    // Straight-line fallback with highway-appropriate road factor (1.15)
+    const dlat = lat - MANAUNA_DHAM_LAT;
+    const dlng = lng - MANAUNA_DHAM_LNG;
+    const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.15);
+    showDistanceResult(km, null, null);
+  }
+}
 
-    if(selTrip === "return"){
-        basePrice = Math.round(
-            tripDistanceKm * 2 * rate
+function calcRouteDistance(lat, lng) {
+  distanceService.getDistanceMatrix({
+    origins: [{ lat, lng }],
+    destinations: [{ lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG }],
+    travelMode: google.maps.TravelMode.DRIVING,
+    unitSystem: google.maps.UnitSystem.METRIC,
+    avoidTolls: false,
+  }, (res, status) => {
+    if (status === 'OK' && res.rows[0].elements[0].status === 'OK') {
+      const el = res.rows[0].elements[0];
+      const km = Math.round(el.distance.value / 1000);
+      const duration = el.duration.text;
+      showDistanceResult(km, duration, null);
+    } else {
+      // Fallback
+      const dlat = lat - MANAUNA_DHAM_LAT;
+      const dlng = lng - MANAUNA_DHAM_LNG;
+      const km = Math.round(Math.sqrt(dlat*dlat + dlng*dlng) * 111 * 1.15);
+      showDistanceResult(km, null, null);
+    }
+  });
+}
+
+function showDistanceResult(km, durationText, tollOverride) {
+  computedDistKm = km;
+  tollAmt = tollOverride !== null ? tollOverride : estimateToll(km);
+
+  // ═══ Service area check: UP/Delhi-NCR only, up to 300 km ═══
+  const stateOk = isStateServiceable(selPickupState);
+  const kmOk    = km <= SERVICE_MAX_KM;
+  pickupUnserviceable = !(stateOk && kmOk);
+
+  document.getElementById('dist-loading').style.display = 'none';
+
+  if (pickupUnserviceable) {
+    document.getElementById('dist-result').style.display = 'none';
+    showUnserviceableNotice(km, stateOk, kmOk);
+    return;
+  }
+  hideUnserviceableNotice();
+
+  const fare5 = calcDisplayFare(km, 5);
+  const fare7 = calcDisplayFare(km, 7);
+
+  document.getElementById('dist-result').style.display = 'block';
+  document.getElementById('dist-km').textContent = km + ' km';
+  document.getElementById('dist-time').textContent = durationText || '~' + Math.round(km / 50) + ' hr';
+  document.getElementById('dist-toll').textContent = '~₹' + tollAmt;
+  document.getElementById('dist-fare-5').textContent = '₹' + fare5.toLocaleString('en-IN');
+  document.getElementById('dist-fare-7').textContent = '₹' + fare7.toLocaleString('en-IN');
+}
+
+function showUnserviceableNotice(km, stateOk, kmOk) {
+  const box = document.getElementById('unserviceable-notice');
+  if (!box) return;
+  let reason;
+  if (!kmOk) {
+    reason = 'This pickup point is ' + km + ' km away. Bookings beyond 300 km aren\'t available right now — please pick a closer location or check back soon.';
+  } else {
+    reason = 'This pickup point is outside Uttar Pradesh or Delhi NCR — not available right now. Please pick a different location.';
+  }
+  document.getElementById('unserviceable-reason').textContent = reason;
+  box.style.display = 'flex';
+}
+
+function hideUnserviceableNotice() {
+  const box = document.getElementById('unserviceable-notice');
+  if (box) box.style.display = 'none';
+}
+
+async function reverseGeocode(lat, lng) {
+  // Use our Vercel proxy → Nominatim for reverse geocoding — free, no billing
+  try {
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({
+      mode: 'reverse',
+      lat: lat,
+      lon: lng,
+    });
+    const resp = await fetch(url);
+    const r = await resp.json();
+    if (r && r.address) {
+      const addr = r.address;
+      const name = addr.road || addr.suburb || addr.neighbourhood || addr.village || addr.town || addr.city || 'My Location';
+      placePickupMarker(lat, lng, name, r.display_name, false, addr.state);
+    } else {
+      placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+    }
+  } catch(e) {
+    placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+  }
+}
+
+function clearLocation() {
+  selPickup = null; selPickupLat = null; selPickupLng = null;
+  selPickupName = ''; selPickupAddr = ''; selPickupState = null;
+  computedDistKm = 0; tollAmt = 0; pickupUnserviceable = false;
+  hideUnserviceableNotice();
+  document.getElementById('selected-location-card').style.display = 'none';
+  document.getElementById('pickup-search').value = '';
+  if (marker) { marker.setMap(null); marker = null; }
+  // Deselect all popular cards
+  document.querySelectorAll('.pop-loc-card').forEach(c => c.classList.remove('selected'));
+}
+
+// Search / Autocomplete
+let searchTimeout = null;
+function handleSearchInput(val) {
+  clearTimeout(searchTimeout);
+  if (val.length < 3) { hideSuggestions(); return; }
+  searchTimeout = setTimeout(() => fetchSuggestions(val), 500); // Nominatim rate-limit friendly
+}
+
+async function fetchSuggestions(input) {
+  // First show popular matches instantly while Nominatim loads
+  const q = input.toLowerCase();
+  const popularMatches = POPULAR_LOCATIONS.filter(l =>
+    l.name.toLowerCase().includes(q) || l.addr.toLowerCase().includes(q)
+  ).map(l => ({ id: null, main: l.name, sub: l.addr, lat: l.lat, lng: l.lng, icon: l.icon, state: l.state }));
+  if (popularMatches.length) renderSuggestions(popularMatches);
+
+  // Nominatim (OpenStreetMap) — completely free, no billing, no API key required
+  try {
+    // Call our Vercel proxy — Nominatim blocks direct browser requests (CORS)
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({
+      mode: 'search',
+      q: input,
+    });
+    const resp = await fetch(url);
+    const results = await resp.json();
+    if (!results || !results.length) {
+      if (!popularMatches.length) hideSuggestions();
+      return;
+    }
+    const nominatimItems = results.map(r => {
+      const addr = r.address || {};
+      // Build a clean "main" label — prefer known parts over raw display name
+      const main = addr.road || addr.suburb || addr.neighbourhood ||
+                   addr.city_district || addr.village || addr.town ||
+                   addr.city || r.display_name.split(',')[0];
+      // Build secondary line from address components
+      const parts = [
+        addr.suburb || addr.neighbourhood || addr.city_district,
+        addr.city || addr.town || addr.village || addr.county,
+        addr.state,
+      ].filter(Boolean);
+      const sub = parts.join(', ') || r.display_name;
+      return {
+        id: null,
+        lat: parseFloat(r.lat),
+        lng: parseFloat(r.lon),
+        main: main,
+        sub: sub,
+        icon: getNominatimIcon(r.type, r.class),
+        fullAddr: r.display_name,
+        state: addr.state || null,
+      };
+    });
+    // Merge: popular picks first, then Nominatim results (deduplicated by name)
+    const seen = new Set(popularMatches.map(m => m.main.toLowerCase()));
+    const merged = [
+      ...popularMatches,
+      ...nominatimItems.filter(n => !seen.has(n.main.toLowerCase()))
+    ];
+    if (merged.length) renderSuggestions(merged);
+    else hideSuggestions();
+  } catch(err) {
+    console.warn('Nominatim autocomplete error:', err);
+    if (!popularMatches.length) hideSuggestions();
+  }
+}
+
+function getNominatimIcon(type, cls) {
+  if (type === 'aerodrome' || cls === 'aeroway') return '✈️';
+  if (type === 'station' || cls === 'railway') return '🚂';
+  if (type === 'bus_stop' || type === 'bus_station') return '🚌';
+  if (cls === 'tourism' && (type === 'hotel' || type === 'hostel' || type === 'motel')) return '🏨';
+  if (cls === 'place' && (type === 'city' || type === 'town')) return '🏙️';
+  if (cls === 'place' && (type === 'village' || type === 'hamlet')) return '🏘️';
+  if (cls === 'amenity' && type === 'hospital') return '🏥';
+  if (cls === 'amenity' && type === 'school') return '🏫';
+  return '📍';
+}
+
+function getSuggestionIcon(types) {
+  if (types.includes('airport')) return '✈️';
+  if (types.includes('train_station') || types.includes('transit_station')) return '🚂';
+  if (types.includes('bus_station')) return '🚌';
+  if (types.includes('lodging')) return '🏨';
+  return '📍';
+}
+
+function renderSuggestions(items) {
+  const list = document.getElementById('autocomplete-list');
+  list.innerHTML = '';
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'ac-item';
+    div.innerHTML = `<div class="ac-icon">${item.icon || '📍'}</div><div><div class="ac-main">${item.main}</div><div class="ac-sub">${item.sub || ''}</div></div>`;
+    div.onmouseenter = () => {
+      list.querySelectorAll('.ac-item').forEach(el => el.classList.remove('hovered'));
+    };
+    div.onclick = () => selectSuggestion(item);
+    list.appendChild(div);
+  });
+  list.style.display = 'block';
+}
+
+function showSuggestions() { document.getElementById('autocomplete-list').style.display = 'block'; }
+function hideSuggestions() { document.getElementById('autocomplete-list').style.display = 'none'; }
+
+function handleSearchKey(e) {
+  const list = document.getElementById('autocomplete-list');
+  const items = list.querySelectorAll('.ac-item');
+  const current = list.querySelector('.ac-item.hovered');
+  if (e.key === 'Escape') { hideSuggestions(); return; }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (!current) { items[0]?.classList.add('hovered'); }
+    else {
+      current.classList.remove('hovered');
+      const next = current.nextElementSibling;
+      (next || items[0]).classList.add('hovered');
+    }
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!current) { items[items.length-1]?.classList.add('hovered'); }
+    else {
+      current.classList.remove('hovered');
+      const prev = current.previousElementSibling;
+      (prev || items[items.length-1]).classList.add('hovered');
+    }
+  }
+  if (e.key === 'Enter' && current) {
+    e.preventDefault();
+    current.click();
+  }
+}
+
+function selectSuggestion(item) {
+  hideSuggestions();
+  document.getElementById('pickup-search').value = item.main;
+
+  // Case 1: Already have lat/lng (popular locations OR Nominatim results)
+  if (item.lat) {
+    placePickupMarker(item.lat, item.lng, item.main, item.fullAddr || item.sub || item.main, false, item.state);
+    return;
+  }
+
+  // Case 2: Have a place_id — use PlacesService (most reliable, works even without geocoder)
+  if (item.id && mapsLoaded) {
+    const svc = new google.maps.places.PlacesService(document.createElement('div'));
+    svc.getDetails({ placeId: item.id, fields: ['geometry', 'formatted_address', 'name'] }, (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+        placePickupMarker(
+          place.geometry.location.lat(),
+          place.geometry.location.lng(),
+          item.main,
+          place.formatted_address || item.sub || item.main
         );
-    }
+      } else {
+        alert('Could not locate this place. Please try a different search term.');
+      }
+    });
+    return;
+  }
 
-    discAmt = 0;
+  // Case 3: Have place_id but Maps not loaded yet — try geocoder
+  if (item.id && geocoder) {
+    geocoder.geocode({ placeId: item.id }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const loc = results[0].geometry.location;
+        placePickupMarker(loc.lat(), loc.lng(), item.main, results[0].formatted_address);
+      } else {
+        alert('Could not locate this place. Please try searching again.');
+      }
+    });
+    return;
+  }
 
-    if(activeCoupon && COUPONS[activeCoupon]){
-
-        const c = COUPONS[activeCoupon];
-
-        if(c.tripType === selTrip){
-
-            discAmt = c.type === 'flat'
-                ? c.value
-                : Math.round(basePrice * c.value / 100);
-
-        }
-    }
-
-    finalPrice   = Math.max(basePrice - discAmt, 0);
-    advanceAmt   = Math.round(finalPrice * 0.15);
-    platformFees = Math.round(finalPrice * 0.05);
-    totalPayNow  = advanceAmt + platformFees;
+  alert('Maps are still loading. Please wait a moment and try again.');
 }
 
-//function updatePriceSummary() {
-async function updatePriceSummary() {
-  await computePrices();
-  //computePrices();
-  const s = document.getElementById('price-summary');
-  s.classList.add('show');
-  document.getElementById('ps-pickup').textContent  = getPickupLabel();
-  document.getElementById('ps-cartype').textContent = selCar === 5 ? '5-Seater' : '7-Seater';
-  document.getElementById('ps-trip').textContent    = selTrip === 'return' ? 'Return Trip (same location)' : 'One Way';
-  document.getElementById('ps-base').textContent    = '₹' + basePrice.toLocaleString('en-IN');
-  const discRow = document.getElementById('ps-disc-row');
-  if (discAmt > 0) {
-    discRow.style.display = 'flex';
-    document.getElementById('ps-disc').textContent = '−₹' + discAmt.toLocaleString('en-IN');
-  } else { discRow.style.display = 'none'; }
-  document.getElementById('ps-total').textContent     = '₹' + finalPrice.toLocaleString('en-IN');
-  document.getElementById('ps-remain').textContent    = '₹' + (finalPrice - advanceAmt).toLocaleString('en-IN');
-  document.getElementById('ps-advance').textContent   = '₹' + advanceAmt.toLocaleString('en-IN');
-  document.getElementById('ps-platform').textContent  = '₹' + platformFees.toLocaleString('en-IN');
-  document.getElementById('ps-total-now').textContent = '₹' + totalPayNow.toLocaleString('en-IN');
-  document.getElementById('pay-btn-text').textContent = 'Pay ₹' + totalPayNow.toLocaleString('en-IN') + ' via QR Code';
+// GPS
+function useMyLocation() {
+  const btn = document.getElementById('gps-btn');
+  const st  = document.getElementById('gps-status');
+  if (!navigator.geolocation) { alert('Geolocation is not supported by your browser.'); return; }
+  btn.disabled = true;
+  btn.innerHTML = '<div class="avail-spinner" style="border-color:rgba(255,255,255,0.4);border-top-color:white;width:14px;height:14px;"></div> Getting location…';
+  st.style.display = 'flex';
+  document.getElementById('gps-status-text').textContent = 'Getting your location…';
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> Use My Current Location';
+      st.style.display = 'none';
+      if (mapsLoaded && geocoder) {
+        reverseGeocode(lat, lng);
+      } else {
+        // Maps not ready — place marker immediately with coordinates, distance via straight-line
+        placePickupMarker(lat, lng, 'My Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+      }
+      if (map) map.setCenter({ lat, lng });
+    },
+    (err) => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa fa-location-crosshairs"></i> Use My Current Location';
+      st.style.display = 'none';
+      let msg = 'Could not get your location. Please search manually.';
+      if (err.code === 1) msg = 'Location access denied. Please allow location permission in your browser and try again.';
+      if (err.code === 3) msg = 'Location request timed out. Please search your pickup manually.';
+      alert(msg);
+    },
+    { timeout: 10000, maximumAge: 60000 }
+  );
 }
 
-function getPickupLabel() {
-  if (selPickup === 'station')        return 'Bareilly Railway Station';
-  if (selPickup === 'airport')        return 'Bareilly Airport';
-  if (selPickup === 'city') {
-    const addr = document.getElementById('city-address').value.trim();
-    return addr ? 'Bareilly: ' + addr : 'Within Bareilly';
-  }
-  if (selPickup === 'up-custom') {
-    const addr = document.getElementById('up-address').value.trim();
-    return addr ? 'U.P.: ' + addr : 'Other U.P. City';
-  }
-  if (selPickup === 'delhi-airport') return 'Delhi Airport (IGI)';
-  if (selPickup === 'delhi-other') {
-    const addr = document.getElementById('delhi-other-address').value.trim();
-    return addr ? 'Delhi/NCR: ' + addr : 'Other Delhi/NCR Location';
-  }
-  return '—';
+// Popular locations — always-visible cards, rendered once on load
+// Approx distances from Manauna Dham for the hint label
+const POPULAR_DIST_HINTS = {
+  'Bareilly Junction':  '~45 km · ~1 hr',
+  'Bareilly Airport':   '~50 km · ~1 hr',
+  'Moradabad Junction': '~120 km · ~2.5 hr',
+  'Delhi IGI Airport':  '~270 km · ~5 hr',
+  'Shahjahanpur City':  '~95 km · ~2 hr',
+  'Pilibhit City':      '~75 km · ~1.5 hr',
+  'Lucknow City':       '~290 km · ~5.5 hr',
+  'Noida Sector 18':    '~260 km · ~4.5 hr',
+};
+
+function renderPopularCards() {
+  const grid = document.getElementById('popular-locs-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  POPULAR_LOCATIONS.forEach(loc => {
+    const card = document.createElement('button');
+    card.className = 'pop-loc-card';
+    card.id = 'ploc-' + loc.name.replace(/\s+/g, '-');
+    const hint = POPULAR_DIST_HINTS[loc.name] || '';
+    card.innerHTML = `
+      <div class="pop-loc-icon">${loc.icon}</div>
+      <div class="pop-loc-body">
+        <div class="pop-loc-name">${loc.name}</div>
+        ${hint ? `<div class="pop-loc-dist"><i class="fa fa-route" style="font-size:9px;margin-right:3px;"></i>${hint}</div>` : ''}
+      </div>
+      <div class="pop-loc-check">✓</div>`;
+    card.onclick = () => selectPopularCard(loc);
+    grid.appendChild(card);
+  });
 }
+
+function selectPopularCard(loc) {
+  // Highlight selected card, deselect others
+  document.querySelectorAll('.pop-loc-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('ploc-' + loc.name.replace(/\s+/g, '-'));
+  if (card) card.classList.add('selected');
+  // Set the pickup location (flag as popular so the card stays highlighted)
+  placePickupMarker(loc.lat, loc.lng, loc.name, loc.addr, true);
+  document.getElementById('pickup-search').value = loc.name;
+}
+
+// Init maps when stage 1 is active (lazy load)
+function maybeInitMaps() {
+  if (!mapsLoaded && !pendingInitMap) {
+    pendingInitMap = true;
+    initMapsAPI();
+  }
+}
+
+// Close autocomplete when clicking outside the search box area
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#pickup-search') && !e.target.closest('#autocomplete-list')) {
+    hideSuggestions();
+  }
+});
+
+
 
 // ═════════ AVAILABILITY ═════════
 async function fetchBlockedDates() {
@@ -2082,6 +2377,7 @@ function goToStage(n) {
     if (i < n) el.classList.add('done');
     else if (i === n) el.classList.add('active');
   }
+  if (n === 1) maybeInitMaps();
   if (n === 6) preparePaymentStage();
   setTimeout(() => {
     document.getElementById('booking-wizard').scrollIntoView({behavior:'smooth', block:'start'});
@@ -2090,15 +2386,17 @@ function goToStage(n) {
 
 function validateStage(n) {
   if (n === 1) {
-    if (!selPickup) { alert('Please select your pickup location.'); return false; }
-    if (selPickup === 'city' && !document.getElementById('city-address').value.trim()) {
-      alert('Please enter your exact address in Bareilly.'); return false;
+    if (!selPickup || !selPickupLat) {
+      alert('Please select your pickup location using search, GPS button, or Popular Locations.');
+      return false;
     }
-    if (selPickup === 'up-custom' && !document.getElementById('up-address').value.trim()) {
-      alert('Please enter your exact address.'); return false;
+    if (computedDistKm <= 0) {
+      alert('Please wait for distance calculation to complete.');
+      return false;
     }
-    if (selPickup === 'delhi-other' && !document.getElementById('delhi-other-address').value.trim()) {
-      alert('Please enter your exact address in Delhi/NCR.'); return false;
+    if (pickupUnserviceable) {
+      alert('Sorry, this pickup location isn\'t available right now. We operate within Uttar Pradesh and Delhi NCR. Please choose a different pickup point.');
+      return false;
     }
     return true;
   }
@@ -2118,8 +2416,8 @@ function validateStage(n) {
     if (!selTrip) { alert('Please select trip type (One Way or Return).'); return false; }
     if (selTrip === 'return') {
       if (!selDrop) { alert('Please choose your return drop location.'); return false; }
-      if (selDrop === 'diff' && !document.getElementById('diff-drop-addr').value.trim()) {
-        alert('Please enter your drop-off address.'); return false;
+      if (selDrop === 'diff' && !selDropLat) {
+        alert('Please select your drop-off location on the map or via search.'); return false;
       }
       const rd = document.getElementById('return-date').value;
       const rt = document.getElementById('return-time').value;
@@ -2142,72 +2440,72 @@ function validateStage(n) {
   return true;
 }
 
-// ═════════ STAGE 1 — LOCATION ═════════
-function selectCity(city) {
-  selCity = city; selPickup = null;
-  ['loc-bareilly','loc-up','loc-delhi'].forEach(id => document.getElementById(id).classList.remove('selected'));
-  document.getElementById('loc-' + city).classList.add('selected');
-  ['bareilly-sub','up-sub','delhi-sub'].forEach(id => document.getElementById(id).style.display = 'none');
-  ['sub-station','sub-airport','sub-city'].forEach(id => document.getElementById(id).classList.remove('selected'));
-  document.getElementById('city-address-group').style.display = 'none';
-  const doGrp = document.getElementById('delhi-other-address-group');
-  const doNotice = document.getElementById('delhi-other-notice');
-  if (doGrp) doGrp.style.display = 'none';
-  if (doNotice) doNotice.style.display = 'none';
-  ['sub-delhi-airport','sub-delhi-other'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('selected'); });
-  if (city === 'bareilly')  { document.getElementById('bareilly-sub').style.display = 'block'; }
-  else if (city === 'up')   { document.getElementById('up-sub').style.display = 'block'; selPickup = 'up-custom'; }
-  else if (city === 'delhi'){ document.getElementById('delhi-sub').style.display = 'block'; }
-}
-  
-
-const PICKUP_POINTS = {
-    station: {
-        name: "Bareilly Railway Station",
-        lat: 28.3670,
-        lon: 79.4304
-    },
-
-    airport: {
-        name: "Bareilly Airport",
-        lat: 28.4221,
-        lon: 79.4508
-    },
-
-    airport2: {
-        name: "Indira Gandhi International Airport, Delhi",
-        lat: 28.5562,
-        lon: 77.1000
-    }
-};
-  
-
-function selectPickup(type) {
-  selPickup = type;
-  ['sub-station','sub-airport','sub-city'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('selected'); });
-  ['sub-delhi-airport','sub-delhi-other'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('selected'); });
-  const addrGrp   = document.getElementById('city-address-group');
-  const doGrp     = document.getElementById('delhi-other-address-group');
-  const doNotice  = document.getElementById('delhi-other-notice');
-  if (addrGrp)  addrGrp.style.display   = type === 'city'         ? 'block' : 'none';
-  if (doGrp)    doGrp.style.display     = type === 'delhi-other'  ? 'block' : 'none';
-  if (doNotice) doNotice.style.display  = type === 'delhi-other'  ? 'flex'  : 'none';
-  if (['station','airport','city'].includes(type)) document.getElementById('sub-' + type).classList.add('selected');
-  else if (type === 'delhi-airport') document.getElementById('sub-delhi-airport').classList.add('selected');
-  else if (type === 'delhi-other')   document.getElementById('sub-delhi-other').classList.add('selected');
-
-if(type === "station"){
-pickupCoords = PICKUP_POINTS.station;
+// ═════════ STAGE 1 — LOCATION (handled by maps code above) ═════════
+function getPickupLabel() {
+  return selPickupName || selPickup || '—';
 }
 
-if(type === "airport"){
-pickupCoords = PICKUP_POINTS.airport;
-}
+function updatePriceSummary() {
+  computePrices();
+  const s = document.getElementById('price-summary');
+  s.classList.add('show');
+  const km    = computedDistKm;
+  const seats = selCar || 7;
+  const oneToll        = tollAmt || estimateToll(km);
+  const oneDisplayFare = calcDisplayFare(km, seats);
+  const oneRealFare    = calcDistanceFare(km, seats);
 
-if(type === "delhi-airport"){
-pickupCoords = PICKUP_POINTS.airport2;
-}
-  
+  document.getElementById('ps-pickup').textContent  = getPickupLabel();
+  document.getElementById('ps-cartype').textContent = selCar === 5 ? '5-Seater' : '7-Seater';
+
+  // Build detailed breakdown HTML
+  const breakdown = document.getElementById('ps-breakdown');
+
+  if (selTrip === 'return' && selDrop === 'same') {
+    document.getElementById('ps-trip').textContent = 'Return Trip (same location)';
+    breakdown.innerHTML = `
+      <div class="ps-row"><span>🛣️ Incoming Trip Base Fare</span><span class="sv">₹${oneDisplayFare.toLocaleString('en-IN')}</span></div>
+      <div class="ps-row"><span>🛣️ Return Trip Base Fare</span><span class="sv">₹${oneDisplayFare.toLocaleString('en-IN')}</span></div>
+      <div class="ps-row"><span>🚧 Incoming Trip Toll</span><span class="sv">${oneToll > 0 ? '₹' + oneToll.toLocaleString('en-IN') : '₹0 — No Toll'}</span></div>
+      <div class="ps-row"><span>🚧 Return Trip Toll</span><span class="sv">${oneToll > 0 ? '₹' + oneToll.toLocaleString('en-IN') : '₹0 — No Toll'}</span></div>
+    `;
+  } else if (selTrip === 'return' && selDrop === 'diff') {
+    const diffAddr       = document.getElementById('drop-sel-name').textContent || document.getElementById('diff-drop-addr').value.trim() || 'Custom Location';
+    document.getElementById('ps-trip').textContent = 'Return Trip → ' + diffAddr;
+    const retKm          = returnDistKm || 0;
+    const retToll        = returnTollAmt || estimateToll(retKm);
+    const retDisplayFare = calcDisplayFare(retKm, seats);
+    breakdown.innerHTML = `
+      <div class="ps-row"><span>🛣️ Incoming Trip Base Fare</span><span class="sv">₹${oneDisplayFare.toLocaleString('en-IN')}</span></div>
+      <div class="ps-row"><span>🛣️ Return Trip Base Fare</span><span class="sv">₹${retDisplayFare.toLocaleString('en-IN')}</span></div>
+      <div class="ps-row"><span>🚧 Incoming Trip Toll</span><span class="sv">${oneToll > 0 ? '₹' + oneToll.toLocaleString('en-IN') : '₹0 — No Toll'}</span></div>
+      <div class="ps-row"><span>🚧 Return Trip Toll</span><span class="sv">${retToll > 0 ? '₹' + retToll.toLocaleString('en-IN') : '₹0 — No Toll'}</span></div>
+    `;
+  } else {
+    document.getElementById('ps-trip').textContent = 'One Way';
+    breakdown.innerHTML = `
+      <div class="ps-row"><span>🛣️ Incoming Trip Base Fare</span><span class="sv">₹${oneDisplayFare.toLocaleString('en-IN')}</span></div>
+      <div class="ps-row"><span>🚧 Toll Charges</span><span class="sv">${oneToll > 0 ? '₹' + oneToll.toLocaleString('en-IN') : '₹0 — No Toll'}</span></div>
+    `;
+  }
+
+  const discRow = document.getElementById('ps-disc-row');
+  // Always show discount (at minimum the auto markup-discount)
+  discRow.style.display = 'flex';
+  document.getElementById('ps-disc').textContent = '−₹' + discAmt.toLocaleString('en-IN');
+
+  document.getElementById('ps-total').textContent     = '₹' + finalPrice.toLocaleString('en-IN');
+  document.getElementById('ps-remain').textContent    = '₹' + (finalPrice - advanceAmt).toLocaleString('en-IN');
+  document.getElementById('ps-advance').textContent   = '₹' + advanceAmt.toLocaleString('en-IN');
+  document.getElementById('ps-platform').textContent  = '₹' + platformFees.toLocaleString('en-IN');
+  document.getElementById('ps-total-now').textContent = '₹' + totalPayNow.toLocaleString('en-IN');
+  document.getElementById('pay-btn-text').textContent = 'Pay ₹' + totalPayNow.toLocaleString('en-IN') + ' via QR Code';
+
+  // Auto-scroll to the payment button after a short delay
+  setTimeout(() => {
+    const payBtn = document.getElementById('qr-pay-btn');
+    if (payBtn) payBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 350);
 }
 
 // ═════════ STAGE 2 — DATE ═════════
@@ -2228,7 +2526,7 @@ function onDateChange() {
   availOk.style.display = 'flex';
   const days = getDaysUntil(d);
   let icon='✅', text='';
-  if      (days < 1)  { icon='⚡'; text='Same day booking — urgent rate applies. Book early to save more!'; }
+  if      (days < 1)  { icon='⚡'; text='Same day booking — confirm quickly!'; }
   else if (days < 3)  { icon='🕐'; text='Booking 1–2 days ahead — book a week ahead for best savings.'; }
   else if (days < 7)  { icon='📅'; text='Booking 4–7 days ahead — good rate!'; }
   else if (days < 15) { icon='🗓️'; text='Booking 8–14 days ahead — great rate!'; }
@@ -2248,13 +2546,13 @@ function selectCar(n) {
 // ═════════ STAGE 4 — TRIP TYPE ═════════
 function selectTrip(type) {
   selTrip = type; selDrop = null; activeCoupon = null;
+  returnDistKm = 0; returnTollAmt = 0;
   ['trip-oneway','trip-return'].forEach(id => document.getElementById(id).classList.remove('selected'));
   document.getElementById('trip-' + type).classList.add('selected');
   const rsub = document.getElementById('return-sub');
   rsub.style.display = type === 'return' ? 'block' : 'none';
   if (type !== 'return') document.getElementById('return-datetime-group').style.display = 'none';
   document.getElementById('diff-drop-group').style.display  = 'none';
-  document.getElementById('diff-drop-notice').style.display = 'none';
   ['drop-same','drop-diff'].forEach(id => document.getElementById(id).classList.remove('selected'));
 }
 
@@ -2263,19 +2561,278 @@ function selectDrop(type) {
   ['drop-same','drop-diff'].forEach(id => document.getElementById(id).classList.remove('selected'));
   document.getElementById('drop-' + type).classList.add('selected');
   document.getElementById('diff-drop-group').style.display  = type === 'diff' ? 'block' : 'none';
-  document.getElementById('diff-drop-notice').style.display = type === 'diff' ? 'flex'  : 'none';
   document.getElementById('return-datetime-group').style.display = 'block';
   const pickupDate = document.getElementById('pickup-date').value;
   if (pickupDate) document.getElementById('return-date').min = pickupDate;
+  // Reset return leg
+  returnDistKm = 0; returnTollAmt = 0;
+  selDropLat = null; selDropLng = null;
+  if (type === 'diff') initDropMap();
+}
+
+// ── Drop location state ────────────────────────────────────────────────────
+let dropMap = null;
+let dropMarker = null;
+let dropMapInitialized = false;
+let selDropLat = null;
+let selDropLng = null;
+let dropSearchTimeout = null;
+
+function initDropMap() {
+  if (dropMapInitialized) return;
+  dropMapInitialized = true;
+  const mapEl   = document.getElementById('drop-map');
+  const loadEl  = document.getElementById('drop-map-loading');
+  if (!mapsLoaded || !window.google) {
+    // Maps not ready yet — show search-only mode
+    loadEl.innerHTML = '<div style="text-align:center;padding:20px;"><div style="font-size:26px;margin-bottom:8px;">🗺️</div><div style="font-size:13px;color:#888;line-height:1.5;">Use the search box above to find your drop-off location.</div></div>';
+    return;
+  }
+  loadEl.style.display = 'none';
+  dropMap = new google.maps.Map(mapEl, {
+    center: { lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG },
+    zoom: 8,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    styles: [{ featureType:'poi', elementType:'labels', stylers:[{visibility:'off'}] }]
+  });
+  // Origin pin — Manauna Dham
+  new google.maps.Marker({
+    position: { lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG },
+    map: dropMap,
+    title: 'Manauna Dham (Origin)',
+    icon: {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24s16-14 16-24C32 7.163 24.837 0 16 0z" fill="#1a7a3a"/><circle cx="16" cy="16" r="8" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#1a7a3a" font-size="10" font-weight="bold">O</text></svg>'),
+      scaledSize: new google.maps.Size(28, 35),
+      anchor: new google.maps.Point(14, 35)
+    }
+  });
+  // Tap map to set drop location
+  dropMap.addListener('click', (e) => {
+    reverseGeocodeForDrop(e.latLng.lat(), e.latLng.lng());
+  });
+}
+
+async function reverseGeocodeForDrop(lat, lng) {
+  if (mapsLoaded && geocoder) {
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const name = results[0].address_components[0]?.long_name || 'Selected Location';
+        placeDropMarker(lat, lng, name, results[0].formatted_address);
+      } else {
+        placeDropMarker(lat, lng, 'Selected Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+      }
+    });
+    return;
+  }
+  try {
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({ mode:'reverse', lat, lon:lng });
+    const r = await (await fetch(url)).json();
+    if (r && r.display_name) {
+      const addr = r.address || {};
+      const name = addr.road || addr.suburb || addr.neighbourhood || addr.village || addr.town || addr.city || 'Selected Location';
+      placeDropMarker(lat, lng, name, r.display_name);
+    } else {
+      placeDropMarker(lat, lng, 'Selected Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+    }
+  } catch(e) {
+    placeDropMarker(lat, lng, 'Selected Location', lat.toFixed(4) + ', ' + lng.toFixed(4));
+  }
+}
+
+function placeDropMarker(lat, lng, name, addr) {
+  selDropLat = lat;
+  selDropLng = lng;
+
+  // Update map marker
+  if (dropMap) {
+    if (dropMarker) dropMarker.setMap(null);
+    dropMarker = new google.maps.Marker({
+      position: { lat, lng },
+      map: dropMap,
+      title: name,
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24s16-14 16-24C32 7.163 24.837 0 16 0z" fill="#2563a8"/><circle cx="16" cy="16" r="8" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#2563a8" font-size="10" font-weight="bold">D</text></svg>'),
+        scaledSize: new google.maps.Size(28, 35),
+        anchor: new google.maps.Point(14, 35)
+      }
+    });
+    const bounds = new google.maps.LatLngBounds();
+    bounds.extend({ lat, lng });
+    bounds.extend({ lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG });
+    dropMap.fitBounds(bounds, { top:40, bottom:40, left:40, right:40 });
+  }
+
+  // Show selected card
+  document.getElementById('drop-sel-name').textContent = name;
+  document.getElementById('drop-sel-addr').textContent = addr;
+  document.getElementById('drop-selected-card').style.display = 'block';
+  document.getElementById('drop-dist-row').style.display = 'block';
+  document.getElementById('drop-dist-loading').style.display = 'flex';
+  document.getElementById('drop-dist-result').style.display = 'none';
+
+  // Fill search box
+  document.getElementById('diff-drop-addr').value = name;
+
+  // Compute return leg distance
+  computeReturnLegDistance(lat, lng, addr);
+}
+
+function clearDropLocation() {
+  selDropLat = null; selDropLng = null;
+  returnDistKm = 0; returnTollAmt = 0;
+  document.getElementById('drop-selected-card').style.display = 'none';
+  document.getElementById('diff-drop-addr').value = '';
+  if (dropMarker) { dropMarker.setMap(null); dropMarker = null; }
+}
+
+// Autocomplete for drop search
+function handleDropSearchInput(val) {
+  clearTimeout(dropSearchTimeout);
+  if (val.length < 3) { hideDropSuggestions(); return; }
+  dropSearchTimeout = setTimeout(() => fetchDropSuggestions(val), 500);
+}
+
+async function fetchDropSuggestions(input) {
+  try {
+    const url = 'https://harshdeep-api.vercel.app/api/nominatim-proxy?' + new URLSearchParams({ mode:'search', q:input });
+    const results = await (await fetch(url)).json();
+    if (!results || !results.length) { hideDropSuggestions(); return; }
+    const items = results.map(r => {
+      const addr = r.address || {};
+      const main = addr.road || addr.suburb || addr.neighbourhood ||
+                   addr.city_district || addr.village || addr.town ||
+                   addr.city || r.display_name.split(',')[0];
+      const parts = [
+        addr.suburb || addr.neighbourhood || addr.city_district,
+        addr.city   || addr.town || addr.village || addr.county,
+        addr.state,
+      ].filter(Boolean);
+      return {
+        lat: parseFloat(r.lat), lng: parseFloat(r.lon),
+        main, sub: parts.join(', ') || r.display_name,
+        icon: getNominatimIcon(r.type, r.class),
+        fullAddr: r.display_name,
+      };
+    });
+    renderDropSuggestions(items);
+  } catch(e) { hideDropSuggestions(); }
+}
+
+function renderDropSuggestions(items) {
+  const list = document.getElementById('drop-autocomplete-list');
+  list.innerHTML = '';
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'ac-item';
+    div.innerHTML = `<div class="ac-icon">${item.icon||'📍'}</div><div><div class="ac-main">${item.main}</div><div class="ac-sub">${item.sub||''}</div></div>`;
+    div.onclick = () => selectDropSuggestion(item);
+    list.appendChild(div);
+  });
+  list.style.display = 'block';
+}
+
+function selectDropSuggestion(item) {
+  hideDropSuggestions();
+  placeDropMarker(item.lat, item.lng, item.main, item.fullAddr || item.sub || item.main);
+}
+
+function showDropSuggestions() { document.getElementById('drop-autocomplete-list').style.display = 'block'; }
+function hideDropSuggestions() { document.getElementById('drop-autocomplete-list').style.display = 'none'; }
+
+function handleDropSearchKey(e) {
+  const list  = document.getElementById('drop-autocomplete-list');
+  const items = list.querySelectorAll('.ac-item');
+  const cur   = list.querySelector('.ac-item.hovered');
+  if (e.key === 'Escape') { hideDropSuggestions(); return; }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (!cur) items[0]?.classList.add('hovered');
+    else { cur.classList.remove('hovered'); (cur.nextElementSibling || items[0]).classList.add('hovered'); }
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!cur) items[items.length-1]?.classList.add('hovered');
+    else { cur.classList.remove('hovered'); (cur.previousElementSibling || items[items.length-1]).classList.add('hovered'); }
+  }
+  if (e.key === 'Enter' && cur) { e.preventDefault(); cur.click(); }
+}
+
+// Close drop autocomplete when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#diff-drop-addr') && !e.target.closest('#drop-autocomplete-list')) {
+    hideDropSuggestions();
+  }
+});
+
+// Compute return leg: Manauna Dham → drop coords
+function computeReturnLegDistance(lat, lng, addrStr) {
+  if (mapsLoaded && distanceService) {
+    distanceService.getDistanceMatrix({
+      origins: [{ lat: MANAUNA_DHAM_LAT, lng: MANAUNA_DHAM_LNG }],
+      destinations: [{ lat, lng }],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    }, (res, status) => {
+      const el = res?.rows?.[0]?.elements?.[0];
+      if (status === 'OK' && el?.status === 'OK') {
+        const km  = Math.round(el.distance.value / 1000);
+        const dur = el.duration.text;
+        returnDistKm  = km;
+        returnTollAmt = estimateToll(km);
+        document.getElementById('drop-dist-km').textContent   = km + ' km';
+        document.getElementById('drop-dist-time').textContent = dur;
+        document.getElementById('drop-dist-toll').textContent = '₹' + returnTollAmt;
+      } else {
+        // Fallback: OSRM straight-line estimate
+        useOsrmDropDistance(lat, lng);
+        return;
+      }
+      document.getElementById('drop-dist-loading').style.display = 'none';
+      document.getElementById('drop-dist-result').style.display  = 'block';
+    });
+  } else {
+    useOsrmDropDistance(lat, lng);
+  }
+}
+
+async function useOsrmDropDistance(lat, lng) {
+  try {
+    const url = `https://router.project-osrm.org/route/v1/driving/${MANAUNA_DHAM_LNG},${MANAUNA_DHAM_LAT};${lng},${lat}?overview=false`;
+    const data = await (await fetch(url)).json();
+    if (data.routes?.length) {
+      const km  = Math.round(data.routes[0].distance / 1000);
+      const sec = data.routes[0].duration;
+      const dur = sec >= 3600
+        ? Math.round(sec/3600) + ' hr ' + Math.round((sec%3600)/60) + ' min'
+        : Math.round(sec/60) + ' min';
+      returnDistKm  = km;
+      returnTollAmt = estimateToll(km);
+      document.getElementById('drop-dist-km').textContent   = km + ' km';
+      document.getElementById('drop-dist-time').textContent = dur;
+      document.getElementById('drop-dist-toll').textContent = '₹' + returnTollAmt;
+    } else {
+      returnDistKm = computedDistKm; returnTollAmt = estimateToll(computedDistKm);
+      document.getElementById('drop-dist-km').textContent   = '~' + computedDistKm + ' km (est.)';
+      document.getElementById('drop-dist-time').textContent = '—';
+      document.getElementById('drop-dist-toll').textContent = '₹' + returnTollAmt;
+    }
+  } catch(e) {
+    returnDistKm = computedDistKm; returnTollAmt = estimateToll(computedDistKm);
+    document.getElementById('drop-dist-km').textContent   = '~' + computedDistKm + ' km (est.)';
+    document.getElementById('drop-dist-time').textContent = '—';
+    document.getElementById('drop-dist-toll').textContent = '₹' + returnTollAmt;
+  }
+  document.getElementById('drop-dist-loading').style.display = 'none';
+  document.getElementById('drop-dist-result').style.display  = 'block';
 }
 
 // ═════════ STAGE 6 — PAYMENT ═════════
 function preparePaymentStage() {
-  const standardCombos = (
-    (selPickup === 'station' || selPickup === 'airport' || selPickup === 'city' || selPickup === 'delhi-airport') &&
-    (selTrip === 'oneway' || (selTrip === 'return' && selDrop === 'same'))
-  );
-  needsWAOnly = !standardCombos;
+  // All trip types now support online payment — diff-drop uses estimated return distance
+  needsWAOnly = false;
 
   document.getElementById('sum-pickup').textContent = getPickupLabel();
   const d = document.getElementById('pickup-date').value;
@@ -2289,10 +2846,10 @@ function preparePaymentStage() {
     tripLbl += ' · Same location' + (rd ? ' · Return: ' + fmtDate(rd) + (rt ? ' ' + fmtTime(rt) : '') : '');
   }
   if (selTrip === 'return' && selDrop === 'diff') {
-    const addr = document.getElementById('diff-drop-addr').value.trim();
+    const addr = document.getElementById('drop-sel-name').textContent || document.getElementById('diff-drop-addr').value.trim() || 'Custom';
     const rd   = document.getElementById('return-date').value;
     const rt   = document.getElementById('return-time').value;
-    tripLbl += ' · Drop: ' + (addr || 'Custom') + (rd ? ' · Return: ' + fmtDate(rd) + (rt ? ' ' + fmtTime(rt) : '') : '');
+    tripLbl += ' · Drop: ' + addr + (rd ? ' · Return: ' + fmtDate(rd) + (rt ? ' ' + fmtTime(rt) : '') : '');
   }
   document.getElementById('sum-trip').textContent = tripLbl;
   document.getElementById('sum-name').textContent = document.getElementById('g-name').value.trim();
@@ -2375,7 +2932,7 @@ function sendWARequest() {
   const pax   = document.getElementById('g-passengers').value;
   const msg_  = document.getElementById('g-message').value.trim();
   let dropInfo = '';
-  if (selTrip === 'return' && selDrop === 'diff') dropInfo = '\n📍 *Return Drop:* ' + document.getElementById('diff-drop-addr').value.trim();
+  if (selTrip === 'return' && selDrop === 'diff') dropInfo = '\n📍 *Return Drop:* ' + (document.getElementById('drop-sel-name').textContent || document.getElementById('diff-drop-addr').value.trim() || 'Custom Location');
   const waMsg = [
     '🚗 *Cab Booking Request — Manauna Dham (Crulio.com/ManaunaDham)*','',
     '👤 *Name:* ' + (name||'—'),
@@ -2433,6 +2990,17 @@ async function showQRPayment() {
     document.getElementById('qr-img').src = data.image_url + '?size=600';
     setQRState('ready');
     startQRTimer(600);
+
+    // Save pending QR session so receipt survives browser close
+    try {
+      localStorage.setItem('cab_pending_qr', JSON.stringify({
+        qrId:     data.qr_id,
+        imageUrl: data.image_url,
+        notes:    notes,
+        savedAt:  Date.now(),
+      }));
+    } catch(e) {}
+
     setTimeout(() => startPolling(data.qr_id), 3000);
   } catch(err) {
     document.getElementById('qrModal').classList.remove('open');
@@ -2482,10 +3050,14 @@ async function manualCheckPayment() {
 function onQRSuccess(data) {
   paymentDetected = true;
   clearInterval(qrPollingInterval); clearInterval(qrTimerInterval);
+
+  // Clear the pending QR session
+  try { localStorage.removeItem('cab_pending_qr'); } catch(e) {}
+
   setQRState('success');
   setTimeout(() => {
     document.getElementById('qrModal').classList.remove('open');
-    showReceipt({
+    const receiptData = {
       invStr:         data.notes.invoice_no || ('CAB' + Date.now()),
       name:           data.notes.passenger_name,
       phone:          data.notes.passenger_phone,
@@ -2501,7 +3073,10 @@ function onQRSuccess(data) {
       platformFees:   parseInt(data.notes.platform_fees  || 0),
       totalPayNow:    parseInt(data.notes.total_pay_now  || 0),
       payId:          data.payment_id,
-    });
+      guestEmail:     data.notes.guest_email || '',
+    };
+    saveBookingToStorage(receiptData);
+    showReceipt(receiptData);
   }, 1800);
 }
 
@@ -2581,7 +3156,7 @@ function buildNotes(invStr) {
   const rt    = selTrip === 'return' ? document.getElementById('return-time').value : '';
   const pax   = document.getElementById('g-passengers').value || '';
   const dropLoc = (selTrip === 'return' && selDrop === 'diff')
-    ? (document.getElementById('diff-drop-addr').value.trim() || 'Manauna Dham')
+    ? (document.getElementById('drop-sel-name').textContent || document.getElementById('diff-drop-addr').value.trim() || 'Custom Location')
     : 'Manauna Dham';
   return {
     service:         'Manauna Dham Cab — Crulio.com',
@@ -2589,6 +3164,7 @@ function buildNotes(invStr) {
     passenger_name:  name,
     passenger_phone: phone,
     pickup_label:    getPickupLabel(),
+    pickup_coords:   selPickupLat ? `${selPickupLat.toFixed(5)},${selPickupLng.toFixed(5)}` : '',
     pickup_date:     d,
     pickup_time:     t,
     pickup_datetime: (d ? fmtDate(d) : '—') + (t ? ' · ' + fmtTime(t) : ''),
@@ -2597,6 +3173,9 @@ function buildNotes(invStr) {
     passengers:      pax,
     car_type:        selCar === 5 ? '5-Seater' : '7-Seater',
     trip_type:       selTrip === 'oneway' ? 'One Way' : 'Return Trip',
+    distance_km:     String(computedDistKm),
+    return_leg_km:   selDrop === 'diff' ? String(returnDistKm) : '',
+    toll_estimate:   String(tollAmt || estimateToll(computedDistKm)),
     total_fare:      String(basePrice),
     coupon_used:     activeCoupon || 'None',
     coupon_discount: String(discAmt),
@@ -2610,6 +3189,24 @@ function buildNotes(invStr) {
 // ═════════ RECEIPT ═════════
 function showReceipt(d) {
   lastBooking = d;
+
+  // Email section setup
+  const autoBanner = document.getElementById('receipt-email-auto-banner');
+  const quickRow   = document.getElementById('receipt-email-quick-row');
+  const otherLabel = document.getElementById('receipt-email-other-label');
+  const selfBtn    = document.getElementById('resend-self-btn');
+  const selfLabel  = document.getElementById('resend-self-label');
+  if (d.guestEmail) {
+    if (autoBanner) { document.getElementById('receipt-email-auto-address').textContent = d.guestEmail; autoBanner.style.display = 'block'; }
+    if (quickRow)   { quickRow.style.display = 'block'; }
+    if (selfLabel)  { selfLabel.textContent = d.guestEmail; }
+    if (otherLabel) { otherLabel.textContent = 'Or send to a different email:'; }
+  } else {
+    if (autoBanner) autoBanner.style.display = 'none';
+    if (quickRow)   quickRow.style.display = 'none';
+    if (otherLabel) otherLabel.textContent = 'Send receipt by email:';
+  }
+
   document.getElementById('r-inv').textContent      = '#' + d.invStr;
   document.getElementById('r-date').textContent     = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
   document.getElementById('r-name').textContent     = d.name;
@@ -2625,11 +3222,15 @@ function showReceipt(d) {
   const dr = document.getElementById('r-disc-row');
   if (d.discAmt > 0) { dr.style.display='flex'; document.getElementById('r-disc').textContent='−₹'+d.discAmt.toLocaleString('en-IN'); }
   else dr.style.display='none';
-  document.getElementById('r-remain').textContent       = '₹' + (d.finalTotal - d.advance).toLocaleString('en-IN');
-  document.getElementById('r-advance').textContent      = '₹' + d.advance.toLocaleString('en-IN');
-  document.getElementById('r-platform').textContent     = '₹' + (d.platformFees||0).toLocaleString('en-IN');
+  document.getElementById('r-remain').textContent         = '₹' + (d.finalTotal - d.advance).toLocaleString('en-IN');
+  document.getElementById('r-advance').textContent        = '₹' + d.advance.toLocaleString('en-IN');
+  document.getElementById('r-platform').textContent       = '₹' + (d.platformFees||0).toLocaleString('en-IN');
   document.getElementById('r-total-paid-now').textContent = '₹' + (d.totalPayNow||(d.advance+(d.platformFees||0))).toLocaleString('en-IN');
-  document.getElementById('r-pid').textContent          = d.payId;
+  document.getElementById('r-pid').textContent            = d.payId;
+
+  // Save to localStorage immediately
+  saveBookingToStorage(d);
+
   document.getElementById('receiptOverlay').classList.add('open');
 }
 
@@ -2652,10 +3253,10 @@ function shareReceiptToCustomer() {
     '🚐 *Car:* ' + d.car,
     '↩️ *Trip:* ' + d.trip + discLine,
     '━━━━━━━━━━━━━━━━━━━━',
-    '✅ *Advance Paid (15%):* ₹' + d.advance.toLocaleString('en-IN'),
+    '✅ *Advance Paid (10%):* ₹' + d.advance.toLocaleString('en-IN'),
     '🏷️ *Platform Fee (5%):* ₹' + (d.platformFees||0).toLocaleString('en-IN'),
     '💳 *Total Paid Now:* ₹' + totalPaid.toLocaleString('en-IN'),
-    '🚗 *Pay Driver at Pickup (85%):* ₹' + (d.finalTotal - d.advance).toLocaleString('en-IN'),
+    '🚗 *Pay Driver at Pickup (90%):* ₹' + (d.finalTotal - d.advance).toLocaleString('en-IN'),
     '🆔 *Payment ID:* ' + d.payId,
     '━━━━━━━━━━━━━━━━━━━━',
     '⚠️ Show this to driver at pickup.',
@@ -2665,7 +3266,375 @@ function shareReceiptToCustomer() {
   window.open('https://wa.me/91' + d.phone + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
-function closeReceipt() { document.getElementById('receiptOverlay').classList.remove('open'); }
+function copyReceiptText(btn) {
+  if (!lastBooking) return;
+  const d = lastBooking;
+  const discLine   = d.discAmt > 0 ? '\n🏷️ *Coupon Discount:* −₹' + d.discAmt.toLocaleString('en-IN') : '';
+  const returnLine = d.returnDatetime ? '\n🔄 *Return Date & Time:* ' + d.returnDatetime : '';
+  const totalPaid  = d.totalPayNow || (d.advance + (d.platformFees||0));
+  const text = [
+    '🧾 *Cab Booking Receipt — Manauna Dham (Crulio.com)*', '',
+    '━━━━━━━━━━━━━━━━━━━━',
+    '📋 *Invoice:* #' + d.invStr,
+    '📅 *Booked On:* ' + new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}),
+    '━━━━━━━━━━━━━━━━━━━━',
+    '👤 *Name:* ' + d.name,
+    '📱 *Phone:* +91 ' + d.phone,
+    '📍 *Pickup:* ' + d.pickup,
+    '🗓️ *Date & Time:* ' + d.datetime + returnLine,
+    '🚐 *Car:* ' + d.car,
+    '↩️ *Trip:* ' + d.trip + discLine,
+    '━━━━━━━━━━━━━━━━━━━━',
+    '✅ *Advance Paid (10%):* ₹' + d.advance.toLocaleString('en-IN'),
+    '🏷️ *Platform Fee (5%):* ₹' + (d.platformFees||0).toLocaleString('en-IN'),
+    '💳 *Total Paid Now:* ₹' + totalPaid.toLocaleString('en-IN'),
+    '🚗 *Pay Driver at Pickup (90%):* ₹' + (d.finalTotal - d.advance).toLocaleString('en-IN'),
+    '🆔 *Payment ID:* ' + d.payId,
+    '━━━━━━━━━━━━━━━━━━━━',
+    '⚠️ Show this to driver at pickup.',
+    '📞 Driver Helpline: +91 8909208453',
+    '_Crulio.com/ManaunaDham_',
+  ].join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!'; btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    const span = btn.querySelector('span');
+    span.textContent = '✓ Copied!'; btn.style.background = 'var(--green)';
+    setTimeout(() => { span.textContent = 'Copy Text'; btn.style.background = 'var(--maroon)'; }, 2500);
+  });
+}
+
+let receiptSavedByUser = false;
+
+function savePDFAndMark() {
+  receiptSavedByUser = true;
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (raw) {
+      const record = JSON.parse(raw);
+      record.pdfDownloaded = true;
+      localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+    }
+  } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  window.print();
+}
+
+function closeReceiptSafe() {
+  if (!receiptSavedByUser) {
+    const reminder = document.getElementById('receipt-save-reminder');
+    if (reminder) { reminder.style.display = 'block'; reminder.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    return;
+  }
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  closeReceipt();
+}
+
+function confirmCloseReceipt() {
+  receiptSavedByUser = true;
+  try { localStorage.removeItem(PROPERTY.storageKey); } catch(e) {}
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+  closeReceipt();
+}
+
+function closeReceipt() {
+  document.getElementById('receiptOverlay').classList.remove('open');
+  receiptSavedByUser = false;
+  const emailInput = document.getElementById('receipt-email-input');
+  const emailMsg   = document.getElementById('receipt-email-msg');
+  const sendBtn    = document.getElementById('send-email-btn');
+  if (emailInput) emailInput.value = '';
+  if (emailMsg)   { emailMsg.style.display = 'none'; emailMsg.textContent = ''; }
+  if (sendBtn)    { sendBtn.textContent = '✉️ Send'; sendBtn.disabled = false; }
+  const autoBanner = document.getElementById('receipt-email-auto-banner');
+  const quickRow   = document.getElementById('receipt-email-quick-row');
+  if (autoBanner) autoBanner.style.display = 'none';
+  if (quickRow)   quickRow.style.display = 'none';
+  const reminder = document.getElementById('receipt-save-reminder');
+  if (reminder) reminder.style.display = 'none';
+}
+
+// ═════════ STORAGE ═════════
+function saveBookingToStorage(d) {
+  try {
+    let existing = {};
+    try { existing = JSON.parse(localStorage.getItem(PROPERTY.storageKey) || '{}'); } catch(e) {}
+    const record = { ...d, savedAt: Date.now(), propertyId: PROPERTY.id, pdfDownloaded: existing.pdfDownloaded || false };
+    localStorage.setItem(PROPERTY.storageKey, JSON.stringify(record));
+  } catch(e) {}
+}
+
+function loadBookingFromStorage() {
+  try {
+    const raw = localStorage.getItem(PROPERTY.storageKey);
+    if (!raw) return null;
+    const record = JSON.parse(raw);
+    if (!record.savedAt || (Date.now() - record.savedAt) > STORAGE_TTL_MS) {
+      localStorage.removeItem(PROPERTY.storageKey); return null;
+    }
+    return record;
+  } catch(e) { return null; }
+}
+
+function restoreReceiptFromStorage() {
+  const d = loadBookingFromStorage();
+  if (!d) { alert('Receipt has expired. Please contact us on WhatsApp.'); return; }
+  document.getElementById('returning-guest-banner').style.display = 'none';
+  showReceipt(d);
+}
+
+function dismissReturningBanner() {
+  document.getElementById('returning-guest-banner').style.display = 'none';
+}
+
+function checkForReturningGuest() {
+  const d = loadBookingFromStorage();
+  if (!d) return;
+  const banner = document.getElementById('returning-guest-banner');
+  const pdfNote = d.pdfDownloaded
+    ? '<span style="color:#1a5c2a;font-size:13px;margin-left:10px;">✅ PDF saved</span>'
+    : '<span style="color:#c47000;font-size:13px;margin-left:10px;">⚠️ PDF not yet saved</span>';
+  banner.innerHTML =
+    '<span style="font-size:14px;font-weight:700;color:#1a5c2a;">🚖 Welcome back! Your cab booking receipt is ready.' + pdfNote + '</span>' +
+    '<button onclick="restoreReceiptFromStorage()" style="margin-left:14px;background:#1a5c2a;color:white;border:none;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;">View Receipt</button>' +
+    '<button onclick="dismissReturningBanner()" style="margin-left:8px;background:none;border:none;color:#555;font-size:18px;cursor:pointer;line-height:1;vertical-align:middle;">×</button>';
+  banner.style.display = 'block';
+}
+
+// ═════════ PENDING QR RESUME ═════════
+async function resumePendingQRIfAny() {
+  let pending;
+  try {
+    const raw = localStorage.getItem('cab_pending_qr');
+    if (!raw) return;
+    pending = JSON.parse(raw);
+  } catch(e) { return; }
+
+  if (!pending.qrId || (Date.now() - pending.savedAt) > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem('cab_pending_qr'); return;
+  }
+
+  try {
+    const res  = await fetch(CHECK_API + '?qr_id=' + pending.qrId);
+    const data = await res.json();
+
+    if (data.paid) {
+      localStorage.removeItem('cab_pending_qr');
+      const n = pending.notes || {};
+      const receiptData = {
+        invStr:         n.invoice_no || ('CAB' + Date.now()),
+        name:           n.passenger_name,
+        phone:          n.passenger_phone,
+        pickup:         n.pickup_label,
+        datetime:       n.pickup_datetime,
+        returnDatetime: n.return_datetime || '',
+        car:            n.car_type || '7-Seater',
+        trip:           n.trip_type,
+        total:          parseInt(n.total_fare),
+        discAmt:        parseInt(n.coupon_discount || 0),
+        finalTotal:     parseInt(n.final_fare),
+        advance:        parseInt(n.advance_amount),
+        platformFees:   parseInt(n.platform_fees || 0),
+        totalPayNow:    parseInt(n.total_pay_now || 0),
+        payId:          data.payment_id || 'Verified',
+        guestEmail:     n.guest_email || '',
+      };
+      saveBookingToStorage(receiptData);
+      showReceipt(receiptData);
+    } else {
+      const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+      if (qrExpired) { localStorage.removeItem('cab_pending_qr'); return; }
+      const n = pending.notes || {};
+      document.getElementById('qr-amount').textContent = '₹' + (parseInt(n.total_pay_now) || 0).toLocaleString('en-IN');
+      document.getElementById('qrModal').classList.add('open');
+      if (pending.imageUrl) { document.getElementById('qr-img').src = pending.imageUrl + '?size=600'; setQRState('ready'); }
+      else { setQRState('loading'); }
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId; paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 1500);
+    }
+  } catch(e) {
+    const qrExpired = (Date.now() - pending.savedAt) > 10 * 60 * 1000;
+    if (!qrExpired && pending.imageUrl) {
+      const n = pending.notes || {};
+      document.getElementById('qr-amount').textContent = '₹' + (parseInt(n.total_pay_now) || 0).toLocaleString('en-IN');
+      document.getElementById('qrModal').classList.add('open');
+      document.getElementById('qr-img').src = pending.imageUrl + '?size=600';
+      setQRState('ready');
+      const elapsedSec = Math.floor((Date.now() - pending.savedAt) / 1000);
+      startQRTimer(Math.max(600 - elapsedSec, 30));
+      qrActiveId = pending.qrId; paymentDetected = false;
+      setTimeout(() => startPolling(pending.qrId), 3000);
+    }
+  }
+}
+
+// ═════════ EMAIL ═════════
+async function resendToSelf() {
+  if (!lastBooking) return;
+  const email = lastBooking.guestEmail || '';
+  if (!email) return;
+  const btn = document.getElementById('resend-self-btn');
+  if (btn) { btn.textContent = '⏳ Sending…'; btn.disabled = true; }
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      carType:      lastBooking.car,
+      passengers:   lastBooking.passengers || '',
+      pickupLabel:  lastBooking.pickup,
+      dropLocation: lastBooking.dropLocation || 'Manauna Dham',
+      totalFare:    lastBooking.total,
+      discAmt:      lastBooking.discAmt,
+      advancePaid:  lastBooking.advance,
+      platformFee:  lastBooking.platformFees,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt resent to ' + email + '! Check your inbox.', 'ok');
+    if (btn) { btn.textContent = '✓ Sent to ' + email; }
+  } catch(err) {
+    showEmailMsg('❌ Could not resend. Please use the email field below.', 'error');
+    if (btn) { btn.textContent = '↩ Resend to ' + email; btn.disabled = false; }
+  }
+}
+
+async function sendReceiptEmail() {
+  if (!lastBooking) return;
+  const emailInput = document.getElementById('receipt-email-input');
+  const btn        = document.getElementById('send-email-btn');
+  const email      = emailInput.value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showEmailMsg('Please enter a valid email address.', 'error'); emailInput.focus(); return;
+  }
+  btn.textContent = '⏳ Sending…'; btn.disabled = true;
+  try {
+    const payload = {
+      propertyId:   PROPERTY.id,
+      propertyName: PROPERTY.name,
+      propertyType: PROPERTY.type,
+      guestEmail:   email,
+      invStr:       lastBooking.invStr,
+      name:         lastBooking.name,
+      phone:        lastBooking.phone,
+      carType:      lastBooking.car,
+      passengers:   lastBooking.passengers || '',
+      pickupLabel:  lastBooking.pickup,
+      dropLocation: lastBooking.dropLocation || 'Manauna Dham',
+      totalFare:    lastBooking.total,
+      discAmt:      lastBooking.discAmt,
+      advancePaid:  lastBooking.advance,
+      platformFee:  lastBooking.platformFees,
+      payId:        lastBooking.payId,
+    };
+    const resp = await fetch(PROPERTY.sendReceiptEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    if (!resp.ok) throw new Error('Server error');
+    showEmailMsg('✅ Receipt sent! Check your inbox (also check spam).', 'ok');
+    btn.textContent = '✓ Sent';
+  } catch(err) {
+    showEmailMsg('❌ Could not send. Please copy the text instead.', 'error');
+    btn.textContent = '✉️ Send'; btn.disabled = false;
+  }
+}
+
+function showEmailMsg(text, type) {
+  const el = document.getElementById('receipt-email-msg');
+  el.textContent = text; el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
+
+async function resendReceiptByInvoice() {
+  const invoiceInput = document.getElementById('resend-invoice-input');
+  const phoneInput   = document.getElementById('resend-phone-input');
+  const emailInput   = document.getElementById('resend-email-input');
+  const btn          = document.getElementById('resend-btn');
+  const btnText      = document.getElementById('resend-btn-text');
+
+  const invoice = (invoiceInput.value || '').trim().toUpperCase();
+  const phone   = (phoneInput.value   || '').trim().replace(/\D/g, '');
+  const email   = (emailInput.value   || '').trim();
+
+  if (!invoice && !phone) { showResendMsg('Please enter your phone number and/or receipt number.', 'error'); return; }
+  if (phone && !/^\d{10}$/.test(phone)) { showResendMsg('Please enter a valid 10-digit phone number.', 'error'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showResendMsg('Please enter a valid email address to receive the receipt.', 'error'); return; }
+
+  btn.disabled = true; btnText.textContent = '⏳ Looking up booking…';
+
+  try {
+    let lookupUrl = 'https://harshdeep-api.vercel.app/api/resend-lookup?';
+    if (phone)   lookupUrl += 'phone='   + encodeURIComponent(phone);
+    if (phone && invoice) lookupUrl += '&';
+    if (invoice) lookupUrl += 'invoice=' + encodeURIComponent(invoice);
+
+    const lookupResp = await fetch(lookupUrl);
+    const lookupData = await lookupResp.json();
+
+    if (!lookupResp.ok || !lookupData.found) {
+      let msg = '❌ No booking found. ';
+      if (phone && invoice) msg += 'Please make sure both your phone number and receipt number are correct.';
+      else if (invoice)     msg += 'Please double-check the receipt number (e.g. CAB0828042).';
+      else                  msg += 'No booking was found for this phone number. Try adding the receipt number too.';
+      msg += ' Need help? WhatsApp us at +91 7817803342.';
+      showResendMsg(msg, 'error');
+      btn.disabled = false; btnText.textContent = 'Find & Resend Receipt'; return;
+    }
+
+    const b = lookupData.booking;
+    btnText.textContent = '📨 Sending receipt…';
+    const payload = {
+      propertyType: 'taxi',
+      propertyName: b.hotelName || PROPERTY.name,
+      propertyId:   PROPERTY.id,
+      guestEmail:   email,
+      invStr:       b.invoiceNo,
+      name:         b.guestName,
+      phone:        b.guestPhone,
+      carType:      b.roomType,
+      passengers:   b.passengers,
+      pickupLabel:  b.pickupLocation,
+      dropLocation: b.dropLocation,
+      totalFare:    b.roomPrice,
+      discAmt:      b.couponDiscount,
+      advancePaid:  b.advancePaid,
+      platformFee:  b.platformFees,
+      payId:        b.paymentId,
+    };
+    const sendResp = await fetch(PROPERTY.sendReceiptEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    if (!sendResp.ok) throw new Error('Send failed');
+
+    const guestLabel = b.guestName ? ' for ' + b.guestName : '';
+    const dateLabel  = b.checkin   ? ' (pickup ' + b.checkin + ')' : '';
+    showResendMsg('✅ Receipt sent! Booking' + guestLabel + ' · Invoice ' + b.invoiceNo + dateLabel + '.\nPlease check your inbox (and spam/junk folder just in case).', 'ok');
+    btnText.textContent = '✓ Receipt Sent';
+  } catch(err) {
+    showResendMsg('❌ Something went wrong. Please try again or contact us on WhatsApp at +91 7817803342.', 'error');
+    btn.disabled = false; btnText.textContent = 'Find & Resend Receipt';
+  }
+}
+
+function showResendMsg(text, type) {
+  const el = document.getElementById('resend-msg');
+  el.innerHTML = text.replace(/\n/g, '<br>'); el.style.display = 'block';
+  el.style.background = type === 'ok' ? '#e6f4ec' : '#fff0f0';
+  el.style.color      = type === 'ok' ? '#1a5c2a' : '#c00';
+  el.style.border     = type === 'ok' ? '1px solid #a8d8b8' : '1px solid #f0b8b8';
+}
 
 // ═════════ HELPERS ═════════
 function fmtDate(str) {
@@ -2687,7 +3656,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('pickup-date').min = today;
   fetchBlockedDates();
+  renderPopularCards();
+  maybeInitMaps();
+  checkForReturningGuest();
+  resumePendingQRIfAny();
 });
 </script>
+  <script src="../assets/manauna-support-chat.js"></script>
 </body>
 </html>
