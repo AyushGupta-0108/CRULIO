@@ -94,13 +94,13 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100svh;
+    min-height: auto;
     background: var(--navy-dark);
     background-image:
       radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,104,10,0.13) 0%, transparent 55%),
       radial-gradient(ellipse 50% 70% at 10% 70%, rgba(36,61,110,0.6) 0%, transparent 60%);
     display: flex; align-items: center;
-    padding: 72px 5% 0;
+    padding: 88px 5% 0;
     position: relative; overflow: hidden;
   }
   .hero::before {
@@ -114,7 +114,7 @@
     max-width: 1180px; margin: 0 auto; width: 100%;
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 60px; align-items: center;
-    padding: 48px 0 32px;
+    padding: 20px 0 18px;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -150,7 +150,7 @@
   .btn-ghost:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.35); }
 
   /* ── HERO LIVE STATS ── */
-  .hero-stats-wrap { margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .hero-stats-wrap { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
   .live-indicator {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -439,6 +439,11 @@
   }
   .reel-embed-wrap .instagram-media { margin: 0 auto !important; border-radius: 16px !important; }
 
+  /* ── SOCIAL FOLLOW ── */
+  .social-follow-section { background: var(--cream); text-align: center; }
+  .social-follow-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .social-follow-links .reel-social-btn { font-size: 14px; padding: 12px 24px; }
+
   /* ── GUIDES / HOW-TO ── */
   .guides-section { background: var(--cream); }
   .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; margin-top: 10px; }
@@ -588,7 +593,7 @@
     <div class="section-header reveal">
       <div class="eyebrow">Our Destinations</div>
       <h2 class="section-title">Pilgrimage Sites Today. Every Destination Tomorrow.</h2>
-      <p class="section-sub">Starting with India's sacred sites. Ground-verified, fully staffed, fully operational.</p>
+      <p class="section-sub">Ground-verified, fully staffed, fully operational.</p>
     </div>
     <div class="dest-grid reveal">
       <a href="https://www.crulio.com/ManaunaDham" class="dest-card" target="_blank">
@@ -649,7 +654,7 @@
       </div>
       <div class="dest-coming-card">
         <div style="font-size:30px">📍</div>
-        <strong>Bring Crulio to Your Dham</strong>
+        <strong>Bring Crulio to Your Place</strong>
         <p>Know a destination that needs this? Partner with us to launch next.</p>
         <a href="#partner" class="btn-primary" style="font-size:13px;padding:10px 20px;margin-top:10px">Become a Destination Partner →</a>
       </div>
@@ -669,7 +674,7 @@
       <div class="svc-card">
         <div class="svc-icon">🏨</div>
         <div class="svc-name">Hotel & Dharmshala</div>
-        <div class="svc-desc">Verified properties near the temple. Fair prices, no hidden charges.</div>
+        <div class="svc-desc">Verify properties at every destination. Fair prices, no hidden charges.</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon">🍱</div>
@@ -677,7 +682,7 @@
         <div class="svc-desc">Fresh meals from local kitchens. Sattvic options available.</div>
       </div>
       <div class="svc-card">
-        <div class="svc-icon">🚖</div>
+        <div class="svc-icon">🛺</div>
         <div class="svc-name">Auto & E-Rickshaw</div>
         <div class="svc-desc">Fair rates for pilgrims. Quick and safe.</div>
       </div>
@@ -726,9 +731,9 @@
   <h3>🎯 Bundle Services. Save More.</h3>
   <p>Book hotel + taxi + food together and unlock exclusive discounts you won't find anywhere else. The more you bundle, the more you save.</p>
   <div class="club-chips">
-    <div class="club-chip">🏨 Hotel + 🚖 Auto</div>
+    <div class="club-chip">🏨 Hotel + 🛺 Auto</div>
     <div class="club-chip">🏨 Hotel + 🍱 Food</div>
-    <div class="club-chip">🚆 Train + 🚖 Auto + 🏨 Hotel</div>
+    <div class="club-chip">🚆 Train + 🛺 Auto + 🏨 Hotel</div>
     <div class="club-chip">Full Yatra Bundle</div>
   </div>
 </div>
@@ -756,7 +761,7 @@
       <div class="why-left">
         <div class="section-header">
           <div class="eyebrow">Our Edge</div>
-          <h2 class="section-title">Ground-Level at Every Destination.<br>Not a Remote Operation.</h2>
+          <h2 class="section-title">Ground-Level at Every Destination.</h2>
           <p class="section-sub" style="text-align:left;margin-left:0">We send a real team to every destination before going live. Everything is verified on the ground.</p>
         </div>
         <ul class="why-list">
@@ -861,14 +866,6 @@
     <div class="reel-text reveal">
       <div class="eyebrow" style="background:rgba(232,104,10,0.18);color:#f9a05a">See It In Action</div>
       <h2>90% of pilgrims waste time searching different sources. We fixed that.</h2>
-      <div class="reel-social-links">
-        <a href="https://www.instagram.com/reel/DZjn3zsBunT/" target="_blank" class="reel-social-btn insta">
-          <span>📸</span> Watch the Reel
-        </a>
-        <a href="https://www.youtube.com/@crulionetworks" target="_blank" class="reel-social-btn yt">
-          <span>▶</span> YouTube
-        </a>
-      </div>
     </div>
     <div class="reel-embed-wrap reveal">
       <iframe
@@ -947,19 +944,6 @@
         </div>
       </div>
 
-      <!-- TRAIN/BUS GUIDE -->
-      <div class="guide-card">
-        <div class="guide-icon">🚆</div>
-        <div>
-          <div class="guide-title">Train & Bus Routes to Manauna Dham</div>
-          <div class="guide-sub">Which station, last-mile options, and full journey planning.</div>
-          <div class="guide-video-links">
-            <a href="TRAIN_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
-            <a href="TRAIN_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
-          </div>
-        </div>
-      </div>
-
       <!-- WHATSAPP FALLBACK -->
       <a href="https://wa.me/917817803342" target="_blank" class="guide-card" style="border-color:#25d366;background:rgba(37,211,102,0.04)">
         <div class="guide-icon">💬</div>
@@ -986,7 +970,7 @@
       <div class="partner-card">
         <div class="partner-icon">🏨</div>
         <div class="partner-title">Hotel / Dharmshala Owner</div>
-        <div class="partner-desc">Reach pilgrims searching for stays near the dham. Free to list, commission-based.</div>
+        <div class="partner-desc">Reach people searching for stays near the dham. Free to list, commission-based.</div>
       </div>
       <div class="partner-card">
         <div class="partner-icon">🚗</div>
@@ -1008,12 +992,31 @@
 <!-- CTA BAND -->
 <div class="cta-band">
   <h2>Your Next Destination.<br>Fully Covered.</h2>
-  <p>Starting with India's sacred sites. Expanding everywhere.</p>
+  <p>Expanding everywhere.</p>
   <div class="cta-buttons">
     <a href="https://www.crulio.com/ManaunaDham" class="btn-primary" target="_blank">Explore Manauna Dham →</a>
     <a href="mailto:newayush0108.gupta@gmail.com" class="btn-ghost">Partner With Us</a>
   </div>
 </div>
+
+<!-- SOCIAL FOLLOW -->
+<section class="social-follow-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Stay Connected</div>
+      <h2 class="section-title">Follow Our Social Media</h2>
+      <p class="section-sub">Guides, updates and behind-the-scenes from every destination we cover.</p>
+    </div>
+    <div class="social-follow-links reveal">
+      <a href="https://www.youtube.com/@CrulioNetworks" target="_blank" class="reel-social-btn yt">
+        <span>▶</span> YouTube · @CrulioNetworks
+      </a>
+      <a href="https://www.instagram.com/crulionetworks" target="_blank" class="reel-social-btn insta">
+        <span>📸</span> Instagram · @crulionetworks
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -1021,20 +1024,19 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'">
-        <p>India's destination services platform - starting with pilgrimage sites, expanding to everywhere worth visiting. Ground-verified, always.</p>
+        <p>India's destination services platform - starting with pilgrimage sites, expanding to everywhere worth visiting.</p>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Crulio</a>
         <a href="https://www.crulio.com/ManaunaDham" target="_blank">Manauna Dham</a>
         <a href="#partner">Partner With Us</a>
-        <a href="https://wa.me/917817803342" target="_blank">WhatsApp Support</a>
         <a href="mailto:newayush0108.gupta@gmail.com">Contact</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Crulio Networks. All rights reserved.</p>
-      <p>Built with 🙏 for India's pilgrims &nbsp;·&nbsp; <a href="#">Privacy Policy</a></p>
+      <p><a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
