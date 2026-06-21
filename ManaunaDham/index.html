@@ -1090,6 +1090,73 @@ nav a:hover { color: var(--gold-light); }
 }
 
 /* ═══════════════════════════════════════════
+   TESTIMONIALS SECTION (Verified Feedback)
+═══════════════════════════════════════════ */
+.testimonials-section { padding: 52px 20px; background: var(--cream-dark); }
+.eyebrow {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--crimson); margin-bottom: 10px;
+  padding: 4px 14px; background: var(--gold-pale); border-radius: 50px;
+}
+.section-sub { font-size: 13.5px; color: var(--text-soft); margin: 10px auto 0; max-width: 480px; text-align: center; font-weight: 400; }
+.testi-featured {
+  background: white; border-radius: var(--radius-lg); padding: 28px 24px;
+  max-width: 560px; margin: 24px auto 0; text-align: center;
+  box-shadow: 0 8px 32px var(--shadow-warm); border: 1px solid rgba(0,0,0,0.04);
+}
+.testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+.testi-featured-text { font-size: 14.5px; color: var(--text-mid); line-height: 1.8; font-style: italic; }
+.testi-author { display: flex; align-items: center; justify-content: center; gap: 11px; margin-top: 18px; }
+.testi-av { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.testi-name { font-size: 13px; font-weight: 700; color: var(--crimson); }
+.testi-loc { font-size: 11px; color: var(--text-soft); }
+
+/* ═══════════════════════════════════════════
+   SEE IT IN ACTION (Reel)
+═══════════════════════════════════════════ */
+.reel-section { padding: 52px 20px; background: var(--crimson-deep); }
+.reel-section .section-header h2 { color: white; }
+.reel-section .eyebrow { background: rgba(232,176,32,0.18); color: var(--gold-light); }
+.reel-section .section-sub { font-size: 13.5px; color: rgba(255,255,255,0.65); max-width: 480px; margin: 10px auto 0; }
+.reel-embed-wrap { max-width: 400px; margin: 24px auto 0; height: 540px; border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.reel-embed-wrap iframe { width: 100%; height: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   STEP-BY-STEP GUIDES
+═══════════════════════════════════════════ */
+.guides-section { padding: 52px 20px; background: var(--cream); }
+.guides-grid { max-width: 560px; margin: 24px auto 0; display: flex; flex-direction: column; gap: 14px; }
+.guide-card {
+  background: white; border-radius: var(--radius-md); padding: 18px 20px;
+  display: flex; align-items: flex-start; gap: 16px; text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+.guide-card:active { transform: scale(0.98); }
+.guide-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.guide-title { font-size: 14.5px; font-weight: 700; color: var(--crimson); font-family: var(--font-display); margin-bottom: 3px; }
+.guide-sub { font-size: 12.5px; color: var(--text-soft); line-height: 1.6; }
+.guide-tag { display: inline-block; margin-top: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(74,222,128,0.12); color: #16a34a; padding: 2px 9px; border-radius: 20px; }
+.guide-video-links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.gvl-btn { font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; text-decoration: none; transition: opacity 0.2s; }
+.gvl-btn:active { opacity: 0.8; }
+.gvl-insta { background: linear-gradient(135deg,#f09433,#dc2743,#bc1888); color: white; }
+.gvl-yt { background: #ff0000; color: white; }
+
+/* ═══════════════════════════════════════════
+   STAY CONNECTED (Social Follow)
+═══════════════════════════════════════════ */
+.social-follow-section { padding: 48px 20px 56px; background: var(--cream-dark); text-align: center; }
+.social-follow-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+.social-follow-btn {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700;
+  padding: 12px 22px; border-radius: 50px; text-decoration: none; color: white; transition: all 0.2s;
+}
+.social-follow-btn:active { transform: scale(0.97); }
+.social-follow-btn.insta { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.social-follow-btn.yt { background: #ff0000; }
+
+/* ═══════════════════════════════════════════
    FAQ SECTION
 ═══════════════════════════════════════════ */
 .faq-section { padding: 52px 20px; background: var(--cream); }
@@ -2064,6 +2131,138 @@ footer {
   </div>
 </section>
 
+<!-- ═══════ TESTIMONIALS / VERIFIED FEEDBACK ═══════ -->
+<section class="testimonials-section">
+  <div class="section-header reveal">
+    <div class="eyebrow">Verified Feedback</div>
+    <h2 style="font-size:clamp(20px,5vw,28px)">What Pilgrims Say About Booking With Us</h2>
+    <span class="underline-bar"></span>
+  </div>
+  <div class="testi-featured reveal">
+    <div class="testi-stars">★★★★★</div>
+    <p class="testi-featured-text">"I had a wonderful stay at the hotel. The rooms were comfortable, the staff was courteous, and the facilities were well maintained. The online booking website was user-friendly and made the reservation process simple and hassle-free. Highly recommended."</p>
+    <div class="testi-author">
+      <div class="testi-av">GM</div>
+      <div><div class="testi-name">Ganesh Mandal</div><div class="testi-loc">Manauna Dham booking</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SEE IT IN ACTION ═══════ -->
+<section class="reel-section">
+  <div class="section-header reveal">
+    <div class="eyebrow">See It In Action</div>
+    <h2 style="font-size:clamp(20px,5vw,28px)">90% of pilgrims waste time searching different sources. We fixed that.</h2>
+    <span class="underline-bar"></span>
+    <p class="section-sub">Watch how easy it is to book hotels, food and transport for your Manauna Dham yatra.</p>
+  </div>
+  <div class="reel-embed-wrap reveal">
+    <iframe
+      src="https://www.instagram.com/reel/DZjn3zsBunT/embed/captioned/"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      style="border-radius:16px;display:block;">
+    </iframe>
+  </div>
+</section>
+
+<!-- ═══════ STEP-BY-STEP GUIDES ═══════ -->
+<section class="guides-section" id="guides">
+  <div class="section-header reveal">
+    <div class="eyebrow">Step-by-Step Guides</div>
+    <h2 style="font-size:clamp(20px,5vw,28px)">Everything You Need to Know – Before You Go</h2>
+    <span class="underline-bar"></span>
+    <p class="section-sub">Detailed video guides for every service at Manauna Dham. Watch on Instagram or YouTube.</p>
+  </div>
+  <div class="guides-grid reveal">
+
+    <!-- HOTEL GUIDE -->
+    <div class="guide-card">
+      <div class="guide-icon">🏨</div>
+      <div>
+        <div class="guide-title">How to Book a Hotel Near Manauna Dham</div>
+        <div class="guide-sub">Choose, book and check in – step by step.</div>
+        <div class="guide-video-links">
+          <a href="HOTEL_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+          <a href="HOTEL_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAXI GUIDE -->
+    <div class="guide-card">
+      <div class="guide-icon">🚖</div>
+      <div>
+        <div class="guide-title">How to Book a Taxi or Auto to the Dham</div>
+        <div class="guide-sub">From your city or Aonla station. Pricing and booking steps included.</div>
+        <div class="guide-video-links">
+          <a href="TAXI_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+          <a href="TAXI_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOD GUIDE -->
+    <div class="guide-card">
+      <div class="guide-icon">🍱</div>
+      <div>
+        <div class="guide-title">How to Order Food at Manauna Dham</div>
+        <div class="guide-sub">Sattvic meals, local kitchens, delivery to your stay.</div>
+        <div class="guide-video-links">
+          <a href="FOOD_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+          <a href="FOOD_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DARSHAN GUIDE -->
+    <div class="guide-card">
+      <div class="guide-icon">📋</div>
+      <div>
+        <div class="guide-title">Darshan Timings, Aarti & Events</div>
+        <div class="guide-sub">Baithak schedule, aarti timings and live updates.</div>
+        <div class="guide-video-links">
+          <a href="DARSHAN_INSTAGRAM_REEL_URL" target="_blank" class="gvl-btn gvl-insta">📸 Instagram</a>
+          <a href="DARSHAN_YOUTUBE_VIDEO_URL" target="_blank" class="gvl-btn gvl-yt">▶ YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP FALLBACK -->
+    <a href="https://wa.me/917817803342" target="_blank" class="guide-card" style="border-color:#25d366;background:rgba(37,211,102,0.04)">
+      <div class="guide-icon">💬</div>
+      <div>
+        <div class="guide-title">Still Confused? Ask Us on WhatsApp.</div>
+        <div class="guide-sub">Real team. Any time. One message.</div>
+        <div class="guide-tag">Always Available</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════ STAY CONNECTED ═══════ -->
+<section class="social-follow-section">
+  <div class="section-header reveal">
+    <div class="eyebrow">Stay Connected</div>
+    <h2 style="font-size:clamp(20px,5vw,28px)">Follow Our Social Media</h2>
+    <span class="underline-bar"></span>
+    <p class="section-sub">Guides, updates and behind-the-scenes from Manauna Dham and every destination we cover.</p>
+  </div>
+  <div class="social-follow-links reveal">
+    <a href="https://www.youtube.com/@CrulioNetworks" target="_blank" rel="noopener" class="social-follow-btn yt">
+      <span>▶</span> YouTube · @CrulioNetworks
+    </a>
+    <a href="https://www.instagram.com/crulionetworks" target="_blank" rel="noopener" class="social-follow-btn insta">
+      <span>📸</span> Instagram · @crulionetworks
+    </a>
+  </div>
+</section>
+
 <!-- ═══════ FAQ ═══════ -->
 <section class="faq-section">
   <div class="section-header reveal"><h2>Frequently Asked Questions</h2><span class="underline-bar"></span></div>
@@ -2100,13 +2299,21 @@ footer {
         <div class="disclaimer-icon"><i class="fa fa-clipboard-list"></i></div>
         <h3>What We Are</h3>
       </div>
-   <p>Crulio.com/ManaunaDham is a <strong>privately operated information and services platform</strong> powered by Crulio Networks, created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
+      <p>Crulio.com/ManaunaDham is a <strong>privately operated information and services platform</strong> powered by Crulio Networks, created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
+    </div>
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-landmark"></i></div>
         <h3>What We Are NOT</h3>
       </div>
-     <p>Crulio.com/ManaunaDham is <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. We are <strong>NOT affiliated with, endorsed by, or managed by</strong> the temple management or any religious authority.</p>
+      <p>Crulio.com/ManaunaDham is <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. Unless explicitly stated otherwise, we are <strong>not affiliated with, endorsed by, or managed by</strong> any temple authority, religious trust, shrine board, or government body — and we do not own or operate the partner hotels, taxi providers, or food vendors listed on this platform.</p>
+    </div>
+    <div class="disclaimer-block">
+      <div class="disclaimer-block-head">
+        <div class="disclaimer-icon"><i class="fa fa-user-shield"></i></div>
+        <h3>Your Privacy</h3>
+      </div>
+      <p>We collect only what's needed to manage your booking — name, mobile number, email, and travel details — and share it with the relevant hotel, taxi, or food partner to fulfil your request. Payments are processed securely via Razorpay; we never store your card, UPI, or banking credentials.</p>
     </div>
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
@@ -2114,6 +2321,8 @@ footer {
         <h3>Legal Notice</h3>
       </div>
       <p>Information is collected from public sources and verified to the best of our ability. Temple policies, timings, and availability may change without notice. Users are advised to confirm critical details independently.</p>
+      <p style="margin-top:10px">Read our <a href="https://www.crulio.com/privacypolicy" style="color:var(--crimson);font-weight:600">Privacy Policy</a>, <a href="https://www.crulio.com/termsandconditions" style="color:var(--crimson);font-weight:600">Terms &amp; Conditions</a>, <a href="https://www.crulio.com/refundandcancellations" style="color:var(--crimson);font-weight:600">Refund &amp; Cancellation Policy</a>, and <a href="https://www.crulio.com/independentplatform" style="color:var(--crimson);font-weight:600">Independent Platform Disclaimer</a>.</p>
+      <p style="margin-top:10px;font-size:12.5px">Questions? Contact <strong>Ayush Gupta</strong> at <a href="mailto:ayush0108.gupta@gmail.com" style="color:var(--crimson);font-weight:600">ayush0108.gupta@gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -2195,11 +2404,24 @@ footer {
       <a href="https://www.instagram.com/explore/tags/khatushyamji/" target="_blank" rel="noopener">#khatushyamji</a>
       <a href="https://www.crulio.com" target="_blank" rel="noopener" style="color:var(--crulio-orange-light);margin-top:8px">crulio.com ↗</a>
     </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="https://www.crulio.com/privacypolicy">Privacy Policy</a>
+      <a href="https://www.crulio.com/termsandconditions">Terms &amp; Conditions</a>
+      <a href="https://www.crulio.com/refundandcancellations">Refund &amp; Cancellation Policy</a>
+      <a href="https://www.crulio.com/independentplatform">Independent Platform Disclaimer</a>
+    </div>
   </div>
 
 <div class="footer-bottom">
     <p>© 2026 Crulio.com/ManaunaDham — Independent Pilgrim Services Platform</p>
     <p>Crulio.com/ManaunaDham is a privately operated platform. Not the official website of Manauna Dham temple. Not affiliated with temple management or religious authorities.</p>
+    <p style="margin-top:8px">
+      <a href="https://www.crulio.com/privacypolicy" style="color:var(--gold-light)">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="https://www.crulio.com/termsandconditions" style="color:var(--gold-light)">Terms &amp; Conditions</a> &nbsp;|&nbsp;
+      <a href="https://www.crulio.com/refundandcancellations" style="color:var(--gold-light)">Refund &amp; Cancellation</a> &nbsp;|&nbsp;
+      <a href="https://www.crulio.com/independentplatform" style="color:var(--gold-light)">Platform Disclaimer</a>
+    </p>
     <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit" style="display:flex;align-items:center;gap:7px;text-decoration:none;">
       <img src="../images/logos/NOBGLOGO.png" alt="Crulio" style="height:30px;width:30px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 6px rgba(200,102,26,0.6));">
       <img src="../images/logos/NOBGFONT.png" alt="Crulio Networks" style="height:22px;width:auto;object-fit:contain;filter:brightness(1.15) saturate(1.2);">
