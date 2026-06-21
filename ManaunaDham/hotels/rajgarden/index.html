@@ -1071,7 +1071,13 @@ footer p:last-child { font-size: 12px; opacity: .65; }
   </button>
 </div>
 
-
+<!-- VIDEO GUIDE STRIP -->
+<div style="background:#fff8e1;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center;">
+  <span style="font-size:12.5px;font-weight:600;color:#5a3c00;"><i class="fa fa-circle-play" style="color:var(--maroon);"></i> Watch video on how to book this hotel</span>
+  <button onclick="document.getElementById('video-guide').scrollIntoView({behavior:'smooth'})" style="background:var(--maroon);color:white;border:none;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">
+    Watch Now
+  </button>
+</div>
 
 <!-- ONLINE BOOKING WIDGET -->
 <div id="booking-section">
@@ -1405,6 +1411,26 @@ footer p:last-child { font-size: 12px; opacity: .65; }
     <div class="gallery">
       <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/resteraunt.webp" alt="Raj Garden Restaurant"        onclick="openModal(this)">
       <img src="https://www.crulio.com/ManaunaDham/images/hotels/RG/gallery2.webp"   alt="Hotel Gallery"                onclick="openModal(this)">
+    </div>
+  </div>
+
+  <!-- ══ VIDEO GUIDE — HOW TO BOOK ══ -->
+  <div id="video-guide" style="background:white;border-bottom:3px solid var(--gold);margin:0 -24px;">
+    <div style="max-width:400px;margin:0 auto;padding:34px 20px 38px;text-align:center;">
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#fff8e1;border:1px solid var(--gold);color:#5a3c00;font-size:11.5px;font-weight:700;letter-spacing:0.5px;padding:5px 14px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;">
+        <i class="fa fa-circle-play"></i> New to Online Booking?
+      </div>
+      <h2 style="font-family:'Lora',serif;font-size:21px;color:var(--maroon);margin-bottom:8px;">Watch: How to Book Your Room — Step by Step</h2>
+
+      <div style="position:relative;width:100%;max-width:260px;margin:0 auto 20px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#000;">
+        <div style="position:relative;padding-bottom:177.78%;height:0;">
+          <iframe src="https://www.youtube.com/embed/Zf47zd_bcoE" title="How to Book a Hotel Room — Step by Step Guide" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <a href="https://www.instagram.com/reel/DZwuVimhvBV/?igsh=MWg2OHJkYTF5am04OQ==" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white;padding:11px 22px;border-radius:50px;font-weight:700;font-size:13.5px;text-decoration:none;box-shadow:0 4px 16px rgba(220,39,67,0.3);">
+        <i class="fab fa-instagram"></i>&nbsp;Watch the Reel on Instagram
+      </a>
     </div>
   </div>
 
