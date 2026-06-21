@@ -32,6 +32,12 @@
       transport:  "https://www.crulio.com/ManaunaDham/transport",
       food:       "https://www.crulio.com/ManaunaDham/food",
       main:       "https://www.crulio.com/ManaunaDham",
+    },
+    legal: {
+      privacy:      "https://www.crulio.com/privacypolicy",
+      terms:        "https://www.crulio.com/termsandconditions",
+      independent:  "https://www.crulio.com/independentplatform",
+      refund:       "https://www.crulio.com/refundandcancellations",
     }
   };
 
@@ -299,6 +305,7 @@
       <hr class="msc-div">
       <div class="msc-label">ℹ️ About</div>
       <button class="msc-opt" onclick="showAboutCrulio()">🌐 Crulio ke baare mein</button>
+      <button class="msc-opt" onclick="showLegalMenu()">📜 Policies (Privacy, Refund, Terms)</button>
 
       <hr class="msc-div">
       <div class="msc-label">📹 Follow Us</div>
@@ -796,6 +803,11 @@
         ❓ Receipt nahi mili? Humse WhatsApp par baat karein.
       </div>
 
+      <div class="msc-blue">
+        📧 <b>Receipt khud bhi resend kar sakte hain:</b> Apne hotel ke page par sabse neeche "Resend Receipt" section mein <b>booking/receipt number ya phone number</b> daalein - receipt aapke email par bhej di jaayegi.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.hotels}','_blank')">📧 Hotel page par Resend Receipt section</button>
       ${waBtn("Namaste 🙏\n\nMujhe booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}
       ${backBtn("showHotelMenu()")}
     `);
@@ -813,6 +825,10 @@
 
       <div class="msc-warn">
         ⚠️ Agar receipt nahi mili ya problem hai toh humse WhatsApp par baat karein - hum help karenge.
+      </div>
+
+      <div class="msc-blue">
+        📧 Ya phir hotel page ke neeche "Resend Receipt" section mein booking number/phone number daal kar receipt seedha email par mangwaayein.
       </div>
 
       ${waBtn("Namaste 🙏\n\nMujhe hotel contact number chahiye - receipt nahi mili.\n\n_Sent via ManaunaDham_")}
@@ -1131,6 +1147,11 @@
         ❓ Receipt nahi mili? Humse WhatsApp par sampark karein.
       </div>
 
+      <div class="msc-blue">
+        📧 <b>Receipt khud bhi resend kar sakte hain:</b> Transport page par sabse neeche "Resend Receipt" section mein <b>booking/receipt number ya phone number</b> daalein - receipt aapke email par bhej di jaayegi.
+      </div>
+
+      <button class="msc-opt" onclick="window.open('${CONFIG.pages.transport}','_blank')">📧 Transport page par Resend Receipt section</button>
       ${waBtn("Namaste 🙏\n\nMujhe taxi booking receipt nahi mili. Kripya help karein.\n\n_Sent via ManaunaDham_")}
       ${backBtn("showTaxiAlreadyBooked()", "Back")}
     `);
@@ -1278,7 +1299,118 @@
   };
 
   // ══════════════════════════════════════
-  // 7. ABOUT CRULIO
+  // 7. LEGAL & POLICIES
+  // ══════════════════════════════════════
+
+  window.showLegalMenu = function () {
+    render(`
+      ${breadcrumb([])}
+      <div class="msc-greet" style="font-size:14px;">📜 Policies & Legal</div>
+      <div class="msc-sub">Kis policy ke baare mein jaanna hai?</div>
+
+      <button class="msc-opt" onclick="showLegalRefund()">💸 Refund & Cancellation</button>
+      <button class="msc-opt" onclick="showLegalPrivacy()">🔒 Privacy Policy</button>
+      <button class="msc-opt" onclick="showLegalTerms()">📄 Terms & Conditions</button>
+      <button class="msc-opt" onclick="showLegalIndependent()">🏛️ Independent Platform Disclaimer</button>
+
+      ${backBtn("showMain()")}
+    `);
+  };
+
+  window.showLegalRefund = function () {
+    render(`
+      ${breadcrumb([{label: "📜 Policies", fn: "showLegalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">💸 Refund & Cancellation Policy</div>
+
+      <div class="msc-alert">
+        ❌ <b>Advance booking fees are generally non-refundable.</b> Yeh fees booking secure karne aur vendor commitment ke liye use hoti hain.
+      </div>
+
+      <div class="msc-label">✅ Refund par vichaar ho sakta hai agar:</div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Duplicate payment ho gayi ho</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Technical payment failure se galat charge hua ho</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Crulio ki operational error ki wajah se booking fulfil na ho payi ho</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Service provider booking fulfil na kar paaye aur koi alternative na mile</span></div>
+
+      <div class="msc-label">❌ Refund nahi milta in cases mein:</div>
+      <div class="msc-fact"><span class="msc-fact-icon">✖️</span><span>Customer ke travel plans change ho jaayein</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✖️</span><span>No-show ya customer delay</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✖️</span><span>Customer ne galat jaankari di ho</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✖️</span><span>Service already deliver ho chuki ho</span></div>
+
+      <div class="msc-info">
+        ⏱️ Approved refunds typically <b>5–10 business days</b> mein process hote hain (bank/payment provider ke hisaab se vary kar sakta hai).<br><br>
+        📅 Date change requests bhi available hain, lekin vendor availability par depend karta hai - guaranteed nahi hai.
+      </div>
+
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.legal.refund}','_blank')">📖 Pura Refund Policy padhein</button>
+      ${waBtn("Namaste 🙏\n\nMujhe refund/cancellation ke baare mein poochna tha.\n\n_Sent via ManaunaDham_")}
+      ${backBtn("showLegalMenu()")}
+    `);
+  };
+
+  window.showLegalPrivacy = function () {
+    render(`
+      ${breadcrumb([{label: "📜 Policies", fn: "showLegalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🔒 Privacy Policy</div>
+
+      <div class="msc-info">
+        Booking ke liye aapse <b>naam, mobile number, email, travel details</b> aur pickup/drop location collect kiya jaata hai.<br><br>
+        Payments <b>Razorpay</b> se process hote hain - Crulio aapke card/UPI details store nahi karta.
+      </div>
+
+      <div class="msc-label">🤝 Information kis se share hoti hai</div>
+      <div class="msc-fact"><span class="msc-fact-icon">🏨</span><span>Hotel partners, taxi operators, food delivery partners - sirf booking fulfil karne ke liye zaroori jaankari</span></div>
+
+      <div class="msc-warn">
+        🚫 <b>Crulio aapki personal information kisi ko bechta nahi hai.</b>
+      </div>
+
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.legal.privacy}','_blank')">📖 Pura Privacy Policy padhein</button>
+      ${backBtn("showLegalMenu()")}
+    `);
+  };
+
+  window.showLegalTerms = function () {
+    render(`
+      ${breadcrumb([{label: "📜 Policies", fn: "showLegalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">📄 Terms & Conditions</div>
+
+      <div class="msc-info">
+        Crulio ek <b>independent destination services platform</b> hai jo hotel booking, taxi booking, aur food delivery assistance facilitate karta hai - third-party service providers ke saath.
+      </div>
+
+      <div class="msc-label">📌 Important Points</div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Booking request submit karne se confirmation guaranteed nahi hota - confirmation tabhi milta hai jab payment receive ho aur provider confirm kare</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Hotel, taxi, aur food service ki actual delivery - uss respective provider ki responsibility hoti hai</span></div>
+      <div class="msc-fact"><span class="msc-fact-icon">✔️</span><span>Prices, timings, aur availability bina notice ke change ho sakte hain - travel se pehle verify zaroor karein</span></div>
+
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.legal.terms}','_blank')">📖 Pure Terms & Conditions padhein</button>
+      ${backBtn("showLegalMenu()")}
+    `);
+  };
+
+  window.showLegalIndependent = function () {
+    render(`
+      ${breadcrumb([{label: "📜 Policies", fn: "showLegalMenu()"}])}
+      <div class="msc-greet" style="font-size:14px;">🏛️ Independent Platform Disclaimer</div>
+
+      <div class="msc-warn">
+        ⚠️ Crulio <b>kisi temple authority, religious trust, shrine board, ya government authority se affiliated nahi hai</b> - jab tak explicitly na bataya jaaye.<br><br>
+        Crulio partner hotels, taxi providers, ya restaurants dwara owned/operated bhi nahi hai.
+      </div>
+
+      <div class="msc-info">
+        Destination ki jaankari public sources, local inquiries, service providers, aur field observations se collect ki jaati hai - waqt ke saath change ho sakti hai. Important travel details independently verify karna recommended hai.
+      </div>
+
+      <button class="msc-opt ghost" onclick="window.open('${CONFIG.legal.independent}','_blank')">📖 Pura Disclaimer padhein</button>
+      ${backBtn("showLegalMenu()")}
+    `);
+  };
+
+  // ══════════════════════════════════════
+  // 8. ABOUT CRULIO
   // ══════════════════════════════════════
 
   window.showAboutCrulio = function () {
