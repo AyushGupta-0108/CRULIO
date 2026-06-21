@@ -12,9 +12,9 @@
     whatsappNumber: "917817803342",
     callNumber: "+91-78178-03342",
     youtube: {
-      hotel: "YOUR_HOTEL_BOOKING_VIDEO_LINK",
-      taxi:  "YOUR_TAXI_BOOKING_VIDEO_LINK",
-      food:  "YOUR_FOOD_ORDER_VIDEO_LINK",
+      hotel: "https://youtube.com/shorts/Zf47zd_bcoE?si=FkthygfNYYv0bGnx",
+      taxi:  "https://youtu.be/5dgpLfUIVIQ?si=_1SJeR72m5oLGeYD",
+      food:  "https://youtube.com/shorts/wayLciDvG5E?si=53kgWzImaEFCiFmA",
       intro: "https://youtube.com/shorts/GLnD9qJ3WQA",
     },
     social: {
