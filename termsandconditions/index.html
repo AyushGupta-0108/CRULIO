@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Terms &amp; Conditions for Crulio - India's Destination Services Platform. Read the terms governing your use of our website and services.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#1a2f5e">
+<title>Terms & Conditions - Crulio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="https://www.crulio.com/fav/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="https://www.crulio.com/fav/favicon.svg" />
+<link rel="shortcut icon" href="https://www.crulio.com/fav/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.crulio.com/fav/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="CRULIO" />
+<link rel="manifest" href="https://www.crulio.com/fav/site.webmanifest" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a2f5e;
+    --navy-dark: #0f1d3a;
+    --navy-mid: #243d6e;
+    --orange: #E8680A;
+    --orange-light: #f27d25;
+    --orange-pale: #fef3ea;
+    --cream: #fdf8f3;
+    --nav-bg: #d6e8ff;
+    --nav-border: #b8d4f5;
+    --text: #1a1a1a;
+    --text-muted: #5a6a80;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Sora', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+
+  /* ── NAV (shared across site) ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    padding: 0 4%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 2px 16px rgba(26,47,94,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+  .nav-logo-icon { height: 62px; width: auto; object-fit: contain; }
+  .nav-logo-font { height: 44px; width: auto; object-fit: contain; }
+  .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; display: flex; align-items: center; gap: 1px; }
+  .nav-logo-text span { color: var(--orange); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--navy); text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.2s; opacity: 0.75; }
+  .nav-links a:hover { color: var(--orange); opacity: 1; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; display: block; }
+  .nav-legal, .nav-legal-label { display: none; }
+
+  @media (max-width: 860px) {
+    nav .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.nav-open {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--nav-bg);
+      border-bottom: 2px solid var(--nav-border);
+      box-shadow: 0 8px 24px rgba(26,47,94,0.12);
+      padding: 8px 0;
+      z-index: 99;
+      gap: 0;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
+    }
+    .nav-links.nav-open li { border-bottom: 1px solid var(--nav-border); }
+    .nav-links.nav-open li:last-child { border-bottom: none; }
+    .nav-links.nav-open a { display: block; padding: 14px 24px; font-size: 15px; opacity: 1; color: var(--navy); }
+    .nav-links.nav-open a:hover { background: rgba(26,47,94,0.05); color: var(--orange); }
+    .nav-links.nav-open .nav-legal-label {
+      display: block; padding: 12px 24px 4px; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(26,47,94,0.4);
+      border-bottom: none; background: rgba(26,47,94,0.025);
+    }
+    .nav-links.nav-open .nav-legal { display: block; }
+    .nav-links.nav-open .nav-legal a { font-size: 13.5px; opacity: 0.7; padding: 11px 24px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links.nav-open { top: 60px; }
+    nav { height: 60px; }
+    .nav-logo-icon { height: 50px; }
+  }
+
+  /* ── LEGAL HERO ── */
+  .legal-hero {
+    background: var(--navy-dark);
+    background-image: radial-gradient(circle at 15% 20%, rgba(232,104,10,0.12), transparent 50%);
+    padding: 150px 5% 56px;
+    color: var(--white);
+  }
+  .legal-hero-inner { max-width: 760px; margin: 0 auto; }
+  .legal-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 16px;
+  }
+  .legal-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); display: inline-block; }
+  .legal-hero h1 { font-size: clamp(2rem, 5vw, 2.7rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .legal-hero .updated { font-size: 13.5px; color: rgba(255,255,255,0.5); font-weight: 400; }
+
+  /* ── LEGAL BODY ── */
+  .legal-wrap { max-width: 760px; margin: 0 auto; padding: 56px 5% 100px; }
+  .legal-section { padding-top: 38px; padding-bottom: 8px; scroll-margin-top: 90px; }
+  .legal-section:first-of-type { padding-top: 0; }
+  .legal-section h2 {
+    display: flex; align-items: baseline; gap: 10px;
+    font-size: 1.3rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .legal-section h2 .num { color: var(--orange); font-size: 0.95em; font-weight: 800; }
+  .legal-section h3 { font-size: 1rem; font-weight: 700; color: var(--navy-mid); margin: 18px 0 8px; }
+  .legal-section p { font-size: 15px; color: var(--text); opacity: 0.85; margin-bottom: 12px; font-weight: 300; line-height: 1.75; }
+  .legal-section ul { margin: 4px 0 14px 0; padding-left: 0; list-style: none; }
+  .legal-section ul li {
+    font-size: 15px; color: var(--text); opacity: 0.85; font-weight: 300; line-height: 1.7;
+    padding: 5px 0 5px 22px; position: relative;
+  }
+  .legal-section ul li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--orange-light);
+  }
+  .legal-section + .legal-section { border-top: 1px solid var(--border); }
+  .legal-contact {
+    margin-top: 8px; padding: 22px 24px; background: var(--cream);
+    border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .legal-contact p { margin-bottom: 6px; }
+  .legal-contact p:last-child { margin-bottom: 0; }
+  .legal-contact a { color: var(--orange); font-weight: 600; text-decoration: none; }
+  .legal-intro-note {
+    font-size: 13.5px; color: var(--text-muted); background: var(--orange-pale);
+    border-left: 3px solid var(--orange); padding: 12px 16px; border-radius: var(--radius-sm);
+    margin-bottom: 30px; font-weight: 400; line-height: 1.6;
+  }
+
+  /* ── FOOTER (shared across site) ── */
+  footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.07); padding: 48px 5% 30px; }
+  .footer-inner { max-width: 1180px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+  .footer-brand img { height: 44px; margin-bottom: 12px; display: block; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; font-weight: 300; max-width: 250px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 9px; transition: color 0.2s; font-weight: 300; }
+  .footer-col a:hover { color: var(--orange-light); }
+  .footer-col a.current { color: var(--orange-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; }
+  .footer-bottom a { color: rgba(232,104,10,0.7); text-decoration: none; }
+  @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="images/logos/NOBGLOGO.png" alt="Crulio" class="nav-logo-icon"
+         onerror="this.style.display='none'">
+    <img src="images/logos/justcrulionobg.png" alt="Crulio" class="nav-logo-font"
+         onerror="this.src='images/logos/justcrulio.png'"
+         onerror="this.style.display='none'; document.getElementById('nav-text').style.display='flex'">
+    <span id="nav-text" style="display:none" class="nav-logo-text">crulio<span>.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://www.crulio.com/ManaunaDham" target="_blank">Manauna Dham</a></li>
+    <li><a href="/#destinations">Destinations</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#why">Why Crulio</a></li>
+    <li><a href="/#partner">Partners</a></li>
+    <li class="nav-legal-label">Legal</li>
+    <li class="nav-legal"><a href="https://www.crulio.com/privacypolicy">Privacy Policy</a></li>
+    <li class="nav-legal"><a href="https://www.crulio.com/termsandconditions">Terms &amp; Conditions</a></li>
+    <li class="nav-legal"><a href="https://www.crulio.com/refundandcancellations">Refund &amp; Cancellation Policy</a></li>
+    <li class="nav-legal"><a href="https://www.crulio.com/independentplatform">Independent Platform Disclaimer</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- LEGAL HERO -->
+<section class="legal-hero">
+  <div class="legal-hero-inner">
+    <span class="legal-eyebrow">Legal</span>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="updated">Last Updated: 21 June 2026</p>
+  </div>
+</section>
+
+<!-- LEGAL BODY -->
+<div class="legal-wrap">
+
+  <div class="legal-section">
+    <h2><span class="num">1.</span> Acceptance of Terms</h2>
+    <p>By accessing or using Crulio, you agree to these Terms &amp; Conditions. If you do not agree, please do not use our services.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">2.</span> About Crulio</h2>
+    <p>Crulio is an independent destination services platform operated by Ayush Gupta.</p>
+    <p>Crulio facilitates access to travel-related services including but not limited to:</p>
+    <ul>
+      <li>Hotel Bookings</li>
+      <li>Taxi Bookings</li>
+      <li>Food Delivery Assistance</li>
+      <li>Destination Information</li>
+      <li>Other travel and destination-related services</li>
+    </ul>
+    <p>Crulio acts as a facilitator between users and third-party service providers.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">3.</span> Independent Platform Status</h2>
+    <p>Crulio is an independent platform.</p>
+    <p>Unless explicitly stated, Crulio is not affiliated with, endorsed by, operated by, or acting on behalf of:</p>
+    <ul>
+      <li>Temple Authorities</li>
+      <li>Religious Trusts</li>
+      <li>Shrine Boards</li>
+      <li>Government Authorities</li>
+      <li>Hotels</li>
+      <li>Taxi Operators</li>
+      <li>Restaurants</li>
+      <li>Other Service Providers</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">4.</span> Booking Requests</h2>
+    <p>Submission of a booking request does not automatically guarantee confirmation.</p>
+    <p>Bookings are considered confirmed only after:</p>
+    <ul>
+      <li>Payment (if applicable) is received, and</li>
+      <li>Confirmation is provided by Crulio or the relevant service provider.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">5.</span> Hotel Services</h2>
+    <p>Hotel availability depends on the partner hotel's inventory and operational conditions.</p>
+    <p>Room photographs, descriptions, amenities, and pricing are provided for informational purposes and may change without prior notice.</p>
+    <p>The hotel remains responsible for the accommodation service provided.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">6.</span> Taxi Services</h2>
+    <p>Taxi availability depends on driver availability, traffic conditions, weather conditions, road conditions, and local circumstances.</p>
+    <p>Estimated arrival and travel times are approximate and not guaranteed.</p>
+    <p>Drivers and vehicle operators remain responsible for transportation services provided.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">7.</span> Food Delivery Services</h2>
+    <p>Food preparation, quality, hygiene, and delivery execution remain the responsibility of the restaurant and delivery partner.</p>
+    <p>Crulio acts only as a facilitating platform.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">8.</span> User Responsibilities</h2>
+    <p>Users agree to:</p>
+    <ul>
+      <li>Provide accurate information.</li>
+      <li>Make payments honestly.</li>
+      <li>Avoid fraudulent activity.</li>
+      <li>Respect service providers.</li>
+      <li>Follow applicable laws and regulations.</li>
+    </ul>
+    <p>Crulio reserves the right to refuse service where misuse, fraud, or abuse is suspected.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">9.</span> Payments</h2>
+    <p>Payments may be collected through Razorpay or other approved payment methods.</p>
+    <p>Depending on the service, Crulio may collect:</p>
+    <ul>
+      <li>Booking advances</li>
+      <li>Platform fees</li>
+      <li>Service fees</li>
+    </ul>
+    <p>Remaining balances may be payable directly to the service provider.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">10.</span> Third-Party Services</h2>
+    <p>Hotels, taxi operators, restaurants, and other vendors are independent entities.</p>
+    <p>Crulio does not own or operate these businesses.</p>
+    <p>Service execution remains the responsibility of the respective provider.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">11.</span> Information Accuracy</h2>
+    <p>Crulio strives to provide accurate information.</p>
+    <p>However:</p>
+    <ul>
+      <li>Timings may change.</li>
+      <li>Prices may change.</li>
+      <li>Procedures may change.</li>
+      <li>Availability may change.</li>
+    </ul>
+    <p>Users should verify important details before travel.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">12.</span> Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, Crulio shall not be liable for:</p>
+    <ul>
+      <li>Vendor actions or omissions</li>
+      <li>Hotel-related issues</li>
+      <li>Taxi delays</li>
+      <li>Restaurant issues</li>
+      <li>Travel disruptions</li>
+      <li>Weather-related disruptions</li>
+      <li>Loss of profits</li>
+      <li>Indirect damages</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">13.</span> Website Availability</h2>
+    <p>Crulio may modify, suspend, or discontinue any part of the website without prior notice.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">14.</span> Changes to Terms</h2>
+    <p>These Terms may be updated periodically.</p>
+    <p>Continued use of the website constitutes acceptance of updated Terms.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">15.</span> Contact Information</h2>
+    <p>For questions regarding these Terms &amp; Conditions, contact:</p>
+    <div class="legal-contact">
+      <p><strong>Ayush Gupta</strong></p>
+      <p>Email: <a href="mailto:ayush0108.gupta@gmail.com">ayush0108.gupta@gmail.com</a></p>
+      <p>Address: Crulio Networks Office, Swatantrata Senani Market, Aonla, Uttar Pradesh - 243301</p>
+      <p>Website: <a href="https://www.crulio.com">www.crulio.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logos/NOBGLOGOWITHFONT.png" alt="Crulio Networks" onerror="this.style.display='none'">
+        <p>India's destination services platform - starting with pilgrimage sites, expanding to everywhere worth visiting.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">About Crulio</a>
+        <a href="https://www.crulio.com/ManaunaDham" target="_blank">Manauna Dham</a>
+        <a href="/#partner">Partner With Us</a>
+        <a href="mailto:newayush0108.gupta@gmail.com">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://www.crulio.com/privacypolicy">Privacy Policy</a>
+        <a href="https://www.crulio.com/termsandconditions" class="current">Terms &amp; Conditions</a>
+        <a href="https://www.crulio.com/refundandcancellations">Refund &amp; Cancellation Policy</a>
+        <a href="https://www.crulio.com/independentplatform">Independent Platform Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Crulio Networks. All rights reserved.</p>
+      <p><a href="https://www.crulio.com/privacypolicy">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://www.crulio.com/termsandconditions">Terms &amp; Conditions</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const open = links.classList.contains('nav-open');
+  if (open) {
+    links.classList.remove('nav-open');
+  } else {
+    links.classList.add('nav-open');
+  }
+}
+</script>
+</body>
+</html>
