@@ -112,10 +112,10 @@ gtag('config', 'G-1401GVEYWR');
     },
     {
       "@type": "Question",
-      "name": "Is www.crulio.com/ManaunaDham the official temple website?",
+      "name": "Is Crulio.com the official temple website?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. www.crulio.com/ManaunaDham is a privately operated pilgrim information and services platform powered by Crulio Networks, not affiliated with the temple management."
+        "text": "No. Crulio.com is a privately operated pilgrim information and services platform powered by Crulio Networks, not affiliated with the temple management."
       }
     }
   ]
@@ -1191,6 +1191,17 @@ nav a:hover { color: var(--gold-light); }
 
 .disclaimer-block h3 { font-family: var(--font-display); font-size: 16px; color: var(--crimson); font-weight: 700; }
 .disclaimer-block p { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; }
+
+.legal-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.legal-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold-pale); color: var(--crimson);
+  border: 1px solid rgba(107,0,0,0.15); border-radius: 20px;
+  padding: 8px 14px; font-size: 12.5px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+}
+.legal-pill:hover, .legal-pill:active { background: var(--crimson); color: white; border-color: var(--crimson); }
+.legal-pill i { font-size: 11px; }
 
 /* ═══════════════════════════════════════════
    CRULIO NETWORK SECTION (before footer)
@@ -2281,7 +2292,7 @@ footer {
     </div>
     <div class="faq-item reveal reveal-delay-3">
       <div class="faq-q" onclick="toggleFaq(this)">Is this the official temple website?<i class="fa fa-plus faq-icon"></i></div>
-     <div class="faq-a"><p>No. Crulio.com/ManaunaDham is a privately operated pilgrim information and services platform, powered by Crulio Networks. We are not affiliated with or endorsed by the temple management.</p></div>
+     <div class="faq-a"><p>No. Crulio.com is a privately operated pilgrim information and services platform, powered by Crulio Networks. We are not affiliated with or endorsed by the temple management.</p></div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="toggleFaq(this)">How to reach Manauna Dham from Delhi?<i class="fa fa-plus faq-icon"></i></div>
@@ -2292,21 +2303,21 @@ footer {
 
 <!-- ═══════ DISCLAIMER ═══════ -->
 <section class="disclaimer-section" id="disclaimer-full">
- <div class="section-header reveal"><h2>About Crulio.com/ManaunaDham</h2><span class="underline-bar"></span></div>
+ <div class="section-header reveal"><h2>About Crulio.com</h2><span class="underline-bar"></span></div>
   <div class="disclaimer-card reveal">
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-clipboard-list"></i></div>
         <h3>What We Are</h3>
       </div>
-      <p>Crulio.com/ManaunaDham is a <strong>privately operated information and services platform</strong> powered by Crulio Networks, created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
+      <p>Crulio.com is a <strong>privately operated information and services platform</strong> powered by Crulio Networks, created to help pilgrims visiting Manauna Dham. We provide hotel bookings, food delivery, transport arrangements, and up-to-date temple information.</p>
     </div>
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
         <div class="disclaimer-icon"><i class="fa fa-landmark"></i></div>
         <h3>What We Are NOT</h3>
       </div>
-      <p>Crulio.com/ManaunaDham is <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. Unless explicitly stated otherwise, we are <strong>not affiliated with, endorsed by, or managed by</strong> any temple authority, religious trust, shrine board, or government body — and we do not own or operate the partner hotels, taxi providers, or food vendors listed on this platform.</p>
+      <p>Crulio.com is <strong>NOT the official website</strong> of Shri Khatu Shyam Mandir, Manauna Dham. Unless explicitly stated otherwise, we are <strong>not affiliated with, endorsed by, or managed by</strong> any temple authority, religious trust, shrine board, or government body — and we do not own or operate the partner hotels, taxi providers, or food vendors listed on this platform.</p>
     </div>
     <div class="disclaimer-block">
       <div class="disclaimer-block-head">
@@ -2321,8 +2332,14 @@ footer {
         <h3>Legal Notice</h3>
       </div>
       <p>Information is collected from public sources and verified to the best of our ability. Temple policies, timings, and availability may change without notice. Users are advised to confirm critical details independently.</p>
-      <p style="margin-top:10px">Read our <a href="https://www.crulio.com/privacypolicy" style="color:var(--crimson);font-weight:600">Privacy Policy</a>, <a href="https://www.crulio.com/termsandconditions" style="color:var(--crimson);font-weight:600">Terms &amp; Conditions</a>, <a href="https://www.crulio.com/refundandcancellations" style="color:var(--crimson);font-weight:600">Refund &amp; Cancellation Policy</a>, and <a href="https://www.crulio.com/independentplatform" style="color:var(--crimson);font-weight:600">Independent Platform Disclaimer</a>.</p>
-      <p style="margin-top:10px;font-size:12.5px">Questions? Contact <strong>Ayush Gupta</strong> at <a href="mailto:ayush0108.gupta@gmail.com" style="color:var(--crimson);font-weight:600">ayush0108.gupta@gmail.com</a></p>
+      <div class="legal-pills">
+        <a href="https://www.crulio.com/privacypolicy" class="legal-pill"><i class="fa fa-shield-halved"></i> Privacy Policy</a>
+        <a href="https://www.crulio.com/termsandconditions" class="legal-pill"><i class="fa fa-file-contract"></i> Terms &amp; Conditions</a>
+        <a href="https://www.crulio.com/refundandcancellations" class="legal-pill"><i class="fa fa-rotate-left"></i> Refund &amp; Cancellation</a>
+        <a href="https://www.crulio.com/independentplatform" class="legal-pill"><i class="fa fa-building-shield"></i> Independent Platform Disclaimer</a>
+        <a href="spiritualdisclaimer" class="legal-pill"><i class="fa fa-hands-praying"></i> Spiritual Disclaimer</a>
+      </div>
+      <p style="margin-top:12px;font-size:12.5px">Questions? Contact <strong>Ayush Gupta</strong> at <a href="mailto:ayush0108.gupta@gmail.com" style="color:var(--crimson);font-weight:600">ayush0108.gupta@gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -2410,17 +2427,19 @@ footer {
       <a href="https://www.crulio.com/termsandconditions">Terms &amp; Conditions</a>
       <a href="https://www.crulio.com/refundandcancellations">Refund &amp; Cancellation Policy</a>
       <a href="https://www.crulio.com/independentplatform">Independent Platform Disclaimer</a>
+      <a href="spiritualdisclaimer">Spiritual Disclaimer</a>
     </div>
   </div>
 
 <div class="footer-bottom">
-    <p>© 2026 Crulio.com/ManaunaDham — Independent Pilgrim Services Platform</p>
-    <p>Crulio.com/ManaunaDham is a privately operated platform. Not the official website of Manauna Dham temple. Not affiliated with temple management or religious authorities.</p>
+    <p>© 2026 Crulio.com — Independent Pilgrim Services Platform</p>
+    <p>Crulio.com is a privately operated platform. Not the official website of Manauna Dham temple. Not affiliated with temple management or religious authorities.</p>
     <p style="margin-top:8px">
       <a href="https://www.crulio.com/privacypolicy" style="color:var(--gold-light)">Privacy Policy</a> &nbsp;|&nbsp;
       <a href="https://www.crulio.com/termsandconditions" style="color:var(--gold-light)">Terms &amp; Conditions</a> &nbsp;|&nbsp;
       <a href="https://www.crulio.com/refundandcancellations" style="color:var(--gold-light)">Refund &amp; Cancellation</a> &nbsp;|&nbsp;
-      <a href="https://www.crulio.com/independentplatform" style="color:var(--gold-light)">Platform Disclaimer</a>
+      <a href="https://www.crulio.com/independentplatform" style="color:var(--gold-light)">Platform Disclaimer</a> &nbsp;|&nbsp;
+      <a href="spiritualdisclaimer" style="color:var(--gold-light)">Spiritual Disclaimer</a>
     </p>
     <a href="https://www.crulio.com" target="_blank" rel="noopener" class="footer-crulio-credit" style="display:flex;align-items:center;gap:7px;text-decoration:none;">
       <img src="../images/logos/NOBGLOGO.png" alt="Crulio" style="height:30px;width:30px;object-fit:contain;filter:brightness(2.2) saturate(1.5) drop-shadow(0 0 6px rgba(200,102,26,0.6));">
