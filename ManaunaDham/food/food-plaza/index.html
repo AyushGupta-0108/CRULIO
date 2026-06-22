@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Food Plaza Aonla - Menu, Photos, Table Booking | Near Manauna Dham</title>
-<meta name="description" content="Food Plaza Aonla - Top rated AC family restaurant near Manauna Dham. Famous for Chaap, Paneer & North Indian food. View menu, photos & real Google reviews.">
+<title>Food Plaza Aonla - Menu, Photos, Order Online | Near Manauna Dham</title>
+<meta name="description" content="Food Plaza Aonla - Top rated AC family restaurant near Manauna Dham. Famous for Chaap, Paneer & North Indian food. View menu, photos, real Google reviews & order online.">
 <meta name="keywords" content="food plaza aonla, food plaza reviews, food plaza chaap, best restaurant near manauna dham, ac restaurant aonla">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://manaunadham.org.in/food-plaza">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link id="mf-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 
 <script type="application/ld+json">
 {
@@ -31,110 +32,122 @@
 </script>
 
 <style>
-
-.cta-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-weight:700;
-  border-radius:30px;
-  text-decoration:none !important;
-  -webkit-tap-highlight-color: transparent;
+:root{
+  --maroon:#7a0000;
+  --maroon-deep:#4d0000;
+  --gold:#d4a017;
+  --gold-light:#e8c156;
+  --cream:#fff6e6;
+  --paper:#fffdf6;
+  --green:#1a7a3a;
+  --ink:#2b2118;
+  --ink-soft:#6b5d4f;
+  --line:#e8dcc4;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Plus Jakarta Sans',Segoe UI,Arial,sans-serif;
 }
-  .cta-btn:focus,
-.cta-btn:active {
-  outline: none;
-  box-shadow: none;
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.6}
+img{max-width:100%}
+
+/* ===== HEADER ===== */
+header{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 14px rgba(0,0,0,.18)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:40px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-family:var(--display);font-size:17px;font-weight:700}
+.brand-text span{font-size:11.5px;opacity:.8;letter-spacing:.3px}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;opacity:.92}
+nav a:hover{opacity:1;text-decoration:underline}
+.menu-btn{display:none;font-size:24px;cursor:pointer}
+.mobile-menu{display:none;flex-direction:column;background:var(--maroon-deep);position:absolute;top:64px;width:100%;left:0}
+.mobile-menu a{padding:13px 18px;border-top:1px solid rgba(255,255,255,.12);color:#fff;text-decoration:none}
+@media(max-width:900px){nav{display:none}.menu-btn{display:block}}
+
+/* ===== HERO (photo-backed) ===== */
+.hero{
+  position:relative;
+  color:#fff;
+  text-align:center;
+  padding:90px 20px 64px;
+  background:
+    linear-gradient(180deg,rgba(40,4,4,.55),rgba(30,2,2,.86)),
+    url('https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-interior2.webp') center/cover no-repeat;
 }
-
-  header{
-  background:#7a0000;
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:1000;
+.hero-eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:10px}
+.hero h1{font-family:var(--display);font-size:clamp(32px,6vw,52px);margin:0 0 12px;font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.4)}
+.hero .rating{font-size:16px;font-weight:600;margin-bottom:24px;color:#ffe9b0}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary,.btn-ghost{
+  display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+  padding:14px 26px;border-radius:30px;text-decoration:none;cursor:pointer;border:none;
 }
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.btn-primary:hover{background:#13602d}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
 
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 20px;
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+.section{background:#fff;padding:38px;margin:30px 0;border-radius:16px;box-shadow:0 4px 24px rgba(122,0,0,.07)}
+.section h2{font-family:var(--display);color:var(--maroon);font-size:26px;border-bottom:4px solid var(--gold);display:inline-block;padding-bottom:8px;margin:0 0 22px;font-weight:700}
+
+/* ===== GALLERY (lightbox) ===== */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.gallery img{width:100%;border-radius:12px;height:220px;object-fit:cover;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.gallery img:hover{transform:scale(1.025);box-shadow:0 10px 26px rgba(0,0,0,.22)}
+
+/* ===== ORDER CTA ===== */
+.order-cta{
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));
+  color:#fff;text-align:center;position:relative;overflow:hidden;
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.order-cta::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(-50deg,transparent,transparent 36px,rgba(255,255,255,.04) 36px,rgba(255,255,255,.04) 37px);
 }
+.order-cta-inner{position:relative;z-index:1}
+.order-cta h2{color:#fff;border-color:var(--gold)}
+.order-cta p{font-size:15.5px;opacity:.88;margin:0 0 22px;max-width:480px;margin-left:auto;margin-right:auto}
 
-.brand img{height:42px}
-
-.brand-text{display:flex;flex-direction:column;line-height:1}
-
-.brand-text strong{font-size:16px}
-.brand-text span{font-size:12px;opacity:.8}
-
-nav{display:flex;gap:18px}
-nav a{
-  color:white;
-  text-decoration:none;
-  font-weight:600;
+/* ===== POPULAR DISHES ===== */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.menu-category{background:var(--paper);padding:20px 20px 8px;border-radius:14px;border:1px solid var(--line)}
+.menu-category h3{font-family:var(--display);color:var(--maroon);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.dish-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.dish-row:last-child{border-bottom:none}
+.dish-name{font-weight:600;font-size:14.5px}
+.dish-price{font-size:13px;color:var(--ink-soft);display:block;margin-top:1px}
+.quick-add{
+  flex-shrink:0;background:#fff;border:1.5px solid var(--maroon);color:var(--maroon);
+  font-weight:800;font-size:13px;padding:6px 13px;border-radius:18px;cursor:pointer;
 }
+.quick-add:hover{background:var(--maroon);color:#fff}
 
-.menu-btn{
-  display:none;
-  font-size:26px;
-  cursor:pointer;
+/* ===== MENU IMAGES ===== */
+.menu-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.menu-images img{width:100%;border-radius:12px;background:#fff;border:1px solid var(--line);cursor:pointer;transition:transform .2s ease}
+.menu-images img:hover{transform:scale(1.015)}
+
+/* ===== FEATURES ===== */
+.features{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.feature{background:var(--maroon);color:#fff;padding:9px 18px;border-radius:20px;font-weight:600;font-size:13.5px}
+
+/* ===== REVIEWS ===== */
+.review-stat{display:flex;align-items:center;gap:15px;margin-bottom:18px}
+.review-stat strong{font-size:24px;color:var(--ink)}
+.review-stat span{font-size:13px;color:var(--ink-soft)}
+.review-link{display:block;background:var(--green);color:#fff;padding:18px;border-radius:12px;text-align:center;font-weight:700;text-decoration:none;font-size:16px}
+.review-link:hover{background:#13602d}
+.review-sub{margin-top:14px;color:var(--ink-soft);font-size:13.5px;text-align:center}
+
+footer{background:var(--maroon-deep);color:rgba(255,255,255,.75);text-align:center;padding:30px;font-size:13px}
+
+@media(max-width:600px){
+  .section{padding:26px 20px}
+  .hero{padding:70px 18px 48px}
 }
-
-.mobile-menu{
-  display:none;
-  flex-direction:column;
-  background:#7a0000;
-  position:absolute;
-  top:60px;
-  width:100%;
-  left:0;
-}
-
-.mobile-menu a{
-  padding:12px;
-  border-top:1px solid rgba(255,255,255,.15);
-  color:white;
-  text-decoration:none;
-}
-
-@media(max-width:900px){
-  nav{display:none}
-  .menu-btn{display:block}
-}
-body{margin:0;font-family:Segoe UI,Arial;background:#fff6e6}
-.hero{background:linear-gradient(135deg,#7a0000,#4d0000);color:white;text-align:center;padding:70px 20px}
-.hero h1{font-size:40px;margin:0}
-.hero .rating{font-size:22px;margin-top:10px}
-.container{max-width:1200px;margin:40px auto;padding:0 20px}
-.section{background:white;padding:40px;margin-bottom:30px;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.1)}
-.section h2{color:#7a0000;border-bottom:4px solid #d4a017;display:inline-block;padding-bottom:8px}
-
-/* FEATURES FIX */
-.features{display:flex;gap:15px;flex-wrap:wrap;margin-top:20px}
-.feature{background:#7a0000;color:white;padding:10px 18px;border-radius:25px;font-weight:600}
-
-/* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.gallery img{width:100%;border-radius:10px;height:220px;object-fit:cover}
-
-/* MENU */
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.menu-category{background:#fff6e6;padding:20px;border-radius:10px}
-.menu-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ddd}
-
-/* MENU IMAGES FIX */
-.menu-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.menu-images img{width:100%;border-radius:10px;background:white;border:1px solid #ddd}
-
-footer{background:#4d0000;color:white;text-align:center;padding:30px}
 </style>
 </head>
 
@@ -166,28 +179,33 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 </header>
 
 <div class="hero">
-<h1>Food Plaza Aonla</h1>
-<div class="rating">⭐⭐⭐⭐⭐ 4.6/5 (Google Reviews)</div>
+  <div class="hero-eyebrow">Near Manauna Dham · Aonla</div>
+  <h1>Food Plaza Aonla</h1>
+  <div class="rating">⭐⭐⭐⭐⭐ 4.6/5 · 200+ Google Reviews</div>
+  <div class="hero-ctas">
+    <button class="btn-primary" onclick="ManaunaFood.open('food-plaza')"><i class="fab fa-whatsapp"></i> Order Now</button>
+    <a class="btn-ghost" href="#menu-photos"><i class="fa fa-book-open"></i> View Menu</a>
+  </div>
 </div>
 
 <div class="container">
 
 <div class="section">
 <h2>Restaurant Photos</h2>
-<div class="gallery">
-  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-exterior.webp">
-  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-interior.webp">
-  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-interior2.webp">
+<div class="gallery" id="restaurant-gallery">
+  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-exterior.webp" data-i="0">
+  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-interior.webp" data-i="1">
+  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-interior2.webp" data-i="2">
 </div>
 </div>
-<!-- Booking CTA -->
-<div class="section" style="background:#7a0000;color:white;text-align:center">
-  <h2 style="color:white;border-color:#d4a017">HUNGRY?</h2>
-  <p style="font-size:18px">Get instant delivery</p>
-  <a class="cta-btn whatsapp" href="javascript:void(0)"
-   onclick="startFoodOrder('Food Plaza Aonla')">
-    <i class="fab fa-whatsapp"></i> Tell us your order
-  </a>
+
+<!-- Order CTA -->
+<div class="section order-cta">
+  <div class="order-cta-inner">
+    <h2>Hungry?</h2>
+    <p>Browse the full menu, build your order and get it delivered — cash on delivery, special rates for Manauna Dham bhakts.</p>
+    <button class="btn-primary" onclick="ManaunaFood.open('food-plaza')"><i class="fab fa-whatsapp"></i> Order from Food Plaza</button>
+  </div>
 </div>
 
 <div class="section">
@@ -196,37 +214,38 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 
 <div class="menu-category">
 <h3>🔥 Famous Chaaps</h3>
-<div class="menu-item"><span>Malai Chaap</span><span>₹130</span></div>
-<div class="menu-item"><span>Afghani Chaap</span><span>₹130</span></div>
-<div class="menu-item"><span>Kadhai Chaap</span><span>₹120</span></div>
-<div class="menu-item"><span>Changezi Chaap</span><span>₹120</span></div>
+<div class="dish-row"><div><span class="dish-name">Malai Chaap</span><span class="dish-price">₹130</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-malai')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Afghani Chaap</span><span class="dish-price">₹130</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-afghani')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Kadhai Chaap</span><span class="dish-price">₹120</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-kadhai')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Changezi Chaap</span><span class="dish-price">₹120</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-changezi')">+ Add</button></div>
 </div>
 
 <div class="menu-category">
 <h3>🍛 Main Course</h3>
-<div class="menu-item"><span>Butter Paneer</span><span>₹180</span></div>
-<div class="menu-item"><span>Shahi Paneer</span><span>₹170</span></div>
-<div class="menu-item"><span>Dal Makhni</span><span>₹140</span></div>
-<div class="menu-item"><span>Mix Veg</span><span>₹120</span></div>
+<div class="dish-row"><div><span class="dish-name">Butter Paneer</span><span class="dish-price">₹180</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-butterpaneer')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Shahi Paneer</span><span class="dish-price">₹170</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-shahipaneer')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Dal Makhni</span><span class="dish-price">₹140</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-dalmakhni')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Mix Veg</span><span class="dish-price">₹120</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-mixveg')">+ Add</button></div>
 </div>
 
 <div class="menu-category">
 <h3>🍽 Thali</h3>
-<div class="menu-item"><span>Veg Special Thali</span><span>₹149</span></div>
-<div class="menu-item"><span>Veg Deluxe Thali</span><span>₹199</span></div>
+<div class="dish-row"><div><span class="dish-name">Veg Special Thali</span><span class="dish-price">₹149</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-thali-special')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Veg Deluxe Thali</span><span class="dish-price">₹199</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('food-plaza','fp-thali-deluxe')">+ Add</button></div>
 </div>
 
 </div>
+<p style="text-align:center;margin-top:22px;color:var(--ink-soft);font-size:13.5px">Tap <b>+ Add</b> on any dish to start building your order — see the full menu and your running total together when you open the order chit.</p>
 </div>
 
-<div class="section">
+<div class="section" id="menu-photos">
 <h2>Menu</h2>
 <div class="menu-images">
-  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu1.webp">
-  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu2.webp">
+  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu1.webp" data-menu-i="0">
+  <img src="https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu2.webp" data-menu-i="1">
 </div>
 </div>
-  
+
 <div class="section">
 <h2>Why People Love Food Plaza</h2>
 <p>
@@ -247,36 +266,86 @@ Google customers consistently praise its food quality, cleanliness and family-fr
 <div class="section">
   <h2>Real Google Reviews</h2>
 
-  <div style="display:flex;align-items:center;gap:15px;margin-bottom:20px;">
+  <div class="review-stat">
     <div>
-      <strong style="font-size:22px">4.6 ★★★★★</strong><br>
-      <span style="font-size:14px;color:#666">Verified Google customer ratings</span>
+      <strong>4.6 ★★★★★</strong><br>
+      <span>Verified Google customer ratings</span>
     </div>
   </div>
 
-  <a href="https://www.google.com/search?q=Food+Plaza+Aonla#lrd=0x390ab30006c8d7cf:0x434486d9a8194e74,1,,,," 
+  <a href="https://www.google.com/search?q=Food+Plaza+Aonla#lrd=0x390ab30006c8d7cf:0x434486d9a8194e74,1,,,,"
      target="_blank"
-     style="display:block;background:#008000;color:white;padding:18px;border-radius:10px;text-align:center;font-weight:700;text-decoration:none;font-size:18px">
+     class="review-link">
     View All Reviews on Google
   </a>
 
-  <p style="margin-top:15px;color:#555;font-size:14px;text-align:center">
-    See photos, ratings and real customer experiences directly on Google
-  </p>
+  <p class="review-sub">See photos, ratings and real customer experiences directly on Google</p>
 </div>
-
 
 </div>
 
 <footer>
 <p>© 2026 ManaunaDham.org.in | Food Plaza Aonla</p>
 </footer>
+
 <script>
 function toggleMenu(){
   const m = document.getElementById("mobileMenu");
   m.style.display = m.style.display === "flex" ? "none" : "flex";
 }
+
+// Gallery + menu-photo lightbox (shared utility from food-order.js)
+document.addEventListener("DOMContentLoaded", function () {
+  var galleryImgs = Array.prototype.map.call(document.querySelectorAll("#restaurant-gallery img"), function (i) { return i.src; });
+  document.querySelectorAll("#restaurant-gallery img").forEach(function (img, i) {
+    img.addEventListener("click", function () { ManaunaFood.lightbox(galleryImgs, i); });
+  });
+  var menuImgs = Array.prototype.map.call(document.querySelectorAll(".menu-images img"), function (i) { return i.src; });
+  document.querySelectorAll(".menu-images img").forEach(function (img, i) {
+    img.addEventListener("click", function () { ManaunaFood.lightbox(menuImgs, i); });
+  });
+});
 </script>
+
+<script src="https://www.crulio.com/ManaunaDham/assets/food-order.js"></script>
+<script>
+ManaunaFood.init({
+  defaultWhatsapp: "917817803342",
+  defaultRestaurant: "food-plaza",
+  restaurants: [
+    {
+      id: "food-plaza",
+      name: "Food Plaza Aonla",
+      tagline: "Chaap King · AC Family Dining · ⭐ 4.6",
+      whatsapp: "917817803342",
+      menuImages: [
+        "https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu1.webp",
+        "https://www.crulio.com/ManaunaDham/images/restaurants/food-plaza/food-plaza-menu2.webp"
+      ],
+      categories: [
+        { title: "🔥 Famous Chaaps", items: [
+          { id: "fp-malai", name: "Malai Chaap", price: 130 },
+          { id: "fp-afghani", name: "Afghani Chaap", price: 130 },
+          { id: "fp-kadhai", name: "Kadhai Chaap", price: 120 },
+          { id: "fp-changezi", name: "Changezi Chaap", price: 120 }
+        ]},
+        { title: "🍛 Main Course", items: [
+          { id: "fp-butterpaneer", name: "Butter Paneer", price: 180 },
+          { id: "fp-shahipaneer", name: "Shahi Paneer", price: 170 },
+          { id: "fp-dalmakhni", name: "Dal Makhni", price: 140 },
+          { id: "fp-mixveg", name: "Mix Veg", price: 120 }
+        ]},
+        { title: "🍽 Thali", items: [
+          { id: "fp-thali-special", name: "Veg Special Thali", price: 149 },
+          { id: "fp-thali-deluxe", name: "Veg Deluxe Thali", price: 199 }
+        ]}
+      ]
+    }
+  ]
+});
+</script>
+
+<!-- General hotel/transport/darshan help bubble (unrelated to food ordering, kept independent) -->
 <script src="https://www.crulio.com/ManaunaDham/assets/chatbot.js"></script>
 </body>
 </html>
