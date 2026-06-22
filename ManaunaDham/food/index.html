@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://www.crulio.com/ManaunaDham/food">
 <link rel="icon" href="../images/web/logonobg.webp" type="image/webp">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link id="mf-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 
 <!-- Schema Markup for Local Business -->
 <script type="application/ld+json">
@@ -41,18 +42,30 @@
   --crulio-navy-deep: #101e3e;
   --crulio-orange: #c8661a;
   --crulio-orange-light: #e07828;
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'Fraunces', Georgia, serif;
+
+  /* Food brand */
+  --maroon:#7a0000;
+  --maroon-deep:#4d0000;
+  --gold:#d4a017;
+  --gold-light:#e8c156;
+  --green:#1a7a3a;
+  --ink:#2b2118;
+  --ink-soft:#6b5d4f;
+  --line:#e8dcc4;
+  --paper:#fffdf6;
 }
 
-body{margin:0;font-family:Segoe UI,Arial;background:#fff6e6;line-height:1.6}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Plus Jakarta Sans',Segoe UI,Arial,sans-serif;background:#fff6e6;line-height:1.6;color:var(--ink)}
 
 /* Header */
-header{background:#7a0000;color:white}
+header{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:white;box-shadow:0 2px 14px rgba(0,0,0,.18)}
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{height:48px;width:auto}
 .brand-text{display:flex;flex-direction:column;line-height:1.1}
-.brand-text strong{font-size:18px;font-weight:700}
+.brand-text strong{font-size:18px;font-weight:700;font-family:var(--font-display)}
 .brand-text span{font-size:13px;opacity:.9}
 
 nav{display:flex;gap:18px;align-items:center}
@@ -63,25 +76,33 @@ nav a.live{background:#008000}
 nav a.donate{background:#d10000}
 
 .menu-btn{display:none;font-size:26px;cursor:pointer}
-.mobile-menu{display:none;flex-direction:column;background:#7a0000;padding:10px}
+.mobile-menu{display:none;flex-direction:column;background:var(--maroon-deep);padding:10px}
 .mobile-menu a{padding:10px;color:white;text-decoration:none;border-bottom:1px solid #aa0000}
 
 /* Hero Section */
 .hero{
-  background:linear-gradient(135deg,#7a0000 0%,#4d0000 100%);
+  position:relative;
   color:white;
-  padding:60px 30px;
+  padding:74px 30px 64px;
   text-align:center;
+  background:
+    linear-gradient(180deg,rgba(40,4,4,.6),rgba(30,2,2,.88)),
+    url('../images/restaurants/food-plaza/food-plaza-interior2.webp') center 35%/cover no-repeat;
 }
+.hero-eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:10px}
 .hero h1{
-  font-size:42px;
-  margin:0 0 15px 0;
-  text-shadow:2px 2px 4px rgba(0,0,0,0.3);
+  font-family:var(--font-display);
+  font-size:clamp(30px,5.5vw,46px);
+  margin:0 0 14px 0;
+  font-weight:800;
+  text-shadow:0 3px 14px rgba(0,0,0,.35);
 }
 .hero p{
-  font-size:18px;
+  font-size:16.5px;
   margin:0;
-  opacity:0.95;
+  opacity:.92;
+  max-width:560px;
+  margin-left:auto;margin-right:auto;
 }
 
 /* Info Section */
@@ -90,15 +111,17 @@ nav a.donate{background:#d10000}
   padding:40px 30px;
   margin:30px auto;
   max-width:1200px;
-  border-radius:10px;
-  box-shadow:0 0 20px rgba(0,0,0,0.1);
+  border-radius:14px;
+  box-shadow:0 4px 24px rgba(122,0,0,.07);
 }
 .info-section h2{
-  color:#7a0000;
-  border-bottom:4px solid #d4a017;
+  font-family:var(--font-display);
+  color:var(--maroon);
+  border-bottom:4px solid var(--gold);
   display:inline-block;
   padding-bottom:6px;
   margin-bottom:20px;
+  font-weight:700;
 }
 
 /* Restaurant Grid */
@@ -112,15 +135,15 @@ nav a.donate{background:#d10000}
 
 .foodcard{
   background:white;
-  border-radius:15px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 5px 20px rgba(0,0,0,0.12);
+  box-shadow:0 5px 22px rgba(122,0,0,.1);
   transition:transform 0.3s ease,box-shadow 0.3s ease;
   position:relative;
 }
 .foodcard:hover{
-  transform:translateY(-5px);
-  box-shadow:0 8px 30px rgba(0,0,0,0.2);
+  transform:translateY(-6px);
+  box-shadow:0 10px 32px rgba(122,0,0,.18);
 }
 
 .foodcard img{
@@ -133,7 +156,7 @@ nav a.donate{background:#d10000}
   position:absolute;
   top:15px;
   right:15px;
-  background:#008000;
+  background:var(--green);
   color:white;
   padding:6px 12px;
   border-radius:20px;
@@ -144,12 +167,14 @@ nav a.donate{background:#d10000}
 
 .content{padding:25px}
 .content h3{
-  color:#7a0000;
+  font-family:var(--font-display);
+  color:var(--maroon);
   margin:0 0 10px 0;
   font-size:24px;
+  font-weight:700;
 }
 .content .cuisine{
-  color:#666;
+  color:var(--ink-soft);
   font-size:14px;
   font-style:italic;
   margin-bottom:12px;
@@ -162,7 +187,7 @@ nav a.donate{background:#d10000}
 
 .features{
   display:flex;
-  gap:15px;
+  gap:10px;
   flex-wrap:wrap;
   margin:15px 0;
 }
@@ -171,15 +196,15 @@ nav a.donate{background:#d10000}
   padding:5px 12px;
   border-radius:20px;
   font-size:13px;
-  color:#7a0000;
+  color:var(--maroon);
   display:flex;
   align-items:center;
   gap:5px;
 }
 
 .price{
-  font-size:22px;
-  color:#008000;
+  font-size:21px;
+  color:var(--green);
   font-weight:bold;
   margin:15px 0;
 }
@@ -193,21 +218,25 @@ nav a.donate{background:#d10000}
 .btn{
   flex:1;
   min-width:120px;
-  background:#7a0000;
+  background:var(--maroon);
   color:white;
   padding:12px 20px;
-  border-radius:8px;
+  border-radius:9px;
   text-decoration:none;
   text-align:center;
   font-weight:600;
-  transition:background 0.3s ease;
+  font-size:14.5px;
+  transition:background 0.2s ease;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:8px;
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
 }
-.btn:hover{background:#5a0000}
-.btn.menu{background:#d4a017;color:#4b0000}
+.btn:hover{background:var(--maroon-deep)}
+.btn.menu{background:var(--gold);color:#4b0000}
 .btn.menu:hover{background:#b88e15}
 .btn.details{background:#4a148c;color:white}
 .btn.details:hover{background:#38006b}
@@ -218,7 +247,7 @@ nav a.donate{background:#d10000}
   padding:50px 30px;
   margin:40px auto;
   max-width:1000px;
-  border-radius:10px;
+  border-radius:14px;
 }
 .faq-item{
   margin-bottom:25px;
@@ -226,9 +255,11 @@ nav a.donate{background:#d10000}
   padding-bottom:15px;
 }
 .faq-item h3{
-  color:#7a0000;
+  font-family:var(--font-display);
+  color:var(--maroon);
   font-size:18px;
   margin-bottom:10px;
+  font-weight:700;
 }
 .faq-item p{
   color:#444;
@@ -337,7 +368,7 @@ nav a.donate{background:#d10000}
 
 /* ── FOOTER ── */
 .site-footer {
-  background: #4d0000; color: white;
+  background: var(--maroon-deep); color: white;
   padding: 28px 20px; text-align: center;
 }
 .site-footer p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.9; }
@@ -410,14 +441,15 @@ nav a.donate{background:#d10000}
 
 <!-- Hero Section -->
 <div class="hero">
-  <h1>🍽️ Best restaurants & cafes Near Manauna Dham</h1>
-  <p>Pure Vegetarian Food | Good Food | Delivery available | Near Khatu Shyam Temple Manauna(Manona)</p>
+  <div class="hero-eyebrow">Pure Vegetarian · Near Khatu Shyam Temple</div>
+  <h1>🍽️ Best Restaurants & Cafes Near Manauna Dham</h1>
+  <p>Good food, delivered — browse the menu, build your order and send it straight to the restaurant on WhatsApp.</p>
 </div>
 
 <!-- Restaurant Grid -->
 <section class="section">
-  <h2 style="color:#7a0000;font-size:32px;text-align:center;margin-bottom:10px">Our Partners</h2>
-  <p style="text-align:center;color:#666;margin-bottom:40px">Trusted vegetarian dining options for Manauna Dham bhakts</p>
+  <h2 style="font-family:var(--font-display);color:var(--maroon);font-size:32px;text-align:center;margin-bottom:10px;font-weight:700">Our Partners</h2>
+  <p style="text-align:center;color:var(--ink-soft);margin-bottom:40px">Trusted vegetarian dining options for Manauna Dham bhakts</p>
 
   <div class="foodgrid">
 
@@ -429,7 +461,7 @@ nav a.donate{background:#d10000}
         <h3>Food Plaza Aonla</h3>
         <p class="cuisine">North Indian, Chinese & Continental</p>
         <p>Also Known as CHAAP KING</p>
-        
+
         <div class="features">
           <span class="feature"><i class="fa fa-handshake"></i> Cash on Delivery Available</span>
           <span class="feature"><i class="fa fa-snowflake"></i> AC sitting Available</span>
@@ -437,14 +469,13 @@ nav a.donate{background:#d10000}
           <span class="feature"><i class="fa fa-parking"></i> Spacious Parking</span>
           <span class="feature"><i class="fa fa-utensils"></i> Thalis available</span>
         </div>
-        
+
         <p class="price">Range of items: ₹50-₹570</p>
-        
+
         <div class="buttons">
-         <a class="btn" href="javascript:void(0)"
-   onclick="startFoodOrder('Food Plaza Aonla')">
+         <button class="btn" onclick="ManaunaFood.open('food-plaza')">
             <i class="fab fa-whatsapp"></i> Order Now
-          </a>
+          </button>
           <a class="btn details" href="../food/food-plaza">
             <i class="fa fa-info-circle"></i> Details & Menu
           </a>
@@ -460,27 +491,26 @@ nav a.donate{background:#d10000}
         <h3>Shiv Pizza Point</h3>
         <p class="cuisine">Pizza, Burgers, Sandwiches & Pastas</p>
         <p>Quick service cafe perfect for light meals and snacks. Popular among youth and families looking for quick bites before or after Manauna Dham darshan.</p>
-        
+
         <div class="features">
           <span class="feature"><i class="fa fa-handshake"></i> Cash on Delivery Available</span>
           <span class="feature"><i class="fa fa-clock"></i> Quick Service</span>
           <span class="feature"><i class="fa fa-pizza-slice"></i> Authentic Italian Food</span>
           <span class="feature"><i class="fa fa-hamburger"></i> Fresh Continental Food</span>
         </div>
-        
+
         <p class="price">Range: ₹100 - ₹450</p>
           <div class="buttons">
-         <a class="btn" href="javascript:void(0)"
-   onclick="startFoodOrder('Shiv Pizza Point')">
+         <button class="btn" onclick="ManaunaFood.open('shiv-pizza')">
             <i class="fab fa-whatsapp"></i> Order Now
-          </a>
+          </button>
           <a class="btn details" href="../food/shiv-pizza">
             <i class="fa fa-info-circle"></i> Details & Menu
           </a>
         </div>
       </div>
     </div>
- 
+
   </div>
 </section>
 
@@ -488,20 +518,20 @@ nav a.donate{background:#d10000}
 <div class="info-section">
   <h2>About Our Food Partners</h2>
   <p>We have partnered with the best vegetarian restaurants, cafes and dhabas near Manauna Dham (Manona Dham) in Aonla, Bareilly district. All our restaurant partners serve 100% pure vegetarian food in a clean, family-friendly environment perfect for bhakts visiting Shri Khatu Shyam Ji temple.</p>
-  
-  <p><strong>Why Book Through Us?</strong></p>
+
+  <p><strong>Why Order Through Us?</strong></p>
   <ul>
-    <li>✅ <strong>Instant Table Confirmation</strong> - No waiting in lines</li>
+    <li>✅ <strong>See the Menu While You Order</strong> - Browse dishes and build your order in one place</li>
     <li>✅ <strong>Special Rates</strong> - Exclusive discounts for Manauna Dham bhakts</li>
     <li>✅ <strong>Verified Quality</strong> - All restaurants personally verified</li>
     <li>✅ <strong>Strong Support</strong> - Direct contact for any questions</li>
   </ul>
 </div>
-  
+
 <!-- FAQ Section for SEO -->
 <section class="faq-section">
-  <h2 style="color:#7a0000;border-bottom:4px solid #d4a017;display:inline-block;padding-bottom:6px">Frequently Asked Questions</h2>
-  
+  <h2 style="font-family:var(--font-display);color:var(--maroon);border-bottom:4px solid var(--gold);display:inline-block;padding-bottom:6px;font-weight:700">Frequently Asked Questions</h2>
+
   <div class="faq-item">
     <h3>Where are the best restaurants near Manauna Dham?</h3>
     <p>The best restaurants near Manauna Dham (Manona Dham) in Aonla include Food Plaza and Shiv Pizza Point. Both restaurants are within 10-15 minutes from the Khatu Shyam temple and serve pure vegetarian food.</p>
@@ -518,8 +548,8 @@ nav a.donate{background:#d10000}
   </div>
 
   <div class="faq-item">
-    <h3>How can I book a table at restaurants near Manona Dham?</h3>
-    <p>You can book a table instantly by contacting us. You'll be connected to our WhatsApp support for immediate confirmation.</p>
+    <h3>How do I order food near Manona Dham?</h3>
+    <p>Tap "Order Now" on either restaurant card to open the order menu. Add dishes, fill in your delivery details, and send the order directly to the restaurant on WhatsApp for instant confirmation.</p>
   </div>
 
   <div class="faq-item">
@@ -590,7 +620,74 @@ function toggleMenu(){
 }
 </script>
 
-  <script src="../assets/manauna-support-chat.js"></script>
+<script src="../assets/food-order.js"></script>
+<script>
+ManaunaFood.init({
+  defaultWhatsapp: "917817803342",
+  restaurants: [
+    {
+      id: "food-plaza",
+      name: "Food Plaza Aonla",
+      tagline: "Chaap King · AC Family Dining · ⭐ 4.6",
+      whatsapp: "917817803342",
+      menuImages: [
+        "../images/restaurants/food-plaza/food-plaza-menu1.webp",
+        "../images/restaurants/food-plaza/food-plaza-menu2.webp"
+      ],
+      categories: [
+        { title: "🔥 Famous Chaaps", items: [
+          { id: "fp-malai", name: "Malai Chaap", price: 130 },
+          { id: "fp-afghani", name: "Afghani Chaap", price: 130 },
+          { id: "fp-kadhai", name: "Kadhai Chaap", price: 120 },
+          { id: "fp-changezi", name: "Changezi Chaap", price: 120 }
+        ]},
+        { title: "🍛 Main Course", items: [
+          { id: "fp-butterpaneer", name: "Butter Paneer", price: 180 },
+          { id: "fp-shahipaneer", name: "Shahi Paneer", price: 170 },
+          { id: "fp-dalmakhni", name: "Dal Makhni", price: 140 },
+          { id: "fp-mixveg", name: "Mix Veg", price: 120 }
+        ]},
+        { title: "🍽 Thali", items: [
+          { id: "fp-thali-special", name: "Veg Special Thali", price: 149 },
+          { id: "fp-thali-deluxe", name: "Veg Deluxe Thali", price: 199 }
+        ]}
+      ]
+    },
+    {
+      id: "shiv-pizza",
+      name: "Shiv Pizza Point",
+      tagline: "Pizza & Italian Fast Food · ⭐ 4.5",
+      whatsapp: "917817803342",
+      menuImages: [
+        "../images/restaurants/shiv-pizza/shiv-pizza-menu.webp"
+      ],
+      categories: [
+        { title: "🍕 Classic Pizzas", items: [
+          { id: "sp-cheese-onion", name: "Cheese & Onion", price: 99, startingAt: true },
+          { id: "sp-cheese-tomato", name: "Cheese & Tomato", price: 99, startingAt: true },
+          { id: "sp-cheese-corn", name: "Cheese & Corn", price: 99, startingAt: true },
+          { id: "sp-cheese-paneer", name: "Cheese & Paneer", price: 99, startingAt: true }
+        ]},
+        { title: "🔥 Veg Treat", items: [
+          { id: "sp-margherita", name: "Double Cheese Margherita", price: 149, startingAt: true },
+          { id: "sp-country-special", name: "Country Special", price: 149, startingAt: true },
+          { id: "sp-italian", name: "Italian Pizza", price: 149, startingAt: true },
+          { id: "sp-paneer-corn", name: "Paneer Corn Pizza", price: 149, startingAt: true }
+        ]},
+        { title: "🌶 Special & Spicy", items: [
+          { id: "sp-farmhouse", name: "Farm House Pizza", price: 199, startingAt: true },
+          { id: "sp-mexican-green-wave", name: "Mexican Green Wave", price: 199, startingAt: true },
+          { id: "sp-spicy-paneer", name: "Spicy Paneer Pizza", price: 199, startingAt: true },
+          { id: "sp-tripple-tango", name: "Tripple Tango", price: 199, startingAt: true }
+        ]}
+      ]
+    }
+  ]
+});
+</script>
+
+<!-- General hotel/transport/darshan help bubble (unrelated to food ordering, kept independent) -->
+<script src="../assets/manauna-support-chat.js"></script>
 
 </body>
 </html>
