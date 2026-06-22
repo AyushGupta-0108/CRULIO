@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Shiv Pizza Point Aonla | Best Pizza & Pasta Near Manauna Dham</title>
 
-<meta name="description" content="Shiv Pizza Point in Aonla is famous for cheesy pizzas, white sauce pasta, burgers & Italian fast food. 4.5★ rated. View menu, photos & Google reviews near Manauna Dham.">
+<meta name="description" content="Shiv Pizza Point in Aonla is famous for cheesy pizzas, white sauce pasta, burgers & Italian fast food. 4.5★ rated. View menu, photos, Google reviews & order online near Manauna Dham.">
 
 <meta name="keywords" content="shiv pizza point aonla, pizza in aonla, best pizza aonla, pasta aonla, italian food aonla">
 
@@ -12,6 +12,7 @@
 <link rel="canonical" href="https://manaunadham.org.in/shiv-pizza">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link id="mf-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 
 <script type="application/ld+json">
 {
@@ -36,39 +37,99 @@
 </script>
 
 <style>
-body{margin:0;font-family:Segoe UI,Arial;background:#fff6e6}
-header{background:#7a0000;color:white;position:sticky;top:0;z-index:1000}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px}
+:root{
+  --maroon:#7a0000;
+  --maroon-deep:#4d0000;
+  --gold:#d4a017;
+  --gold-light:#e8c156;
+  --cream:#fff6e6;
+  --paper:#fffdf6;
+  --green:#1a7a3a;
+  --ink:#2b2118;
+  --ink-soft:#6b5d4f;
+  --line:#e8dcc4;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Plus Jakarta Sans',Segoe UI,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.6}
+img{max-width:100%}
+
+header{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 14px rgba(0,0,0,.18)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 22px}
 .brand{display:flex;align-items:center;gap:12px}
-.brand img{height:42px}
-.brand-text strong{font-size:16px}
-nav{display:flex;gap:18px}
-nav a{color:white;text-decoration:none;font-weight:600}
-.menu-btn{display:none;font-size:26px}
-.mobile-menu{display:none;flex-direction:column;background:#7a0000;position:absolute;top:60px;width:100%}
-.mobile-menu a{padding:12px;color:white;text-decoration:none;border-top:1px solid rgba(255,255,255,.2)}
+.brand img{height:40px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-family:var(--display);font-size:17px;font-weight:700}
+.brand-text span{font-size:11.5px;opacity:.8;letter-spacing:.3px}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;opacity:.92}
+nav a:hover{opacity:1;text-decoration:underline}
+.menu-btn{display:none;font-size:24px;cursor:pointer}
+.mobile-menu{display:none;flex-direction:column;background:var(--maroon-deep);position:absolute;top:64px;width:100%;left:0}
+.mobile-menu a{padding:13px 18px;border-top:1px solid rgba(255,255,255,.12);color:#fff;text-decoration:none}
 @media(max-width:900px){nav{display:none}.menu-btn{display:block}}
 
-.hero{background:linear-gradient(135deg,#7a0000,#4d0000);color:white;text-align:center;padding:70px 20px}
-.hero h1{font-size:42px;margin:0}
-.container{max-width:1200px;margin:40px auto;padding:0 20px}
-.section{background:white;padding:40px;margin-bottom:30px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,.1)}
-.section h2{color:#7a0000;border-bottom:4px solid #d4a017;display:inline-block;padding-bottom:8px}
+.hero{
+  position:relative;color:#fff;text-align:center;padding:90px 20px 64px;
+  background:
+    linear-gradient(180deg,rgba(40,4,4,.55),rgba(30,2,2,.86)),
+    url('https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-interior.webp') center/cover no-repeat;
+}
+.hero-eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:10px}
+.hero h1{font-family:var(--display);font-size:clamp(32px,6vw,52px);margin:0 0 10px;font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.4)}
+.hero p.tag{font-size:16px;opacity:.92;margin:0 0 14px}
+.hero .rating{font-size:16px;font-weight:600;margin-bottom:24px;color:#ffe9b0}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary,.btn-ghost{
+  display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+  padding:14px 26px;border-radius:30px;text-decoration:none;cursor:pointer;border:none;
+}
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.btn-primary:hover{background:#13602d}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.gallery img{width:100%;border-radius:10px;height:230px;object-fit:cover}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+.section{background:#fff;padding:38px;margin:30px 0;border-radius:16px;box-shadow:0 4px 24px rgba(122,0,0,.07)}
+.section h2{font-family:var(--display);color:var(--maroon);font-size:26px;border-bottom:4px solid var(--gold);display:inline-block;padding-bottom:8px;margin:0 0 22px;font-weight:700}
 
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.menu-category{background:#fff6e6;padding:20px;border-radius:10px}
-.menu-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ddd}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.gallery img{width:100%;border-radius:12px;height:220px;object-fit:cover;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.gallery img:hover{transform:scale(1.025);box-shadow:0 10px 26px rgba(0,0,0,.22)}
 
-.menu-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.menu-images img{width:100%;border-radius:10px;border:1px solid #ddd}
+.order-cta{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;text-align:center;position:relative;overflow:hidden}
+.order-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-50deg,transparent,transparent 36px,rgba(255,255,255,.04) 36px,rgba(255,255,255,.04) 37px)}
+.order-cta-inner{position:relative;z-index:1}
+.order-cta h2{color:#fff;border-color:var(--gold)}
+.order-cta p{font-size:15.5px;opacity:.88;margin:0 0 22px;max-width:480px;margin-left:auto;margin-right:auto}
 
-.feature{background:#7a0000;color:white;padding:10px 18px;border-radius:25px;font-weight:600}
-.features{display:flex;gap:15px;flex-wrap:wrap;margin-top:20px}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.menu-category{background:var(--paper);padding:20px 20px 8px;border-radius:14px;border:1px solid var(--line)}
+.menu-category h3{font-family:var(--display);color:var(--maroon);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.dish-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.dish-row:last-child{border-bottom:none}
+.dish-name{font-weight:600;font-size:14.5px}
+.dish-price{font-size:13px;color:var(--ink-soft);display:block;margin-top:1px}
+.quick-add{flex-shrink:0;background:#fff;border:1.5px solid var(--maroon);color:var(--maroon);font-weight:800;font-size:13px;padding:6px 13px;border-radius:18px;cursor:pointer}
+.quick-add:hover{background:var(--maroon);color:#fff}
 
-footer{background:#4d0000;color:white;text-align:center;padding:30px}
+.menu-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.menu-images img{width:100%;border-radius:12px;border:1px solid var(--line);cursor:pointer;transition:transform .2s ease}
+.menu-images img:hover{transform:scale(1.015)}
+
+.features{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.feature{background:var(--maroon);color:#fff;padding:9px 18px;border-radius:20px;font-weight:600;font-size:13.5px}
+
+.review-link{display:block;background:var(--green);color:#fff;padding:18px;border-radius:12px;text-align:center;font-weight:700;text-decoration:none;font-size:16px}
+.review-link:hover{background:#13602d}
+
+footer{background:var(--maroon-deep);color:rgba(255,255,255,.75);text-align:center;padding:30px;font-size:13px}
+
+@media(max-width:600px){
+  .section{padding:26px 20px}
+  .hero{padding:70px 18px 48px}
+}
 </style>
 </head>
 
@@ -77,7 +138,7 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 <header>
 <div class="topbar">
 <div class="brand">
-<img src="https://www.crulio.com/ManaunaDham/images/web/logonobg.png">
+<img src="https://www.crulio.com/ManaunaDham/images/web/logonobg.png" alt="Manauna Dham">
 <div class="brand-text">
 <strong>Manauna Dham</strong>
 <span>Food Services</span>
@@ -101,16 +162,21 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 </header>
 
 <div class="hero">
-<h1>Shiv Pizza Point</h1>
-<p>Famous for Cheesy Pizzas, Pasta & Italian Fast Food</p>
-<p>⭐⭐⭐⭐⭐ 4.5/5 Google Rating</p>
+  <div class="hero-eyebrow">Near Manauna Dham · Aonla</div>
+  <h1>Shiv Pizza Point</h1>
+  <p class="tag">Famous for Cheesy Pizzas, Pasta & Italian Fast Food</p>
+  <div class="rating">⭐⭐⭐⭐⭐ 4.5/5 Google Rating</div>
+  <div class="hero-ctas">
+    <button class="btn-primary" onclick="ManaunaFood.open('shiv-pizza')"><i class="fab fa-whatsapp"></i> Order Now</button>
+    <a class="btn-ghost" href="#menu-photos"><i class="fa fa-book-open"></i> View Menu</a>
+  </div>
 </div>
 
 <div class="container">
 
 <div class="section">
 <h2>Restaurant Photos</h2>
-<div class="gallery">
+<div class="gallery" id="restaurant-gallery">
 <img src="https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-interior.webp">
 <img src="https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-food1.webp">
 <img src="https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-food2.webp">
@@ -119,14 +185,13 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 </div>
 </div>
 
-<!-- Booking CTA -->
-<div class="section" style="background:#7a0000;color:white;text-align:center">
-  <h2 style="color:white;border-color:#d4a017">HUNGRY?</h2>
-  <p style="font-size:18px">Get instant delivery</p>
-  <a class="cta-btn whatsapp" href="javascript:void(0)"
-   onclick="startFoodOrder('Shiv Pizza Point')">
-    <i class="fab fa-whatsapp"></i> Tell us your order
-  </a>
+<!-- Order CTA -->
+<div class="section order-cta">
+  <div class="order-cta-inner">
+    <h2>Hungry?</h2>
+    <p>Browse the full menu, build your order and get it delivered — cash on delivery, special rates for Manauna Dham bhakts.</p>
+    <button class="btn-primary" onclick="ManaunaFood.open('shiv-pizza')"><i class="fab fa-whatsapp"></i> Order from Shiv Pizza Point</button>
+  </div>
 </div>
 
 <div class="section">
@@ -135,32 +200,33 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 
 <div class="menu-category">
 <h3>🍕 Classic Pizzas</h3>
-<div class="menu-item"><span>Cheese & Onion</span><span>₹99+</span></div>
-<div class="menu-item"><span>Cheese & Tomato</span><span>₹99+</span></div>
-<div class="menu-item"><span>Cheese & Corn</span><span>₹99+</span></div>
-<div class="menu-item"><span>Cheese & Paneer</span><span>₹99+</span></div>
+<div class="dish-row"><div><span class="dish-name">Cheese &amp; Onion</span><span class="dish-price">From ₹99</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-cheese-onion')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Cheese &amp; Tomato</span><span class="dish-price">From ₹99</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-cheese-tomato')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Cheese &amp; Corn</span><span class="dish-price">From ₹99</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-cheese-corn')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Cheese &amp; Paneer</span><span class="dish-price">From ₹99</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-cheese-paneer')">+ Add</button></div>
 </div>
 
 <div class="menu-category">
 <h3>🔥 Veg Treat</h3>
-<div class="menu-item"><span>Double Cheese Margherita</span><span>₹149+</span></div>
-<div class="menu-item"><span>Country Special</span><span>₹149+</span></div>
-<div class="menu-item"><span>Italian Pizza</span><span>₹149+</span></div>
-<div class="menu-item"><span>Paneer Corn Pizza</span><span>₹149+</span></div>
+<div class="dish-row"><div><span class="dish-name">Double Cheese Margherita</span><span class="dish-price">From ₹149</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-margherita')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Country Special</span><span class="dish-price">From ₹149</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-country-special')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Italian Pizza</span><span class="dish-price">From ₹149</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-italian')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Paneer Corn Pizza</span><span class="dish-price">From ₹149</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-paneer-corn')">+ Add</button></div>
 </div>
 
 <div class="menu-category">
-<h3>🌶 Special & Spicy</h3>
-<div class="menu-item"><span>Farm House Pizza</span><span>₹199+</span></div>
-<div class="menu-item"><span>Mexican Green Wave</span><span>₹199+</span></div>
-<div class="menu-item"><span>Spicy Paneer Pizza</span><span>₹199+</span></div>
-<div class="menu-item"><span>Tripple Tango</span><span>₹199+</span></div>
+<h3>🌶 Special &amp; Spicy</h3>
+<div class="dish-row"><div><span class="dish-name">Farm House Pizza</span><span class="dish-price">From ₹199</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-farmhouse')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Mexican Green Wave</span><span class="dish-price">From ₹199</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-mexican-green-wave')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Spicy Paneer Pizza</span><span class="dish-price">From ₹199</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-spicy-paneer')">+ Add</button></div>
+<div class="dish-row"><div><span class="dish-name">Tripple Tango</span><span class="dish-price">From ₹199</span></div><button class="quick-add" onclick="ManaunaFood.quickAdd('shiv-pizza','sp-tripple-tango')">+ Add</button></div>
 </div>
 
 </div>
+<p style="text-align:center;margin-top:22px;color:var(--ink-soft);font-size:13.5px">Tap <b>+ Add</b> on any dish to start building your order. Prices marked "From" vary by size — we'll confirm the exact amount on WhatsApp.</p>
 </div>
 
-<div class="section">
+<div class="section" id="menu-photos">
 <h2>Menu</h2>
 <div class="menu-images">
 <img src="https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-menu.webp">
@@ -170,7 +236,7 @@ footer{background:#4d0000;color:white;text-align:center;padding:30px}
 <div class="section">
 <h2>Why Shiv Pizza Point is Famous</h2>
 <p>
-Shiv Pizza Point is Aonla’s most loved destination for <strong>cheesy pizzas, Italian pastas and fast food</strong>.  
+Shiv Pizza Point is Aonla's most loved destination for <strong>cheesy pizzas, Italian pastas and fast food</strong>.
 It is known for generous toppings, cheese burst pizzas and consistent taste.
 </p>
 
@@ -185,7 +251,7 @@ It is known for generous toppings, cheese burst pizzas and consistent taste.
 
 <div class="section">
 <h2>Google Reviews</h2>
-<a href="https://share.google/a34Jo6a7FT0TRUHCo" target="_blank" style="display:block;background:#008000;color:white;padding:18px;border-radius:10px;text-align:center;font-weight:700;text-decoration:none">
+<a href="https://share.google/a34Jo6a7FT0TRUHCo" target="_blank" class="review-link">
 View All Reviews on Google
 </a>
 </div>
@@ -201,7 +267,59 @@ function toggleMenu(){
 const m=document.getElementById("mobileMenu");
 m.style.display=m.style.display==="flex"?"none":"flex";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var galleryImgs = Array.prototype.map.call(document.querySelectorAll("#restaurant-gallery img"), function (i) { return i.src; });
+  document.querySelectorAll("#restaurant-gallery img").forEach(function (img, i) {
+    img.addEventListener("click", function () { ManaunaFood.lightbox(galleryImgs, i); });
+  });
+  var menuImgs = Array.prototype.map.call(document.querySelectorAll(".menu-images img"), function (i) { return i.src; });
+  document.querySelectorAll(".menu-images img").forEach(function (img, i) {
+    img.addEventListener("click", function () { ManaunaFood.lightbox(menuImgs, i); });
+  });
+});
 </script>
+
+<script src="https://www.crulio.com/ManaunaDham/assets/food-order.js"></script>
+<script>
+ManaunaFood.init({
+  defaultWhatsapp: "917817803342",
+  defaultRestaurant: "shiv-pizza",
+  restaurants: [
+    {
+      id: "shiv-pizza",
+      name: "Shiv Pizza Point",
+      tagline: "Pizza & Italian Fast Food · ⭐ 4.5",
+      whatsapp: "917817803342",
+      menuImages: [
+        "https://www.crulio.com/ManaunaDham/images/restaurants/shiv-pizza/shiv-pizza-menu.webp"
+      ],
+      categories: [
+        { title: "🍕 Classic Pizzas", items: [
+          { id: "sp-cheese-onion", name: "Cheese & Onion", price: 99, startingAt: true },
+          { id: "sp-cheese-tomato", name: "Cheese & Tomato", price: 99, startingAt: true },
+          { id: "sp-cheese-corn", name: "Cheese & Corn", price: 99, startingAt: true },
+          { id: "sp-cheese-paneer", name: "Cheese & Paneer", price: 99, startingAt: true }
+        ]},
+        { title: "🔥 Veg Treat", items: [
+          { id: "sp-margherita", name: "Double Cheese Margherita", price: 149, startingAt: true },
+          { id: "sp-country-special", name: "Country Special", price: 149, startingAt: true },
+          { id: "sp-italian", name: "Italian Pizza", price: 149, startingAt: true },
+          { id: "sp-paneer-corn", name: "Paneer Corn Pizza", price: 149, startingAt: true }
+        ]},
+        { title: "🌶 Special & Spicy", items: [
+          { id: "sp-farmhouse", name: "Farm House Pizza", price: 199, startingAt: true },
+          { id: "sp-mexican-green-wave", name: "Mexican Green Wave", price: 199, startingAt: true },
+          { id: "sp-spicy-paneer", name: "Spicy Paneer Pizza", price: 199, startingAt: true },
+          { id: "sp-tripple-tango", name: "Tripple Tango", price: 199, startingAt: true }
+        ]}
+      ]
+    }
+  ]
+});
+</script>
+
+<!-- General hotel/transport/darshan help bubble (unrelated to food ordering, kept independent) -->
 <script src="https://www.crulio.com/ManaunaDham/assets/manauna-support-chat.js"></script>
 </body>
 </html>
