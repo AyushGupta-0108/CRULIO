@@ -71,6 +71,7 @@
 
   .pill { display: inline-block; border-radius: 4px; padding: 2px 7px; font-size: 11px; }
   .pill-grey   { background: #f3f4f6; color: #374151; }
+  .pill-green  { background: #d1fae5; color: #065f46; }
 
   .err   { color: #dc2626; font-size: 13px; padding: 10px 0; }
   .empty { color: #9ca3af; font-size: 13px; padding: 20px; text-align: center; }
@@ -93,7 +94,6 @@
   <script>
   const STATS_API  = 'https://harshdeep-api.vercel.app/api/qr-stats';
   const DELETE_API = 'https://harshdeep-api.vercel.app/api/qr-delete';
-
 
   let currentData = null;
   let selectedTs = new Set();
@@ -141,9 +141,11 @@
 
   function render(data) {
     const root = document.getElementById('root');
+    const located = data.recent.filter(r => r.lat != null && r.lon != null);
     const todayStr = todayIST();
     const todayCount = (data.days.find(d => d.date === todayStr) || {count:0}).count;
     const yestCount  = (data.days.find(d => d.date === daysAgoIST(1)) || {count:0}).count;
+    const gpsPct = data.recent.length ? Math.round(located.length/data.recent.length*100) : 0;
 
     // Repeat IPs
     const ipFreq = {};
@@ -167,6 +169,7 @@
       + '<div class="card"><div class="num">'+Number(data.total).toLocaleString()+'</div><div class="label">Total Scans (all time)</div></div>'
       + '<div class="card"><div class="num">'+todayCount+' '+velBadge(todayCount,yestCount)+'</div><div class="label">Today vs Yesterday</div></div>'
       + '<div class="card"><div class="num">'+(data.filteredTotal||data.recent.length)+'</div><div class="label">In Selected Range</div></div>'
+      + '<div class="card accent"><div class="num">'+gpsPct+'%</div><div class="label">GPS Coverage</div></div>'
       + '<div class="card"><div class="num">'+repeatIPs+'</div><div class="label">Repeat IPs (shown)</div></div>'
       + '</div>'
 
@@ -175,7 +178,7 @@
 
       + '<div class="two-col">'
       + '<div class="panel"><h3 style="margin:0 0 8px">&#128205; Top Banner Locations</h3>'
-      + '<div style="font-size:11px;color:#9ca3af;margin-bottom:10px">Green pill = Google Maps resolved (happens server-side on new scans). Purple button = old GPS scan with no name yet — click Lookup to resolve via Nominatim.</div>'
+      + '<div style="font-size:11px;color:#9ca3af;margin-bottom:10px">Place names are resolved automatically via Google Maps when a scan includes location data.</div>'
       + renderLeaderboard(data.topLocations)+'</div>'
       + '<div style="display:flex;flex-direction:column;gap:12px">'
       + '<div class="panel"><h3 style="margin:0 0 10px">&#128241; Device Split</h3>'+renderDevices(data.byDevice)+'</div>'
@@ -194,11 +197,10 @@
       + '<div class="table-wrap"><table>'
       + '<thead><tr>'
       + '<th><input type="checkbox" id="selectAll" onchange="toggleAll(this)"></th>'
-      + '<th>Time (IST)</th><th>IP Location</th><th>Device</th><th>IP</th>'
+      + '<th>Time (IST)</th><th>Place Name</th><th>IP Location</th><th>Device</th><th>IP</th>'
       + '</tr></thead>'
       + '<tbody id="scanBody">'+renderRows(data.recent)+'</tbody>'
       + '</table></div>';
-
   }
 
   function velBadge(t, y) {
@@ -281,14 +283,18 @@
   }
 
   function renderRows(scans) {
-    if (!scans||!scans.length) return '<tr><td colspan="5" class="empty">No scans yet</td></tr>';
+    if (!scans||!scans.length) return '<tr><td colspan="6" class="empty">No scans yet</td></tr>';
     return scans.map(r => {
       const ts = r.ts;
+      const placeCell = r.placeName
+        ? '<span class="pill pill-green">&#10003; '+esc(r.placeName)+'</span>'
+        : '<span style="color:#e5e7eb">&mdash;</span>';
       const ipLoc = [r.city,r.region,r.country].filter(Boolean).join(', ')||'—';
       const devLabel = esc(r.device||shortUA(r.userAgent));
       return '<tr id="row-'+ts+'" class="'+(selectedTs.has(ts)?'selected':'')+'">'
-        + '<td><input type="checkbox" data-ts="'+ts+'" '+(selectedTs.has(ts)?'checked':'')+' onchange="toggleRow(this,''+ts+'')"></td>'
+        + '<td><input type="checkbox" data-ts="'+ts+'" '+(selectedTs.has(ts)?'checked':'')+' onchange="toggleRow(this,\''+ts+'\')"></td>'
         + '<td style="white-space:nowrap;font-size:11px">'+fmtIST(ts)+'</td>'
+        + '<td>'+placeCell+'</td>'
         + '<td style="font-size:12px">'+esc(ipLoc)+'</td>'
         + '<td><span class="pill pill-grey">'+devLabel+'</span></td>'
         + '<td style="font-size:10px;color:#9ca3af">'+esc(r.ip)+'</td>'
@@ -296,82 +302,73 @@
     }).join('');
   }
 
-  
-  function velBadge(t, y) {
-    if (!t && !y) return '';
-    if (!y) return '<span class="vel-up">New!</span>';
-    const diff = t - y;
-    const pct = Math.round(Math.abs(diff/y)*100);
-    if (diff > 0) return '<span class="vel-up">&#8593;'+pct+'%</span>';
-    if (diff < 0) return '<span class="vel-down">&#8595;'+pct+'%</span>';
-    return '<span class="vel-flat">&#8594;</span>';
+  function toggleRow(cb,ts) {
+    if(cb.checked) selectedTs.add(ts); else selectedTs.delete(ts);
+    const row=document.getElementById('row-'+ts);
+    if(row) row.className=cb.checked?'selected':'';
+    updateDeleteBtn();
   }
-
-  function renderSparkline(days) {
-    if (!days || !days.length) return '';
-    const last7 = days.slice(-7);
-    const max = Math.max(...last7.map(d=>d.count), 1);
-    const todayStr = todayIST();
-    const bars = last7.map(d => {
-      const h = Math.max(4, Math.round(d.count/max*36));
-      const isToday = d.date === todayStr;
-      const label = d.date.slice(5);
-      return '<div style="flex:1;display:flex;flex-direction:column;align-items:center">'
-        + '<div title="'+d.date+': '+d.count+' scans" style="width:100%;height:'+h+'px;background:'+(isToday?'#2563eb':'#93c5fd')+';border-radius:3px 3px 0 0;min-height:2px"></div>'
-        + '<div style="font-size:9px;color:#9ca3af;margin-top:2px">'+label+'</div>'
-        + '<div style="font-size:10px;font-weight:600;color:'+(isToday?'#2563eb':'#374151')+'">'+d.count+'</div>'
-        + '</div>';
-    }).join('');
-    return '<div class="panel" style="margin-bottom:20px"><div style="display:flex;align-items:flex-end;gap:4px;height:60px">'+bars+'</div></div>';
+  function toggleAll(masterCb) {
+    document.querySelectorAll('#scanBody input[type=checkbox]').forEach(cb=>{
+      const ts=cb.dataset.ts; cb.checked=masterCb.checked;
+      if(masterCb.checked) selectedTs.add(ts); else selectedTs.delete(ts);
+      const row=document.getElementById('row-'+ts);
+      if(row) row.className=masterCb.checked?'selected':'';
+    });
+    updateDeleteBtn();
   }
-
-  function renderLeaderboard(locations) {
-    if (!locations || !locations.length) return '<div class="empty">No location data yet</div>';
-    const max = locations[0].count;
-    return locations.slice(0,10).map((loc,i) => {
-      const isCoord = /^-?\d+\.\d+,/.test(loc.name);
-      const nameHtml = isCoord
-        ? '<span style="color:#9ca3af;font-size:11px">'+esc(loc.name)+'</span>'
-        : esc(loc.name);
-      return '<div class="lb-row"><div class="lb-rank">'+(i+1)+'</div>'
-        + '<div class="lb-name">'+nameHtml+'</div>'
-        + '<div class="lb-bar-wrap"><div class="lb-bar" style="width:'+Math.round(loc.count/max*100)+'%"></div></div>'
-        + '<div class="lb-count">'+loc.count+'</div></div>';
-    }).join('');
+  function updateDeleteBtn() {
+    const btn=document.getElementById('deleteBtn');
+    const el=document.getElementById('selCount');
+    if(!btn) return;
+    btn.disabled=selectedTs.size===0;
+    if(el) el.textContent=selectedTs.size>0?selectedTs.size+' selected':'';
   }
-
-  function renderDevices(byDevice) {
-    if (!byDevice || !Object.keys(byDevice).length) return '<div class="empty">No data yet</div>';
-    const entries = Object.entries(byDevice).sort((a,b)=>b[1]-a[1]);
-    const total = entries.reduce((s,[,c])=>s+c,0);
-    const max = entries[0][1];
-    return entries.map(([dev,count]) => {
-      const pct = Math.round(count/total*100);
-      return '<div class="device-row">'
-        + '<div class="device-name">'+esc(dev)+'</div>'
-        + '<div class="device-bar-wrap"><div class="device-bar" style="width:'+Math.round(count/max*100)+'%"></div></div>'
-        + '<div class="device-count">'+count+'</div>'
-        + '<div class="device-pct">'+pct+'%</div>'
-        + '</div>';
-    }).join('');
+  async function deleteSelected() {
+    if(!selectedTs.size) return;
+    if(!confirm('Delete '+selectedTs.size+' scan(s)? Counters will also be decremented.')) return;
+    const key=document.getElementById('adminKey').value.trim();
+    const toDelete=currentData.recent.filter(r=>selectedTs.has(r.ts));
+    if(!toDelete.length){alert('Could not find matching records.');return;}
+    try {
+      const res=await fetch(DELETE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,entries:toDelete})});
+      const result=await res.json();
+      if(!res.ok||!result.ok) throw new Error(result.error||'Delete failed');
+      alert('Deleted '+result.deleted+' scan(s). Reloading...');
+      load();
+    } catch(e){alert('Error: '+e.message);}
   }
-
-  function renderHourly(hourCounts) {
-    if (!hourCounts) return '';
-    // Shift UTC hours to IST (+5h; the :30 is close enough for a visual chart)
-    const ist = new Array(24).fill(0);
-    for (let h = 0; h < 24; h++) ist[(h+5)%24] += Number(hourCounts[h]||0);
-    const max = Math.max(...ist, 1);
-    const peakH = ist.indexOf(Math.max(...ist));
-    const label = h => h===0?'12a':h<12?h+'a':h===12?'12p':(h-12)+'p';
-    const bars = ist.map((v,h) =>
-      '<div class="hour-bar-col" title="'+label(h)+' IST: '+v+' scans">'
-      + '<div class="hour-bar'+(h===peakH&&v>0?' peak':'')
-      +'" style="height:'+Math.max(3,Math.round(v/max*72))+'px"></div>'
-      + '<div class="hour-label">'+(h%3===0?label(h):'')+'</div>'
-      + '</div>'
-    ).join('');
-    const pl = label(peakH);
-    return '<div class="hour-bars">'+bars+'</div>'
-      + '<div style="font-size:11px;color:#6b7280;margin-top:6px">Peak hour: <b>'+pl+' IST</b></div>';
+  function exportCSV() {
+    if(!currentData?.recent?.length){alert('Load data first.');return;}
+    const cols=['ts','source','ip','placeName','lat','lon','city','region','country','device','userAgent','referrer'];
+    const rows=currentData.recent.map(r=>cols.map(c=>'"'+String(r[c]??'').replace(/"/g,'""')+'"').join(','));
+    const csv=[cols.join(','),...rows].join('\n');
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    a.download='qr-scans-'+todayIST()+'.csv';
+    a.click();
   }
+  function setRange(range) {
+    activeRange=range;
+    if(range==='custom'){
+      const f=document.getElementById('fromDate'),t=document.getElementById('toDate');
+      if(f) customFrom=f.value; if(t) customTo=t.value;
+      if(!customFrom||!customTo){alert('Pick both From and To dates first.');return;}
+    }
+    load();
+  }
+  function shortUA(ua) {
+    if(!ua) return '—';
+    if(/iPhone/.test(ua)) return 'iPhone';
+    if(/Android/.test(ua)) return 'Android';
+    if(/iPad/.test(ua)) return 'iPad';
+    if(/Windows/.test(ua)) return 'Windows';
+    if(/Macintosh/.test(ua)) return 'Mac';
+    return ua.slice(0,20)+'...';
+  }
+  function esc(s) {
+    return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  </script>
+</body>
+</html>
