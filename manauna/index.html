@@ -3,14 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecting to ManaunaDham...</title>
-  <meta http-equiv="refresh" content="0; url=https://www.crulio.com/ManaunaDham">
   <link rel="canonical" href="https://www.crulio.com/ManaunaDham">
   <meta name="robots" content="noindex, follow">
+
+  <!-- ── Google Analytics 4 ──────────────────────────────────────────────────
+       Replace G-XXXXXXXXXX with your actual GA4 Measurement ID.
+       Find it in: GA4 → Admin → Data Streams → your stream → Measurement ID
+  ──────────────────────────────────────────────────────────────────────────── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1401GVEYWR"></script>
   <script>
-    window.location.replace("https://www.crulio.com/ManaunaDham");
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-1401GVEYWR');
+    // Fire a custom event so GA4 records "qr_scan" specifically
+    gtag('event', 'qr_scan', {
+      event_category: 'QR',
+      event_label: 'ManaunaDham Banner Scan'
+    });
+  </script>
+
+  <script>
+    (function () {
+      var destination = 'https://www.crulio.com/ManaunaDham';
+
+      // CHANGE THIS to your actual Vercel backend domain.
+      var TRACK_ENDPOINT = 'https://harshdeep-api.vercel.app/api/track-scan';
+
+      var redirected = false;
+
+      function goNow(lat, lon) {
+        if (redirected) return;
+        redirected = true;
+
+        var qs = [];
+        if (lat != null && lon != null) {
+          qs.push('lat=' + encodeURIComponent(lat));
+          qs.push('lon=' + encodeURIComponent(lon));
+        }
+        var trackUrl = TRACK_ENDPOINT + (qs.length ? '?' + qs.join('&') : '');
+
+        try {
+          fetch(trackUrl, {
+            method: 'GET',
+            mode: 'cors',
+            keepalive: true,
+            cache: 'no-store'
+          }).catch(function () {});
+        } catch (e) {}
+
+        window.location.replace(destination);
+      }
+
+      if (navigator.geolocation) {
+        var timedOut = false;
+        var timer = setTimeout(function () {
+          timedOut = true;
+          goNow(null, null);
+        }, 8000);
+
+        navigator.geolocation.getCurrentPosition(
+          function (pos) {
+            if (timedOut) return;
+            clearTimeout(timer);
+            goNow(pos.coords.latitude, pos.coords.longitude);
+          },
+          function () {
+            if (timedOut) return;
+            clearTimeout(timer);
+            goNow(null, null);
+          },
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+        );
+      } else {
+        goNow(null, null);
+      }
+    })();
   </script>
 </head>
 <body>
-  <p>Redirecting to <a href="https://www.crulio.com/ManaunaDham">ManaunaDham</a>...</p>
+  <p id="msg">Getting your location… you'll be redirected in a moment.</p>
 </body>
 </html>
