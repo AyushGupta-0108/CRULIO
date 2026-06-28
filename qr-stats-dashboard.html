@@ -337,19 +337,49 @@
     const el = document.getElementById('geo-'+ts);
     if (el) el.textContent = 'looking up...';
     try {
-      const res = await fetch(NOMINATIM+'?lat='+lat+'&lon='+lon+'&format=json&zoom=16&addressdetails=1', {
+      // zoom=18 = building level (maximum precision)
+      const res = await fetch(NOMINATIM+'?lat='+lat+'&lon='+lon+'&format=json&zoom=18&addressdetails=1', {
         headers: {'Accept-Language':'en','User-Agent':'CrulioQRDashboard/1.0'}
       });
       if (!res.ok) throw new Error();
       const data = await res.json();
-      const a = data.address||{};
-      const parts = [
-        a.amenity||a.shop||a.tourism||a.leisure,
-        a.road||a.pedestrian,
-        a.suburb||a.neighbourhood||a.village||a.town||a.city,
-        a.state_district||a.state
-      ].filter(Boolean);
-      const name = parts.slice(0,3).join(', ')||data.display_name.split(',').slice(0,2).join(',').trim();
+      const a = data.address || {};
+
+      // Most specific named place (temple, shop, hotel, building, etc.)
+      const placePart =
+        a.amenity ||
+        a.shop ||
+        a.tourism ||
+        a.leisure ||
+        a.building ||
+        a.office ||
+        null;
+
+      // Street with house number
+      const streetPart = a.road || a.pedestrian || a.footway || a.path || null;
+      const houseNo = a.house_number || null;
+      const streetFull = [houseNo, streetPart].filter(Boolean).join(' ');
+
+      // Area (neighbourhood / suburb / city)
+      const areaPart =
+        a.suburb ||
+        a.neighbourhood ||
+        a.quarter ||
+        a.village ||
+        a.town ||
+        a.city_district ||
+        a.city ||
+        null;
+
+      const statePart = a.state_district || a.county || null;
+
+      const parts = [placePart, streetFull, areaPart, statePart].filter(Boolean);
+
+      // If too few parts, fall back to Nominatim's own display_name (first 4 segments)
+      const name = parts.length >= 2
+        ? parts.slice(0, 4).join(', ')
+        : data.display_name.split(',').slice(0, 4).join(',').trim();
+
       geoCache[ts] = name;
       const btn = document.querySelector('button[onclick*="lookupNominatim(\''+ts+'\'"]');
       if (btn) {
