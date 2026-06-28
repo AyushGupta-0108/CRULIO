@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QR Scan Analytics — Crulio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background:#f6f7f9; margin:0; padding:24px; color:#1a1a1a; }
+  h1 { font-size:20px; margin-bottom:4px; }
+  .sub { color:#666; font-size:13px; margin-bottom:24px; }
+  .cards { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+  .card { background:#fff; border-radius:10px; padding:16px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.08); min-width:140px; }
+  .card .num { font-size:28px; font-weight:700; }
+  .card .label { font-size:12px; color:#777; text-transform:uppercase; letter-spacing:.04em; }
+  table { width:100%; border-collapse:collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.08); margin-bottom:24px; }
+  th, td { text-align:left; padding:8px 12px; font-size:13px; border-bottom:1px solid #eee; }
+  th { background:#fafafa; color:#555; }
+  input { padding:8px 10px; border:1px solid #ddd; border-radius:6px; font-size:13px; margin-bottom:16px; width:240px; }
+  button { padding:8px 14px; border-radius:6px; border:none; background:#1a1a1a; color:#fff; font-size:13px; cursor:pointer; margin-left:8px; }
+  .err { color:#c0392b; }
+  .note { font-size:12px; color:#888; margin:4px 0 16px; }
+  #map { height:380px; border-radius:10px; margin-bottom:8px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+</style>
+</head>
+<body>
+  <h1>QR Scan Analytics</h1>
+  <div class="sub">ManaunaDham QR redirect — scan activity</div>
+
+  <input id="adminKey" type="password" placeholder="Admin key" />
+  <button onclick="load()">Load</button>
+
+  <div id="content"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script>
+    // CHANGE THIS to your actual Vercel backend domain.
+    const API = 'https://YOUR-VERCEL-BACKEND.vercel.app/api/qr-stats';
+    let map = null;
+
+    async function load() {
+      const key = document.getElementById('adminKey').value;
+      const content = document.getElementById('content');
+      content.innerHTML = 'Loading...';
+      try {
+        const res = await fetch(`${API}?key=${encodeURIComponent(key)}`);
+        if (!res.ok) throw new Error('Unauthorized or server error (' + res.status + ')');
+        const data = await res.json();
+        render(data);
+      } catch (e) {
+        content.innerHTML = `<p class="err">${e.message}</p>`;
+      }
+    }
+
+    function render(data) {
+      const located = data.recent.filter(r => r.lat != null && r.lon != null);
+      const noLocation = data.recent.length - located.length;
+
+      const recentRows = data.recent.slice(0, 100).map(r => `
+        <tr>
+          <td>${new Date(r.ts).toLocaleString()}</td>
+          <td>${r.lat != null ? `${r.lat.toFixed(5)}, ${r.lon.toFixed(5)}` : '<span style="color:#aaa">no GPS</span>'}</td>
+          <td>${[r.city, r.region, r.country].filter(Boolean).join(', ') || '—'}</td>
+          <td>${r.ip}</td>
+          <td title="${(r.userAgent || '').replace(/"/g,'')}">${shortUA(r.userAgent)}</td>
+        </tr>`).join('');
+
+      document.getElementById('content').innerHTML = `
+        <div class="cards">
+          <div class="card"><div class="num">${data.total}</div><div class="label">Total Scans</div></div>
+          <div class="card"><div class="num">${data.days[data.days.length-1].count}</div><div class="label">Today</div></div>
+          <div class="card"><div class="num">${located.length}</div><div class="label">With GPS location</div></div>
+        </div>
+
+        <h3>Where scans are happening</h3>
+        <div class="note">${located.length} of the last ${data.recent.length} scans included a GPS pin (visitor allowed location access). ${noLocation} did not — that's expected, not everyone will allow it. Clusters of pins show you which physical banner/area is getting scanned most.</div>
+        <div id="map"></div>
+
+        <h3>Recent Scans</h3>
+        <table>
+          <tr><th>Time</th><th>GPS Coordinates</th><th>Approx. IP Location</th><th>IP</th><th>Device</th></tr>
+          ${recentRows || '<tr><td colspan=5>No data yet</td></tr>'}
+        </table>
+      `;
+
+      renderMap(located);
+    }
+
+    function renderMap(located) {
+      const mapEl = document.getElementById('map');
+      if (!located.length) {
+        mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:13px;">No GPS-tagged scans yet</div>';
+        return;
+      }
+
+      if (map) { map.remove(); map = null; }
+      const avgLat = located.reduce((s, r) => s + r.lat, 0) / located.length;
+      const avgLon = located.reduce((s, r) => s + r.lon, 0) / located.length;
+
+      map = L.map('map').setView([avgLat, avgLon], 14);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      located.forEach(r => {
+        L.circleMarker([r.lat, r.lon], {
+          radius: 6, color: '#1a1a1a', weight: 1, fillColor: '#e63946', fillOpacity: 0.6
+        }).bindPopup(new Date(r.ts).toLocaleString()).addTo(map);
+      });
+    }
+
+    function shortUA(ua) {
+      if (!ua) return '—';
+      if (/iPhone/.test(ua)) return 'iPhone';
+      if (/Android/.test(ua)) return 'Android';
+      if (/Windows/.test(ua)) return 'Windows';
+      if (/Macintosh/.test(ua)) return 'Mac';
+      return ua.slice(0, 30) + '…';
+    }
+  </script>
+</body>
+</html>
