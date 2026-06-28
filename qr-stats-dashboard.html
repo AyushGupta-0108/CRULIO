@@ -338,7 +338,8 @@
     const key = document.getElementById('adminKey').value.trim();
     try {
       const res = await fetch(
-        GEO_LOOKUP_API + '?mode=geo&key=' + encodeURIComponent(key) + '&lat=' + lat + '&lon=' + lon
+        GEO_LOOKUP_API + '?mode=geo&key=' + encodeURIComponent(key) + '&lat=' + lat + '&lon=' + lon + '&_=' + Date.now(),
+        { cache: 'no-store' }
       );
       if (!res.ok) throw new Error();
       const data = await res.json();
