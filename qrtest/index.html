@@ -10,7 +10,7 @@
       var destination = 'https://www.crulio.com/ManaunaDham';
 
       // CHANGE THIS to your actual Vercel backend domain.
-      var TRACK_ENDPOINT = 'https://harshdeep-api.vercel.app/api/track-scan';
+      var TRACK_ENDPOINT = 'https://YOUR-VERCEL-BACKEND.vercel.app/api/track-scan';
 
       var redirected = false;
 
@@ -41,15 +41,17 @@
 
       // Every printed QR points here, so the only way to tell WHICH
       // banner/location is working is to capture the phone's actual GPS
-      // position at the moment of scanning. We wait up to 3 seconds for
-      // the visitor to allow location access; if they deny it or don't
-      // respond in time, we redirect anyway with no location attached.
+      // position at the moment of scanning. We wait up to 8 seconds for
+      // the visitor to allow location access AND for the GPS chip to get
+      // a fix (outdoors this usually takes 4-8 seconds). If they deny it
+      // or it's still not ready by then, we redirect anyway with no
+      // location attached.
       if (navigator.geolocation) {
         var timedOut = false;
         var timer = setTimeout(function () {
           timedOut = true;
           goNow(null, null);
-        }, 3000);
+        }, 8000);
 
         navigator.geolocation.getCurrentPosition(
           function (pos) {
@@ -62,7 +64,7 @@
             clearTimeout(timer);
             goNow(null, null);
           },
-          { enableHighAccuracy: false, timeout: 3000, maximumAge: 0 }
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
         );
       } else {
         goNow(null, null);
@@ -71,6 +73,6 @@
   </script>
 </head>
 <body>
-  <p>Redirecting to <a href="https://www.crulio.com/ManaunaDham">ManaunaDham</a>...</p>
+  <p id="msg">Getting your location… you'll be redirected in a moment.</p>
 </body>
 </html>
