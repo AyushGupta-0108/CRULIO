@@ -5,6 +5,24 @@
   <title>Redirecting to ManaunaDham...</title>
   <link rel="canonical" href="https://www.crulio.com/ManaunaDham">
   <meta name="robots" content="noindex, follow">
+
+  <!-- ── Google Analytics 4 ──────────────────────────────────────────────────
+       Replace G-XXXXXXXXXX with your actual GA4 Measurement ID.
+       Find it in: GA4 → Admin → Data Streams → your stream → Measurement ID
+  ──────────────────────────────────────────────────────────────────────────── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    // Fire a custom event so GA4 records "qr_scan" specifically
+    gtag('event', 'qr_scan', {
+      event_category: 'QR',
+      event_label: 'ManaunaDham Banner Scan'
+    });
+  </script>
+
   <script>
     (function () {
       var destination = 'https://www.crulio.com/ManaunaDham';
@@ -15,7 +33,7 @@
       var redirected = false;
 
       function goNow(lat, lon) {
-        if (redirected) return; // safety: only ever redirect once
+        if (redirected) return;
         redirected = true;
 
         var qs = [];
@@ -25,8 +43,6 @@
         }
         var trackUrl = TRACK_ENDPOINT + (qs.length ? '?' + qs.join('&') : '');
 
-        // Fire-and-forget — keepalive:true means this still completes
-        // even after the browser starts navigating away.
         try {
           fetch(trackUrl, {
             method: 'GET',
@@ -39,13 +55,6 @@
         window.location.replace(destination);
       }
 
-      // Every printed QR points here, so the only way to tell WHICH
-      // banner/location is working is to capture the phone's actual GPS
-      // position at the moment of scanning. We wait up to 8 seconds for
-      // the visitor to allow location access AND for the GPS chip to get
-      // a fix (outdoors this usually takes 4-8 seconds). If they deny it
-      // or it's still not ready by then, we redirect anyway with no
-      // location attached.
       if (navigator.geolocation) {
         var timedOut = false;
         var timer = setTimeout(function () {
