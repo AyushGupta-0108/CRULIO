@@ -100,9 +100,8 @@
   <script>
   const STATS_API  = 'https://harshdeep-api.vercel.app/api/qr-stats';
   const DELETE_API = 'https://harshdeep-api.vercel.app/api/qr-delete';
-  // Google-powered geo lookup proxy (api/geo-lookup.js on your Vercel backend).
-  // Uses Places API first, then Geocoding — far better coverage than Nominatim for India.
-  const GEO_LOOKUP_API = 'https://harshdeep-api.vercel.app/api/geo-lookup';
+  // Geo lookup is handled by qr-stats with ?mode=geo — no separate function needed.
+  const GEO_LOOKUP_API = 'https://harshdeep-api.vercel.app/api/qr-stats';
 
   let map = null, currentData = null;
   let selectedTs = new Set();
@@ -339,7 +338,7 @@
     const key = document.getElementById('adminKey').value.trim();
     try {
       const res = await fetch(
-        GEO_LOOKUP_API + '?key=' + encodeURIComponent(key) + '&lat=' + lat + '&lon=' + lon
+        GEO_LOOKUP_API + '?mode=geo&key=' + encodeURIComponent(key) + '&lat=' + lat + '&lon=' + lon
       );
       if (!res.ok) throw new Error();
       const data = await res.json();
