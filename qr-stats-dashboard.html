@@ -12,81 +12,82 @@
   .sub { color: #6b7280; font-size: 13px; margin-bottom: 20px; }
   h3 { font-size: 15px; font-weight: 600; margin: 24px 0 10px; }
 
-  /* Auth row */
   .auth-row { display: flex; gap: 8px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
-  .auth-row input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; width: 220px; }
-  .btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 13px; cursor: pointer; font-weight: 500; transition: opacity .15s; }
+  .auth-row input[type=password] { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; width: 220px; }
+  .btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 13px; cursor: pointer; font-weight: 500; transition: opacity .15s; white-space: nowrap; }
   .btn:hover { opacity: 0.85; }
   .btn-primary { background: #111827; color: #fff; }
-  .btn-danger { background: #dc2626; color: #fff; }
-  .btn-export { background: #059669; color: #fff; }
-  .btn-outline { background: #fff; color: #374151; border: 1px solid #d1d5db; }
+  .btn-danger  { background: #dc2626; color: #fff; }
+  .btn-export  { background: #059669; color: #fff; }
+  .btn-geo     { background: #7c3aed; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 5px; border: none; cursor: pointer; margin-left: 4px; }
   .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* Filter bar */
   .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; background: #fff; padding: 12px 16px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
   .filter-bar label { font-size: 12px; color: #6b7280; font-weight: 500; margin-right: 2px; }
   .filter-bar input[type=date] { padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 12px; }
   .range-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #d1d5db; background: #fff; color: #374151; font-size: 12px; cursor: pointer; }
   .range-btn.active { background: #111827; color: #fff; border-color: #111827; }
 
-  /* Cards */
   .cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
   .card { background: #fff; border-radius: 10px; padding: 14px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.07); min-width: 130px; }
-  .card .num { font-size: 28px; font-weight: 700; line-height: 1.1; }
+  .card .num { font-size: 26px; font-weight: 700; line-height: 1.2; }
   .card .label { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+  .card.accent .num { color: #059669; }
 
-  /* Two-column layout for leaderboard + device */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
 
-  /* Leaderboard */
-  .leaderboard { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+  .panel { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+
   .lb-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
   .lb-row:last-child { border-bottom: none; }
   .lb-rank { font-size: 11px; color: #9ca3af; font-weight: 700; width: 18px; flex-shrink: 0; }
-  .lb-name { flex: 1; color: #111827; }
-  .lb-bar-wrap { width: 80px; background: #f3f4f6; border-radius: 4px; height: 6px; flex-shrink: 0; }
+  .lb-name { flex: 1; color: #111827; line-height: 1.3; }
+  .lb-bar-wrap { width: 70px; background: #f3f4f6; border-radius: 4px; height: 6px; flex-shrink: 0; }
   .lb-bar { background: #e63946; border-radius: 4px; height: 6px; }
   .lb-count { font-weight: 600; width: 36px; text-align: right; flex-shrink: 0; }
 
-  /* Hourly chart */
-  .hourly-wrap { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
-  .hour-bars { display: flex; align-items: flex-end; gap: 3px; height: 80px; margin-top: 8px; }
+  .hour-bars { display: flex; align-items: flex-end; gap: 2px; height: 80px; margin-top: 8px; }
   .hour-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
-  .hour-bar { width: 100%; background: #e63946; border-radius: 3px 3px 0 0; min-height: 2px; transition: height .3s; }
-  .hour-label { font-size: 8px; color: #9ca3af; margin-top: 3px; }
+  .hour-bar { width: 100%; background: #e63946; border-radius: 3px 3px 0 0; min-height: 2px; }
+  .hour-bar.peak { background: #b91c1c; }
+  .hour-label { font-size: 7px; color: #9ca3af; margin-top: 2px; }
 
-  /* Device pie — simple bar chart */
-  .device-wrap { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
   .device-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 13px; }
   .device-name { width: 80px; flex-shrink: 0; }
   .device-bar-wrap { flex: 1; background: #f3f4f6; border-radius: 4px; height: 8px; }
   .device-bar { background: #3b82f6; border-radius: 4px; height: 8px; }
-  .device-count { font-weight: 600; font-size: 13px; }
+  .device-pct { font-size: 11px; color: #9ca3af; width: 34px; text-align: right; }
+  .device-count { font-weight: 600; font-size: 13px; width: 28px; text-align: right; }
 
-  /* Map */
   #map { height: 380px; border-radius: 10px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
   .note { font-size: 12px; color: #9ca3af; margin: 4px 0 14px; }
 
-  /* Table */
   .table-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
   .table-wrap { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.07); margin-bottom: 24px; overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; min-width: 700px; }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
   th, td { text-align: left; padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #f3f4f6; }
-  th { background: #f9fafb; color: #6b7280; font-weight: 600; position: sticky; top: 0; }
+  th { background: #f9fafb; color: #6b7280; font-weight: 600; }
   tr:last-child td { border-bottom: none; }
   tr.selected td { background: #fef2f2; }
   input[type=checkbox] { cursor: pointer; width: 14px; height: 14px; }
 
-  .err { color: #dc2626; font-size: 13px; padding: 10px 0; }
+  .pill { display: inline-block; border-radius: 4px; padding: 2px 7px; font-size: 11px; }
+  .pill-grey   { background: #f3f4f6; color: #374151; }
+  .pill-green  { background: #d1fae5; color: #065f46; }
+  .pill-blue   { background: #dbeafe; color: #1e40af; }
+
+  .geo-status { font-size: 10px; color: #6b7280; margin-left: 4px; }
+  .err   { color: #dc2626; font-size: 13px; padding: 10px 0; }
   .empty { color: #9ca3af; font-size: 13px; padding: 20px; text-align: center; }
-  .tag { display: inline-block; background: #f3f4f6; color: #374151; border-radius: 4px; padding: 2px 7px; font-size: 11px; }
+  .vel-up   { color: #059669; font-size: 13px; font-weight: 600; }
+  .vel-down { color: #dc2626; font-size: 13px; font-weight: 600; }
+  .vel-flat { color: #6b7280; font-size: 13px; }
 </style>
 </head>
 <body>
   <h1>QR Scan Analytics</h1>
-  <div class="sub">ManaunaDham · Crulio Networks</div>
+  <div class="sub">ManaunaDham &middot; Crulio Networks</div>
 
   <div class="auth-row">
     <input id="adminKey" type="password" placeholder="Admin key" />
@@ -97,194 +98,269 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
   <script>
-  // ── CONFIG ──────────────────────────────────────────────────────────────────
   const STATS_API  = 'https://harshdeep-api.vercel.app/api/qr-stats';
   const DELETE_API = 'https://harshdeep-api.vercel.app/api/qr-delete';
+  // Nominatim for looking up OLD scans that have GPS but no placeName yet.
+  // Using OSM directly — low volume so fine. Swap with your proxy URL if you have one.
+  const NOMINATIM = 'https://nominatim.openstreetmap.org/reverse';
 
-  // ── STATE ───────────────────────────────────────────────────────────────────
-  let map = null;
-  let currentData = null;
+  let map = null, currentData = null;
   let selectedTs = new Set();
-  let activeRange = 'all'; // 'today' | '7' | '30' | 'custom' | 'all'
-  let customFrom = '';
-  let customTo = '';
+  let activeRange = 'all', customFrom = '', customTo = '';
+  const geoCache = {};  // ts -> resolved place name from Nominatim
 
-  // ── DATE HELPERS ─────────────────────────────────────────────────────────────
-  function isoDate(d) { return d.toISOString().slice(0, 10); }
-  function today() { return isoDate(new Date()); }
-  function daysAgo(n) {
-    const d = new Date();
-    d.setDate(d.getDate() - n);
-    return isoDate(d);
+  // IST helpers (UTC + 5:30)
+  function fmtIST(iso) {
+    return new Date(iso).toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata', hour12: true,
+      day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
   }
+  function todayIST() {
+    const ist = new Date(Date.now() + 330*60000);
+    return ist.toISOString().slice(0,10);
+  }
+  function daysAgoIST(n) {
+    const ist = new Date(Date.now() + 330*60000 - n*86400000);
+    return ist.toISOString().slice(0,10);
+  }
+
   function rangeParams() {
-    if (activeRange === 'today') return `&from=${today()}&to=${today()}`;
-    if (activeRange === '7')     return `&from=${daysAgo(6)}&to=${today()}`;
-    if (activeRange === '30')    return `&from=${daysAgo(29)}&to=${today()}`;
-    if (activeRange === 'custom' && customFrom && customTo) return `&from=${customFrom}&to=${customTo}`;
+    if (activeRange === 'today')  return '&from='+todayIST()+'&to='+todayIST();
+    if (activeRange === '7')      return '&from='+daysAgoIST(6)+'&to='+todayIST();
+    if (activeRange === '30')     return '&from='+daysAgoIST(29)+'&to='+todayIST();
+    if (activeRange === 'custom' && customFrom && customTo) return '&from='+customFrom+'&to='+customTo;
     return '';
   }
 
-  // ── LOAD ──────────────────────────────────────────────────────────────────────
   async function load() {
     const key = document.getElementById('adminKey').value.trim();
-    if (!key) { alert('Enter your admin key first.'); return; }
-    document.getElementById('root').innerHTML = '<p style="color:#6b7280;font-size:13px;padding:10px 0">Loading…</p>';
+    if (!key) { alert('Enter admin key first.'); return; }
+    document.getElementById('root').innerHTML = '<p style="color:#6b7280;font-size:13px;padding:10px 0">Loading...</p>';
     try {
-      const res = await fetch(`${STATS_API}?key=${encodeURIComponent(key)}${rangeParams()}`);
-      if (!res.ok) throw new Error('Error ' + res.status + ' — check your admin key.');
+      const res = await fetch(STATS_API+'?key='+encodeURIComponent(key)+rangeParams());
+      if (!res.ok) throw new Error('Error '+res.status+' — check your admin key.');
       currentData = await res.json();
       selectedTs.clear();
       render(currentData);
     } catch(e) {
-      document.getElementById('root').innerHTML = `<p class="err">${e.message}</p>`;
+      document.getElementById('root').innerHTML = '<p class="err">'+e.message+'</p>';
     }
   }
 
-  // ── RENDER ────────────────────────────────────────────────────────────────────
   function render(data) {
     const root = document.getElementById('root');
-
     const located = data.recent.filter(r => r.lat != null && r.lon != null);
     const noLoc = data.recent.length - located.length;
-    const todayStr = today();
-    const todayEntry = data.days.find(d => d.date === todayStr);
-    const todayCount = todayEntry ? todayEntry.count : 0;
+    const todayStr = todayIST();
+    const todayCount = (data.days.find(d => d.date === todayStr) || {count:0}).count;
+    const yestCount  = (data.days.find(d => d.date === daysAgoIST(1)) || {count:0}).count;
+    const gpsPct = data.recent.length ? Math.round(located.length/data.recent.length*100) : 0;
 
-    // ── Filter bar ────────────────────────────────────────────────────────────
-    root.innerHTML = `
-      <div class="filter-bar" id="filterBar">
-        <span style="font-size:12px;font-weight:600;color:#374151">Time range:</span>
-        <button class="range-btn ${activeRange==='today'?'active':''}" onclick="setRange('today')">Today</button>
-        <button class="range-btn ${activeRange==='7'?'active':''}" onclick="setRange('7')">Last 7 Days</button>
-        <button class="range-btn ${activeRange==='30'?'active':''}" onclick="setRange('30')">Last 30 Days</button>
-        <button class="range-btn ${activeRange==='all'?'active':''}" onclick="setRange('all')">All Time</button>
-        <span style="font-size:12px;color:#6b7280">|</span>
-        <label>From</label>
-        <input type="date" id="fromDate" value="${customFrom}" onchange="customFrom=this.value" />
-        <label>To</label>
-        <input type="date" id="toDate" value="${customTo}" onchange="customTo=this.value" />
-        <button class="range-btn ${activeRange==='custom'?'active':''}" onclick="setRange('custom')">Apply Custom</button>
-      </div>
+    // Repeat IPs
+    const ipFreq = {};
+    data.recent.forEach(r => { ipFreq[r.ip] = (ipFreq[r.ip]||0)+1; });
+    const repeatIPs = Object.values(ipFreq).filter(c=>c>1).length;
 
-      <!-- Stat cards -->
-      <div class="cards">
-        <div class="card"><div class="num">${Number(data.total).toLocaleString()}</div><div class="label">Total Scans (all time)</div></div>
-        <div class="card"><div class="num">${todayCount}</div><div class="label">Today</div></div>
-        <div class="card"><div class="num">${data.filteredTotal ?? data.recent.length}</div><div class="label">In Selected Range</div></div>
-        <div class="card"><div class="num">${located.length}</div><div class="label">With GPS (shown)</div></div>
-      </div>
+    root.innerHTML =
+      '<div class="filter-bar">'
+      + '<span style="font-size:12px;font-weight:600;color:#374151">Time range:</span>'
+      + '<button class="range-btn '+(activeRange==='today'?'active':'')+'" onclick="setRange(\'today\')">Today</button>'
+      + '<button class="range-btn '+(activeRange==='7'?'active':'')+'" onclick="setRange(\'7\')">Last 7 Days</button>'
+      + '<button class="range-btn '+(activeRange==='30'?'active':'')+'" onclick="setRange(\'30\')">Last 30 Days</button>'
+      + '<button class="range-btn '+(activeRange==='all'?'active':'')+'" onclick="setRange(\'all\')">All Time</button>'
+      + '<span style="color:#d1d5db">|</span>'
+      + '<label>From</label><input type="date" id="fromDate" value="'+customFrom+'" onchange="customFrom=this.value" />'
+      + '<label>To</label><input type="date" id="toDate" value="'+customTo+'" onchange="customTo=this.value" />'
+      + '<button class="range-btn '+(activeRange==='custom'?'active':'')+'" onclick="setRange(\'custom\')">Apply</button>'
+      + '</div>'
 
-      <!-- Top Locations + Device breakdown -->
-      <div class="two-col">
-        <div class="leaderboard">
-          <h3 style="margin:0 0 10px">📍 Top Banner Locations</h3>
-          ${renderLeaderboard(data.topLocations)}
-        </div>
-        <div>
-          <div class="device-wrap" style="margin-bottom:12px">
-            <h3 style="margin:0 0 10px">📱 Device Split</h3>
-            ${renderDevices(data.byDevice)}
-          </div>
-          <div class="hourly-wrap">
-            <h3 style="margin:0 0 4px">🕐 Scans by Hour (all time, UTC)</h3>
-            ${renderHourly(data.hourCounts)}
-          </div>
-        </div>
-      </div>
+      + '<div class="cards">'
+      + '<div class="card"><div class="num">'+Number(data.total).toLocaleString()+'</div><div class="label">Total Scans (all time)</div></div>'
+      + '<div class="card"><div class="num">'+todayCount+' '+velBadge(todayCount,yestCount)+'</div><div class="label">Today vs Yesterday</div></div>'
+      + '<div class="card"><div class="num">'+(data.filteredTotal||data.recent.length)+'</div><div class="label">In Selected Range</div></div>'
+      + '<div class="card accent"><div class="num">'+gpsPct+'%</div><div class="label">GPS Coverage</div></div>'
+      + '<div class="card"><div class="num">'+repeatIPs+'</div><div class="label">Repeat IPs (shown)</div></div>'
+      + '</div>'
 
-      <!-- Map -->
-      <h3>Where scans are happening</h3>
-      <div class="note">${located.length} of ${data.recent.length} shown scans have GPS. ${noLoc} didn't allow location. Clusters = busy banner spots.</div>
-      <div id="map"></div>
+      + '<h3>7-Day Scan Trend (IST dates)</h3>'
+      + renderSparkline(data.days)
 
-      <!-- Scan table -->
-      <div class="table-header">
-        <h3 style="margin:0">Recent Scans</h3>
-        <button class="btn btn-danger" id="deleteBtn" onclick="deleteSelected()" disabled>Delete Selected</button>
-        <button class="btn btn-export" onclick="exportCSV()">Export CSV</button>
-        <span id="selCount" style="font-size:12px;color:#6b7280"></span>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th><input type="checkbox" id="selectAll" onchange="toggleAll(this)"></th>
-              <th>Time</th>
-              <th>Place Name</th>
-              <th>GPS</th>
-              <th>IP Location</th>
-              <th>Device</th>
-              <th>IP</th>
-            </tr>
-          </thead>
-          <tbody id="scanBody">
-            ${renderRows(data.recent)}
-          </tbody>
-        </table>
-      </div>
-    `;
+      + '<div class="two-col">'
+      + '<div class="panel"><h3 style="margin:0 0 8px">&#128205; Top Banner Locations</h3>'
+      + '<div style="font-size:11px;color:#9ca3af;margin-bottom:10px">Green pill = Google Maps resolved (happens server-side on new scans). Purple button = old GPS scan with no name yet — click Lookup to resolve via Nominatim.</div>'
+      + renderLeaderboard(data.topLocations)+'</div>'
+      + '<div style="display:flex;flex-direction:column;gap:12px">'
+      + '<div class="panel"><h3 style="margin:0 0 10px">&#128241; Device Split</h3>'+renderDevices(data.byDevice)+'</div>'
+      + '<div class="panel"><h3 style="margin:0 0 2px">&#128336; Scans by Hour (IST)</h3>'
+      + '<div style="font-size:11px;color:#9ca3af;margin-bottom:4px">Stored as UTC, shifted to IST +5:30 for display</div>'
+      + renderHourly(data.hourCounts)+'</div>'
+      + '</div></div>'
+
+      + '<h3>Where scans are happening</h3>'
+      + '<div class="note">'+located.length+' of '+data.recent.length+' scans have GPS. '+noLoc+' did not allow location. Click a pin for place name and IST time.</div>'
+      + '<div id="map"></div>'
+
+      + '<div class="table-header">'
+      + '<h3 style="margin:0">Recent Scans</h3>'
+      + '<button class="btn btn-danger" id="deleteBtn" onclick="deleteSelected()" disabled>Delete Selected</button>'
+      + '<button class="btn btn-export" onclick="exportCSV()">&#8595; Export CSV</button>'
+      + '<span id="selCount" style="font-size:12px;color:#6b7280"></span>'
+      + '</div>'
+
+      + '<div class="table-wrap"><table>'
+      + '<thead><tr>'
+      + '<th><input type="checkbox" id="selectAll" onchange="toggleAll(this)"></th>'
+      + '<th>Time (IST)</th><th>Place Name</th><th>GPS Coords</th><th>IP Location</th><th>Device</th><th>IP</th>'
+      + '</tr></thead>'
+      + '<tbody id="scanBody">'+renderRows(data.recent)+'</tbody>'
+      + '</table></div>';
 
     renderMap(located);
   }
 
-  // ── SUB-RENDERERS ─────────────────────────────────────────────────────────────
+  function velBadge(t, y) {
+    if (!t && !y) return '';
+    if (!y) return '<span class="vel-up">New!</span>';
+    const diff = t - y;
+    const pct = Math.round(Math.abs(diff/y)*100);
+    if (diff > 0) return '<span class="vel-up">&#8593;'+pct+'%</span>';
+    if (diff < 0) return '<span class="vel-down">&#8595;'+pct+'%</span>';
+    return '<span class="vel-flat">&#8594;</span>';
+  }
+
+  function renderSparkline(days) {
+    if (!days || !days.length) return '';
+    const last7 = days.slice(-7);
+    const max = Math.max(...last7.map(d=>d.count), 1);
+    const todayStr = todayIST();
+    const bars = last7.map(d => {
+      const h = Math.max(4, Math.round(d.count/max*36));
+      const isToday = d.date === todayStr;
+      const label = d.date.slice(5);
+      return '<div style="flex:1;display:flex;flex-direction:column;align-items:center">'
+        + '<div title="'+d.date+': '+d.count+' scans" style="width:100%;height:'+h+'px;background:'+(isToday?'#2563eb':'#93c5fd')+';border-radius:3px 3px 0 0;min-height:2px"></div>'
+        + '<div style="font-size:9px;color:#9ca3af;margin-top:2px">'+label+'</div>'
+        + '<div style="font-size:10px;font-weight:600;color:'+(isToday?'#2563eb':'#374151')+'">'+d.count+'</div>'
+        + '</div>';
+    }).join('');
+    return '<div class="panel" style="margin-bottom:20px"><div style="display:flex;align-items:flex-end;gap:4px;height:60px">'+bars+'</div></div>';
+  }
+
   function renderLeaderboard(locations) {
     if (!locations || !locations.length) return '<div class="empty">No location data yet</div>';
     const max = locations[0].count;
-    return locations.slice(0, 10).map((loc, i) => `
-      <div class="lb-row">
-        <div class="lb-rank">${i + 1}</div>
-        <div class="lb-name">${escHtml(loc.name)}</div>
-        <div class="lb-bar-wrap"><div class="lb-bar" style="width:${Math.round((loc.count/max)*100)}%"></div></div>
-        <div class="lb-count">${loc.count}</div>
-      </div>`).join('');
+    return locations.slice(0,10).map((loc,i) => {
+      const isCoord = /^-?\d+\.\d+,/.test(loc.name);
+      const nameHtml = isCoord
+        ? '<span style="color:#9ca3af;font-size:11px">'+esc(loc.name)+'</span>'
+        : esc(loc.name);
+      return '<div class="lb-row"><div class="lb-rank">'+(i+1)+'</div>'
+        + '<div class="lb-name">'+nameHtml+'</div>'
+        + '<div class="lb-bar-wrap"><div class="lb-bar" style="width:'+Math.round(loc.count/max*100)+'%"></div></div>'
+        + '<div class="lb-count">'+loc.count+'</div></div>';
+    }).join('');
   }
 
   function renderDevices(byDevice) {
     if (!byDevice || !Object.keys(byDevice).length) return '<div class="empty">No data yet</div>';
-    const entries = Object.entries(byDevice).sort((a,b) => b[1]-a[1]);
+    const entries = Object.entries(byDevice).sort((a,b)=>b[1]-a[1]);
+    const total = entries.reduce((s,[,c])=>s+c,0);
     const max = entries[0][1];
-    return entries.map(([dev, count]) => `
-      <div class="device-row">
-        <div class="device-name">${escHtml(dev)}</div>
-        <div class="device-bar-wrap"><div class="device-bar" style="width:${Math.round((count/max)*100)}%"></div></div>
-        <div class="device-count">${count}</div>
-      </div>`).join('');
+    return entries.map(([dev,count]) => {
+      const pct = Math.round(count/total*100);
+      return '<div class="device-row">'
+        + '<div class="device-name">'+esc(dev)+'</div>'
+        + '<div class="device-bar-wrap"><div class="device-bar" style="width:'+Math.round(count/max*100)+'%"></div></div>'
+        + '<div class="device-count">'+count+'</div>'
+        + '<div class="device-pct">'+pct+'%</div>'
+        + '</div>';
+    }).join('');
   }
 
   function renderHourly(hourCounts) {
     if (!hourCounts) return '';
-    const vals = Object.entries(hourCounts).sort((a,b) => +a[0] - +b[0]).map(e => +e[1]);
-    const max = Math.max(...vals, 1);
-    const bars = vals.map((v, h) => `
-      <div class="hour-bar-col" title="${h}:00 — ${v} scans">
-        <div class="hour-bar" style="height:${Math.max(4, Math.round((v/max)*72))}px"></div>
-        <div class="hour-label">${h}</div>
-      </div>`).join('');
-    return `<div class="hour-bars">${bars}</div>`;
+    // Shift UTC hours to IST (+5h; the :30 is close enough for a visual chart)
+    const ist = new Array(24).fill(0);
+    for (let h = 0; h < 24; h++) ist[(h+5)%24] += Number(hourCounts[h]||0);
+    const max = Math.max(...ist, 1);
+    const peakH = ist.indexOf(Math.max(...ist));
+    const label = h => h===0?'12a':h<12?h+'a':h===12?'12p':(h-12)+'p';
+    const bars = ist.map((v,h) =>
+      '<div class="hour-bar-col" title="'+label(h)+' IST: '+v+' scans">'
+      + '<div class="hour-bar'+(h===peakH&&v>0?' peak':'')
+      +'" style="height:'+Math.max(3,Math.round(v/max*72))+'px"></div>'
+      + '<div class="hour-label">'+(h%3===0?label(h):'')+'</div>'
+      + '</div>'
+    ).join('');
+    const pl = label(peakH);
+    return '<div class="hour-bars">'+bars+'</div>'
+      + '<div style="font-size:11px;color:#6b7280;margin-top:6px">Peak hour: <b>'+pl+' IST</b></div>';
   }
 
   function renderRows(scans) {
-    if (!scans || !scans.length) return '<tr><td colspan="7" class="empty">No scans yet</td></tr>';
+    if (!scans||!scans.length) return '<tr><td colspan="7" class="empty">No scans yet</td></tr>';
     return scans.map(r => {
-      const gps = r.lat != null ? `${r.lat.toFixed(4)}, ${r.lon.toFixed(4)}` : '<span style="color:#d1d5db">—</span>';
-      const ipLoc = [r.city, r.region, r.country].filter(Boolean).join(', ') || '—';
-      const place = r.placeName ? `<span style="color:#059669;font-weight:500">${escHtml(r.placeName)}</span>` : '<span style="color:#d1d5db">—</span>';
       const ts = r.ts;
-      return `<tr id="row-${ts}" class="${selectedTs.has(ts)?'selected':''}">
-        <td><input type="checkbox" data-ts="${ts}" ${selectedTs.has(ts)?'checked':''} onchange="toggleRow(this,'${ts}')"></td>
-        <td style="white-space:nowrap">${new Date(ts).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour12:true})}</td>
-        <td>${place}</td>
-        <td style="font-size:11px;color:#6b7280">${gps}</td>
-        <td>${escHtml(ipLoc)}</td>
-        <td><span class="tag">${escHtml(r.device || shortUA(r.userAgent))}</span></td>
-        <td style="font-size:11px;color:#9ca3af">${escHtml(r.ip)}</td>
-      </tr>`;
+      const hasGPS = r.lat != null && r.lon != null;
+      let placeCell;
+      if (r.placeName) {
+        // Google Maps resolved server-side at scan time — show in green
+        placeCell = '<span class="pill pill-green">&#10003; '+esc(r.placeName)+'</span>';
+      } else if (geoCache[ts]) {
+        // Nominatim resolved in dashboard — show in blue
+        placeCell = '<span class="pill pill-blue">&#128205; '+esc(geoCache[ts])+'</span>';
+      } else if (hasGPS) {
+        // Has GPS but no name — show coords and a Lookup button
+        placeCell = '<span style="font-size:10px;color:#9ca3af">'+r.lat.toFixed(4)+', '+r.lon.toFixed(4)+'</span>'
+          + '<button class="btn-geo" onclick="lookupNominatim(\''+ts+'\','+r.lat+','+r.lon+')">Lookup</button>'
+          + '<span class="geo-status" id="geo-'+ts+'"></span>';
+      } else {
+        placeCell = '<span style="color:#e5e7eb">no GPS</span>';
+      }
+      const ipLoc = [r.city,r.region,r.country].filter(Boolean).join(', ')||'—';
+      const devLabel = esc(r.device||shortUA(r.userAgent));
+      return '<tr id="row-'+ts+'" class="'+(selectedTs.has(ts)?'selected':'')+'">'
+        + '<td><input type="checkbox" data-ts="'+ts+'" '+(selectedTs.has(ts)?'checked':'')+' onchange="toggleRow(this,\''+ts+'\')"></td>'
+        + '<td style="white-space:nowrap;font-size:11px">'+fmtIST(ts)+'</td>'
+        + '<td>'+placeCell+'</td>'
+        + '<td style="font-size:10px;color:#9ca3af">'+(hasGPS?r.lat.toFixed(4)+', '+r.lon.toFixed(4):'—')+'</td>'
+        + '<td style="font-size:12px">'+esc(ipLoc)+'</td>'
+        + '<td><span class="pill pill-grey">'+devLabel+'</span></td>'
+        + '<td style="font-size:10px;color:#9ca3af">'+esc(r.ip)+'</td>'
+        + '</tr>';
     }).join('');
   }
 
-  // ── MAP ───────────────────────────────────────────────────────────────────────
+  async function lookupNominatim(ts, lat, lon) {
+    const el = document.getElementById('geo-'+ts);
+    if (el) el.textContent = 'looking up...';
+    try {
+      const res = await fetch(NOMINATIM+'?lat='+lat+'&lon='+lon+'&format=json&zoom=16&addressdetails=1', {
+        headers: {'Accept-Language':'en','User-Agent':'CrulioQRDashboard/1.0'}
+      });
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      const a = data.address||{};
+      const parts = [
+        a.amenity||a.shop||a.tourism||a.leisure,
+        a.road||a.pedestrian,
+        a.suburb||a.neighbourhood||a.village||a.town||a.city,
+        a.state_district||a.state
+      ].filter(Boolean);
+      const name = parts.slice(0,3).join(', ')||data.display_name.split(',').slice(0,2).join(',').trim();
+      geoCache[ts] = name;
+      const btn = document.querySelector('button[onclick*="lookupNominatim(\''+ts+'\'"]');
+      if (btn) {
+        const cell = btn.closest('td');
+        cell.innerHTML = '<span class="pill pill-blue">&#128205; '+esc(name)+'</span>';
+      }
+    } catch(e) {
+      if (el) el.textContent = 'failed';
+    }
+  }
+
   function renderMap(located) {
     const mapEl = document.getElementById('map');
     if (!located.length) {
@@ -292,123 +368,84 @@
       return;
     }
     if (map) { map.remove(); map = null; }
-    const avgLat = located.reduce((s, r) => s + r.lat, 0) / located.length;
-    const avgLon = located.reduce((s, r) => s + r.lon, 0) / located.length;
-    map = L.map('map').setView([avgLat, avgLon], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    const avgLat = located.reduce((s,r)=>s+r.lat,0)/located.length;
+    const avgLon = located.reduce((s,r)=>s+r.lon,0)/located.length;
+    map = L.map('map').setView([avgLat,avgLon],15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
     located.forEach(r => {
-      const popup = `<b>${r.placeName || 'GPS scan'}</b><br>${new Date(r.ts).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour12:true})}<br><small>${r.lat.toFixed(5)}, ${r.lon.toFixed(5)}</small>`;
-      L.circleMarker([r.lat, r.lon], {
-        radius: 7, color: '#fff', weight: 2, fillColor: '#e63946', fillOpacity: 0.85
-      }).bindPopup(popup).addTo(map);
+      const name = r.placeName||geoCache[r.ts]||'GPS scan';
+      const popup = '<b>'+esc(name)+'</b><br>'+fmtIST(r.ts)+'<br><small style="color:#9ca3af">'+r.lat.toFixed(5)+', '+r.lon.toFixed(5)+'</small>';
+      L.circleMarker([r.lat,r.lon],{radius:7,color:'#fff',weight:2,fillColor:'#e63946',fillOpacity:0.85})
+        .bindPopup(popup).addTo(map);
     });
   }
 
-  // ── SELECTION ─────────────────────────────────────────────────────────────────
-  function toggleRow(cb, ts) {
-    if (cb.checked) selectedTs.add(ts);
-    else selectedTs.delete(ts);
-    const row = document.getElementById(`row-${ts}`);
-    if (row) row.className = cb.checked ? 'selected' : '';
+  function toggleRow(cb,ts) {
+    if(cb.checked) selectedTs.add(ts); else selectedTs.delete(ts);
+    const row=document.getElementById('row-'+ts);
+    if(row) row.className=cb.checked?'selected':'';
     updateDeleteBtn();
   }
-
   function toggleAll(masterCb) {
-    const boxes = document.querySelectorAll('#scanBody input[type=checkbox]');
-    boxes.forEach(cb => {
-      const ts = cb.dataset.ts;
-      cb.checked = masterCb.checked;
-      if (masterCb.checked) selectedTs.add(ts);
-      else selectedTs.delete(ts);
-      const row = document.getElementById(`row-${ts}`);
-      if (row) row.className = masterCb.checked ? 'selected' : '';
+    document.querySelectorAll('#scanBody input[type=checkbox]').forEach(cb=>{
+      const ts=cb.dataset.ts; cb.checked=masterCb.checked;
+      if(masterCb.checked) selectedTs.add(ts); else selectedTs.delete(ts);
+      const row=document.getElementById('row-'+ts);
+      if(row) row.className=masterCb.checked?'selected':'';
     });
     updateDeleteBtn();
   }
-
   function updateDeleteBtn() {
-    const btn = document.getElementById('deleteBtn');
-    const countEl = document.getElementById('selCount');
-    if (!btn) return;
-    btn.disabled = selectedTs.size === 0;
-    countEl.textContent = selectedTs.size > 0 ? `${selectedTs.size} selected` : '';
+    const btn=document.getElementById('deleteBtn');
+    const el=document.getElementById('selCount');
+    if(!btn) return;
+    btn.disabled=selectedTs.size===0;
+    if(el) el.textContent=selectedTs.size>0?selectedTs.size+' selected':'';
   }
-
-  // ── DELETE ────────────────────────────────────────────────────────────────────
   async function deleteSelected() {
-    if (selectedTs.size === 0) return;
-    if (!confirm(`Delete ${selectedTs.size} selected scan(s)? This also updates the counters.`)) return;
-
-    const key = document.getElementById('adminKey').value.trim();
-    // Find the actual record objects for selected timestamps
-    const toDelete = currentData.recent.filter(r => selectedTs.has(r.ts));
-    if (!toDelete.length) { alert('Could not find matching records.'); return; }
-
+    if(!selectedTs.size) return;
+    if(!confirm('Delete '+selectedTs.size+' scan(s)? Counters will also be decremented.')) return;
+    const key=document.getElementById('adminKey').value.trim();
+    const toDelete=currentData.recent.filter(r=>selectedTs.has(r.ts));
+    if(!toDelete.length){alert('Could not find matching records.');return;}
     try {
-      const res = await fetch(DELETE_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key, entries: toDelete })
-      });
-      const result = await res.json();
-      if (!res.ok || !result.ok) throw new Error(result.error || 'Delete failed');
-      alert(`Deleted ${result.deleted} scan(s). Reloading data…`);
+      const res=await fetch(DELETE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,entries:toDelete})});
+      const result=await res.json();
+      if(!res.ok||!result.ok) throw new Error(result.error||'Delete failed');
+      alert('Deleted '+result.deleted+' scan(s). Reloading...');
       load();
-    } catch(e) {
-      alert('Error: ' + e.message);
-    }
+    } catch(e){alert('Error: '+e.message);}
   }
-
-  // ── EXPORT CSV ────────────────────────────────────────────────────────────────
   function exportCSV() {
-    if (!currentData || !currentData.recent.length) { alert('Load data first.'); return; }
-    const cols = ['ts','source','ip','placeName','lat','lon','city','region','country','device','userAgent','referrer'];
-    const header = cols.join(',');
-    const rows = currentData.recent.map(r =>
-      cols.map(c => {
-        const v = r[c] ?? '';
-        return '"' + String(v).replace(/"/g, '""') + '"';
-      }).join(',')
-    );
-    const csv = [header, ...rows].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `qr-scans-${today()}.csv`;
+    if(!currentData?.recent?.length){alert('Load data first.');return;}
+    const cols=['ts','source','ip','placeName','lat','lon','city','region','country','device','userAgent','referrer'];
+    const rows=currentData.recent.map(r=>cols.map(c=>'"'+String(r[c]??'').replace(/"/g,'""')+'"').join(','));
+    const csv=[cols.join(','),...rows].join('\n');
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    a.download='qr-scans-'+todayIST()+'.csv';
     a.click();
-    URL.revokeObjectURL(url);
   }
-
-  // ── RANGE FILTER ──────────────────────────────────────────────────────────────
   function setRange(range) {
-    activeRange = range;
-    if (range === 'custom') {
-      const f = document.getElementById('fromDate');
-      const t = document.getElementById('toDate');
-      if (f) customFrom = f.value;
-      if (t) customTo = t.value;
-      if (!customFrom || !customTo) { alert('Pick both From and To dates.'); return; }
+    activeRange=range;
+    if(range==='custom'){
+      const f=document.getElementById('fromDate'),t=document.getElementById('toDate');
+      if(f) customFrom=f.value; if(t) customTo=t.value;
+      if(!customFrom||!customTo){alert('Pick both From and To dates first.');return;}
     }
     load();
   }
-
-  // ── UTILS ─────────────────────────────────────────────────────────────────────
   function shortUA(ua) {
-    if (!ua) return '—';
-    if (/iPhone/.test(ua)) return 'iPhone';
-    if (/Android/.test(ua)) return 'Android';
-    if (/iPad/.test(ua)) return 'iPad';
-    if (/Windows/.test(ua)) return 'Windows';
-    if (/Macintosh/.test(ua)) return 'Mac';
-    return ua.slice(0, 20) + '…';
+    if(!ua) return '—';
+    if(/iPhone/.test(ua)) return 'iPhone';
+    if(/Android/.test(ua)) return 'Android';
+    if(/iPad/.test(ua)) return 'iPad';
+    if(/Windows/.test(ua)) return 'Windows';
+    if(/Macintosh/.test(ua)) return 'Mac';
+    return ua.slice(0,20)+'...';
   }
-
-  function escHtml(s) {
-    if (s == null) return '';
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  function esc(s) {
+    return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
   </script>
 </body>
